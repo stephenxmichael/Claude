@@ -1,0 +1,12 @@
+{
+  "name": "shooting-stars-ebook",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "shoot": "node scripts/shoot.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.63.0"
+  }
+}

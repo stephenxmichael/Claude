@@ -1,0 +1,98 @@
+<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Shooting Stars — Content Framework</title><style>
+/* Fonts are vendored into assets/fonts/ rather than pulled from Google at
+   render time: a headless browser with no network silently falls back to
+   serif, which breaks every Anton headline. See scripts/vendor-fonts.sh */
+@import url('assets/fonts/fonts.css');
+:root{
+  --ink:#08080C; --ink2:#101018;
+  --cobalt:#2B5CE6; --volt:#4D7CFF; --deep:#0B1F5C;
+  --bone:#F2F1ED; --bone2:#E8E6DF;
+  --slate:#5B6270; --line:#D9D6CE;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-items:center;gap:38px;font-family:'Archivo',sans-serif}
+.page{width:800px;height:1120px;position:relative;overflow:hidden;box-shadow:0 26px 80px rgba(0,0,0,.65);flex-shrink:0}
+.tag{color:#7d8496;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:-14px;font-family:'JetBrains Mono'}
+
+/* ── textures & atmosphere ── */
+.grain::after{content:'';position:absolute;inset:0;opacity:.055;mix-blend-mode:overlay;pointer-events:none;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.gridlines::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
+ background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+ background-size:56px 56px}
+.lightgrid::before{content:'';position:absolute;inset:0;pointer-events:none;
+ background-image:linear-gradient(rgba(8,8,12,.032) 1px,transparent 1px),linear-gradient(90deg,rgba(8,8,12,.032) 1px,transparent 1px);
+ background-size:56px 56px}
+.glow{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+
+.dark{background:var(--ink);color:#fff}
+.light{background:var(--bone);color:var(--ink)}
+
+/* ── running marks ── */
+.hud{position:absolute;top:0;left:0;right:0;height:56px;display:flex;align-items:center;justify-content:space-between;
+ padding:0 34px;font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;z-index:9}
+.dark .hud{color:#5A6072;border-bottom:1px solid rgba(255,255,255,.07)}
+.light .hud{color:#A39F95;border-bottom:1px solid var(--line)}
+.hud img{width:17px;opacity:.75}
+.light .hud img{filter:brightness(0);opacity:.3}
+
+.folio{position:absolute;bottom:30px;right:34px;font-family:'Anton';font-size:40px;line-height:1;z-index:9;letter-spacing:.02em}
+.dark .folio{color:rgba(255,255,255,.13)}
+.light .folio{color:rgba(8,8,12,.1)}
+
+/* vertical spine label */
+.spine{position:absolute;left:0;top:0;bottom:0;width:34px;display:flex;align-items:center;justify-content:center;z-index:8}
+.spine span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'JetBrains Mono';font-size:9px;letter-spacing:.34em;text-transform:uppercase}
+.dark .spine{background:var(--cobalt)}
+.dark .spine span{color:#fff}
+.light .spine{background:var(--ink)}
+.light .spine span{color:var(--bone)}
+
+/* STARS progress ticks on spine */
+.ticks{position:absolute;left:0;width:34px;bottom:34px;display:flex;flex-direction:column;gap:7px;align-items:center;z-index:9}
+.ticks i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.28);display:block}
+.ticks i.on{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.22)}
+.light .ticks i{background:rgba(242,241,237,.3)}
+.light .ticks i.on{background:var(--volt);box-shadow:0 0 0 3px rgba(77,124,255,.3)}
+
+/* ── type system ── */
+.mono{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.22em;text-transform:uppercase}
+.display{font-family:'Anton';letter-spacing:.005em;line-height:.86;text-transform:uppercase}
+.h-sec{font-family:'Anton';font-size:66px;line-height:.86;text-transform:uppercase}
+.body{font-size:14px;line-height:1.72;color:#2E3039;max-width:480px}
+.body p{margin-bottom:13px}
+.dark .body{color:#A8AEBE}
+.lede{font-size:17.5px;line-height:1.55;color:#3A3D47;font-weight:500}
+
+/* accent chip */
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--cobalt);color:#fff;
+ font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px;border-radius:2px}
+.chip.ghost{background:transparent;border:1px solid var(--cobalt);color:var(--cobalt)}
+
+/* ── photo slot ──
+   For Stephen's real photography, which lives in the Canva original. This
+   session's egress policy blocks export-download.canva.com, so the images
+   could not be pulled. Rather than fake them, the slot is marked in-system
+   with the exact source page and crop. Drop the file in assets/ and swap the
+   .photoslot div for an <img> / background-image. */
+.photoslot{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;
+ background:repeating-linear-gradient(45deg,rgba(77,124,255,.06) 0 11px,transparent 11px 22px),var(--ink2)}
+.photoslot::after{content:'';position:absolute;inset:0;border:1px solid rgba(77,124,255,.34);pointer-events:none}
+.light .photoslot{background:repeating-linear-gradient(45deg,rgba(43,92,230,.07) 0 11px,transparent 11px 22px),var(--bone2)}
+.light .photoslot::after{border-color:rgba(43,92,230,.3)}
+.photoslot .ps-in{text-align:center;padding:20px;position:relative;z-index:2;max-width:290px}
+.photoslot .ps-k{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.2em;
+ text-transform:uppercase;color:var(--volt);display:block}
+.light .photoslot .ps-k{color:var(--cobalt)}
+.photoslot .ps-d{font-size:11.5px;line-height:1.55;color:#8C93A5;margin-top:9px}
+.light .photoslot .ps-d{color:var(--slate)}
+
+/* ── placeholder flag ──
+   Stephen's own lorem ipsum / notes-to-self, surfaced rather than written over. */
+.flag{display:flex;gap:16px;align-items:flex-start}
+.flag .fl-b{font-family:'Anton',Impact,sans-serif;font-size:26px;color:#F0A83C;line-height:.8;flex-shrink:0}
+.flag .fl-k{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.2em;
+ text-transform:uppercase;color:#F0A83C;margin-bottom:6px}
+.flag .fl-d{font-size:13px;line-height:1.55;color:#7D8496;max-width:490px}
+.light .flag .fl-d{color:var(--slate)}
+</style></head><body>

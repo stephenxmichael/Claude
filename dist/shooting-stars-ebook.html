@@ -1,0 +1,434 @@
+<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Shooting Stars — Content Framework</title><style>
+/* Fonts are vendored into assets/fonts/ rather than pulled from Google at
+   render time: a headless browser with no network silently falls back to
+   serif, which breaks every Anton headline. See scripts/vendor-fonts.sh */
+@import url('assets/fonts/fonts.css');
+:root{
+  --ink:#08080C; --ink2:#101018;
+  --cobalt:#2B5CE6; --volt:#4D7CFF; --deep:#0B1F5C;
+  --bone:#F2F1ED; --bone2:#E8E6DF;
+  --slate:#5B6270; --line:#D9D6CE;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-items:center;gap:38px;font-family:'Archivo',sans-serif}
+.page{width:800px;height:1120px;position:relative;overflow:hidden;box-shadow:0 26px 80px rgba(0,0,0,.65);flex-shrink:0}
+.tag{color:#7d8496;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:-14px;font-family:'JetBrains Mono'}
+
+/* ── textures & atmosphere ── */
+.grain::after{content:'';position:absolute;inset:0;opacity:.055;mix-blend-mode:overlay;pointer-events:none;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.gridlines::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
+ background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+ background-size:56px 56px}
+.lightgrid::before{content:'';position:absolute;inset:0;pointer-events:none;
+ background-image:linear-gradient(rgba(8,8,12,.032) 1px,transparent 1px),linear-gradient(90deg,rgba(8,8,12,.032) 1px,transparent 1px);
+ background-size:56px 56px}
+.glow{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+
+.dark{background:var(--ink);color:#fff}
+.light{background:var(--bone);color:var(--ink)}
+
+/* ── running marks ── */
+.hud{position:absolute;top:0;left:0;right:0;height:56px;display:flex;align-items:center;justify-content:space-between;
+ padding:0 34px;font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;z-index:9}
+.dark .hud{color:#5A6072;border-bottom:1px solid rgba(255,255,255,.07)}
+.light .hud{color:#A39F95;border-bottom:1px solid var(--line)}
+.hud img{width:17px;opacity:.75}
+.light .hud img{filter:brightness(0);opacity:.3}
+
+.folio{position:absolute;bottom:30px;right:34px;font-family:'Anton';font-size:40px;line-height:1;z-index:9;letter-spacing:.02em}
+.dark .folio{color:rgba(255,255,255,.13)}
+.light .folio{color:rgba(8,8,12,.1)}
+
+/* vertical spine label */
+.spine{position:absolute;left:0;top:0;bottom:0;width:34px;display:flex;align-items:center;justify-content:center;z-index:8}
+.spine span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'JetBrains Mono';font-size:9px;letter-spacing:.34em;text-transform:uppercase}
+.dark .spine{background:var(--cobalt)}
+.dark .spine span{color:#fff}
+.light .spine{background:var(--ink)}
+.light .spine span{color:var(--bone)}
+
+/* STARS progress ticks on spine */
+.ticks{position:absolute;left:0;width:34px;bottom:34px;display:flex;flex-direction:column;gap:7px;align-items:center;z-index:9}
+.ticks i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.28);display:block}
+.ticks i.on{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.22)}
+.light .ticks i{background:rgba(242,241,237,.3)}
+.light .ticks i.on{background:var(--volt);box-shadow:0 0 0 3px rgba(77,124,255,.3)}
+
+/* ── type system ── */
+.mono{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.22em;text-transform:uppercase}
+.display{font-family:'Anton';letter-spacing:.005em;line-height:.86;text-transform:uppercase}
+.h-sec{font-family:'Anton';font-size:66px;line-height:.86;text-transform:uppercase}
+.body{font-size:14px;line-height:1.72;color:#2E3039;max-width:480px}
+.body p{margin-bottom:13px}
+.dark .body{color:#A8AEBE}
+.lede{font-size:17.5px;line-height:1.55;color:#3A3D47;font-weight:500}
+
+/* accent chip */
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--cobalt);color:#fff;
+ font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px;border-radius:2px}
+.chip.ghost{background:transparent;border:1px solid var(--cobalt);color:var(--cobalt)}
+</style></head><body>
+<div class="tag">P.01 — COVER</div>
+<div class="page dark grain gridlines">
+  <div class="glow" style="width:620px;height:620px;top:-230px;right:-200px;background:radial-gradient(circle,var(--volt),transparent 70%);opacity:.42"></div>
+  <div class="glow" style="width:420px;height:420px;bottom:-180px;left:-140px;background:radial-gradient(circle,var(--deep),transparent 70%);opacity:.7"></div>
+  <div class="spine"><span>Shooting Stars Content Academy · 2026</span></div>
+
+  <img src="assets/Shooting_Stars_logo_2_wht.png" style="position:absolute;top:70px;left:74px;width:158px;z-index:6;opacity:.95">
+
+  <div style="position:absolute;top:250px;left:74px;right:0;z-index:6">
+    <div class="mono" style="color:var(--volt);margin-bottom:20px">Vol. 01 &nbsp;/&nbsp; The Creator System</div>
+    <div class="display" style="font-size:150px;margin-left:-8px">Content</div>
+    <div class="display" style="font-size:150px;margin-left:-8px;color:transparent;-webkit-text-stroke:2px var(--volt)">Frame</div>
+    <div class="display" style="font-size:150px;margin-left:-8px">work</div>
+  </div>
+
+  <div style="position:absolute;left:74px;bottom:150px;z-index:6;display:flex;align-items:flex-end;gap:26px">
+    <div style="width:2px;height:76px;background:var(--volt)"></div>
+    <div style="max-width:390px;font-size:15px;line-height:1.55;color:#9BA2B4">
+      How to film yourself, master your content, and build a personal brand that stands out.
+    </div>
+  </div>
+
+  <div style="position:absolute;left:74px;right:34px;bottom:64px;display:flex;justify-content:space-between;align-items:center;z-index:6">
+    <span class="chip">A Step-by-Step Guide</span>
+    <span class="mono" style="color:#5A6072">@stephenxmichael</span>
+  </div>
+</div>
+<div class="tag">P.02 — THE AUTHOR</div>
+<div class="page light lightgrid">
+  <div class="spine"><span>The Author</span></div>
+  <div class="hud"><span>Shooting Stars: Content Framework</span><img src="assets/Shooting_Stars_S_Icon_wht.png"><span>Intro</span></div>
+  <div style="position:absolute;top:0;right:0;width:330px;height:560px;overflow:hidden;z-index:3">
+    <div style="position:absolute;inset:0;background-image:url('assets/photo-author.jpg');background-size:920px 1300px;background-position:-520px -30px"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(150deg,rgba(43,92,230,.42),rgba(8,8,12,.12));mix-blend-mode:multiply"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(150deg,rgba(43,92,230,.38),transparent 70%);mix-blend-mode:multiply"></div>
+  </div>
+  <div style="position:absolute;top:120px;left:74px;z-index:6">
+    <div class="mono" style="color:var(--cobalt);margin-bottom:16px">Meet Your Instructor</div>
+    <div class="display" style="font-size:104px">The</div>
+    <div class="display" style="font-size:104px;color:var(--cobalt)">Author</div>
+  </div>
+  <div style="position:absolute;top:400px;left:74px;z-index:6;width:270px;border-top:2px solid var(--ink);padding-top:14px">
+    <div style="font-family:'Anton';font-size:30px;line-height:1;text-transform:uppercase">Stephen<br>Michael</div>
+    <div class="mono" style="color:var(--slate);margin-top:10px">Filmmaker · Creator · Educator</div>
+  </div>
+  <div style="position:absolute;top:600px;left:74px;right:74px;z-index:6">
+    <div class="lede" style="max-width:600px;margin-bottom:22px">For the past 11 years, I've been immersed in the world of visual storytelling.</div>
+    <div style="display:flex;gap:34px">
+      <div class="body" style="flex:1;font-size:13px">
+        <p>I started as a photographer and videographer, working on creative projects with individuals, brands, and entrepreneurs — learning how cameras work, how lighting shapes a scene, and how strong visuals can communicate an idea before a single word is spoken.</p>
+        <p>Over time, what started as a creative pursuit turned into a professional skillset that allowed me to collaborate with brands and grow an audience of over 40,000 followers.</p>
+      </div>
+      <div class="body" style="flex:1;font-size:13px">
+        <p>Inside this book, I'll walk you through the <strong>Shooting Stars Content Framework</strong> — a practical system for creating high-quality content that stands out online.</p>
+        <p>Whether you're an entrepreneur, business owner, or someone who simply wants better content, this guide gives you the tools and structure to do it.</p>
+        <p style="color:var(--cobalt);font-weight:700">Let's get started.</p>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:74px;bottom:64px;display:flex;gap:40px;z-index:6">
+    <div><div style="font-family:'Anton';font-size:34px;color:var(--cobalt)">11</div><div class="mono" style="color:var(--slate)">Years</div></div>
+    <div><div style="font-family:'Anton';font-size:34px;color:var(--cobalt)">40K+</div><div class="mono" style="color:var(--slate)">Audience</div></div>
+    <div><div style="font-family:'Anton';font-size:34px;color:var(--cobalt)">05</div><div class="mono" style="color:var(--slate)">Stages</div></div>
+  </div>
+  <div class="folio">02</div>
+</div>
+<div class="tag">P.03 — CHAPTER 01 DIVIDER</div>
+<div class="page dark grain gridlines">
+  <div class="glow" style="width:560px;height:560px;bottom:-230px;right:-160px;background:radial-gradient(circle,var(--volt),transparent 70%);opacity:.34"></div>
+  <div class="spine"><span>Chapter One</span></div>
+  <div class="ticks"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="hud"><span>Shooting Stars: Content Framework</span><img src="assets/Shooting_Stars_S_Icon_wht.png"><span>Ch. 01</span></div>
+  <div class="display" style="position:absolute;top:150px;right:-60px;font-size:420px;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.1);z-index:2">01</div>
+  <div style="position:absolute;top:400px;left:74px;z-index:6">
+    <span class="chip ghost" style="color:var(--volt);border-color:var(--volt)">Chapter 01</span>
+    <div class="display" style="font-size:90px;margin-top:26px">The Shooting</div>
+    <div class="display" style="font-size:90px;color:var(--volt)">Stars</div>
+    <div class="display" style="font-size:90px">Framework</div>
+  </div>
+  <div style="position:absolute;left:74px;right:120px;bottom:110px;z-index:6;border-top:1px solid rgba(255,255,255,.12);padding-top:20px;display:flex;gap:18px;align-items:flex-start">
+    <span style="font-family:'Anton';font-size:26px;color:#F0A83C;line-height:.8">!</span>
+    <div>
+      <div class="mono" style="color:#F0A83C;margin-bottom:6px">Placeholder — needs your copy</div>
+      <div style="font-size:13.5px;color:#7D8496;line-height:1.55;max-width:480px">Original file has lorem ipsum here. Add 1–2 sentences introducing the framework before this goes final.</div>
+    </div>
+  </div>
+  <div class="folio">03</div>
+</div>
+<div class="tag">P.04 — THE STARS FRAMEWORK</div>
+<div class="page dark grain gridlines">
+  <div class="glow" style="width:480px;height:480px;top:-190px;left:-140px;background:radial-gradient(circle,var(--volt),transparent 70%);opacity:.3"></div>
+  <div class="spine"><span>The Framework</span></div>
+  <div class="ticks"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="hud"><span>Shooting Stars: Content Framework</span><img src="assets/Shooting_Stars_S_Icon_wht.png"><span>Ch. 01</span></div>
+  <div style="position:absolute;top:110px;left:74px;right:74px;z-index:6">
+    <div class="mono" style="color:var(--volt);margin-bottom:14px">The Five Stages</div>
+    <div class="display" style="font-size:76px">S.T.A.R.S.</div>
+    <div style="font-size:13.5px;color:#8C93A5;margin-top:16px;max-width:470px;line-height:1.6">The foundation of the Shooting Stars Creator System. Five stages that take an idea from story to scale.</div>
+  </div>
+  <div style="position:absolute;top:340px;left:74px;right:74px;z-index:6">
+    <div style="display:flex;align-items:center;gap:28px;padding:19px 0;border-bottom:1px solid rgba(255,255,255,.09)">
+      <div class="display" style="font-size:62px;width:66px;color:var(--volt);flex-shrink:0">S</div>
+      <div style="flex:1">
+        <div style="font-family:'Anton';font-size:23px;text-transform:uppercase;letter-spacing:.02em">Storytelling</div>
+        <div style="font-size:12.5px;color:#8C93A5;line-height:1.55;margin-top:5px;max-width:470px">The message behind your content: who you are, what you do, and why it matters to your audience.</div>
+      </div>
+      <div class="mono" style="color:#3E4354">01</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:28px;padding:19px 0;border-bottom:1px solid rgba(255,255,255,.09)">
+      <div class="display" style="font-size:62px;width:66px;color:#fff;flex-shrink:0">T</div>
+      <div style="flex:1">
+        <div style="font-family:'Anton';font-size:23px;text-transform:uppercase;letter-spacing:.02em">Technique</div>
+        <div style="font-size:12.5px;color:#8C93A5;line-height:1.55;margin-top:5px;max-width:470px">The tools and skills used to create strong content: scripting, camera setup, lighting, and audio.</div>
+      </div>
+      <div class="mono" style="color:#3E4354">02</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:28px;padding:19px 0;border-bottom:1px solid rgba(255,255,255,.09)">
+      <div class="display" style="font-size:62px;width:66px;color:var(--volt);flex-shrink:0">A</div>
+      <div style="flex:1">
+        <div style="font-family:'Anton';font-size:23px;text-transform:uppercase;letter-spacing:.02em">Angles</div>
+        <div style="font-size:12.5px;color:#8C93A5;line-height:1.55;margin-top:5px;max-width:470px">How you visually present your story using composition, framing, and intentional camera perspectives.</div>
+      </div>
+      <div class="mono" style="color:#3E4354">03</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:28px;padding:19px 0;border-bottom:1px solid rgba(255,255,255,.09)">
+      <div class="display" style="font-size:62px;width:66px;color:#fff;flex-shrink:0">R</div>
+      <div style="flex:1">
+        <div style="font-family:'Anton';font-size:23px;text-transform:uppercase;letter-spacing:.02em">Refinement</div>
+        <div style="font-size:12.5px;color:#8C93A5;line-height:1.55;margin-top:5px;max-width:470px">Turning raw footage into engaging content through editing, pacing, sound, and visual polish.</div>
+      </div>
+      <div class="mono" style="color:#3E4354">04</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:28px;padding:19px 0;border-bottom:1px solid rgba(255,255,255,.09)">
+      <div class="display" style="font-size:62px;width:66px;color:var(--volt);flex-shrink:0">S</div>
+      <div style="flex:1">
+        <div style="font-family:'Anton';font-size:23px;text-transform:uppercase;letter-spacing:.02em">Scale</div>
+        <div style="font-size:12.5px;color:#8C93A5;line-height:1.55;margin-top:5px;max-width:470px">Using consistent content to build visibility, trust, and long-term growth for your brand or business.</div>
+      </div>
+      <div class="mono" style="color:#3E4354">05</div>
+    </div></div>
+  <div class="folio">04</div>
+</div>
+<div class="tag">P.05 — 3 REASONS IT WORKS</div>
+<div class="page light lightgrid">
+  <div class="spine"><span>Why It Works</span></div>
+  <div class="ticks"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="hud"><span>Shooting Stars: Content Framework</span><img src="assets/Shooting_Stars_S_Icon_wht.png"><span>Ch. 01</span></div>
+  <div style="position:absolute;top:108px;left:74px;right:74px;z-index:6">
+    <div class="mono" style="color:var(--cobalt);margin-bottom:14px">Why It Works</div>
+    <div class="h-sec" style="font-size:60px">3 Reasons<br>It Works</div>
+    <div class="lede" style="margin-top:20px;max-width:470px;font-size:15px">Many people approach content from only one side — creative or strategic. This framework brings both together.</div>
+  </div>
+  <div style="position:absolute;top:400px;left:74px;right:74px;z-index:6">
+    <div style="display:flex;gap:26px;align-items:flex-start;padding:24px;margin-bottom:12px;border:1px solid var(--line)">
+      <div class="display" style="font-size:56px;color:var(--cobalt);line-height:.8;flex-shrink:0">01</div>
+      <div>
+        <div style="font-family:'Anton';font-size:21px;text-transform:uppercase;line-height:1.12;">Connects Creative Skills<br>With Business Value</div>
+        <div style="font-size:12.5px;color:var(--slate);line-height:1.6;margin-top:9px;max-width:430px">Teaches the creative skills needed to produce high-quality content while explaining why it matters for brand visibility, audience trust, and long-term growth.</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:26px;align-items:flex-start;padding:24px;margin-bottom:12px;background:var(--ink);color:var(--bone);border:1px solid transparent">
+      <div class="display" style="font-size:56px;color:var(--volt);line-height:.8;flex-shrink:0">02</div>
+      <div>
+        <div style="font-family:'Anton';font-size:21px;text-transform:uppercase;line-height:1.12;color:var(--bone)">Works For Any Creator,<br>Business, Or Industry</div>
+        <div style="font-size:12.5px;color:#9DA3B2;line-height:1.6;margin-top:9px;max-width:430px">Focuses on fundamentals that work across industries — flexible enough for creators, practical enough for businesses.</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:26px;align-items:flex-start;padding:24px;margin-bottom:12px;border:1px solid var(--line)">
+      <div class="display" style="font-size:56px;color:var(--cobalt);line-height:.8;flex-shrink:0">03</div>
+      <div>
+        <div style="font-family:'Anton';font-size:21px;text-transform:uppercase;line-height:1.12;">Makes Content Creation<br>More Consistent</div>
+        <div style="font-size:12.5px;color:var(--slate);line-height:1.6;margin-top:9px;max-width:430px">A repeatable structure for planning, filming, refining, and publishing — instead of guessing what to create next.</div>
+      </div>
+    </div></div>
+  <div class="folio">05</div>
+</div>
+<div class="tag">P.06 — WHY YOU SHOULD CARE · full-bleed statement</div>
+<div class="page grain" style="background:var(--cobalt);color:#fff">
+  <div class="glow" style="width:600px;height:600px;bottom:-250px;right:-200px;background:radial-gradient(circle,#7FA0FF,transparent 70%);opacity:.45"></div>
+  <div class="spine" style="background:var(--ink)"><span style="color:#fff">The Stakes</span></div>
+  <div class="ticks"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="hud" style="color:rgba(255,255,255,.6);border-bottom:1px solid rgba(255,255,255,.2)"><span>Shooting Stars: Content Framework</span><img src="assets/Shooting_Stars_S_Icon_wht.png"><span>Ch. 01</span></div>
+  <img src="assets/Shooting_Stars_S_Icon_wht.png" style="position:absolute;bottom:-40px;left:20px;width:330px;opacity:.08;z-index:1">
+  <div style="position:absolute;top:200px;left:74px;right:90px;z-index:6">
+    <div class="mono" style="color:rgba(255,255,255,.75);margin-bottom:22px">Why You Should Care</div>
+    <div class="display" style="font-size:72px;line-height:.92">High-quality<br>content does<br>more than<br>capture<br>attention.</div>
+  </div>
+  <div style="position:absolute;left:74px;right:110px;bottom:130px;z-index:6;border-top:1px solid rgba(255,255,255,.28);padding-top:22px">
+    <div style="font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.88);max-width:520px">
+      It helps build a brand people trust. When your content clearly communicates who you are, what you offer, and why it matters, your audience begins to recognize and connect with your message. Over time, that consistency turns viewers into followers, followers into customers, and customers into people who come back again and again.
+    </div>
+  </div>
+  <div class="folio" style="color:rgba(255,255,255,.22)">06</div>
+</div>
+<div class="tag">P.07 — CAPTURING ATTENTION / BUILDING TRUST</div>
+<div class="page light lightgrid">
+  <div class="spine"><span>S.1 &nbsp;—&nbsp; S.2</span></div>
+  <div class="ticks"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="hud"><span>Shooting Stars: Content Framework</span><img src="assets/Shooting_Stars_S_Icon_wht.png"><span>Ch. 01</span></div>
+  <div style="position:absolute;top:108px;left:74px;right:74px;z-index:6">
+    <div class="mono" style="color:var(--cobalt);margin-bottom:14px">The Impact Of Strong Content</div>
+    <div class="h-sec" style="font-size:56px">Attention,<br>Then Trust</div>
+  </div>
+  <div style="position:absolute;top:330px;left:74px;right:74px;z-index:6;display:flex;gap:0;border-top:2px solid var(--ink)">
+    <div style="flex:1;padding:26px 28px 26px 0;border-right:1px solid var(--line)">
+      <div class="display" style="font-size:44px;color:var(--cobalt)">S.1</div>
+      <div style="font-family:'Anton';font-size:22px;text-transform:uppercase;margin:10px 0 12px">Capturing<br>Attention</div>
+      <div style="font-size:12.5px;line-height:1.7;color:var(--slate)">Every day, millions of pieces of content are posted online. The biggest challenge isn't creating content — it's earning attention. High-quality visuals, clear messaging, and intentional storytelling make people pause when they're scrolling.</div>
+      <div style="margin-top:14px;font-size:12.5px;line-height:1.7;color:var(--ink);font-weight:600">The goal isn't to post more. It's to create content people actually stop to watch.</div>
+    </div>
+    <div style="flex:1;padding:26px 0 26px 28px">
+      <div class="display" style="font-size:44px;color:var(--cobalt)">S.2</div>
+      <div style="font-family:'Anton';font-size:22px;text-transform:uppercase;margin:10px 0 12px">Building<br>Trust</div>
+      <div style="font-size:12.5px;line-height:1.7;color:var(--slate)">When your content looks polished, clear, and well thought out, it signals professionalism. People naturally associate quality with credibility. For creators this builds authority; for businesses it makes customers more confident.</div>
+      <div style="margin-top:14px;font-size:12.5px;line-height:1.7;color:var(--ink);font-weight:600">Real effort communicates that you take your message, and your audience, seriously.</div>
+    </div>
+  </div>
+  <div style="position:absolute;left:74px;right:74px;bottom:110px;z-index:6;background:var(--ink);color:var(--bone);padding:22px 26px;display:flex;gap:20px;align-items:flex-start">
+    <span class="chip" style="background:var(--volt);flex-shrink:0">Hot Take</span>
+    <div style="font-size:13px;line-height:1.65;color:#B4BAC8">Carousel posts build trust seamlessly at this stage — they give people a reason to slow down and read rather than scroll past.</div>
+  </div>
+  <div class="folio">07</div>
+</div>
+<div class="tag">P.08 — CHAPTER 02 DIVIDER</div>
+<div class="page dark grain gridlines">
+  <div class="glow" style="width:540px;height:540px;bottom:-220px;left:-170px;background:radial-gradient(circle,var(--volt),transparent 70%);opacity:.36"></div>
+  <div class="spine"><span>Chapter Two</span></div>
+  <div class="ticks"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="hud"><span>Shooting Stars: Content Framework</span><img src="assets/Shooting_Stars_S_Icon_wht.png"><span>Ch. 02</span></div>
+  <div class="display" style="position:absolute;top:130px;right:-40px;font-size:420px;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.1);z-index:2">02</div>
+  <div style="position:absolute;top:380px;left:74px;z-index:6">
+    <span class="chip ghost" style="color:var(--volt);border-color:var(--volt)">Stage 01 — Story</span>
+    <div class="display" style="font-size:118px;margin-top:26px">Story</div>
+    <div class="display" style="font-size:118px;color:var(--volt);margin-top:-8px">telling</div>
+    <div style="font-size:16px;color:#8C93A5;margin-top:22px;max-width:420px;line-height:1.55">The foundation of addictive content.</div>
+  </div>
+  <div style="position:absolute;left:74px;right:110px;bottom:96px;z-index:6;border-top:1px solid rgba(255,255,255,.12);padding-top:22px;display:flex;gap:18px">
+    <span class="display" style="font-size:44px;color:var(--volt);line-height:.62">&ldquo;</span>
+    <div>
+      <div style="font-size:15px;line-height:1.5;color:#C3C8D4;max-width:440px">The most powerful person in the world is the storyteller.</div>
+      <div class="mono" style="color:#5A6072;margin-top:10px">Steve Jobs</div>
+    </div>
+  </div>
+  <div class="folio">08</div>
+</div>
+<div class="tag">P.09 — WHAT STORY ARE YOU TELLING</div>
+<div class="page light lightgrid">
+  <div class="spine"><span>Storytelling</span></div>
+  <div class="ticks"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="hud"><span>Shooting Stars: Content Framework</span><img src="assets/Shooting_Stars_S_Icon_wht.png"><span>Ch. 02</span></div>
+  <img src="assets/Shooting_Stars_S_Icon_wht.png" style="position:absolute;top:120px;right:44px;width:200px;opacity:.06;filter:brightness(0);z-index:1">
+  <div style="position:absolute;top:120px;left:74px;right:74px;z-index:6">
+    <div class="mono" style="color:var(--cobalt);margin-bottom:16px">Before the gear, the lights, the edit</div>
+    <div class="h-sec" style="font-size:58px">What Story<br>Are You<br>Telling?</div>
+  </div>
+  <div style="position:absolute;top:470px;left:74px;right:74px;z-index:6">
+    <div style="background:var(--ink);color:var(--bone);padding:36px 34px;position:relative">
+      <span class="display" style="position:absolute;top:6px;left:20px;font-size:80px;color:var(--volt);opacity:.3;line-height:1">&ldquo;</span>
+      <div style="font-family:'Anton';font-size:32px;line-height:1.16;text-transform:uppercase;position:relative;z-index:2">
+        Relatability is the <span style="color:var(--volt)">#1 brand builder</span> in today's content world.
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:74px;right:74px;bottom:120px;z-index:6;display:flex;gap:34px">
+    <div style="flex:1;font-size:13px;line-height:1.72;color:var(--slate)">When you master the art of storytelling, people will not only relate to the brand you're creating, but they'll find commonalities with you on a situational level.</div>
+    <div style="flex:1;font-size:13px;line-height:1.72;color:var(--slate)">Every video you make will feel like an intimate FaceTime call — letting them know their thoughts, problems, and questions are part of your world too.</div>
+  </div>
+  <div class="folio">09</div>
+</div>
+<div class="tag">P.10 — IDENTIFYING YOUR NICHE · venn diagram</div>
+<div class="page light lightgrid">
+  <div class="spine"><span>S.4 &nbsp;—&nbsp; S.5</span></div>
+  <div class="ticks"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="hud"><span>Shooting Stars: Content Framework</span><img src="assets/Shooting_Stars_S_Icon_wht.png"><span>Ch. 02</span></div>
+  <div style="position:absolute;top:108px;left:74px;right:74px;z-index:6">
+    <div class="mono" style="color:var(--cobalt);margin-bottom:14px">S.4 / S.5 — Your Niche</div>
+    <div class="h-sec" style="font-size:56px">Find The<br>Overlap</div>
+  </div>
+  <div style="position:absolute;top:300px;left:0;right:0;display:flex;justify-content:center;z-index:6">
+    <svg width="430" height="330" viewBox="0 0 430 330">
+      <circle cx="150" cy="120" r="106" fill="#2B5CE6" opacity=".16"/>
+      <circle cx="280" cy="120" r="106" fill="#2B5CE6" opacity=".16"/>
+      <circle cx="215" cy="215" r="106" fill="#2B5CE6" opacity=".16"/>
+      <circle cx="150" cy="120" r="106" fill="none" stroke="#2B5CE6" stroke-width="1.5" opacity=".5"/>
+      <circle cx="280" cy="120" r="106" fill="none" stroke="#2B5CE6" stroke-width="1.5" opacity=".5"/>
+      <circle cx="215" cy="215" r="106" fill="none" stroke="#2B5CE6" stroke-width="1.5" opacity=".5"/>
+      <text x="112" y="68" font-family="Anton" font-size="14" fill="#08080C" text-transform="uppercase">WHAT YOU</text>
+      <text x="122" y="85" font-family="Anton" font-size="14" fill="#08080C">KNOW</text>
+      <text x="258" y="68" font-family="Anton" font-size="14" fill="#08080C">WHAT YOU</text>
+      <text x="268" y="85" font-family="Anton" font-size="14" fill="#08080C">ENJOY</text>
+      <text x="168" y="292" font-family="Anton" font-size="14" fill="#08080C">WHAT PEOPLE VALUE</text>
+      <circle cx="215" cy="152" r="30" fill="#2B5CE6"/>
+      <text x="196" y="150" font-family="Anton" font-size="11" fill="#fff">YOUR</text>
+      <text x="193" y="163" font-family="Anton" font-size="11" fill="#fff">NICHE</text>
+    </svg>
+  </div>
+  <div style="position:absolute;left:74px;right:74px;bottom:106px;z-index:6;display:flex;gap:0;border-top:2px solid var(--ink);padding-top:20px">
+    <div style="flex:1;padding-right:20px;border-right:1px solid var(--line)"><div class="display" style="font-size:26px;color:var(--cobalt)">01</div><div style="font-size:11.5px;line-height:1.6;color:var(--slate);margin-top:7px">What knowledge or skills do you already have?</div></div>
+    <div style="flex:1;padding:0 20px;border-right:1px solid var(--line)"><div class="display" style="font-size:26px;color:var(--cobalt)">02</div><div style="font-size:11.5px;line-height:1.6;color:var(--slate);margin-top:7px">What topics do you genuinely enjoy talking about?</div></div>
+    <div style="flex:1;padding-left:20px"><div class="display" style="font-size:26px;color:var(--cobalt)">03</div><div style="font-size:11.5px;line-height:1.6;color:var(--slate);margin-top:7px">What problems can you help people solve?</div></div>
+  </div>
+  <div class="folio">10</div>
+</div>
+<div class="tag">P.11 — S.6 BRAND PILLARS INTRO</div>
+<div class="page light lightgrid">
+  <div class="spine"><span>S.6 Brand Pillars</span></div>
+  <div class="ticks"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="hud"><span>Shooting Stars: Content Framework</span><img src="assets/Shooting_Stars_S_Icon_wht.png"><span>Ch. 02</span></div>
+  <div style="position:absolute;top:150px;left:74px;right:74px;z-index:6">
+    <div class="mono" style="color:var(--cobalt);margin-bottom:18px">S.6 — Brand Pillars</div>
+    <div class="h-sec" style="font-size:64px">How To Never<br>Run Out Of<br><span style="color:var(--cobalt)">Content Ideas</span></div>
+  </div>
+  <div style="position:absolute;top:520px;left:74px;z-index:6;display:flex;align-items:center;gap:20px">
+    <div style="width:60px;height:2px;background:var(--ink)"></div>
+    <div class="mono" style="color:var(--slate)">The structural fix</div>
+  </div>
+  <div style="position:absolute;top:570px;left:74px;right:74px;z-index:6;display:flex;gap:40px">
+    <div style="flex:1;font-size:14px;line-height:1.75;color:#2E3039">Think of content pillars as the foundation of your content strategy. They give your brand structure, keep your messaging focused, and make it easier for your audience to understand what they can expect from you.</div>
+    <div style="flex:1;font-size:14px;line-height:1.75;color:#2E3039">When your content is built around clear pillars, your ideas begin to multiply. One topic can easily turn into multiple pieces of content that serve your audience in different ways.</div>
+  </div>
+  <div style="position:absolute;left:74px;right:74px;bottom:110px;z-index:6;background:var(--ink);padding:30px 34px;display:flex;align-items:center;gap:30px">
+    <div class="display" style="font-size:70px;color:var(--volt);line-height:.8">1</div>
+    <div style="font-family:'Anton';font-size:23px;color:var(--bone);text-transform:uppercase;line-height:1.2">Topic becomes<br><span style="color:var(--volt)">ten pieces</span> of content</div>
+  </div>
+  <div class="folio">11</div>
+</div>
+<div class="tag">P.12 — THE 3 PILLARS OF CONTENT</div>
+<div class="page dark grain gridlines">
+  <div class="glow" style="width:500px;height:500px;top:-200px;right:-150px;background:radial-gradient(circle,var(--volt),transparent 70%);opacity:.3"></div>
+  <div class="spine"><span>S.7 The 3 Pillars</span></div>
+  <div class="ticks"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="hud"><span>Shooting Stars: Content Framework</span><img src="assets/Shooting_Stars_S_Icon_wht.png"><span>Ch. 02</span></div>
+  <div style="position:absolute;top:120px;left:74px;right:74px;z-index:6">
+    <div class="mono" style="color:var(--volt);margin-bottom:14px">S.7 — The 3 Pillars Of Content</div>
+    <div class="display" style="font-size:68px">Learn. Relate.<br>Trust.</div>
+    <div style="font-size:13.5px;color:#8C93A5;margin-top:18px;max-width:470px;line-height:1.6">Content pillars are the 3–4 core themes your content revolves around. Instead of posting random ideas, every piece fits into one of these.</div>
+  </div>
+  <div style="position:absolute;top:400px;left:74px;right:74px;z-index:6;display:flex;gap:14px">
+    <div style="flex:1;border:1px solid rgba(255,255,255,.12);padding:26px 20px;position:relative;background:rgba(255,255,255,.02)">
+      <div class="display" style="position:absolute;top:12px;right:14px;font-size:40px;color:rgba(255,255,255,.07)">01</div>
+      <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#4D7CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <div style="font-family:'Anton';font-size:22px;text-transform:uppercase;margin:18px 0 10px;color:#fff">Educational</div>
+      <div style="font-size:12px;line-height:1.65;color:#8C93A5">Teaching your audience something useful — tips, tutorials, insights, or breakdowns that help people improve a skill.</div>
+    </div>
+    <div style="flex:1;border:1px solid rgba(255,255,255,.12);padding:26px 20px;position:relative;background:rgba(255,255,255,.02)">
+      <div class="display" style="position:absolute;top:12px;right:14px;font-size:40px;color:rgba(255,255,255,.07)">02</div>
+      <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#4D7CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 1 0-7.8 7.8l1.1 1.1L12 21.2l7.8-7.8 1-1.1a5.5 5.5 0 0 0 0-7.7z"/></svg>
+      <div style="font-family:'Anton';font-size:22px;text-transform:uppercase;margin:18px 0 10px;color:#fff">Relatable</div>
+      <div style="font-size:12px;line-height:1.65;color:#8C93A5">Sharing your journey, perspective, and experiences so people connect with the person behind the brand.</div>
+    </div>
+    <div style="flex:1;border:1px solid rgba(255,255,255,.12);padding:26px 20px;position:relative;background:rgba(255,255,255,.02)">
+      <div class="display" style="position:absolute;top:12px;right:14px;font-size:40px;color:rgba(255,255,255,.07)">03</div>
+      <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#4D7CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v7a3 3 0 0 0 3 3z"/><path d="M19 11a7 7 0 0 1-14 0M12 19v3"/></svg>
+      <div style="font-family:'Anton';font-size:22px;text-transform:uppercase;margin:18px 0 10px;color:#fff">Authority</div>
+      <div style="font-size:12px;line-height:1.65;color:#8C93A5">Demonstrating your expertise through your work, results, tools, or real-world examples.</div>
+    </div></div>
+  <div style="position:absolute;left:74px;right:74px;bottom:110px;z-index:6;border-top:1px solid rgba(255,255,255,.12);padding-top:22px;display:flex;gap:20px;align-items:flex-start">
+    <span class="chip">Case Study</span>
+    <div style="font-size:12.5px;line-height:1.65;color:#8C93A5;max-width:520px">Stephen's own pillars: Brand Story · Camera Education · How To Film Yourself · Content Strategy · Useful Tech. Each supports the niche while helping creators build stronger brands.</div>
+  </div>
+  <div class="folio">12</div>
+</div>
+</body></html>
