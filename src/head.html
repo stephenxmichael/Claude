@@ -69,6 +69,26 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
  font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px;border-radius:2px}
 .chip.ghost{background:transparent;border:1px solid var(--cobalt);color:var(--cobalt)}
 
+/* ── STARS rail ──
+   "The Shooting Stars Framework is the foundation of the Shooting Stars Creator
+   System" runs across many source pages as a flat line of five stages. Here it
+   is a rail: five cells, the current stage lit and capped with a solid bar. */
+.rail{display:flex;border-top:1px solid var(--line)}
+.rail>div{flex:1;padding:13px 12px 0;border-right:1px solid var(--line);position:relative}
+.rail>div:last-child{border-right:0}
+.rail .r-s{font-size:11px;line-height:1;color:var(--line);display:block;margin-bottom:9px}
+.rail .r-n{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.2em;
+ text-transform:uppercase;color:#A39F95}
+.rail>div.on::before{content:'';position:absolute;top:-1px;left:0;right:0;height:3px;background:var(--cobalt)}
+.rail>div.on .r-s{color:var(--cobalt)}
+.rail>div.on .r-n{color:var(--ink);font-weight:600}
+.dark .rail,.dark .rail>div{border-color:rgba(255,255,255,.12)}
+.dark .rail .r-s{color:rgba(255,255,255,.18)}
+.dark .rail .r-n{color:#5A6072}
+.dark .rail>div.on::before{background:var(--volt)}
+.dark .rail>div.on .r-s{color:var(--volt)}
+.dark .rail>div.on .r-n{color:#fff}
+
 /* ── photo slot ──
    For Stephen's real photography, which lives in the Canva original. This
    session's egress policy blocks export-download.canva.com, so the images
