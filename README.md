@@ -66,25 +66,24 @@ a book set in Times.
 
 ## Still needed
 
-### Photography — blocked in this environment
+### Photography — four of six plates filled
 
-Six plates are marked with their Canva source page and target filename:
+Photos came from a Drive folder Stephen uploaded, matched against the
+original Canva reference design (`DAHD3PZgJNc`) rather than guessed:
 
-| Page | Asset | Canva source |
+| Page | Asset | Matched to |
 |------|-------|--------------|
-| p02 | `assets/photo-author.jpg`  | page 2, right-hand portrait |
-| p21 | `assets/photo-bokeh.jpg`   | page 22, f/2.8 shot |
-| p26 | `assets/photo-natural.jpg` | page 25, natural light setup |
-| p30 | `assets/photo-desk.jpg`    | page 33, the desk hub |
-| p34 | `assets/photo-wide.jpg`    | Stephen's "drop your wide shot here" |
-| p41 | `assets/photo-aroll-*.jpg` | pages 40-41, four a-roll / B-roll plates |
+| p02 | `assets/photo-author.jpg`  | Stephen's own pick, not the Canva page 2 pose |
+| p21 | `assets/photo-bokeh.jpg`   | closest available to the Canva aperture-demo page |
+| p26 | `assets/photo-natural.jpg` | closest available to the Canva natural-light page |
+| p30 | `assets/photo-desk.jpg`    | same shoot as the Canva desk-hub page |
 
-The Canva export API returns the images, but this session's egress policy
-blocks `export-download.canva.com`, so they could not be fetched. Drop the
-files into `assets/` and swap each `.photoslot` div for an `<img>`.
+Two plates are still open:
 
-p02 also needs its `background-image` div restored (crop 920x1300 at
--520px -30px); it was pointing at a Canva presigned URL that had expired.
+| Page | Asset | Status |
+|------|-------|--------|
+| p34 | `assets/photo-wide.jpg`    | no source ever existed, the Canva page itself is still the unfinished "make a new pg here and put in photo" placeholder |
+| p41 | `assets/photo-aroll-*.jpg` | needs four: two A-roll talking-head, two B-roll (palm trees / pool). Nothing in the Drive folder pairs a B-roll half to go with it |
 
 ### Copy decisions, flagged not filled
 
