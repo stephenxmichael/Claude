@@ -29,7 +29,7 @@ final.forEach((f, i) => {
   const p = join(DIR, f);
   const before = readFileSync(p, "utf8");
   const after = before
-    .replace(/<div class="folio">\d+<\/div>/, `<div class="folio">${pad}</div>`)
+    .replace(/(<div class="folio"[^>]*>)\d+(<\/div>)/, `$1${pad}$2`)
     .replace(/(<div class="tag">)P\.\d+\s*—/, `$1P.${pad} —`);
   if (after !== before) { writeFileSync(p, after); changed++; }
 });
