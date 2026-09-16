@@ -544,20 +544,21 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
 
   <div style="position:absolute;top:286px;left:0;right:0;display:flex;justify-content:center;z-index:6">
     <svg width="520" height="400" viewBox="0 0 430 330">
-      <circle cx="150" cy="120" r="106" fill="#2B5CE6" opacity=".16"/>
-      <circle cx="280" cy="120" r="106" fill="#2B5CE6" opacity=".16"/>
-      <circle cx="215" cy="215" r="106" fill="#2B5CE6" opacity=".16"/>
-      <circle cx="150" cy="120" r="106" fill="none" stroke="#2B5CE6" stroke-width="1.5" opacity=".5"/>
-      <circle cx="280" cy="120" r="106" fill="none" stroke="#2B5CE6" stroke-width="1.5" opacity=".5"/>
-      <circle cx="215" cy="215" r="106" fill="none" stroke="#2B5CE6" stroke-width="1.5" opacity=".5"/>
-      <text x="112" y="68" font-family="Anton" font-size="14" fill="#08080C">WHAT YOU</text>
-      <text x="122" y="85" font-family="Anton" font-size="14" fill="#08080C">KNOW</text>
-      <text x="258" y="68" font-family="Anton" font-size="14" fill="#08080C">WHAT YOU</text>
-      <text x="268" y="85" font-family="Anton" font-size="14" fill="#08080C">ENJOY</text>
-      <text x="168" y="292" font-family="Anton" font-size="14" fill="#08080C">WHAT PEOPLE VALUE</text>
-      <circle cx="215" cy="152" r="30" fill="#2B5CE6"/>
-      <text x="196" y="150" font-family="Anton" font-size="11" fill="#fff">YOUR</text>
-      <text x="193" y="163" font-family="Anton" font-size="11" fill="#fff">NICHE</text>
+      <defs>
+        <clipPath id="vA"><circle cx="150" cy="120" r="106"/></clipPath>
+        <clipPath id="vB"><circle cx="280" cy="120" r="106"/></clipPath>
+      </defs>
+      <g clip-path="url(#vA)"><g clip-path="url(#vB)"><circle cx="215" cy="215" r="106" fill="#2B5CE6" opacity=".12"/></g></g>
+      <circle cx="150" cy="120" r="106" fill="none" stroke="#2B5CE6" stroke-width="1" opacity=".55"/>
+      <circle cx="280" cy="120" r="106" fill="none" stroke="#2B5CE6" stroke-width="1" opacity=".55"/>
+      <circle cx="215" cy="215" r="106" fill="none" stroke="#2B5CE6" stroke-width="1" opacity=".55"/>
+      <g font-family="Anton" font-size="13" fill="#08080C" text-anchor="middle">
+        <text x="112" y="62">WHAT YOU</text><text x="112" y="78">KNOW</text>
+        <text x="318" y="62">WHAT YOU</text><text x="318" y="78">ENJOY</text>
+        <text x="215" y="300">WHAT PEOPLE</text><text x="215" y="316">VALUE</text>
+      </g>
+      <circle cx="215" cy="152" r="3" fill="#2B5CE6"/>
+      <text x="215" y="140" text-anchor="middle" font-family="JetBrains Mono" font-size="8.5" letter-spacing="2" fill="#2B5CE6">YOUR NICHE</text>
     </svg>
   </div>
 
@@ -844,110 +845,53 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
   <div style="position:absolute;top:248px;left:74px;right:74px;z-index:6;font-size:13px;line-height:1.72;color:#2E3039;max-width:560px">ISO controls the brightness of your image by adjusting how sensitive your camera is to light.</div>
 
   <div style="position:absolute;top:310px;left:74px;right:74px;z-index:6">
-    <svg viewBox="0 0 652 232" width="652" height="232" role="img" aria-label="ISO scale from 100 to 6400 showing brightness rising and noise rising with it">
+    <svg viewBox="0 0 652 210" width="652" height="210" role="img" aria-label="ISO scale from 100 to 6400 showing brightness rising and noise rising with it">
       <defs>
-        <filter id="isoNoise" x="0" y="0" width="100%" height="100%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" result="n"/>
+        <filter id="gr" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" result="n"/>
           <feColorMatrix type="saturate" values="0" in="n"/>
         </filter>
-        <clipPath id="isoClip"><rect x="0" y="0" width="102" height="132"/></clipPath>
       </defs>
-
-      <!-- six frames of the same shot, ISO rising left to right -->
-      <g>
-        <!-- 100 -->
-        <g transform="translate(0,0)">
-          <rect width="102" height="132" fill="#15151b"/>
-          <g clip-path="url(#isoClip)">
-            <rect x="58" y="14" width="34" height="104" fill="#22222c"/>
-            <circle cx="42" cy="58" r="17" fill="#2b2b36"/>
-            <path d="M12 132 q30 -42 60 0 z" fill="#2b2b36"/>
-            <rect width="102" height="132" filter="url(#isoNoise)" opacity=".02"/>
-          </g>
-          <rect width="102" height="132" fill="none" stroke="#D9D6CE"/>
-        </g>
-        <!-- 400 -->
-        <g transform="translate(110,0)">
-          <rect width="102" height="132" fill="#242430"/>
-          <g clip-path="url(#isoClip)">
-            <rect x="58" y="14" width="34" height="104" fill="#373746"/>
-            <circle cx="42" cy="58" r="17" fill="#444455"/>
-            <path d="M12 132 q30 -42 60 0 z" fill="#444455"/>
-            <rect width="102" height="132" filter="url(#isoNoise)" opacity=".05"/>
-          </g>
-          <rect width="102" height="132" fill="none" stroke="#D9D6CE"/>
-        </g>
-        <!-- 800 -->
-        <g transform="translate(220,0)">
-          <rect width="102" height="132" fill="#3a3a4a"/>
-          <g clip-path="url(#isoClip)">
-            <rect x="58" y="14" width="34" height="104" fill="#50506380"/>
-            <circle cx="42" cy="58" r="17" fill="#5e5e73"/>
-            <path d="M12 132 q30 -42 60 0 z" fill="#5e5e73"/>
-            <rect width="102" height="132" filter="url(#isoNoise)" opacity=".10"/>
-          </g>
-          <rect width="102" height="132" fill="none" stroke="#D9D6CE"/>
-        </g>
-        <!-- 1600 -->
-        <g transform="translate(330,0)">
-          <rect width="102" height="132" fill="#55556a"/>
-          <g clip-path="url(#isoClip)">
-            <rect x="58" y="14" width="34" height="104" fill="#6c6c85"/>
-            <circle cx="42" cy="58" r="17" fill="#7b7b96"/>
-            <path d="M12 132 q30 -42 60 0 z" fill="#7b7b96"/>
-            <rect width="102" height="132" filter="url(#isoNoise)" opacity=".17"/>
-          </g>
-          <rect width="102" height="132" fill="none" stroke="#D9D6CE"/>
-        </g>
-        <!-- 3200 -->
-        <g transform="translate(440,0)">
-          <rect width="102" height="132" fill="#70708a"/>
-          <g clip-path="url(#isoClip)">
-            <rect x="58" y="14" width="34" height="104" fill="#8888a4"/>
-            <circle cx="42" cy="58" r="17" fill="#9898b4"/>
-            <path d="M12 132 q30 -42 60 0 z" fill="#9898b4"/>
-            <rect width="102" height="132" filter="url(#isoNoise)" opacity=".26"/>
-          </g>
-          <rect width="102" height="132" fill="none" stroke="#D9D6CE"/>
-        </g>
-        <!-- 6400 -->
-        <g transform="translate(550,0)">
-          <rect width="102" height="132" fill="#8e8ea8"/>
-          <g clip-path="url(#isoClip)">
-            <rect x="58" y="14" width="34" height="104" fill="#a5a5bf"/>
-            <circle cx="42" cy="58" r="17" fill="#b4b4cc"/>
-            <path d="M12 132 q30 -42 60 0 z" fill="#b4b4cc"/>
-            <rect width="102" height="132" filter="url(#isoNoise)" opacity=".38"/>
-          </g>
-          <rect width="102" height="132" fill="none" stroke="#D9D6CE"/>
-        </g>
+      <g transform="translate(0,0)">
+        <rect width="96" height="132" fill="#1C1C22"/>
+        <rect width="96" height="132" fill="none" stroke="rgba(8,8,12,.16)"/>
+        <text x="0" y="158" font-family="Anton" font-size="21" fill="#08080C">100</text>
       </g>
-
-      <!-- ISO values -->
-      <g font-family="Anton" font-size="21" fill="#08080C">
-        <text x="0"   y="162">100</text>
-        <text x="110" y="162">400</text>
-        <text x="220" y="162">800</text>
-        <text x="330" y="162">1600</text>
-        <text x="440" y="162">3200</text>
-        <text x="550" y="162">6400</text>
+      <g transform="translate(111,0)">
+        <rect width="96" height="132" fill="#2E2E36"/>
+        <rect width="96" height="132" filter="url(#gr)" opacity="0.05"/>
+        <rect width="96" height="132" fill="none" stroke="rgba(8,8,12,.16)"/>
+        <text x="0" y="158" font-family="Anton" font-size="21" fill="#08080C">400</text>
       </g>
-
-      <!-- the two axes that actually matter -->
+      <g transform="translate(222,0)">
+        <rect width="96" height="132" fill="#45454F"/>
+        <rect width="96" height="132" filter="url(#gr)" opacity="0.1"/>
+        <rect width="96" height="132" fill="none" stroke="rgba(8,8,12,.16)"/>
+        <text x="0" y="158" font-family="Anton" font-size="21" fill="#08080C">800</text>
+      </g>
+      <g transform="translate(333,0)">
+        <rect width="96" height="132" fill="#5F5F6B"/>
+        <rect width="96" height="132" filter="url(#gr)" opacity="0.17"/>
+        <rect width="96" height="132" fill="none" stroke="rgba(8,8,12,.16)"/>
+        <text x="0" y="158" font-family="Anton" font-size="21" fill="#08080C">1600</text>
+      </g>
+      <g transform="translate(444,0)">
+        <rect width="96" height="132" fill="#7E7E8A"/>
+        <rect width="96" height="132" filter="url(#gr)" opacity="0.26"/>
+        <rect width="96" height="132" fill="none" stroke="rgba(8,8,12,.16)"/>
+        <text x="0" y="158" font-family="Anton" font-size="21" fill="#08080C">3200</text>
+      </g>
+      <g transform="translate(555,0)">
+        <rect width="96" height="132" fill="#A2A2AD"/>
+        <rect width="96" height="132" filter="url(#gr)" opacity="0.38"/>
+        <rect width="96" height="132" fill="none" stroke="rgba(8,8,12,.16)"/>
+        <text x="0" y="158" font-family="Anton" font-size="21" fill="#08080C">6400</text>
+      </g>
       <line x1="0" y1="182" x2="652" y2="182" stroke="#D9D6CE"/>
-      <g font-family="JetBrains Mono" font-size="9" letter-spacing="1.8" fill="#5B6270">
-        <text x="0" y="202">CLEANEST IMAGE</text>
-        <text x="652" y="202" text-anchor="end">MOST NOISE</text>
-        <text x="0" y="222" fill="#2B5CE6">DARKER</text>
-        <text x="652" y="222" text-anchor="end" fill="#2B5CE6">BRIGHTER</text>
+      <g font-family="JetBrains Mono" font-size="8.5" letter-spacing="2" fill="#5B6270">
+        <text x="0" y="202">DARKER &#183; CLEANEST IMAGE</text>
+        <text x="652" y="202" text-anchor="end">BRIGHTER &#183; MOST NOISE</text>
       </g>
-      <rect x="128" y="214" width="396" height="3" fill="url(#isoGrad)"/>
-      <defs>
-        <linearGradient id="isoGrad" x1="0" x2="1">
-          <stop offset="0" stop-color="#2B5CE6" stop-opacity=".18"/>
-          <stop offset="1" stop-color="#2B5CE6"/>
-        </linearGradient>
-      </defs>
     </svg>
   </div>
 
@@ -1037,8 +981,8 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
   </div>
 
   <div style="position:absolute;left:74px;right:74px;bottom:100px;z-index:6;border-left:2px solid #E06C4F;padding-left:26px">
-    <div class="mono" style="color:#E06C4F;margin-bottom:12px">Do Not Use It For Exposure</div>
-    <div style="font-size:13px;line-height:1.75;color:#A8AEBE;max-width:560px">Changing shutter speed does affect exposure, but it should primarily be used to control motion, not lighting. Incorrect shutter speed is one of the fastest ways to make your content look unprofessional, even if everything else is set correctly.</div>
+    <div class="mono" style="color:#E06C4F;margin-bottom:12px">Avoid Using Shutter Speed To Control Brightness</div>
+    <div style="font-size:13px;line-height:1.75;color:#A8AEBE;max-width:560px">While changing shutter speed does affect exposure, it should primarily be used to control motion, not lighting. Incorrect shutter speed is one of the fastest ways to make your content look unprofessional, even if everything else is set correctly.</div>
   </div>
 
   <div class="folio">21</div>
@@ -1058,8 +1002,8 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
     <div style="margin-top:14px;max-width:470px;font-size:12.5px;line-height:1.7;color:var(--slate)">If your shutter speed is too fast, your footage will look choppy and unnatural. If it&rsquo;s too slow, your footage will look too blurry.</div>
   </div>
 
-  <div style="position:absolute;top:424px;left:74px;right:74px;z-index:6;border-top:2px solid var(--ink)">
-    <div style="display:flex;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)">
+  <div style="position:absolute;top:436px;left:74px;right:74px;z-index:6;border-top:2px solid var(--ink)">
+    <div style="display:flex;align-items:center;padding:34px 0;border-bottom:1px solid var(--line)">
       <div style="width:190px;flex-shrink:0">
         <div class="display" style="font-size:44px;color:var(--ink);line-height:.9">24<span style="font-size:19px;color:var(--slate)">fps</span></div>
         <div class="mono" style="color:var(--cobalt);margin-top:6px">Cinematic</div>
@@ -1070,7 +1014,7 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
       </div>
       <div style="flex:1;font-size:12.5px;line-height:1.62;color:var(--slate)">Stephen&rsquo;s default. The frame rate most creators reach for when they want footage that reads as film rather than video.</div>
     </div>
-    <div style="display:flex;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)">
+    <div style="display:flex;align-items:center;padding:34px 0;border-bottom:1px solid var(--line)">
       <div style="width:190px;flex-shrink:0">
         <div class="display" style="font-size:44px;color:var(--ink);line-height:.9">30<span style="font-size:19px;color:var(--slate)">fps</span></div>
         <div class="mono" style="color:var(--slate);margin-top:6px">Social Standard</div>
@@ -1081,7 +1025,7 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
       </div>
       <div style="flex:1;font-size:12.5px;line-height:1.62;color:var(--slate)">What most social media content is shot in. Slightly crisper, slightly more &ldquo;video&rdquo; in feel.</div>
     </div>
-    <div style="display:flex;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)">
+    <div style="display:flex;align-items:center;padding:34px 0;border-bottom:1px solid var(--line)">
       <div style="width:190px;flex-shrink:0">
         <div class="display" style="font-size:44px;color:var(--ink);line-height:.9">60<span style="font-size:19px;color:var(--slate)">fps</span></div>
         <div class="mono" style="color:var(--slate);margin-top:6px">Slow Motion</div>
@@ -1094,29 +1038,6 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
     </div>
   </div>
 
-  <div style="position:absolute;top:700px;left:74px;right:74px;z-index:6">
-    <svg viewBox="0 0 652 76" width="652" height="76" role="img" aria-label="Shutter speed band: too fast reads choppy, correct reads natural, too slow reads blurry">
-      <defs>
-        <linearGradient id="shBand" x1="0" x2="1">
-          <stop offset="0"    stop-color="#E06C4F"/>
-          <stop offset="0.34" stop-color="#E0A24F"/>
-          <stop offset="0.5"  stop-color="#2B5CE6"/>
-          <stop offset="0.66" stop-color="#E0A24F"/>
-          <stop offset="1"    stop-color="#E06C4F"/>
-        </linearGradient>
-      </defs>
-      <rect x="0" y="22" width="652" height="5" fill="url(#shBand)" opacity=".85"/>
-      <g font-family="JetBrains Mono" font-size="9" letter-spacing="1.8" fill="#5B6270">
-        <text x="0" y="16">TOO FAST</text>
-        <text x="652" y="16" text-anchor="end">TOO SLOW</text>
-        <text x="0" y="48">CHOPPY, UNNATURAL</text>
-        <text x="652" y="48" text-anchor="end">SOFT, SMEARED</text>
-      </g>
-      <polygon points="326,14 331,22 321,22" fill="#2B5CE6"/>
-      <text x="326" y="48" text-anchor="middle" font-family="Anton" font-size="15" fill="#08080C">2&times; FRAME RATE</text>
-      <text x="326" y="66" text-anchor="middle" font-family="JetBrains Mono" font-size="9" letter-spacing="1.8" fill="#2B5CE6">NATURAL MOTION</text>
-    </svg>
-  </div>
 
   <div style="position:absolute;left:74px;right:74px;bottom:100px;z-index:6;background:var(--ink);padding:22px 26px;display:flex;gap:22px;align-items:flex-start">
     <span class="chip" style="background:var(--volt);flex-shrink:0">From Stephen</span>
@@ -1573,55 +1494,49 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
   <div style="position:absolute;top:378px;left:74px;right:74px;z-index:6">
     <svg viewBox="0 0 652 214" width="652" height="214" role="img" aria-label="Built-in mic picks up echo and room noise at distance; a lav or wireless mic sits close and rejects it">
       <defs>
-        <radialGradient id="wideP"><stop offset="0" stop-color="#E06C4F" stop-opacity=".30"/><stop offset="1" stop-color="#E06C4F" stop-opacity="0"/></radialGradient>
-        <radialGradient id="tightP"><stop offset="0" stop-color="#4D7CFF" stop-opacity=".40"/><stop offset="1" stop-color="#4D7CFF" stop-opacity="0"/></radialGradient>
+        <g id="fig" fill="none" stroke="#E8E6DF" stroke-width="1.2">
+          <circle cx="0" cy="0" r="17"/>
+          <path d="M-40 99 q40 -172 80 0"/>
+        </g>
+        <clipPath id="pc0"><rect x="1" y="1" width="312" height="170"/></clipPath>
+        <clipPath id="pc1"><rect x="1" y="1" width="312" height="170"/></clipPath>
       </defs>
-
-      <!-- built-in -->
       <g transform="translate(0,0)">
-        <rect width="314" height="166" fill="#14141a"/>
-        <rect width="314" height="166" fill="none" stroke="rgba(255,255,255,.14)"/>
-        <ellipse cx="232" cy="92" rx="118" ry="70" fill="url(#wideP)"/>
-        <!-- room noise -->
-        <g fill="#E06C4F" opacity=".75" font-family="JetBrains Mono" font-size="14">
-          <text x="132" y="42">~</text><text x="286" y="52">~</text><text x="158" y="150">~</text><text x="276" y="140">~</text>
+        <rect width="314" height="172" fill="#0B0B11" stroke="rgba(255,255,255,.1)"/>
+        <g clip-path="url(#pc0)">
+          <circle cx="244" cy="96" r="64" fill="none" stroke="#8C93A5" stroke-width=".8" opacity=".45" stroke-dasharray="3 5"/>
+          <circle cx="244" cy="96" r="100" fill="none" stroke="#8C93A5" stroke-width=".8" opacity=".45" stroke-dasharray="3 5"/>
+          <circle cx="244" cy="96" r="136" fill="none" stroke="#8C93A5" stroke-width=".8" opacity=".45" stroke-dasharray="3 5"/>
+          <circle cx="244" cy="96" r="172" fill="none" stroke="#8C93A5" stroke-width=".8" opacity=".45" stroke-dasharray="3 5"/>
+          <use href="#fig" transform="translate(70,74) scale(.95)"/>
         </g>
-        <!-- subject far from camera -->
-        <circle cx="62" cy="80" r="15" fill="#8C93A5"/>
-        <path d="M34 152 q28 -38 56 0 z" fill="#8C93A5"/>
-        <!-- camera -->
-        <g transform="translate(246,92)">
-          <rect x="-17" y="-11" width="28" height="22" rx="2.5" fill="none" stroke="#E06C4F" stroke-width="1.6"/>
-          <path d="M11 -5 l9 -5 v20 l-9 -5z" fill="none" stroke="#E06C4F" stroke-width="1.6"/>
-        </g>
-        <line x1="80" y1="92" x2="224" y2="92" stroke="#E06C4F" stroke-width="1" stroke-dasharray="4 4"/>
-        <text x="152" y="84" text-anchor="middle" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.4" fill="#E06C4F">DISTANCE</text>
-        <text x="14" y="26" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.6" fill="#E06C4F">BUILT-IN MIC</text>
+        <circle cx="244" cy="96" r="4.5" fill="#8C93A5"/>
+        <line x1="244" y1="96" x2="88" y2="92" stroke="#8C93A5" stroke-width=".9" opacity=".7" stroke-dasharray="4 3"/>
+        <path d="M146 40 l8 8 M154 40 l-8 8" stroke="#E06C4F" stroke-width="1.2"/>
+        <path d="M258 54 l8 8 M266 54 l-8 8" stroke="#E06C4F" stroke-width="1.2"/>
+        <path d="M164 144 l8 8 M172 144 l-8 8" stroke="#E06C4F" stroke-width="1.2"/>
+        <path d="M264 128 l8 8 M272 128 l-8 8" stroke="#E06C4F" stroke-width="1.2"/>
+        <text x="16" y="26" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.8" fill="#8C93A5">BUILT-IN MIC</text>
       </g>
-
-      <!-- lav / wireless -->
       <g transform="translate(338,0)">
-        <rect width="314" height="166" fill="#14141a"/>
-        <rect width="314" height="166" fill="none" stroke="var(--volt)" stroke-width="1.5"/>
-        <ellipse cx="72" cy="86" rx="52" ry="48" fill="url(#tightP)"/>
-        <g fill="#3E4354" opacity=".9" font-family="JetBrains Mono" font-size="14">
-          <text x="196" y="42">~</text><text x="268" y="58">~</text><text x="214" y="146">~</text><text x="278" y="132">~</text>
+        <rect width="314" height="172" fill="#0B0B11" stroke="rgba(255,255,255,.26)"/>
+        <g clip-path="url(#pc1)">
+          <circle cx="96" cy="116" r="30" fill="none" stroke="#9CBBFF" stroke-width=".8" opacity=".45" stroke-dasharray="3 5"/>
+          <circle cx="96" cy="116" r="48" fill="none" stroke="#9CBBFF" stroke-width=".8" opacity=".45" stroke-dasharray="3 5"/>
+          <circle cx="96" cy="116" r="66" fill="none" stroke="#9CBBFF" stroke-width=".8" opacity=".45" stroke-dasharray="3 5"/>
+          <use href="#fig" transform="translate(70,74) scale(.95)"/>
         </g>
-        <circle cx="62" cy="80" r="15" fill="#E8E6DF"/>
-        <path d="M34 152 q28 -38 56 0 z" fill="#E8E6DF"/>
-        <!-- lav clipped to chest -->
-        <circle cx="72" cy="112" r="5" fill="#4D7CFF"/>
-        <circle cx="72" cy="112" r="9" fill="none" stroke="#4D7CFF" stroke-width="1"/>
-        <g transform="translate(246,92)">
-          <rect x="-17" y="-11" width="28" height="22" rx="2.5" fill="none" stroke="#5A6072" stroke-width="1.6"/>
-          <path d="M11 -5 l9 -5 v20 l-9 -5z" fill="none" stroke="#5A6072" stroke-width="1.6"/>
-        </g>
-        <text x="14" y="26" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.6" fill="#4D7CFF">LAV OR WIRELESS</text>
+        <circle cx="96" cy="116" r="4.5" fill="#9CBBFF"/>
+        <line x1="96" y1="116" x2="88" y2="92" stroke="#9CBBFF" stroke-width=".9" opacity=".7" stroke-dasharray="4 3"/>
+        <path d="M196 40 l8 8 M204 40 l-8 8" stroke="#3A3E4C" stroke-width="1.2"/>
+        <path d="M260 58 l8 8 M268 58 l-8 8" stroke="#3A3E4C" stroke-width="1.2"/>
+        <path d="M210 144 l8 8 M218 144 l-8 8" stroke="#3A3E4C" stroke-width="1.2"/>
+        <path d="M268 124 l8 8 M276 124 l-8 8" stroke="#3A3E4C" stroke-width="1.2"/>
+        <text x="16" y="26" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.8" fill="#9CBBFF">LAV OR WIRELESS</text>
       </g>
-
       <g font-family="Anton" font-size="19" fill="#fff">
-        <text x="0" y="196">Echo, distance, room noise</text>
-        <text x="338" y="196" fill="#4D7CFF">Voice up close, noise rejected</text>
+        <text x="0" y="202">Echo, distance, room noise</text>
+        <text x="338" y="202" fill="#4D7CFF">Voice up close, noise rejected</text>
       </g>
     </svg>
   </div>
@@ -1669,32 +1584,32 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
   <!-- the friction the setup removes -->
   <div style="position:absolute;top:372px;left:74px;right:74px;z-index:6">
     <svg viewBox="0 0 652 176" width="652" height="176" role="img" aria-label="Resetting the room every time takes six steps; a setup that lives in place takes three">
-      <!-- rebuild every time -->
-      <text x="0" y="12" font-family="JetBrains Mono" font-size="9" letter-spacing="1.8" fill="#E06C4F">REBUILDING IT EVERY TIME</text>
-      <g>
-        <line x1="6" y1="44" x2="558" y2="44" stroke="#D9D6CE"/>
-        <g font-family="JetBrains Mono" font-size="8.5" letter-spacing="1" fill="#5B6270">
-          <g><circle cx="6" cy="44" r="6" fill="none" stroke="#E06C4F" stroke-width="1.4"/><text x="-6" y="66">CLEAR</text></g>
-          <g><circle cx="116" cy="44" r="6" fill="none" stroke="#E06C4F" stroke-width="1.4"/><text x="100" y="66">TRIPOD</text></g>
-          <g><circle cx="226" cy="44" r="6" fill="none" stroke="#E06C4F" stroke-width="1.4"/><text x="212" y="66">LIGHT</text></g>
-          <g><circle cx="336" cy="44" r="6" fill="none" stroke="#E06C4F" stroke-width="1.4"/><text x="320" y="66">FRAME</text></g>
-          <g><circle cx="446" cy="44" r="6" fill="none" stroke="#E06C4F" stroke-width="1.4"/><text x="430" y="66">DIAL IN</text></g>
-          <g><circle cx="558" cy="44" r="6" fill="#E06C4F"/><text x="542" y="66">RECORD</text></g>
-        </g>
-        <text x="600" y="49" font-family="Anton" font-size="21" fill="#E06C4F">6</text>
-      </g>
-
-      <!-- lives in place -->
-      <text x="0" y="112" font-family="JetBrains Mono" font-size="9" letter-spacing="1.8" fill="#2B5CE6">ONE CAMERA / ONE LIGHT, LEFT IN PLACE</text>
-      <g>
-        <line x1="6" y1="144" x2="558" y2="144" stroke="#2B5CE6" stroke-width="1.5"/>
-        <g font-family="JetBrains Mono" font-size="8.5" letter-spacing="1" fill="#2B5CE6">
-          <g><circle cx="6" cy="144" r="6" fill="#2B5CE6"/><text x="-10" y="166">SIT DOWN</text></g>
-          <g><circle cx="282" cy="144" r="6" fill="#2B5CE6"/><text x="256" y="166">TURN IT ON</text></g>
-          <g><circle cx="558" cy="144" r="6" fill="#2B5CE6"/><text x="542" y="166">RECORD</text></g>
-        </g>
-        <text x="600" y="149" font-family="Anton" font-size="21" fill="#2B5CE6">3</text>
-      </g>
+      <text x="0" y="22" font-family="JetBrains Mono" font-size="8.5" letter-spacing="2" fill="#5B6270">REBUILDING IT EVERY TIME</text>
+      <line x1="0" y1="46" x2="470" y2="46" stroke="#D9D6CE"/>
+      <circle cx="0" cy="46" r="3.5" fill="none" stroke="#A39F95" stroke-width="1.2"/>
+      <text x="0" y="68" text-anchor="start" font-family="JetBrains Mono" font-size="8" letter-spacing="1.4" fill="#5B6270">LEAN</text>
+      <circle cx="94" cy="46" r="3.5" fill="none" stroke="#A39F95" stroke-width="1.2"/>
+      <text x="94" y="68" text-anchor="middle" font-family="JetBrains Mono" font-size="8" letter-spacing="1.4" fill="#5B6270">TRIPOD</text>
+      <circle cx="188" cy="46" r="3.5" fill="none" stroke="#A39F95" stroke-width="1.2"/>
+      <text x="188" y="68" text-anchor="middle" font-family="JetBrains Mono" font-size="8" letter-spacing="1.4" fill="#5B6270">LIGHT</text>
+      <circle cx="282" cy="46" r="3.5" fill="none" stroke="#A39F95" stroke-width="1.2"/>
+      <text x="282" y="68" text-anchor="middle" font-family="JetBrains Mono" font-size="8" letter-spacing="1.4" fill="#5B6270">FRAME</text>
+      <circle cx="376" cy="46" r="3.5" fill="none" stroke="#A39F95" stroke-width="1.2"/>
+      <text x="376" y="68" text-anchor="middle" font-family="JetBrains Mono" font-size="8" letter-spacing="1.4" fill="#5B6270">DIAL IN</text>
+      <circle cx="470" cy="46" r="3.5" fill="none" stroke="#A39F95" stroke-width="1.2"/>
+      <text x="470" y="68" text-anchor="end" font-family="JetBrains Mono" font-size="8" letter-spacing="1.4" fill="#5B6270">RECORD</text>
+      <text x="530" y="56" font-family="Anton" font-size="34" fill="#E06C4F">6</text>
+      <text x="574" y="56" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.6" fill="#5B6270">STEPS</text>
+      <text x="0" y="112" font-family="JetBrains Mono" font-size="8.5" letter-spacing="2" fill="#5B6270">ONE CAMERA, ONE LIGHT, LEFT IN PLACE</text>
+      <line x1="0" y1="136" x2="470" y2="136" stroke="#D9D6CE"/>
+      <circle cx="0" cy="136" r="3.5" fill="none" stroke="#2B5CE6" stroke-width="1.2"/>
+      <text x="0" y="158" text-anchor="start" font-family="JetBrains Mono" font-size="8" letter-spacing="1.4" fill="#5B6270">SIT DOWN</text>
+      <circle cx="235" cy="136" r="3.5" fill="none" stroke="#2B5CE6" stroke-width="1.2"/>
+      <text x="235" y="158" text-anchor="middle" font-family="JetBrains Mono" font-size="8" letter-spacing="1.4" fill="#5B6270">TURN IT ON</text>
+      <circle cx="470" cy="136" r="3.5" fill="none" stroke="#2B5CE6" stroke-width="1.2"/>
+      <text x="470" y="158" text-anchor="end" font-family="JetBrains Mono" font-size="8" letter-spacing="1.4" fill="#5B6270">RECORD</text>
+      <text x="530" y="146" font-family="Anton" font-size="34" fill="#2B5CE6">3</text>
+      <text x="574" y="146" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.6" fill="#5B6270">STEPS</text>
     </svg>
   </div>
 
@@ -1870,60 +1785,33 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
   </div>
 
   <div style="position:absolute;top:262px;left:74px;right:74px;z-index:6">
-    <svg viewBox="0 0 652 200" width="652" height="200" role="img" aria-label="The same subject framed three ways: wide showing the room, medium from the waist up, close-up on the face">
+    <svg viewBox="0 0 652 172" width="652" height="172" role="img" aria-label="The same subject framed three ways: wide showing the room, medium from the waist up, close-up on the face">
       <defs>
-        <clipPath id="fr1"><rect width="204" height="150"/></clipPath>
-        <clipPath id="fr2"><rect width="204" height="150"/></clipPath>
-        <clipPath id="fr3"><rect width="204" height="150"/></clipPath>
-        <!-- One room, drawn once. The three frames below are literally the same
-             scene at three scales, so cropping in is what the reader sees. -->
-        <g id="scene">
-          <rect width="204" height="150" fill="#14141a"/>
-          <rect y="122" width="204" height="28" fill="#1c1c24"/>
-          <!-- key light on a stand, camera left -->
-          <rect x="26" y="46" width="17" height="13" fill="#2b2b38"/>
-          <rect x="33" y="59" width="2.5" height="63" fill="#2b2b38"/>
-          <rect x="24" y="120" width="20" height="2.5" fill="#2b2b38"/>
-          <!-- window, camera right -->
-          <rect x="160" y="40" width="30" height="56" fill="none" stroke="#2f2f3c" stroke-width="1.5"/>
-          <line x1="175" y1="40" x2="175" y2="96" stroke="#2f2f3c"/>
-          <line x1="160" y1="68" x2="190" y2="68" stroke="#2f2f3c"/>
-          <!-- subject: head, neck and torso joined, so a tight crop still
-               reads as a person rather than a floating disc -->
-          <circle cx="102" cy="74" r="8" fill="#4D7CFF"/>
-          <rect x="98" y="80" width="8" height="7" fill="#4D7CFF"/>
-          <path d="M88 122 L88 96 Q88 86 102 86 Q116 86 116 96 L116 122 Z" fill="#4D7CFF"/>
+        <g id="fig" fill="none" stroke="#E8E6DF" stroke-width="1.2">
+          <circle cx="0" cy="0" r="17"/>
+          <path d="M-40 99 q40 -172 80 0"/>
         </g>
+        <clipPath id="fc0"><rect x="1" y="1" width="194" height="130"/></clipPath>
+        <clipPath id="fc1"><rect x="1" y="1" width="194" height="130"/></clipPath>
+        <clipPath id="fc2"><rect x="1" y="1" width="194" height="130"/></clipPath>
       </defs>
-
-      <!-- WIDE — the scene at 1:1, with the tighter crops marked on it -->
       <g transform="translate(0,0)">
-        <g clip-path="url(#fr1)"><use href="#scene"/></g>
-        <!-- the other two shots, marked on the frame they are cropped from -->
-        <rect x="59.5" y="54" width="85" height="62.5" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="4 3" opacity=".45"/>
-        <rect x="75.8" y="57" width="52.4" height="38.4" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="4 3" opacity=".3"/>
-        <rect width="204" height="150" fill="none" stroke="rgba(255,255,255,.16)"/>
-        <text x="10" y="22" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.6" fill="#8C93A5">WHERE ARE WE?</text>
+        <rect width="196" height="132" fill="#0B0B11" stroke="rgba(255,255,255,.12)"/>
+        <g clip-path="url(#fc0)"><use href="#fig" transform="translate(98,58) scale(0.55)"/></g>
+        <text x="12" y="24" font-family="JetBrains Mono" font-size="8" letter-spacing="1.8" fill="#C9CEDA">WHERE ARE WE</text>
+        <text x="0" y="158" font-family="Anton" font-size="21" fill="#C9CEDA">WIDE</text>
       </g>
-
-      <!-- MEDIUM — waist up -->
-      <g transform="translate(224,0)">
-        <g clip-path="url(#fr2)"><g transform="translate(-142.8,-129.6) scale(2.4)"><use href="#scene"/></g></g>
-        <rect width="204" height="150" fill="none" stroke="var(--volt)" stroke-width="1.5"/>
-        <text x="10" y="22" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.6" fill="#4D7CFF">YOUR DEFAULT</text>
+      <g transform="translate(228,0)">
+        <rect width="196" height="132" fill="#0B0B11" stroke="rgba(255,255,255,.28)"/>
+        <g clip-path="url(#fc1)"><use href="#fig" transform="translate(98,46) scale(1.0)"/></g>
+        <text x="12" y="24" font-family="JetBrains Mono" font-size="8" letter-spacing="1.8" fill="#9CBBFF">YOUR DEFAULT</text>
+        <text x="0" y="158" font-family="Anton" font-size="21" fill="#fff">MEDIUM</text>
       </g>
-
-      <!-- CLOSE-UP — the face -->
-      <g transform="translate(448,0)">
-        <g clip-path="url(#fr3)"><g transform="translate(-295.8,-222.6) scale(3.9)"><use href="#scene"/></g></g>
-        <rect width="204" height="150" fill="none" stroke="rgba(255,255,255,.16)"/>
-        <text x="10" y="22" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.6" fill="#8C93A5">MOMENT OF IMPACT</text>
-      </g>
-
-      <g font-family="Anton" font-size="24" fill="#fff">
-        <text x="0" y="184">WIDE</text>
-        <text x="224" y="184" fill="#4D7CFF">MEDIUM</text>
-        <text x="448" y="184">CLOSE-UP</text>
+      <g transform="translate(456,0)">
+        <rect width="196" height="132" fill="#0B0B11" stroke="rgba(255,255,255,.12)"/>
+        <g clip-path="url(#fc2)"><use href="#fig" transform="translate(98,76) scale(2.4)"/></g>
+        <text x="12" y="24" font-family="JetBrains Mono" font-size="8" letter-spacing="1.8" fill="#C9CEDA">MOMENT OF IMPACT</text>
+        <text x="0" y="158" font-family="Anton" font-size="21" fill="#C9CEDA">CLOSE-UP</text>
       </g>
     </svg>
   </div>
@@ -1969,18 +1857,25 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
   <!-- the cycle -->
   <div style="position:absolute;top:296px;left:74px;right:74px;z-index:6">
     <svg viewBox="0 0 652 104" width="652" height="104" role="img" aria-label="Wide, medium and close-up repeating as a loop, the way a verse, hook and bridge repeat in a song">
-      <line x1="8" y1="46" x2="644" y2="46" stroke="#D9D6CE"/>
-      <g font-family="Anton" font-size="15" fill="#08080C" text-anchor="middle">
-        <g><circle cx="58" cy="46" r="21" fill="#2B5CE6"/><text y="51" x="58" fill="#fff">W</text><text x="58" y="92" font-size="11" fill="#5B6270">WIDE</text></g>
-        <g><circle cx="204" cy="46" r="21" fill="#08080C"/><text y="51" x="204" fill="#fff">M</text><text x="204" y="92" font-size="11" fill="#5B6270">MEDIUM</text></g>
-        <g><circle cx="350" cy="46" r="21" fill="#2B5CE6"/><text y="51" x="350" fill="#fff">C</text><text x="350" y="92" font-size="11" fill="#5B6270">CLOSE-UP</text></g>
-        <g><circle cx="496" cy="46" r="21" fill="#08080C"/><text y="51" x="496" fill="#fff">M</text><text x="496" y="92" font-size="11" fill="#5B6270">MEDIUM</text></g>
-        <g><circle cx="628" cy="46" r="16" fill="none" stroke="#D9D6CE" stroke-width="1.5" stroke-dasharray="4 3"/><text y="51" x="628" font-size="13" fill="#A39F95">&#8635;</text></g>
-      </g>
-      <g fill="#2B5CE6">
-        <polygon points="126,42 136,46 126,50"/><polygon points="272,42 282,46 272,50"/><polygon points="418,42 428,46 418,50"/><polygon points="564,42 574,46 564,50"/>
-      </g>
-      <text x="8" y="18" font-family="JetBrains Mono" font-size="9" letter-spacing="1.8" fill="#2B5CE6">VISUAL RHYTHM</text>
+      <line x1="8" y1="44" x2="612" y2="44" stroke="#D9D6CE"/>
+        <circle cx="58" cy="44" r="19" fill="#2B5CE6"/>
+        <text x="58" y="49" text-anchor="middle" font-family="Anton" font-size="15" fill="#fff">W</text>
+        <text x="58" y="88" text-anchor="middle" font-family="JetBrains Mono" font-size="8" letter-spacing="1.6" fill="#5B6270">WIDE</text>
+        <path d="M126 40 l7 4 l-7 4" fill="none" stroke="#2B5CE6" stroke-width="1.2"/>
+        <circle cx="204" cy="44" r="19" fill="none" stroke="#08080C" stroke-width="1.2"/>
+        <text x="204" y="49" text-anchor="middle" font-family="Anton" font-size="15" fill="#08080C">M</text>
+        <text x="204" y="88" text-anchor="middle" font-family="JetBrains Mono" font-size="8" letter-spacing="1.6" fill="#5B6270">MEDIUM</text>
+        <path d="M272 40 l7 4 l-7 4" fill="none" stroke="#2B5CE6" stroke-width="1.2"/>
+        <circle cx="350" cy="44" r="19" fill="#2B5CE6"/>
+        <text x="350" y="49" text-anchor="middle" font-family="Anton" font-size="15" fill="#fff">C</text>
+        <text x="350" y="88" text-anchor="middle" font-family="JetBrains Mono" font-size="8" letter-spacing="1.6" fill="#5B6270">CLOSE-UP</text>
+        <path d="M418 40 l7 4 l-7 4" fill="none" stroke="#2B5CE6" stroke-width="1.2"/>
+        <circle cx="496" cy="44" r="19" fill="none" stroke="#08080C" stroke-width="1.2"/>
+        <text x="496" y="49" text-anchor="middle" font-family="Anton" font-size="15" fill="#08080C">M</text>
+        <text x="496" y="88" text-anchor="middle" font-family="JetBrains Mono" font-size="8" letter-spacing="1.6" fill="#5B6270">MEDIUM</text>
+        <circle cx="620" cy="44" r="15" fill="none" stroke="#D9D6CE" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <text x="620" y="49" text-anchor="middle" font-family="Anton" font-size="13" fill="#A39F95">&#8635;</text>
+      <text x="8" y="16" font-family="JetBrains Mono" font-size="8.5" letter-spacing="2" fill="#2B5CE6">VISUAL RHYTHM</text>
     </svg>
   </div>
 
@@ -2319,32 +2214,17 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
   <!-- the edit, as two tracks -->
   <div style="position:absolute;top:300px;left:74px;right:74px;z-index:6">
     <svg viewBox="0 0 652 172" width="652" height="172" role="img" aria-label="Timeline: a continuous A-roll track carrying the voice, with B-roll cutaways layered over it">
-      <text x="0" y="12" font-family="JetBrains Mono" font-size="9" letter-spacing="1.8" fill="#8C93A5">B-ROLL &#183; WHAT YOU ARE DESCRIBING</text>
-      <g>
-        <rect x="96"  y="24" width="118" height="38" fill="#4D7CFF" opacity=".34"/>
-        <rect x="96"  y="24" width="118" height="38" fill="none" stroke="#4D7CFF"/>
-        <rect x="300" y="24" width="86"  height="38" fill="#4D7CFF" opacity=".34"/>
-        <rect x="300" y="24" width="86"  height="38" fill="none" stroke="#4D7CFF"/>
-        <rect x="470" y="24" width="140" height="38" fill="#4D7CFF" opacity=".34"/>
-        <rect x="470" y="24" width="140" height="38" fill="none" stroke="#4D7CFF"/>
-      </g>
-
-      <!-- cut marks tying B-roll down onto the spine -->
-      <g stroke="#4D7CFF" stroke-dasharray="3 3" opacity=".55">
-        <line x1="96" y1="62" x2="96" y2="92"/><line x1="214" y1="62" x2="214" y2="92"/>
-        <line x1="300" y1="62" x2="300" y2="92"/><line x1="386" y1="62" x2="386" y2="92"/>
-        <line x1="470" y1="62" x2="470" y2="92"/><line x1="610" y1="62" x2="610" y2="92"/>
-      </g>
-
-      <text x="0" y="110" font-family="JetBrains Mono" font-size="9" letter-spacing="1.8" fill="#fff">A-ROLL &#183; YOU, ON CAMERA, TALKING</text>
-      <rect x="0" y="120" width="652" height="42" fill="#E8E6DF"/>
-      <g stroke="#08080C" opacity=".22">
-        <line x1="96" y1="120" x2="96" y2="162"/><line x1="214" y1="120" x2="214" y2="162"/>
-        <line x1="300" y1="120" x2="300" y2="162"/><line x1="386" y1="120" x2="386" y2="162"/>
-        <line x1="470" y1="120" x2="470" y2="162"/><line x1="610" y1="120" x2="610" y2="162"/>
-      </g>
-      <text x="12" y="147" font-family="Anton" font-size="17" fill="#08080C">THE BACKBONE</text>
-      <text x="640" y="147" text-anchor="end" font-family="JetBrains Mono" font-size="9" letter-spacing="1.6" fill="#5B6270">CONTINUOUS</text>
+      <text x="0" y="14" font-family="JetBrains Mono" font-size="8.5" letter-spacing="2" fill="#9CBBFF">B-ROLL &#183; WHAT YOU ARE DESCRIBING</text>
+      <text x="0" y="104" font-family="JetBrains Mono" font-size="8.5" letter-spacing="2" fill="#8C93A5">A-ROLL &#183; YOU, ON CAMERA, TALKING</text>
+      <rect x="0" y="118" width="652" height="34" fill="none" stroke="#C9CEDA" stroke-width="1"/>
+      <text x="14" y="140" font-family="Anton" font-size="15" fill="#E8E6DF">THE BACKBONE</text>
+      <text x="638" y="139" text-anchor="end" font-family="JetBrains Mono" font-size="8" letter-spacing="1.6" fill="#5A6072">CONTINUOUS</text>
+      <rect x="96" y="28" width="118" height="34" fill="none" stroke="#9CBBFF" stroke-width="1"/>
+      <line x1="102" y1="62" x2="102" y2="118" stroke="#9CBBFF" stroke-width=".8" stroke-dasharray="3 4" opacity=".7"/>
+      <rect x="268" y="28" width="86" height="34" fill="none" stroke="#9CBBFF" stroke-width="1"/>
+      <line x1="274" y1="62" x2="274" y2="118" stroke="#9CBBFF" stroke-width=".8" stroke-dasharray="3 4" opacity=".7"/>
+      <rect x="422" y="28" width="140" height="34" fill="none" stroke="#9CBBFF" stroke-width="1"/>
+      <line x1="428" y1="62" x2="428" y2="118" stroke="#9CBBFF" stroke-width=".8" stroke-dasharray="3 4" opacity=".7"/>
     </svg>
   </div>
 

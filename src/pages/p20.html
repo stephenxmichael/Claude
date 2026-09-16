@@ -21,110 +21,53 @@
   <div style="position:absolute;top:248px;left:74px;right:74px;z-index:6;font-size:13px;line-height:1.72;color:#2E3039;max-width:560px">ISO controls the brightness of your image by adjusting how sensitive your camera is to light.</div>
 
   <div style="position:absolute;top:310px;left:74px;right:74px;z-index:6">
-    <svg viewBox="0 0 652 232" width="652" height="232" role="img" aria-label="ISO scale from 100 to 6400 showing brightness rising and noise rising with it">
+    <svg viewBox="0 0 652 210" width="652" height="210" role="img" aria-label="ISO scale from 100 to 6400 showing brightness rising and noise rising with it">
       <defs>
-        <filter id="isoNoise" x="0" y="0" width="100%" height="100%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" result="n"/>
+        <filter id="gr" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" result="n"/>
           <feColorMatrix type="saturate" values="0" in="n"/>
         </filter>
-        <clipPath id="isoClip"><rect x="0" y="0" width="102" height="132"/></clipPath>
       </defs>
-
-      <!-- six frames of the same shot, ISO rising left to right -->
-      <g>
-        <!-- 100 -->
-        <g transform="translate(0,0)">
-          <rect width="102" height="132" fill="#15151b"/>
-          <g clip-path="url(#isoClip)">
-            <rect x="58" y="14" width="34" height="104" fill="#22222c"/>
-            <circle cx="42" cy="58" r="17" fill="#2b2b36"/>
-            <path d="M12 132 q30 -42 60 0 z" fill="#2b2b36"/>
-            <rect width="102" height="132" filter="url(#isoNoise)" opacity=".02"/>
-          </g>
-          <rect width="102" height="132" fill="none" stroke="#D9D6CE"/>
-        </g>
-        <!-- 400 -->
-        <g transform="translate(110,0)">
-          <rect width="102" height="132" fill="#242430"/>
-          <g clip-path="url(#isoClip)">
-            <rect x="58" y="14" width="34" height="104" fill="#373746"/>
-            <circle cx="42" cy="58" r="17" fill="#444455"/>
-            <path d="M12 132 q30 -42 60 0 z" fill="#444455"/>
-            <rect width="102" height="132" filter="url(#isoNoise)" opacity=".05"/>
-          </g>
-          <rect width="102" height="132" fill="none" stroke="#D9D6CE"/>
-        </g>
-        <!-- 800 -->
-        <g transform="translate(220,0)">
-          <rect width="102" height="132" fill="#3a3a4a"/>
-          <g clip-path="url(#isoClip)">
-            <rect x="58" y="14" width="34" height="104" fill="#50506380"/>
-            <circle cx="42" cy="58" r="17" fill="#5e5e73"/>
-            <path d="M12 132 q30 -42 60 0 z" fill="#5e5e73"/>
-            <rect width="102" height="132" filter="url(#isoNoise)" opacity=".10"/>
-          </g>
-          <rect width="102" height="132" fill="none" stroke="#D9D6CE"/>
-        </g>
-        <!-- 1600 -->
-        <g transform="translate(330,0)">
-          <rect width="102" height="132" fill="#55556a"/>
-          <g clip-path="url(#isoClip)">
-            <rect x="58" y="14" width="34" height="104" fill="#6c6c85"/>
-            <circle cx="42" cy="58" r="17" fill="#7b7b96"/>
-            <path d="M12 132 q30 -42 60 0 z" fill="#7b7b96"/>
-            <rect width="102" height="132" filter="url(#isoNoise)" opacity=".17"/>
-          </g>
-          <rect width="102" height="132" fill="none" stroke="#D9D6CE"/>
-        </g>
-        <!-- 3200 -->
-        <g transform="translate(440,0)">
-          <rect width="102" height="132" fill="#70708a"/>
-          <g clip-path="url(#isoClip)">
-            <rect x="58" y="14" width="34" height="104" fill="#8888a4"/>
-            <circle cx="42" cy="58" r="17" fill="#9898b4"/>
-            <path d="M12 132 q30 -42 60 0 z" fill="#9898b4"/>
-            <rect width="102" height="132" filter="url(#isoNoise)" opacity=".26"/>
-          </g>
-          <rect width="102" height="132" fill="none" stroke="#D9D6CE"/>
-        </g>
-        <!-- 6400 -->
-        <g transform="translate(550,0)">
-          <rect width="102" height="132" fill="#8e8ea8"/>
-          <g clip-path="url(#isoClip)">
-            <rect x="58" y="14" width="34" height="104" fill="#a5a5bf"/>
-            <circle cx="42" cy="58" r="17" fill="#b4b4cc"/>
-            <path d="M12 132 q30 -42 60 0 z" fill="#b4b4cc"/>
-            <rect width="102" height="132" filter="url(#isoNoise)" opacity=".38"/>
-          </g>
-          <rect width="102" height="132" fill="none" stroke="#D9D6CE"/>
-        </g>
+      <g transform="translate(0,0)">
+        <rect width="96" height="132" fill="#1C1C22"/>
+        <rect width="96" height="132" fill="none" stroke="rgba(8,8,12,.16)"/>
+        <text x="0" y="158" font-family="Anton" font-size="21" fill="#08080C">100</text>
       </g>
-
-      <!-- ISO values -->
-      <g font-family="Anton" font-size="21" fill="#08080C">
-        <text x="0"   y="162">100</text>
-        <text x="110" y="162">400</text>
-        <text x="220" y="162">800</text>
-        <text x="330" y="162">1600</text>
-        <text x="440" y="162">3200</text>
-        <text x="550" y="162">6400</text>
+      <g transform="translate(111,0)">
+        <rect width="96" height="132" fill="#2E2E36"/>
+        <rect width="96" height="132" filter="url(#gr)" opacity="0.05"/>
+        <rect width="96" height="132" fill="none" stroke="rgba(8,8,12,.16)"/>
+        <text x="0" y="158" font-family="Anton" font-size="21" fill="#08080C">400</text>
       </g>
-
-      <!-- the two axes that actually matter -->
+      <g transform="translate(222,0)">
+        <rect width="96" height="132" fill="#45454F"/>
+        <rect width="96" height="132" filter="url(#gr)" opacity="0.1"/>
+        <rect width="96" height="132" fill="none" stroke="rgba(8,8,12,.16)"/>
+        <text x="0" y="158" font-family="Anton" font-size="21" fill="#08080C">800</text>
+      </g>
+      <g transform="translate(333,0)">
+        <rect width="96" height="132" fill="#5F5F6B"/>
+        <rect width="96" height="132" filter="url(#gr)" opacity="0.17"/>
+        <rect width="96" height="132" fill="none" stroke="rgba(8,8,12,.16)"/>
+        <text x="0" y="158" font-family="Anton" font-size="21" fill="#08080C">1600</text>
+      </g>
+      <g transform="translate(444,0)">
+        <rect width="96" height="132" fill="#7E7E8A"/>
+        <rect width="96" height="132" filter="url(#gr)" opacity="0.26"/>
+        <rect width="96" height="132" fill="none" stroke="rgba(8,8,12,.16)"/>
+        <text x="0" y="158" font-family="Anton" font-size="21" fill="#08080C">3200</text>
+      </g>
+      <g transform="translate(555,0)">
+        <rect width="96" height="132" fill="#A2A2AD"/>
+        <rect width="96" height="132" filter="url(#gr)" opacity="0.38"/>
+        <rect width="96" height="132" fill="none" stroke="rgba(8,8,12,.16)"/>
+        <text x="0" y="158" font-family="Anton" font-size="21" fill="#08080C">6400</text>
+      </g>
       <line x1="0" y1="182" x2="652" y2="182" stroke="#D9D6CE"/>
-      <g font-family="JetBrains Mono" font-size="9" letter-spacing="1.8" fill="#5B6270">
-        <text x="0" y="202">CLEANEST IMAGE</text>
-        <text x="652" y="202" text-anchor="end">MOST NOISE</text>
-        <text x="0" y="222" fill="#2B5CE6">DARKER</text>
-        <text x="652" y="222" text-anchor="end" fill="#2B5CE6">BRIGHTER</text>
+      <g font-family="JetBrains Mono" font-size="8.5" letter-spacing="2" fill="#5B6270">
+        <text x="0" y="202">DARKER &#183; CLEANEST IMAGE</text>
+        <text x="652" y="202" text-anchor="end">BRIGHTER &#183; MOST NOISE</text>
       </g>
-      <rect x="128" y="214" width="396" height="3" fill="url(#isoGrad)"/>
-      <defs>
-        <linearGradient id="isoGrad" x1="0" x2="1">
-          <stop offset="0" stop-color="#2B5CE6" stop-opacity=".18"/>
-          <stop offset="1" stop-color="#2B5CE6"/>
-        </linearGradient>
-      </defs>
     </svg>
   </div>
 

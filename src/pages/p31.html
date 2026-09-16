@@ -14,55 +14,49 @@
   <div style="position:absolute;top:378px;left:74px;right:74px;z-index:6">
     <svg viewBox="0 0 652 214" width="652" height="214" role="img" aria-label="Built-in mic picks up echo and room noise at distance; a lav or wireless mic sits close and rejects it">
       <defs>
-        <radialGradient id="wideP"><stop offset="0" stop-color="#E06C4F" stop-opacity=".30"/><stop offset="1" stop-color="#E06C4F" stop-opacity="0"/></radialGradient>
-        <radialGradient id="tightP"><stop offset="0" stop-color="#4D7CFF" stop-opacity=".40"/><stop offset="1" stop-color="#4D7CFF" stop-opacity="0"/></radialGradient>
+        <g id="fig" fill="none" stroke="#E8E6DF" stroke-width="1.2">
+          <circle cx="0" cy="0" r="17"/>
+          <path d="M-40 99 q40 -172 80 0"/>
+        </g>
+        <clipPath id="pc0"><rect x="1" y="1" width="312" height="170"/></clipPath>
+        <clipPath id="pc1"><rect x="1" y="1" width="312" height="170"/></clipPath>
       </defs>
-
-      <!-- built-in -->
       <g transform="translate(0,0)">
-        <rect width="314" height="166" fill="#14141a"/>
-        <rect width="314" height="166" fill="none" stroke="rgba(255,255,255,.14)"/>
-        <ellipse cx="232" cy="92" rx="118" ry="70" fill="url(#wideP)"/>
-        <!-- room noise -->
-        <g fill="#E06C4F" opacity=".75" font-family="JetBrains Mono" font-size="14">
-          <text x="132" y="42">~</text><text x="286" y="52">~</text><text x="158" y="150">~</text><text x="276" y="140">~</text>
+        <rect width="314" height="172" fill="#0B0B11" stroke="rgba(255,255,255,.1)"/>
+        <g clip-path="url(#pc0)">
+          <circle cx="244" cy="96" r="64" fill="none" stroke="#8C93A5" stroke-width=".8" opacity=".45" stroke-dasharray="3 5"/>
+          <circle cx="244" cy="96" r="100" fill="none" stroke="#8C93A5" stroke-width=".8" opacity=".45" stroke-dasharray="3 5"/>
+          <circle cx="244" cy="96" r="136" fill="none" stroke="#8C93A5" stroke-width=".8" opacity=".45" stroke-dasharray="3 5"/>
+          <circle cx="244" cy="96" r="172" fill="none" stroke="#8C93A5" stroke-width=".8" opacity=".45" stroke-dasharray="3 5"/>
+          <use href="#fig" transform="translate(70,74) scale(.95)"/>
         </g>
-        <!-- subject far from camera -->
-        <circle cx="62" cy="80" r="15" fill="#8C93A5"/>
-        <path d="M34 152 q28 -38 56 0 z" fill="#8C93A5"/>
-        <!-- camera -->
-        <g transform="translate(246,92)">
-          <rect x="-17" y="-11" width="28" height="22" rx="2.5" fill="none" stroke="#E06C4F" stroke-width="1.6"/>
-          <path d="M11 -5 l9 -5 v20 l-9 -5z" fill="none" stroke="#E06C4F" stroke-width="1.6"/>
-        </g>
-        <line x1="80" y1="92" x2="224" y2="92" stroke="#E06C4F" stroke-width="1" stroke-dasharray="4 4"/>
-        <text x="152" y="84" text-anchor="middle" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.4" fill="#E06C4F">DISTANCE</text>
-        <text x="14" y="26" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.6" fill="#E06C4F">BUILT-IN MIC</text>
+        <circle cx="244" cy="96" r="4.5" fill="#8C93A5"/>
+        <line x1="244" y1="96" x2="88" y2="92" stroke="#8C93A5" stroke-width=".9" opacity=".7" stroke-dasharray="4 3"/>
+        <path d="M146 40 l8 8 M154 40 l-8 8" stroke="#E06C4F" stroke-width="1.2"/>
+        <path d="M258 54 l8 8 M266 54 l-8 8" stroke="#E06C4F" stroke-width="1.2"/>
+        <path d="M164 144 l8 8 M172 144 l-8 8" stroke="#E06C4F" stroke-width="1.2"/>
+        <path d="M264 128 l8 8 M272 128 l-8 8" stroke="#E06C4F" stroke-width="1.2"/>
+        <text x="16" y="26" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.8" fill="#8C93A5">BUILT-IN MIC</text>
       </g>
-
-      <!-- lav / wireless -->
       <g transform="translate(338,0)">
-        <rect width="314" height="166" fill="#14141a"/>
-        <rect width="314" height="166" fill="none" stroke="var(--volt)" stroke-width="1.5"/>
-        <ellipse cx="72" cy="86" rx="52" ry="48" fill="url(#tightP)"/>
-        <g fill="#3E4354" opacity=".9" font-family="JetBrains Mono" font-size="14">
-          <text x="196" y="42">~</text><text x="268" y="58">~</text><text x="214" y="146">~</text><text x="278" y="132">~</text>
+        <rect width="314" height="172" fill="#0B0B11" stroke="rgba(255,255,255,.26)"/>
+        <g clip-path="url(#pc1)">
+          <circle cx="96" cy="116" r="30" fill="none" stroke="#9CBBFF" stroke-width=".8" opacity=".45" stroke-dasharray="3 5"/>
+          <circle cx="96" cy="116" r="48" fill="none" stroke="#9CBBFF" stroke-width=".8" opacity=".45" stroke-dasharray="3 5"/>
+          <circle cx="96" cy="116" r="66" fill="none" stroke="#9CBBFF" stroke-width=".8" opacity=".45" stroke-dasharray="3 5"/>
+          <use href="#fig" transform="translate(70,74) scale(.95)"/>
         </g>
-        <circle cx="62" cy="80" r="15" fill="#E8E6DF"/>
-        <path d="M34 152 q28 -38 56 0 z" fill="#E8E6DF"/>
-        <!-- lav clipped to chest -->
-        <circle cx="72" cy="112" r="5" fill="#4D7CFF"/>
-        <circle cx="72" cy="112" r="9" fill="none" stroke="#4D7CFF" stroke-width="1"/>
-        <g transform="translate(246,92)">
-          <rect x="-17" y="-11" width="28" height="22" rx="2.5" fill="none" stroke="#5A6072" stroke-width="1.6"/>
-          <path d="M11 -5 l9 -5 v20 l-9 -5z" fill="none" stroke="#5A6072" stroke-width="1.6"/>
-        </g>
-        <text x="14" y="26" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.6" fill="#4D7CFF">LAV OR WIRELESS</text>
+        <circle cx="96" cy="116" r="4.5" fill="#9CBBFF"/>
+        <line x1="96" y1="116" x2="88" y2="92" stroke="#9CBBFF" stroke-width=".9" opacity=".7" stroke-dasharray="4 3"/>
+        <path d="M196 40 l8 8 M204 40 l-8 8" stroke="#3A3E4C" stroke-width="1.2"/>
+        <path d="M260 58 l8 8 M268 58 l-8 8" stroke="#3A3E4C" stroke-width="1.2"/>
+        <path d="M210 144 l8 8 M218 144 l-8 8" stroke="#3A3E4C" stroke-width="1.2"/>
+        <path d="M268 124 l8 8 M276 124 l-8 8" stroke="#3A3E4C" stroke-width="1.2"/>
+        <text x="16" y="26" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.8" fill="#9CBBFF">LAV OR WIRELESS</text>
       </g>
-
       <g font-family="Anton" font-size="19" fill="#fff">
-        <text x="0" y="196">Echo, distance, room noise</text>
-        <text x="338" y="196" fill="#4D7CFF">Voice up close, noise rejected</text>
+        <text x="0" y="202">Echo, distance, room noise</text>
+        <text x="338" y="202" fill="#4D7CFF">Voice up close, noise rejected</text>
       </g>
     </svg>
   </div>
