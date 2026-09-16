@@ -1,105 +1,51 @@
-<div class="tag">P.29 — T.9 PROFESSIONAL STUDIO LIGHTING · one-light plan</div>
-<div class="page light lightgrid">
-  <div class="spine"><span>T.9 &nbsp;&mdash;&nbsp; Studio Light</span></div>
+<div class="tag">P.29 — T.8 NATURAL LIGHTING · photo plate + gear card</div>
+<div class="page dark grain gridlines">
+  <div class="glow" style="width:520px;height:520px;top:-200px;right:-160px;background:radial-gradient(circle,var(--volt),transparent 70%);opacity:.3"></div>
+  <div class="spine"><span>T.8 &nbsp;&mdash;&nbsp; Natural Light</span></div>
   <div class="ticks"><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div>
   <div class="hud"><span>Shooting Stars: Content Framework</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Ch. 03</span></div>
 
-  <div style="position:absolute;top:110px;left:74px;right:74px;z-index:6;display:flex;justify-content:space-between;align-items:flex-end">
+  <div style="position:absolute;top:104px;left:74px;right:74px;z-index:6;display:flex;justify-content:space-between;align-items:flex-end">
     <div>
-      <div class="mono" style="color:var(--cobalt);margin-bottom:14px">T.9 &nbsp;/&nbsp; Professional Studio Lighting</div>
-      <div class="h-sec" style="font-size:56px">One Light.<br>Done Properly.</div>
+      <div class="mono" style="color:var(--volt);margin-bottom:13px">T.8 &nbsp;/&nbsp; Natural Lighting</div>
+      <div class="display" style="font-size:58px;line-height:.98">It Signals<br>Trust.</div>
     </div>
-    <div style="text-align:right;max-width:240px;font-size:12.5px;line-height:1.7;color:var(--slate);padding-bottom:6px">
-      Investing in proper lighting elevates how your content is perceived. It signals professionalism and builds trust.
+    <div class="display" style="font-size:46px;color:var(--volt);padding-bottom:8px">100% Free</div>
+  </div>
+
+  <div style="position:absolute;top:296px;left:74px;right:74px;height:280px;z-index:6">
+    <div style="position:absolute;inset:0;background-image:url('assets/photo-natural.jpg');background-size:cover;background-position:center 35%"></div>
+    <div style="position:absolute;top:12px;left:12px;width:24px;height:24px;border-top:2px solid rgba(255,255,255,.5);border-left:2px solid rgba(255,255,255,.5)"></div>
+    <div style="position:absolute;bottom:12px;right:12px;width:24px;height:24px;border-bottom:2px solid rgba(255,255,255,.5);border-right:2px solid rgba(255,255,255,.5)"></div>
+  </div>
+
+  <!-- gear + settings, as a camera data card -->
+  <div style="position:absolute;top:592px;left:74px;right:74px;z-index:6;border:1px solid rgba(255,255,255,.14);display:flex">
+    <div style="flex:1.35;padding:18px 22px;border-right:1px solid rgba(255,255,255,.14)">
+      <div class="mono" style="color:var(--volt);margin-bottom:10px">Gear For This Shot</div>
+      <div style="font-size:12.5px;line-height:1.7;color:#A8AEBE">Canon R5, 24-70mm lens with ND filter, and my go-to tripod from Falcam.</div>
+    </div>
+    <div style="flex:1;padding:18px 22px">
+      <div class="mono" style="color:var(--volt);margin-bottom:10px">Settings</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px 22px">
+        <div><div class="display" style="font-size:21px;color:#fff">100</div><div class="mono" style="color:#5A6072;font-size:8.5px">ISO</div></div>
+        <div><div class="display" style="font-size:21px;color:#fff">1/50</div><div class="mono" style="color:#5A6072;font-size:8.5px">Shutter</div></div>
+        <div><div class="display" style="font-size:21px;color:#fff">f/2.8</div><div class="mono" style="color:#5A6072;font-size:8.5px">Aperture</div></div>
+        <div><div class="display" style="font-size:21px;color:#fff">24</div><div class="mono" style="color:#5A6072;font-size:8.5px">fps</div></div>
+      </div>
     </div>
   </div>
 
-  <!-- top-down plan of the one-light setup -->
-  <div style="position:absolute;top:300px;left:74px;right:74px;z-index:6">
-    <svg viewBox="0 0 652 260" width="652" height="260" role="img" aria-label="Top-down plan: key light at 45 degrees through a honeycomb grid, subject center, ambient light behind, camera front on">
-      <defs>
-        <linearGradient id="keyBeam" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#2B5CE6" stop-opacity=".40"/>
-          <stop offset="1" stop-color="#2B5CE6" stop-opacity="0"/>
-        </linearGradient>
-        <radialGradient id="ambGlow">
-          <stop offset="0" stop-color="#2B5CE6" stop-opacity=".26"/>
-          <stop offset="1" stop-color="#2B5CE6" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-
-      <!-- floor -->
-      <rect x="112" y="8" width="430" height="244" fill="#E8E6DF"/>
-      <rect x="112" y="8" width="430" height="244" fill="none" stroke="#D9D6CE"/>
-
-      <!-- ambient background wash -->
-      <ellipse cx="327" cy="54" rx="132" ry="44" fill="url(#ambGlow)"/>
-      <rect x="255" y="30" width="144" height="7" fill="#08080C" opacity=".22"/>
-      <text x="327" y="24" text-anchor="middle" font-family="JetBrains Mono" font-size="9" letter-spacing="1.6" fill="#5B6270">AMBIENT BACKGROUND</text>
-
-      <!-- key light beam, 45 degrees -->
-      <polygon points="176,86 327,150 327,196 158,118" fill="url(#keyBeam)"/>
-      <!-- honeycomb grid head -->
-      <g transform="translate(150,92) rotate(38)">
-        <rect x="-19" y="-15" width="38" height="30" fill="#08080C"/>
-        <g fill="#E8E6DF" opacity=".55">
-          <circle cx="-10" cy="-7" r="2.6"/><circle cx="-2" cy="-7" r="2.6"/><circle cx="6" cy="-7" r="2.6"/><circle cx="14" cy="-7" r="2.6"/>
-          <circle cx="-10" cy="1" r="2.6"/><circle cx="-2" cy="1" r="2.6"/><circle cx="6" cy="1" r="2.6"/><circle cx="14" cy="1" r="2.6"/>
-          <circle cx="-10" cy="9" r="2.6"/><circle cx="-2" cy="9" r="2.6"/><circle cx="6" cy="9" r="2.6"/><circle cx="14" cy="9" r="2.6"/>
-        </g>
-      </g>
-      <text x="112" y="146" font-family="Anton" font-size="17" fill="#08080C">KEY</text>
-      <text x="112" y="162" font-family="JetBrains Mono" font-size="8.5" letter-spacing="1.4" fill="#2B5CE6">HONEYCOMB</text>
-
-      <!-- 45 degree marker -->
-      <path d="M327 176 L250 176" stroke="#D9D6CE" stroke-dasharray="3 3"/>
-      <path d="M327 176 L232 136" stroke="#D9D6CE" stroke-dasharray="3 3"/>
-      <path d="M283 176 a44 44 0 0 1 12 -25" fill="none" stroke="#2B5CE6" stroke-width="1.2"/>
-      <text x="258" y="196" font-family="Anton" font-size="14" fill="#2B5CE6">45&deg;</text>
-
-      <!-- subject -->
-      <circle cx="327" cy="176" r="21" fill="#08080C"/>
-      <circle cx="327" cy="176" r="30" fill="none" stroke="#08080C" stroke-width="1" stroke-dasharray="4 4"/>
-      <text x="327" y="228" text-anchor="middle" font-family="Anton" font-size="17" fill="#08080C">YOU</text>
-
-      <!-- camera -->
-      <g transform="translate(488,168)">
-        <rect x="-20" y="-13" width="32" height="26" rx="3" fill="none" stroke="#08080C" stroke-width="1.6"/>
-        <path d="M12 -6 l10 -6 v24 l-10 -6z" fill="none" stroke="#08080C" stroke-width="1.6"/>
-        <circle cx="-4" cy="0" r="6" fill="none" stroke="#08080C" stroke-width="1.4"/>
-      </g>
-      <text x="492" y="212" text-anchor="middle" font-family="Anton" font-size="17" fill="#08080C">CAMERA</text>
-      <line x1="462" y1="176" x2="360" y2="176" stroke="#2B5CE6" stroke-width="1.2" stroke-dasharray="5 4"/>
-    </svg>
-  </div>
-
-  <div style="position:absolute;top:588px;left:74px;right:74px;z-index:6;display:flex;gap:0;border-top:2px solid var(--ink)">
-    <div style="flex:1;padding:20px 26px 0 0;border-right:1px solid var(--line)">
-      <div class="display" style="font-size:30px;color:var(--cobalt)">01</div>
-      <div style="font-family:'Anton',Impact,sans-serif;font-size:17px;text-transform:uppercase;margin:9px 0 8px">Amaran 200XS</div>
-      <div style="font-size:12px;line-height:1.62;color:var(--slate)">A single key light with a honeycomb grid, for controlled directional light.</div>
-    </div>
-    <div style="flex:1;padding:20px 26px 0 26px;border-right:1px solid var(--line)">
-      <div class="display" style="font-size:30px;color:var(--cobalt)">02</div>
-      <div style="font-family:'Anton',Impact,sans-serif;font-size:17px;text-transform:uppercase;margin:9px 0 8px">Keep It Clean</div>
-      <div style="font-size:12px;line-height:1.62;color:var(--slate)">One light. Resist the urge to add more until the one is working.</div>
-    </div>
-    <div style="flex:1;padding:20px 0 0 26px">
-      <div class="display" style="font-size:30px;color:var(--cobalt)">03</div>
-      <div style="font-family:'Anton',Impact,sans-serif;font-size:17px;text-transform:uppercase;margin:9px 0 8px">Ambient Behind</div>
-      <div style="font-size:12px;line-height:1.62;color:var(--slate)">Background light adds depth and keeps the scene visually engaging.</div>
+  <div style="position:absolute;top:730px;left:74px;right:74px;z-index:6;display:flex;gap:34px">
+    <div style="flex:1;font-size:12.5px;line-height:1.72;color:#8C93A5">Using the sun as a light source gave me a rich, vibrant color tone from my iPhone and my Canon R5 that my audience grew to love. It isn&rsquo;t always practical to record outdoors, but sunlight through an opening in your home looks just the same.</div>
+    <div style="flex:1;border-left:1px solid rgba(255,255,255,.12);padding-left:34px">
+      <div class="mono" style="color:var(--volt);margin-bottom:10px">Pro Advice</div>
+      <div style="font-size:12.5px;line-height:1.72;color:#8C93A5">Keep ISO at its lowest setting to reduce noise. Keep the sun at an angle for that cinematic shadow fall-off across your face. Invest in an <b style="color:#fff">ND filter</b>, sunglasses for your lens, so you can balance bright areas without touching your shutter speed.</div>
     </div>
   </div>
 
-  <!-- three takes, same one-light setup -->
-  <div style="position:absolute;top:744px;left:74px;right:74px;height:166px;z-index:6;display:flex;gap:14px">
-    <div style="flex:1;background-image:url('assets/photo-studio-1.jpg');background-size:cover;background-position:center 18%;border:1px solid var(--line)"></div>
-    <div style="flex:1;background-image:url('assets/photo-studio-2.jpg');background-size:cover;background-position:center 22%;border:1px solid var(--line)"></div>
-    <div style="flex:1;background-image:url('assets/photo-studio-3.jpg');background-size:cover;background-position:center 18%;border:1px solid var(--line)"></div>
-  </div>
-
-  <div style="position:absolute;left:74px;right:74px;bottom:100px;z-index:6;background:var(--ink);padding:22px 26px">
-    <div style="font-size:12.5px;line-height:1.7;color:#B4BAC8;max-width:580px">When your visuals look intentional and well-lit, people are more likely to believe your message, engage with your content, and ultimately buy into your brand.</div>
+  <div style="position:absolute;left:74px;right:74px;bottom:100px;z-index:6;border-top:1px solid rgba(255,255,255,.12);padding-top:20px">
+    <div style="font-family:'Anton',Impact,sans-serif;font-size:22px;text-transform:uppercase;color:#fff;line-height:1.24">There&rsquo;s a relatability factor with natural light. It&rsquo;s warm, it&rsquo;s inviting, but most of all <span style="color:var(--volt)">it signals trust</span>.</div>
   </div>
 
   <div class="folio">29</div>
