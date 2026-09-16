@@ -74,7 +74,7 @@ original Canva reference design (`DAHD3PZgJNc`) rather than guessed:
 | Page | Asset | Matched to |
 |------|-------|--------------|
 | p02 | `assets/photo-author.jpg`  | Stephen's own pick, not the Canva page 2 pose |
-| p21 | `assets/photo-bokeh.jpg`   | closest available to the Canva aperture-demo page |
+| p21 |  `assets/photo-bokeh.png`   | closest available to the Canva aperture-demo page |
 | p26 | `assets/photo-natural.jpg` | closest available to the Canva natural-light page |
 | p30 | `assets/photo-desk.jpg`    | same shoot as the Canva desk-hub page |
 
