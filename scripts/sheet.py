@@ -2,15 +2,24 @@
 """Tile page screenshots into a contact sheet for reviewing a batch at once.
 
 Usage: python3 scripts/sheet.py 13 22 [cols]
+       python3 scripts/sheet.py iphone 1 10 5
 """
 from PIL import Image, ImageDraw
 import pathlib, sys
 
-frm = int(sys.argv[1]) if len(sys.argv) > 1 else 1
-to = int(sys.argv[2]) if len(sys.argv) > 2 else 42
-cols = int(sys.argv[3]) if len(sys.argv) > 3 else 5
+# optional leading product key, matching scripts/products.mjs
+PRODUCTS = {"framework": ("build/screens", ""), "iphone": ("build/screens-iphone", "-iphone")}
+args = sys.argv[1:]
+key = "framework"
+if args and args[0].lstrip("-") in PRODUCTS:
+    key = args.pop(0).lstrip("-")
+SRC_DIR, SUFFIX = PRODUCTS[key]
 
-SRC = pathlib.Path("build/screens")
+frm = int(args[0]) if len(args) > 0 else 1
+to = int(args[1]) if len(args) > 1 else 42
+cols = int(args[2]) if len(args) > 2 else 5
+
+SRC = pathlib.Path(SRC_DIR)
 TW, PAD, LABEL = 300, 14, 20
 TH = round(TW * 1120 / 800)
 
@@ -34,6 +43,6 @@ for i, (n, p) in enumerate(files):
     sheet.paste(im, (x, y))
     d.text((x + 2, y + TH + 5), f"p{n:02d}", fill=(150, 150, 160))
 
-out = pathlib.Path("build") / f"sheet-{frm:02d}-{to:02d}.png"
+out = pathlib.Path("build") / f"sheet{SUFFIX}-{frm:02d}-{to:02d}.png"
 sheet.save(out)
 print(f"{out}  ({len(files)} pages, {W}x{H})")
