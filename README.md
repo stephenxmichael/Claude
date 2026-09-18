@@ -1,6 +1,6 @@
 # Shooting Stars — Content Framework (ebook)
 
-The 50-page ebook as a single self-contained HTML design system, built from
+The 57-page ebook as a single self-contained HTML design system, built from
 the v3 design language.
 
 ## Layout
@@ -25,7 +25,7 @@ the v3 design language.
     node scripts/shoot.mjs 13 24   # just a range
     node scripts/audit.mjs         # layout errors, whole book
     python3 scripts/sheet.py 13 22 # contact sheet for a chapter
-    node scripts/pdf.mjs           # -> dist/*.pdf  (50 pages, 800x1120)
+    node scripts/pdf.mjs           # -> dist/*.pdf  (57 pages, 800x1120)
 
 `dist/` is self-contained: the book plus the assets it references. The PDF is
 not committed (it rebuilds in one command and would otherwise churn ~20MB a
@@ -118,5 +118,5 @@ Import `dist/Shooting-Stars-Content-Framework.pdf` from Canva directly:
 This cannot be done from here. The Canva MCP import tool only accepts a
 public HTTPS URL to content that is already public, and publishing the book
 to a file host to manufacture one would put a paid product on the open
-internet. The PDF is 50 pages at 800x1120 with live text and embedded fonts,
+internet. The PDF is 57 pages at 800x1120 with live text and embedded fonts,
 so it maps one-for-one onto the original design.
