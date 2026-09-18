@@ -7,3 +7,4 @@ build/
 dist/*.pdf
 dist/Shooting-Stars-Content-Framework.html
 dist/The-iPhone-Creator-Guide.html
+dist/*-preview.html

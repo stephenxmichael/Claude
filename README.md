@@ -5,7 +5,8 @@ Two products, one brand, built from the same v3 design language:
 | Product | Pages | Source | Output |
 |---|---|---|---|
 | **Content Framework** (ebook) | 57 | `src/` | `dist/shooting-stars-ebook.html` |
-| **The iPhone Creator Guide** | 10 | `src-iphone/` | `dist/iphone-creator-guide.html` |
+| **The iPhone Creator Guide** (Pass 01) | 10 | `src-iphone/` | `dist/iphone-creator-guide.html` |
+| **Field Guide 001 directions** (Pass 02) | 6 | `src-field/` | `dist/field-guide-directions.html` |
 
 Every script takes an optional product key. Omit it and you get the Content
 Framework, exactly as before; pass `iphone` for the guide.
@@ -25,6 +26,7 @@ Framework, exactly as before; pass `iphone` for the guide.
     scripts/sheet.py       tiles screenshots into a contact sheet
     scripts/pdf.mjs        exports the print-ready PDF
     scripts/standalone.mjs single-file HTML with assets inlined
+    scripts/preview.mjs    self-contained page for publishing as an Artifact
     scripts/vendor-fonts.sh    refreshes assets/fonts/ from Google Fonts
     scripts/derive-assets.py   pre-scales the S mark for the 17px HUD
 
@@ -40,6 +42,7 @@ Framework, exactly as before; pass `iphone` for the guide.
     node scripts/boxes.mjs iphone 3  # every block on page 3, plus collisions
     python3 scripts/sheet.py 13 22 # contact sheet for a chapter
     node scripts/pdf.mjs iphone    # -> dist/*.pdf  (10 pages, 800x1120)
+    node scripts/preview.mjs field # -> dist/field-preview.html (Artifact-ready)
 
 ## Known issue — `scripts/standalone.mjs` breaks the fonts
 
@@ -196,3 +199,25 @@ p07, drawn as inline SVG.
 
 First-pass working copy throughout, written to be rewritten. Structure, page
 architecture and visual weight are the things to review; language is not final.
+
+
+---
+
+# Shooting Stars Field Guides (Pass 02, in progress)
+
+`src-field/` holds three visual identity directions for **Field Guide 001 —
+Your iPhone Is A Cinema Camera**, the sub-family that supersedes the Pass 01
+iPhone Creator Guide. Six pages: each direction as a cover plus the Shoot With
+Intention interior. See `PASS-02-DIRECTIONS.md`.
+
+The colour hierarchy is the revision that matters. Same palette values as every
+other Shooting Stars publication, different roles:
+
+| | Content Framework | Field Guides |
+|---|---|---|
+| Primary | black / white | cobalt |
+| Secondary | cobalt accent | black, technical modules |
+| Ground | bone | white, editorial air |
+| Spine | cobalt on dark, ink on light | cobalt on light, ink on cobalt |
+
+`src-iphone/` is kept as-is so Pass 01 can still be built and compared.

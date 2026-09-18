@@ -24,6 +24,17 @@ export const PRODUCTS = {
     probe: "IPHONE CREATOR GUIDE 0123",
     geom: { left: 64, right: 64, hud: 52, spine: 34 },
   },
+  field: {
+    key: "field",
+    name: "Field Guide 001 — visual directions (Pass 02)",
+    src: "src-field",
+    out: "dist/field-guide-directions.html",
+    pdf: "dist/Field-Guide-001-Directions.pdf",
+    standalone: "dist/Field-Guide-001-Directions.html",
+    screens: "build/screens-field",
+    probe: "CINEMA CAMERA 0123",
+    geom: { left: 64, right: 64, hud: 52, spine: 34 },
+  },
 };
 
 // Pulls a product key out of argv without disturbing positional args.
