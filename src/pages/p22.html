@@ -1,58 +1,66 @@
-<div class="tag">P.22 — T.4 THE 180-DEGREE RULE · frame rate to shutter chart</div>
-<div class="page light lightgrid">
-  <div class="spine"><span>T.4 &nbsp;&mdash;&nbsp; The 180&deg; Rule</span></div>
+<div class="tag">P.22 — T.3 SHUTTER SPEED = MOTION CONTROL</div>
+<div class="page dark grain gridlines">
+  <div class="glow" style="width:540px;height:540px;bottom:-230px;right:-180px;background:radial-gradient(circle,var(--volt),transparent 70%);opacity:.26"></div>
+  <div class="spine"><span>T.3 &nbsp;&mdash;&nbsp; Shutter Speed</span></div>
   <div class="ticks"><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div>
   <div class="hud"><span>Shooting Stars: Content Framework</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Ch. 03</span></div>
 
-  <div class="display" style="position:absolute;top:92px;right:52px;font-size:190px;color:transparent;-webkit-text-stroke:1.5px rgba(8,8,12,.08);z-index:1;line-height:.8">&times;2</div>
-
   <div style="position:absolute;top:112px;left:74px;right:74px;z-index:6">
-    <div class="mono" style="color:var(--cobalt);margin-bottom:14px">T.4 &nbsp;/&nbsp; Proper Use Of Shutter Speed</div>
-    <div class="h-sec" style="font-size:58px">Double Your<br>Frame Rate</div>
-    <div class="lede" style="margin-top:18px;max-width:470px;font-size:15px">For video, follow the 180-degree rule: set your shutter speed to double your frame rate. This creates natural-looking motion that feels cinematic and easy to watch.</div>
-    <div style="margin-top:14px;max-width:470px;font-size:12.5px;line-height:1.7;color:var(--slate)">If your shutter speed is too fast, your footage will look choppy and unnatural. If it&rsquo;s too slow, your footage will look too blurry.</div>
+    <div class="mono" style="color:var(--volt);margin-bottom:16px">T.3 &nbsp;/&nbsp; Shutter Speed Is Motion Control</div>
+    <div class="display" style="font-size:60px;line-height:.98">Motion, Not<br>Brightness.</div>
+    <div style="font-size:13.5px;color:#8C93A5;margin-top:20px;max-width:520px;line-height:1.7">Shutter speed controls motion and motion blur in your footage, determining how long your camera&rsquo;s sensor is exposed to light for each frame.</div>
   </div>
 
-  <div style="position:absolute;top:436px;left:74px;right:74px;z-index:6;border-top:2px solid var(--ink)">
-    <div style="display:flex;align-items:center;padding:34px 0;border-bottom:1px solid var(--line)">
-      <div style="width:190px;flex-shrink:0">
-        <div class="display" style="font-size:44px;color:var(--ink);line-height:.9">24<span style="font-size:19px;color:var(--slate)">fps</span></div>
-        <div class="mono" style="color:var(--cobalt);margin-top:6px">Cinematic</div>
-      </div>
-      <div style="width:74px;flex-shrink:0;text-align:center;font-family:'Anton',Impact,sans-serif;font-size:17px;color:var(--cobalt)">&times;2</div>
-      <div style="width:160px;flex-shrink:0">
-        <div class="display" style="font-size:44px;color:var(--cobalt);line-height:.9">1/50</div>
-      </div>
-      <div style="flex:1;font-size:12.5px;line-height:1.62;color:var(--slate)">Stephen&rsquo;s default. The frame rate most creators reach for when they want footage that reads as film rather than video.</div>
+  <div style="position:absolute;top:390px;left:74px;right:74px;z-index:6">
+    <svg viewBox="0 0 652 290" width="652" height="290" role="img" aria-label="The same movement sampled at three shutter speeds: one crisp mark at 1/500, a short trail at 1/50, a long smear at 1/15">
+      <defs>
+        <pattern id="samp" width="13" height="40" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="1.1" height="40" fill="#E8E6DF"/></pattern>
+        <pattern id="sampA" width="13" height="40" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="1.1" height="40" fill="#9CBBFF"/></pattern>
+        <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".55" stop-color="#fff" stop-opacity=".45"/><stop offset="1" stop-color="#fff" stop-opacity="1"/></linearGradient>
+        <mask id="mk0"><rect x="168" y="32" width="12" height="40" fill="url(#fade)"/></mask>
+        <mask id="mk1"><rect x="168" y="130" width="112" height="40" fill="url(#fade)"/></mask>
+        <mask id="mk2"><rect x="168" y="228" width="300" height="40" fill="url(#fade)"/></mask>
+      </defs>
+      <g>
+        <text x="126" y="64" text-anchor="end" font-family="Anton" font-size="36" fill="#C9CEDA">1/500</text>
+        <text x="126" y="84" text-anchor="end" font-family="JetBrains Mono" font-size="8.5" letter-spacing="2" fill="#5A6072">FAST</text>
+        <rect x="168" y="32" width="12" height="40" fill="url(#samp)" mask="url(#mk0)"/>
+        <rect x="180" y="32" width="2" height="40" fill="#E8E6DF"/>
+        <text x="652" y="56" text-anchor="end" font-family="JetBrains Mono" font-size="9" letter-spacing="1.8" fill="#8C93A5">LESS MOTION BLUR</text>
+      </g>
+        <line x1="0" y1="108" x2="652" y2="108" stroke="rgba(255,255,255,.09)"/>
+      <g>
+        <text x="126" y="162" text-anchor="end" font-family="Anton" font-size="36" fill="#fff">1/50</text>
+        <text x="126" y="182" text-anchor="end" font-family="JetBrains Mono" font-size="8.5" letter-spacing="2" fill="#9CBBFF">CINEMATIC</text>
+        <rect x="168" y="130" width="112" height="40" fill="url(#sampA)" mask="url(#mk1)"/>
+        <rect x="280" y="130" width="2" height="40" fill="#9CBBFF"/>
+        <text x="652" y="154" text-anchor="end" font-family="JetBrains Mono" font-size="9" letter-spacing="1.8" fill="#C9CEDA">DOUBLE YOUR FRAME RATE</text>
+      </g>
+        <line x1="0" y1="206" x2="652" y2="206" stroke="rgba(255,255,255,.09)"/>
+      <g>
+        <text x="126" y="260" text-anchor="end" font-family="Anton" font-size="36" fill="#C9CEDA">1/15</text>
+        <text x="126" y="280" text-anchor="end" font-family="JetBrains Mono" font-size="8.5" letter-spacing="2" fill="#5A6072">SLOW</text>
+        <rect x="168" y="228" width="300" height="40" fill="url(#samp)" mask="url(#mk2)"/>
+        <rect x="468" y="228" width="2" height="40" fill="#E8E6DF"/>
+        <text x="652" y="252" text-anchor="end" font-family="JetBrains Mono" font-size="9" letter-spacing="1.8" fill="#8C93A5">MORE MOTION BLUR</text>
+      </g>
+    </svg>
+  </div>
+
+  <div style="position:absolute;top:728px;left:74px;right:74px;z-index:6;border-top:1px solid rgba(255,255,255,.12);display:flex;gap:0">
+    <div style="flex:1;padding:30px 34px 0 0;border-right:1px solid rgba(255,255,255,.12)">
+      <div style="font-family:'Anton',Impact,sans-serif;font-size:19px;text-transform:uppercase;color:#C9CEDA;line-height:1.2">Faster shutter</div>
+      <div style="font-size:12.5px;color:#8C93A5;line-height:1.72;margin-top:12px">Less motion blur. Sharper, more rigid movement.</div>
     </div>
-    <div style="display:flex;align-items:center;padding:34px 0;border-bottom:1px solid var(--line)">
-      <div style="width:190px;flex-shrink:0">
-        <div class="display" style="font-size:44px;color:var(--ink);line-height:.9">30<span style="font-size:19px;color:var(--slate)">fps</span></div>
-        <div class="mono" style="color:var(--slate);margin-top:6px">Social Standard</div>
-      </div>
-      <div style="width:74px;flex-shrink:0;text-align:center;font-family:'Anton',Impact,sans-serif;font-size:17px;color:var(--cobalt)">&times;2</div>
-      <div style="width:160px;flex-shrink:0">
-        <div class="display" style="font-size:44px;color:var(--cobalt);line-height:.9">1/60</div>
-      </div>
-      <div style="flex:1;font-size:12.5px;line-height:1.62;color:var(--slate)">What most social media content is shot in. Slightly crisper, slightly more &ldquo;video&rdquo; in feel.</div>
-    </div>
-    <div style="display:flex;align-items:center;padding:34px 0;border-bottom:1px solid var(--line)">
-      <div style="width:190px;flex-shrink:0">
-        <div class="display" style="font-size:44px;color:var(--ink);line-height:.9">60<span style="font-size:19px;color:var(--slate)">fps</span></div>
-        <div class="mono" style="color:var(--slate);margin-top:6px">Slow Motion</div>
-      </div>
-      <div style="width:74px;flex-shrink:0;text-align:center;font-family:'Anton',Impact,sans-serif;font-size:17px;color:var(--cobalt)">&times;2</div>
-      <div style="width:160px;flex-shrink:0">
-        <div class="display" style="font-size:44px;color:var(--cobalt);line-height:.9">1/120</div>
-      </div>
-      <div style="flex:1;font-size:12.5px;line-height:1.62;color:var(--slate)">Shoot here when you intend to slow the clip down in the edit.</div>
+    <div style="flex:1;padding:30px 0 0 34px">
+      <div style="font-family:'Anton',Impact,sans-serif;font-size:19px;text-transform:uppercase;color:#C9CEDA;line-height:1.2">Slower shutter</div>
+      <div style="font-size:12.5px;color:#8C93A5;line-height:1.72;margin-top:12px">More motion blur. Smoother, more natural movement.</div>
     </div>
   </div>
 
-
-  <div style="position:absolute;left:74px;right:74px;bottom:100px;z-index:6;background:var(--ink);padding:22px 26px;display:flex;gap:22px;align-items:flex-start">
-    <span class="chip" style="background:var(--volt);flex-shrink:0">From Stephen</span>
-    <div style="font-size:12.5px;line-height:1.65;color:#B4BAC8;max-width:540px">Most social media content is typically shot in 30fps, but many creators choose to shoot in 24fps for a more cinematic look and feel. I personally prefer 24fps for that reason, but both frame rates work well depending on your style and the type of content you&rsquo;re creating.</div>
+  <div style="position:absolute;left:74px;right:74px;bottom:100px;z-index:6;border-left:2px solid #E06C4F;padding-left:26px">
+    <div class="mono" style="color:#E06C4F;margin-bottom:12px">Avoid Using Shutter Speed To Control Brightness</div>
+    <div style="font-size:13px;line-height:1.75;color:#A8AEBE;max-width:560px">While changing shutter speed does affect exposure, it should primarily be used to control motion, not lighting. Incorrect shutter speed is one of the fastest ways to make your content look unprofessional, even if everything else is set correctly.</div>
   </div>
 
   <div class="folio">22</div>
