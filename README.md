@@ -6,7 +6,8 @@ Two products, one brand, built from the same v3 design language:
 |---|---|---|---|
 | **Content Framework** (ebook) | 57 | `src/` | `dist/shooting-stars-ebook.html` |
 | **The iPhone Creator Guide** (Pass 01) | 10 | `src-iphone/` | `dist/iphone-creator-guide.html` |
-| **Field Guide 001 directions** (Pass 02) | 6 | `src-field/` | `dist/field-guide-directions.html` |
+| **Field Guide 001 directions** (Pass 02) | 7 | `src-field/` | `dist/field-guide-directions.html` |
+| **Field Guide 001 system** (Pass 02.5) | 3 | `src-field-a/` | `dist/field-guide-system.html` |
 
 Every script takes an optional product key. Omit it and you get the Content
 Framework, exactly as before; pass `iphone` for the guide.
@@ -221,3 +222,20 @@ other Shooting Stars publication, different roles:
 | Spine | cobalt on dark, ink on light | cobalt on light, ink on cobalt |
 
 `src-iphone/` is kept as-is so Pass 01 can still be built and compared.
+
+## Pass 02.5 — the locked language
+
+Direction A was selected and evolved in `src-field-a/`: two cover compositions
+and the Shoot With Intention interior. See `PASS-025-SYSTEM.md`.
+
+One new typeface joins the kit, **Caveat 600**, as the handwritten editorial
+voice. It was chosen by rendering eight candidates in situ on cobalt against
+Anton (`docs/typetest-handwriting.png`), not from specimens. The deciding
+constraint was that it has to sit beside Stephen's real handwritten note
+without reading as lettering.
+
+    .script   Caveat 600    Stephen's thought, the aside, the annotation
+    .hd       Anton         the lesson, the definitive headline
+
+Used selectively: never body copy, captions, specs, metadata or folios. Caveat
+is vendored by `scripts/vendor-fonts.sh` with the other three faces.
