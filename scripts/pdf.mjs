@@ -4,29 +4,31 @@
 import { chromium } from "playwright";
 import { mkdirSync, statSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { pickProduct } from "./products.mjs";
 
-const OUT = "dist/Shooting-Stars-Content-Framework.pdf";
+const { product } = pickProduct(process.argv.slice(2));
+const OUT = product.pdf;
 mkdirSync("dist", { recursive: true });
 
 const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
 const page = await browser.newPage({ viewport: { width: 800, height: 1120 } });
 
-await page.goto("file://" + resolve("dist/shooting-stars-ebook.html"), { waitUntil: "networkidle" });
+await page.goto("file://" + resolve(product.out), { waitUntil: "networkidle" });
 await page.evaluate(() => document.fonts.ready);
 
 // Same guard as the screenshot pass: a fallback serif here would ship a
 // broken PDF that looks fine in a thumbnail.
-const ok = await page.evaluate(() => {
+const ok = await page.evaluate((probe) => {
   const m = (f) => {
     const s = document.createElement("span");
     s.style.cssText = `position:absolute;left:-9999px;font-size:100px;font-family:${f};white-space:pre`;
-    s.textContent = "CONTENT FRAMEWORK 0123";
+    s.textContent = probe;
     document.body.appendChild(s);
     const w = s.offsetWidth; s.remove(); return w;
   };
   const serif = m("serif");
   return m("Anton") !== serif && m("Archivo") !== serif && m("'JetBrains Mono'") !== serif;
-});
+}, product.probe);
 if (!ok) {
   await browser.close();
   throw new Error("fonts fell back to serif; refusing to write a broken PDF");

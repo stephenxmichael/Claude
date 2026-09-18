@@ -1,12 +1,17 @@
 #!/usr/bin/env node
-// Assembles src/head.html + src/pages/p*.html + src/tail.html into one
-// self-contained book file. Assets stay as file references (assets/*.png),
-// never inlined as base64.
+// Assembles <src>/head.html + <src>/pages/p*.html + <src>/tail.html into one
+// self-contained file. Assets stay as file references (assets/*.png), never
+// inlined as base64.
+//
+//   node build.mjs            the Content Framework  -> dist/shooting-stars-ebook.html
+//   node build.mjs iphone     the iPhone Creator Guide -> dist/iphone-creator-guide.html
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, cpSync } from "node:fs";
 import { join } from "node:path";
+import { pickProduct } from "./scripts/products.mjs";
 
-const SRC = "src";
-const OUT = "dist/shooting-stars-ebook.html";
+const { product } = pickProduct(process.argv.slice(2));
+const SRC = product.src;
+const OUT = product.out;
 
 const pages = readdirSync(join(SRC, "pages"))
   .filter((f) => /^p\d+\.html$/.test(f))

@@ -1,19 +1,30 @@
-# Shooting Stars — Content Framework (ebook)
+# Shooting Stars — publications
 
-The 57-page ebook as a single self-contained HTML design system, built from
-the v3 design language.
+Two products, one brand, built from the same v3 design language:
+
+| Product | Pages | Source | Output |
+|---|---|---|---|
+| **Content Framework** (ebook) | 57 | `src/` | `dist/shooting-stars-ebook.html` |
+| **The iPhone Creator Guide** | 10 | `src-iphone/` | `dist/iphone-creator-guide.html` |
+
+Every script takes an optional product key. Omit it and you get the Content
+Framework, exactly as before; pass `iphone` for the guide.
 
 ## Layout
 
-    src/head.html          design tokens + all shared CSS (the design system)
+    src/head.html          Framework design system (tokens + shared CSS)
     src/pages/pNN.html     one file per page, in book order
-    src/tail.html          closing tags
+    src-iphone/head.html   Guide design system — same palette, different furniture
+    src-iphone/pages/      the ten guide pages
     assets/                logos (trimmed), vendored fonts, photography
-    build.mjs              assembles src/ -> dist/shooting-stars-ebook.html
+    scripts/products.mjs   per-product paths and page geometry
+    build.mjs              assembles a src tree -> dist/
     scripts/shoot.mjs      screenshots every page for review
     scripts/audit.mjs      flags layout errors before they reach a screenshot
+    scripts/boxes.mjs      per-page box dump + collision check while laying out
     scripts/sheet.py       tiles screenshots into a contact sheet
-    scripts/pdf.mjs        exports dist/Shooting-Stars-Content-Framework.pdf
+    scripts/pdf.mjs        exports the print-ready PDF
+    scripts/standalone.mjs single-file HTML with assets inlined
     scripts/vendor-fonts.sh    refreshes assets/fonts/ from Google Fonts
     scripts/derive-assets.py   pre-scales the S mark for the 17px HUD
 
@@ -21,17 +32,33 @@ the v3 design language.
 
     npm install
     node build.mjs                 # -> dist/ (self-contained: html + assets)
+    node build.mjs iphone          # -> dist/iphone-creator-guide.html
     node scripts/shoot.mjs         # -> build/screens/pNN.png
+    node scripts/shoot.mjs iphone  # -> build/screens-iphone/pNN.png
     node scripts/shoot.mjs 13 24   # just a range
-    node scripts/audit.mjs         # layout errors, whole book
+    node scripts/audit.mjs iphone  # layout errors, whole book
+    node scripts/boxes.mjs iphone 3  # every block on page 3, plus collisions
     python3 scripts/sheet.py 13 22 # contact sheet for a chapter
-    node scripts/pdf.mjs           # -> dist/*.pdf  (57 pages, 800x1120)
+    node scripts/pdf.mjs iphone    # -> dist/*.pdf  (10 pages, 800x1120)
+
+## Known issue — `scripts/standalone.mjs` breaks the fonts
+
+Its `url('assets/...')` rewrite also catches `@import url('assets/fonts/fonts.css')`
+and inlines the stylesheet as `application/octet-stream`. The `@font-face` src
+paths inside it then resolve against a `data:` URI and fail, so the single-file
+HTML renders in fallback serif. This affects **both** products and predates the
+guide. `shoot.mjs` and `pdf.mjs` both guard against serif fallback and refuse to
+write; `standalone.mjs` has no such guard. The `dist/` folder build and the PDF
+are unaffected — only the single-file HTML.
+
+Fix would be to inline `fonts.css` as `text/css` with its woff2 files inlined
+into it first, and add the same font guard the other two scripts use.
 
 `dist/` is self-contained: the book plus the assets it references. The PDF is
 not committed (it rebuilds in one command and would otherwise churn ~20MB a
 time); everything else in `dist/` is.
 
-## Design system
+## Design system — Content Framework
 
 Page is 800x1120. Side margins 74px, HUD 56px tall, 34px spine.
 
@@ -120,3 +147,52 @@ public HTTPS URL to content that is already public, and publishing the book
 to a file host to manufacture one would put a paid product on the open
 internet. The PDF is 57 pages at 800x1120 with live text and embedded fonts,
 so it maps one-for-one onto the original design.
+
+
+---
+
+# The iPhone Creator Guide
+
+A 10-page field guide on getting professional video out of an iPhone. Sister
+product to the Content Framework, not a condensation of it: the Framework
+teaches the system around being a creator, the guide teaches technical
+execution on one device.
+
+## What makes it read as Shooting Stars
+
+Same palette, same vendored Anton / Archivo / JetBrains Mono, same 800x1120
+page, same 34px cobalt spine with a rotated label, same HUD bar, grain, glows
+and hatched media slots.
+
+## What makes it read as a different publication
+
+| | Framework | Guide |
+|---|---|---|
+| Side margin | 74px | 64px |
+| HUD | 56px, chapter name | 52px, camera telemetry (`4K · 30 FPS · H.265`) |
+| Grid | 56px | 40px |
+| Progress | five S.T.A.R.S. ticks | ten-frame counter |
+| Display type | Anton to 150px | Anton capped at 74px |
+| Module headings | Anton | Archivo Black |
+| Light page | `--bone` #F2F1ED | `--paper` #FAF9F6 |
+| Folio | ghost Anton numeral | mono frame counter `03 / 10` |
+| Signature device | S.T.A.R.S. rail | viewfinder corner brackets |
+
+Guide-only devices in `src-iphone/head.html`: `.frames` (frame counter), `.vf`
+(viewfinder brackets), `.slot` (shot-list media placeholder), `.spec` + `.tg`
+(iOS-settings rows and toggles), `.mod`, `.anno`, `.qr`, `.band`, `.ck`.
+
+## Media
+
+Nothing is final photography. Every placeholder is a `.slot` carrying an asset
+ID, media type, subject and crop, so the prototype doubles as a production shot
+list. **25 assets outstanding** — see `MEDIA-CHECKLIST.md`, which is organised by
+page and keyed to the IDs printed on the slots.
+
+The one graphic that is already built is the light-position plan diagram on
+p07, drawn as inline SVG.
+
+## Copy status
+
+First-pass working copy throughout, written to be rewritten. Structure, page
+architecture and visual weight are the things to review; language is not final.
