@@ -2,7 +2,7 @@
 // Exports the book to PDF at exactly one .page per PDF page, 800x1120,
 // so it drops into Canva one-for-one against the original 42 pages.
 import { chromium } from "playwright";
-import { mkdirSync, statSync } from "node:fs";
+import { mkdirSync, statSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 const OUT = "dist/Shooting-Stars-Content-Framework.pdf";
@@ -44,4 +44,28 @@ await page.pdf({
 });
 
 await browser.close();
-console.log(`${OUT}  —  ${count} pages, ${(statSync(OUT).size / 1024 / 1024).toFixed(1)}MB`);
+
+// Skia emits 1px edge-clamp strips beside any image it has to crop and
+// downscale (background-size:cover with a mismatched aspect). Robust readers
+// draw them under the photo; iOS drew them OVER it, smearing p38 into colour
+// bands. Draw photos 1:1 from a pre-cropped file instead — and fail here if
+// a clamp strip ever lands next to a photo again.
+const pdf = readFileSync(OUT);
+const objs = [];
+for (const m of pdf.toString("latin1").matchAll(/\/Subtype\s*\/Image/g)) {
+  const head = pdf.toString("latin1", Math.max(0, m.index - 600), m.index + 400);
+  const w = head.match(/\/Width\s+(\d+)/), h = head.match(/\/Height\s+(\d+)/);
+  if (!w || !h) continue;
+  objs.push({ w: +w[1], h: +h[1], photo: head.includes("DCTDecode") });
+}
+const bad = objs.filter((o, i) =>
+  (o.w === 1 || o.h === 1) &&
+  [objs[i - 1], objs[i + 1], objs[i - 2], objs[i + 2]].some((n) => n?.photo));
+if (bad.length) {
+  throw new Error(
+    `${bad.length} edge-clamp strip(s) sit beside a photo ` +
+    `(${bad.map((b) => `${b.w}x${b.h}`).join(", ")}). ` +
+    `A cropped background-image will smear on iOS — pre-crop it and use <img>.`);
+}
+
+console.log(`${OUT}  —  ${count} pages, ${(statSync(OUT).size / 1024 / 1024).toFixed(1)}MB, no clamp strips beside photos`);
