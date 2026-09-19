@@ -115,7 +115,7 @@ white-body / black-footer either. The subject picks the composition.
 |---|---|---|
 | 01 | Cover | Image-first, cobalt title field. **Locked.** |
 | 02 | The Premise — stop treating it like a phone | **Built, provisionally locked.** Ink statement band as the hero moment, paired columns throughout, cobalt closing strip. |
-| 03 | iPhone Over Camera | Cobalt-forward, more personal. Uses the **real handwritten note** as an artifact when supplied. |
+| 03 | iPhone Over Camera | **Built.** Cobalt-forward with a full-width ink case-study band. 80/20 carried by typographic scale, not a chart. The **real handwritten note** (M03.4) sits small and tilted as an artifact, not a hero. Deliberately the sparsest sheet so far. |
 | 04 | Foundation / Settings | Paper dominant. Clarity first — premium reference card, screenshots, concise settings modules. |
 | 05 | Native vs Blackmagic | Structured split comparison. Let the screenshots teach. |
 | 06 | Build The Image / Apple Log | Cinematic, may go black-dominant. The LOG → CORRECTED → GRADED progression carries the page. |
