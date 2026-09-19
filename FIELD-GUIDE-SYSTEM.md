@@ -11,7 +11,7 @@ Status: design locked. Copy and media are not.
 |---|---|
 | `p00` | System specification. Internal; not one of the eleven. |
 | `p01` | **The locked cover.** |
-| `p02` | **Stop Treating It Like A Phone** — the premise. |
+| `p02` | **Stop Treating It Like A Phone** — the premise. Provisionally locked. |
 | `p07` | **Shoot With Intention** — the reference interior. |
 
 The exploration trees are untouched and still build: `src-field/` (Pass 02, the
@@ -114,7 +114,7 @@ white-body / black-footer either. The subject picks the composition.
 | Sheet | Page | Composition |
 |---|---|---|
 | 01 | Cover | Image-first, cobalt title field. **Locked.** |
-| 02 | The Premise — stop treating it like a phone | **Built.** Ink statement band as the hero moment, paired columns throughout, cobalt closing strip. |
+| 02 | The Premise — stop treating it like a phone | **Built, provisionally locked.** Ink statement band as the hero moment, paired columns throughout, cobalt closing strip. |
 | 03 | iPhone Over Camera | Cobalt-forward, more personal. Uses the **real handwritten note** as an artifact when supplied. |
 | 04 | Foundation / Settings | Paper dominant. Clarity first — premium reference card, screenshots, concise settings modules. |
 | 05 | Native vs Blackmagic | Structured split comparison. Let the screenshots teach. |
