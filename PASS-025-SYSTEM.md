@@ -13,19 +13,18 @@ Pass 02's three directions remain in `src-field/` for comparison.
 The pages are set entirely in the existing Shooting Stars kit. **No handwritten
 or cursive face is in use.**
 
-    Archivo 800   uppercase, letterspaced   the kicker line
-    Anton         the headline
+    JetBrains Mono  uppercase, letterspaced   the eyebrow
+    Anton           the headline, whole sentence
     Archivo       body and module titles
     JetBrains Mono  technical metadata
 
-On the covers, "Your iPhone is a" is an Archivo 800 uppercase kicker above
-Anton at 106px. Archivo rather than a second Anton size: two sizes of the same
-condensed face stacked reads monotonous, and Archivo is already in the kit, so
-this introduces nothing new. On A3 the same relationship runs smaller —
-Archivo 800 eyebrow over Anton at 52px.
+The covers set the whole claim in one voice: a mono eyebrow, then YOUR IPHONE /
+IS A CINEMA / CAMERA in Anton at 114px across three lines. A3 runs the same
+relationship smaller, a mono eyebrow over Anton at 52px.
 
-Swapping the kicker to Anton is a one-line change per page if the block-on-block
-look is preferred.
+Nothing is set in a second display face. The earlier split-voice titling, where
+a bold kicker carried "Your iPhone is a" above a single-line CINEMA CAMERA, is
+gone: the sentence reads better whole.
 
 ### The handwriting layer is parked, not abandoned
 
@@ -60,16 +59,12 @@ tests are kept in `docs/` as the decision record.
 
 ## A1 — cobalt-dominant cover, evolved
 
-The Pass 02 cover set the title as three equal Anton lines. Now it is one
-kicker line over a single 106px block line running the full measure —
-horizontal rather than stacked, which also moves it away from the Content
-Framework's three-line cover stack.
-
-Photography gets the confidence borrowed from Direction B: the plate runs off
+Three Anton lines under a mono eyebrow, at 114px. Photography gets the confidence borrowed from Direction B: the plate runs off
 the right edge instead of sitting inside a rectangle. Cobalt still dominates.
 
-*106px is measured, not estimated.* "CINEMA CAMERA" is 671px at 108px, against
-a 672px measure — the first attempt at 119px silently wrapped to two lines.
+*Sizes are measured, not estimated.* At 114px the longest line, YOUR IPHONE,
+is 542px against a 672px measure, which leaves the right-hand air the
+composition wants. An earlier single-line attempt at 119px silently wrapped.
 
 ## A2 — photography top, cobalt field bottom
 
