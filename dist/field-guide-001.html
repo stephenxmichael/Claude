@@ -1,0 +1,439 @@
+<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Field Guide 001</title><style>
+/* ══════════════════════════════════════════════════════════════════
+   SHOOTING STARS FIELD GUIDES — LOCKED DESIGN SYSTEM
+   Field Guide 001, "Your iPhone Is A Cinema Camera".
+
+   Approved: Direction A (Cobalt Field Guide) as the foundation, carrying
+   Direction B's confidence with photography and Direction C's technical
+   micro-details. A is the identity; B and C are influences, not equals.
+
+   This file is the component library for the eleven-page build. Add pages
+   against it; do not re-derive it per page, and do not add fonts or colours.
+
+   COLOUR ROLES — the primary tell against the Content Framework
+     cobalt   primary identity        .cobalt, rails, numerals, modules
+     paper    editorial teaching air  .light — the default interior ground
+     ink      technical / cinematic   .dark, footers, plates, metadata
+   The Framework is black/white dominant with a cobalt accent. This inverts
+   that. Cobalt need not occupy 40% of every page; it must be unmistakable
+   across the publication. Black must never become the primary identity again.
+
+   TYPOGRAPHY — locked, four faces, no script
+     Anton           the headline. Whole sentences, not split across voices.
+     Archivo 800     module and card titles
+     Archivo         body
+     JetBrains Mono  eyebrows, metadata, technical labels
+   Real handwriting may appear as a photographed artifact (a .plate), never
+   as a typeface.
+
+   PAGE RHYTHM — a language, not a template
+   Each subject picks its own composition. Never repeat cobalt-header /
+   white-body / black-footer down the book. Build guidance per page lives in
+   FIELD-GUIDE-SYSTEM.md.
+   ══════════════════════════════════════════════════════════════════ */
+@import url('assets/fonts/fonts.css');
+
+/* ── 1. TOKENS ─────────────────────────────────────────────────── */
+:root{
+  --ink:#08080C; --ink2:#101018;
+  --cobalt:#2B5CE6; --volt:#4D7CFF; --deep:#0B1F5C;
+  --bone:#F2F1ED; --bone2:#E8E6DF;
+  --slate:#5B6270; --line:#D9D6CE;
+  --paper:#FAF9F6; --hair:#E4E1D9;
+  --zc:rgba(43,92,230,.62);   /* shoot-zone marking, per surface */
+  --cm:rgba(43,92,230,.55);   /* crop marks, per surface */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-items:center;gap:38px;font-family:'Archivo',sans-serif}
+.page{width:800px;height:1120px;position:relative;overflow:hidden;box-shadow:0 26px 80px rgba(0,0,0,.65);flex-shrink:0}
+.tag{color:#7d8496;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:-14px;font-family:'JetBrains Mono'}
+
+/* ── 2. PRINT ── one .page per PDF page at 800x1120 ────────────── */
+@page{size:800px 1120px;margin:0}
+@media print{
+  body{background:#fff;padding:0;gap:0;display:block}
+  .tag{display:none}
+  .page{box-shadow:none;margin:0;break-after:page;page-break-after:always;break-inside:avoid;page-break-inside:avoid}
+  .page:last-of-type{break-after:auto;page-break-after:auto}
+}
+
+/* ── 3. SURFACES ───────────────────────────────────────────────── */
+.cobalt{background:var(--cobalt);color:#fff}
+.dark{background:var(--ink);color:#fff}
+.light{background:var(--paper);color:var(--ink)}
+.grain::after{content:'';position:absolute;inset:0;opacity:.055;mix-blend-mode:overlay;pointer-events:none;z-index:1;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* 40px grid. Structure, never noise: drop it on any page where photography
+   needs the room. */
+.g40::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+ background-image:linear-gradient(rgba(43,92,230,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(43,92,230,.07) 1px,transparent 1px);
+ background-size:40px 40px}
+.dark.g40::before,.cobalt.g40::before{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px)}
+.glow{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0}
+/* full-bleed structural block: a surface, not content */
+.band{position:absolute;pointer-events:none}
+.band.live{pointer-events:auto}
+
+/* ── 4. RUNNING MARKS ──────────────────────────────────────────── */
+/* Margin 64px, HUD 52px, spine 34px. The spine inverts against the
+   Framework's: cobalt on light and dark pages, ink on cobalt pages. */
+.hud{position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;
+ padding:0 34px 0 64px;font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;text-transform:uppercase;z-index:9}
+.light .hud{color:#A8A49A;border-bottom:1px solid var(--hair)}
+.dark .hud{color:#5A6072;border-bottom:1px solid rgba(255,255,255,.08)}
+.cobalt .hud{color:rgba(255,255,255,.62);border-bottom:1px solid rgba(255,255,255,.24)}
+.hud img{width:16px;opacity:.75}
+.light .hud img{filter:brightness(0);opacity:.28}
+.hud b{font-weight:400;color:var(--cobalt)}
+.dark .hud b,.cobalt .hud b{color:#fff}
+
+.spine{position:absolute;left:0;top:0;bottom:0;width:34px;display:flex;align-items:center;justify-content:center;z-index:8}
+.spine span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'JetBrains Mono';font-size:9px;letter-spacing:.34em;text-transform:uppercase}
+.cobalt .spine{background:var(--ink)}.cobalt .spine span{color:#fff}
+.light .spine{background:var(--cobalt)}.light .spine span{color:#fff}
+.dark .spine{background:var(--cobalt)}.dark .spine span{color:#fff}
+
+.folio{position:absolute;bottom:25px;right:34px;font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;z-index:9}
+.light .folio{color:#A8A49A}.dark .folio{color:rgba(255,255,255,.4)}.cobalt .folio{color:rgba(255,255,255,.62)}
+.folio b{font-weight:600}
+.light .folio b{color:var(--cobalt)}.dark .folio b,.cobalt .folio b{color:#fff}
+
+/* eyebrow row — the mono line above a headline */
+.eyebrow{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.24em;text-transform:uppercase}
+.light .eyebrow{color:var(--cobalt)}
+.dark .eyebrow,.cobalt .eyebrow{color:rgba(255,255,255,.74)}
+
+/* ── 5. TYPE ───────────────────────────────────────────────────── */
+.kick{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.22em;text-transform:uppercase}
+.hd{font-family:'Anton';text-transform:uppercase;line-height:.93;letter-spacing:.004em}
+.sub{font-family:'Archivo';font-weight:800;text-transform:uppercase;letter-spacing:.012em;line-height:1.18}
+.bd{font-size:12.5px;line-height:1.72;color:#3A3D47}
+.dark .bd,.cobalt .bd{color:rgba(255,255,255,.82)}
+.lead{font-size:15px;line-height:1.6;color:#2E3039;font-weight:500}
+.dark .lead,.cobalt .lead{color:rgba(255,255,255,.9)}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--cobalt);color:#fff;
+ font-family:'JetBrains Mono';font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px}
+.chip.blk{background:var(--ink)}
+.chip.wht{background:#fff;color:var(--cobalt);font-weight:600}
+.anno{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:8.5px;
+ letter-spacing:.16em;text-transform:uppercase;color:var(--cobalt)}
+.anno::before{content:'';width:16px;height:1px;background:currentColor;flex-shrink:0}
+.dark .anno,.cobalt .anno{color:#fff}
+
+/* ── 6. PLATE ── the media placeholder, and the production blueprint ──
+   Every plate carries an asset ID (M<page>.<n>) matching the media
+   checklist, plus type, subject and crop. Cover plates also carry SHOOT
+   ZONES: where the subject stands, where the phone sits, and what must stay
+   clear. Never fill a plate with AI or stock imagery. */
+.plate{position:relative;overflow:hidden;
+ background:repeating-linear-gradient(45deg,rgba(43,92,230,.06) 0 11px,transparent 11px 22px),var(--bone2);
+ border:1px solid rgba(43,92,230,.3)}
+.plate.on-dark{--zc:rgba(77,124,255,.66);--cm:rgba(77,124,255,.6);
+ background:repeating-linear-gradient(45deg,rgba(77,124,255,.1) 0 11px,transparent 11px 22px),var(--ink2);
+ border-color:rgba(77,124,255,.34)}
+.plate.on-cobalt{--zc:rgba(255,255,255,.6);--cm:rgba(255,255,255,.7);
+ background:repeating-linear-gradient(45deg,rgba(255,255,255,.075) 0 11px,transparent 11px 22px),rgba(6,20,64,.5);
+ border-color:rgba(255,255,255,.42)}
+.plate::before{content:'';position:absolute;inset:7px;pointer-events:none;z-index:1;
+ background:
+  linear-gradient(var(--cm),var(--cm)) 0 0/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 0 0/1px 10px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 100% 0/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 100% 0/1px 10px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 0 100%/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 0 100%/1px 10px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 100% 100%/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 100% 100%/1px 10px no-repeat}
+.plate .p-id{position:absolute;top:0;left:0;background:var(--cobalt);color:#fff;font-family:'JetBrains Mono';
+ font-size:8px;letter-spacing:.12em;padding:3px 7px;z-index:5;line-height:1.3}
+.plate.on-cobalt .p-id{background:#fff;color:var(--cobalt);font-weight:600}
+.plate.on-dark .p-id{background:var(--volt);color:var(--ink);font-weight:600}
+.plate .p-in{position:relative;z-index:3;text-align:center;padding:15px 13px;max-width:300px;margin:auto}
+.p-type{display:inline-block;font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;
+ border:1px solid rgba(43,92,230,.5);color:var(--cobalt);padding:3px 8px;margin-bottom:9px}
+.p-subj{display:block;font-family:'Archivo';font-weight:800;font-size:12px;line-height:1.3;text-transform:uppercase;
+ letter-spacing:.01em;color:var(--ink)}
+.p-spec{display:block;font-family:'JetBrains Mono';font-size:8px;letter-spacing:.1em;text-transform:uppercase;
+ color:var(--slate);margin-top:7px;line-height:1.75}
+.plate.on-dark .p-type{border-color:rgba(77,124,255,.55);color:var(--volt)}
+.plate.on-dark .p-subj{color:#fff}.plate.on-dark .p-spec{color:#79808F}
+.plate.on-cobalt .p-type{border-color:rgba(255,255,255,.55);color:#fff}
+.plate.on-cobalt .p-subj{color:#fff}.plate.on-cobalt .p-spec{color:rgba(255,255,255,.66)}
+.plate.sm .p-in{padding:9px 7px}
+.plate.sm .p-type{font-size:7px;padding:2px 6px;margin-bottom:6px;letter-spacing:.16em}
+.plate.sm .p-subj{font-size:10.5px;line-height:1.26}
+.plate.sm .p-spec{font-size:7.5px;margin-top:5px;line-height:1.6}
+
+/* shoot zones */
+.zone{position:absolute;border:1px dashed var(--zc);z-index:3}
+.zone i{position:absolute;left:6px;top:5px;font-style:normal;font-family:'JetBrains Mono';font-size:7.5px;
+ letter-spacing:.14em;text-transform:uppercase;color:var(--zc);white-space:nowrap;line-height:1.5}
+.zone.keep{border-style:dotted}
+.zone.mark{width:26px;height:26px;border-radius:50%;border-style:solid}
+.zone.mark::before{content:'';position:absolute;left:50%;top:-8px;bottom:-8px;width:1px;background:var(--zc)}
+.zone.mark::after{content:'';position:absolute;top:50%;left:-8px;right:-8px;height:1px;background:var(--zc)}
+.zone.mark i{left:36px;top:7px}
+
+/* black caption module, pinned inside a plate — the shot brief */
+.p-meta{position:absolute;z-index:4;background:var(--ink);color:#fff;padding:12px 14px;max-width:310px}
+.p-meta .pm-k{display:block;font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--volt);margin-bottom:7px}
+.p-meta .pm-t{display:block;font-family:'Archivo';font-weight:800;font-size:11.5px;line-height:1.26;text-transform:uppercase;letter-spacing:.01em}
+.p-meta .pm-s{display:block;font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:#8C93A5;margin-top:7px;line-height:1.7}
+
+/* ── 7. QR ── only where video adds real instruction ───────────── */
+.qr{display:flex;gap:12px;align-items:center}
+.qr .q-box{width:58px;height:58px;flex-shrink:0;border:1px dashed rgba(43,92,230,.45);display:flex;align-items:center;justify-content:center;color:var(--cobalt)}
+.dark .qr .q-box,.cobalt .qr .q-box{border-color:rgba(255,255,255,.36);color:rgba(255,255,255,.6)}
+.qr .q-box svg{width:34px;height:34px}
+.qr .q-k{display:block;font-family:'JetBrains Mono';font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--cobalt);margin-bottom:5px}
+.dark .qr .q-k,.cobalt .qr .q-k{color:#fff}
+.qr .q-t{font-family:'Archivo';font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.01em;line-height:1.22;color:var(--ink)}
+.dark .qr .q-t,.cobalt .qr .q-t{color:#fff}
+.qr .q-d{font-size:10.5px;line-height:1.55;color:var(--slate);margin-top:5px}
+.dark .qr .q-d,.cobalt .qr .q-d{color:rgba(255,255,255,.72)}
+
+/* ── 8. DATA ROWS ──────────────────────────────────────────────── */
+.dl{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-top:1px solid var(--hair)}
+.dl dt{font-family:'JetBrains Mono';font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.dl dd{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.06em;color:var(--cobalt);font-weight:600;text-align:right}
+.cobalt .dl{border-top-color:rgba(255,255,255,.22)}
+.cobalt .dl dt{color:rgba(255,255,255,.6)}.cobalt .dl dd{color:#fff}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="qrg" viewBox="0 0 42 42">
+<g fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="13" height="13"/><rect x="28" y="1" width="13" height="13"/><rect x="1" y="28" width="13" height="13"/></g>
+<g fill="currentColor"><rect x="5" y="5" width="5" height="5"/><rect x="32" y="5" width="5" height="5"/><rect x="5" y="32" width="5" height="5"/>
+<rect x="20" y="1" width="3" height="3"/><rect x="20" y="8" width="3" height="3"/><rect x="20" y="20" width="3" height="3"/>
+<rect x="27" y="20" width="3" height="3"/><rect x="34" y="27" width="3" height="3"/><rect x="20" y="34" width="3" height="3"/>
+<rect x="27" y="34" width="3" height="3"/><rect x="34" y="20" width="3" height="3"/><rect x="1" y="20" width="3" height="3"/>
+<rect x="8" y="20" width="3" height="3"/></g></symbol></svg>
+<div class="tag">SPEC — FIELD GUIDE SYSTEM (not part of the eleven)</div>
+<div class="page light g40">
+  <div class="spine"><span>Shooting Stars Field Guides &nbsp;&middot;&nbsp; System</span></div>
+  <div class="hud"><span>Field Guide System</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Design <b>Lock</b></span></div>
+
+  <div style="position:absolute;top:88px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between;align-items:flex-end">
+    <div>
+      <div class="eyebrow" style="margin-bottom:14px">Shooting Stars Field Guides</div>
+      <div class="hd" style="font-size:52px">The System</div>
+    </div>
+    <div style="max-width:250px;font-size:11.5px;line-height:1.66;color:var(--slate);text-align:right;padding-bottom:4px">
+      A design language, not a page template. Each sheet picks the composition its subject needs.
+    </div>
+  </div>
+
+  <div style="position:absolute;top:214px;left:64px;right:64px;z-index:6">
+    <div class="kick" style="color:var(--cobalt);margin-bottom:14px;padding-bottom:11px;border-bottom:2px solid var(--ink)">01 &nbsp;/&nbsp; Colour Roles</div>
+    <div style="display:flex;gap:16px">
+      <div style="flex:1">
+        <div style="height:74px;background:var(--cobalt)"></div>
+        <div class="sub" style="font-size:12.5px;margin-top:11px">Cobalt</div>
+        <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:5px">Primary identity. Title fields, rails, numerals, modules, chapter moments.</div>
+        <div class="kick" style="font-size:8px;color:var(--cobalt);margin-top:7px">#2B5CE6</div>
+      </div>
+      <div style="flex:1">
+        <div style="height:74px;background:var(--paper);border:1px solid var(--hair)"></div>
+        <div class="sub" style="font-size:12.5px;margin-top:11px">Paper</div>
+        <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:5px">Editorial teaching air. The default interior ground. Whitespace is intentional.</div>
+        <div class="kick" style="font-size:8px;color:var(--cobalt);margin-top:7px">#FAF9F6</div>
+      </div>
+      <div style="flex:1">
+        <div style="height:74px;background:var(--ink)"></div>
+        <div class="sub" style="font-size:12.5px;margin-top:11px">Ink</div>
+        <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:5px">Technical and cinematic support. Plates, footers, metadata. Never the identity.</div>
+        <div class="kick" style="font-size:8px;color:var(--cobalt);margin-top:7px">#08080C</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:484px;left:64px;right:64px;z-index:6">
+    <div class="kick" style="color:var(--cobalt);margin-bottom:6px;padding-bottom:11px;border-bottom:2px solid var(--ink)">02 &nbsp;/&nbsp; Type &mdash; Four Faces, No Script</div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid var(--hair)">
+      <span class="hd" style="font-size:32px">Anton</span>
+      <span class="kick" style="font-size:8.5px;color:var(--slate);text-align:right">Headline &middot; whole sentences, never split</span>
+    </div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid var(--hair)">
+      <span class="sub" style="font-size:19px">Archivo 800</span>
+      <span class="kick" style="font-size:8.5px;color:var(--slate);text-align:right">Module and card titles</span>
+    </div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid var(--hair)">
+      <span style="font-size:17px;color:var(--ink)">Archivo Regular</span>
+      <span class="kick" style="font-size:8.5px;color:var(--slate);text-align:right">Body &middot; leave room for copy revisions</span>
+    </div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid var(--hair)">
+      <span class="kick" style="font-size:14px;color:var(--ink)">JetBrains Mono</span>
+      <span class="kick" style="font-size:8.5px;color:var(--slate);text-align:right">Eyebrows, metadata, frame IDs</span>
+    </div>
+    <div style="font-size:10.5px;line-height:1.66;color:var(--slate);margin-top:11px">
+      Real handwriting may appear as a photographed artifact. Never as a typeface.
+    </div>
+  </div>
+
+  <div style="position:absolute;top:812px;left:64px;right:64px;z-index:6">
+    <div class="kick" style="color:var(--cobalt);margin-bottom:14px;padding-bottom:11px;border-bottom:2px solid var(--ink)">03 &nbsp;/&nbsp; Components</div>
+    <div style="display:flex;gap:16px">
+      <div style="flex:1">
+        <div class="plate" style="height:82px"><span class="p-id">M00.0</span>
+          <div class="p-in sm" style="max-width:150px"><span class="p-type">Type</span><span class="p-subj">Subject</span></div></div>
+        <div class="sub" style="font-size:11.5px;margin-top:10px">Plate</div>
+        <div style="font-size:10px;line-height:1.6;color:var(--slate);margin-top:5px">Asset ID, media type, subject, crop. Covers add shoot zones. Never AI or stock.</div>
+      </div>
+      <div style="flex:1">
+        <div style="height:82px;display:flex;align-items:center">
+          <div class="qr"><div class="q-box" style="width:52px;height:52px"><svg><use href="#qrg"/></svg></div>
+            <div><span class="q-k">M00.0 &middot; Reel</span><div class="q-t" style="font-size:10.5px">Destination</div></div></div>
+        </div>
+        <div class="sub" style="font-size:11.5px;margin-top:10px">QR Module</div>
+        <div style="font-size:10px;line-height:1.6;color:var(--slate);margin-top:5px">Only where video adds real instruction. Never because space exists.</div>
+      </div>
+      <div style="flex:1">
+        <div style="height:82px">
+          <dl class="dl" style="border-top:0;padding-top:0"><dt>Margin</dt><dd>64 px</dd></dl>
+          <dl class="dl"><dt>HUD</dt><dd>52 px</dd></dl>
+          <dl class="dl"><dt>Spine</dt><dd>34 px</dd></dl>
+          <dl class="dl"><dt>Grid</dt><dd>40 px</dd></dl>
+        </div>
+        <div class="sub" style="font-size:11.5px;margin-top:10px">Running Marks</div>
+        <div style="font-size:10px;line-height:1.6;color:var(--slate);margin-top:5px">Spine inverts against the Framework: cobalt on light, ink on cobalt.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="folio" style="color:var(--slate)"><b style="color:var(--cobalt)">Spec</b> / 00</div>
+</div>
+<div class="tag">SHEET 01 — COVER (locked)</div>
+<div class="page cobalt grain">
+  <div class="glow" style="width:560px;height:560px;bottom:-240px;right:-180px;background:radial-gradient(circle,var(--deep),transparent 70%);opacity:.66"></div>
+  <div class="spine"><span>Shooting Stars Field Guide 001</span></div>
+
+  <!-- 55% photograph. The image is the reason the composition exists; the
+       cobalt field below carries the claim. -->
+  <div class="plate on-dark" style="position:absolute;top:0;left:34px;right:0;height:616px;border-top:0;border-right:0;z-index:4">
+    <span class="p-id">M01.1</span>
+    <div class="zone" style="left:8%;top:14%;width:37%;height:70%"><i>Subject &mdash; Stephen</i></div>
+    <div class="zone mark" style="left:30%;top:45%"><i>iPhone / rig</i></div>
+    <div class="zone keep" style="left:52%;top:12%;width:39%;height:33%"><i>Keep clear &mdash; crop room</i></div>
+    <div class="p-meta" style="right:34px;bottom:0;max-width:304px">
+      <span class="pm-k">Photo &middot; Hero &middot; To Shoot</span>
+      <span class="pm-t">Stephen mid-shoot with the iPhone rig</span>
+      <span class="pm-s">Landscape 766 &times; 616 &middot; full bleed top<br>Creator making something &mdash; not a portrait or a pose<br>Subject off-centre left, three-quarter to camera<br>Phone or rig clearly in use &middot; depth behind him<br>Cinematic light &middot; shoot wider than this crop</span>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:40px;left:64px;right:34px;z-index:7;display:flex;justify-content:space-between;align-items:center;
+              font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.78)">
+    <span>Shooting Stars Content Academy</span>
+    <span>Sheet 01 / 11</span>
+  </div>
+
+  <div style="position:absolute;top:656px;left:64px;right:64px;z-index:7;display:flex;justify-content:space-between;align-items:baseline">
+    <span class="eyebrow">A Shooting Stars Field Guide</span>
+    <span class="eyebrow" style="color:rgba(255,255,255,.6)">Field Guide 001</span>
+  </div>
+
+  <div style="position:absolute;top:692px;left:64px;right:64px;z-index:7">
+    <div class="hd" style="font-size:88px;color:#fff">Your iPhone</div>
+    <div class="hd" style="font-size:88px;color:#fff">Is A Cinema</div>
+    <div class="hd" style="font-size:88px;color:#fff">Camera</div>
+  </div>
+
+  <div style="position:absolute;top:962px;left:64px;right:64px;z-index:7;border-top:1px solid rgba(255,255,255,.34);padding-top:18px">
+    <div style="max-width:452px;font-size:14.5px;line-height:1.56;color:rgba(255,255,255,.9)">
+      A practical guide to shooting cinematic content with the camera already in your pocket.
+    </div>
+  </div>
+
+  <div style="position:absolute;left:64px;right:64px;bottom:34px;z-index:7;display:flex;justify-content:space-between;align-items:center;
+              font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7)">
+    <span>4K &nbsp;&middot;&nbsp; Apple Log &nbsp;&middot;&nbsp; Blackmagic Camera</span>
+    <span>@stephenxmichael</span>
+  </div>
+</div>
+<div class="tag">SHEET 07 — SHOOT WITH INTENTION (reference interior)</div>
+<div class="page light g40">
+  <div class="spine"><span>07 &nbsp;&mdash;&nbsp; Coverage</span></div>
+  <div class="hud"><span>Your iPhone Is A Cinema Camera</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Field Guide <b>001</b></span></div>
+
+  <!-- No cobalt band here. On this page cobalt is a rule, the frame tabs, the
+       numerals and Stephen's aside; the frames carry the weight. -->
+  <div style="position:absolute;top:74px;left:64px;width:470px;z-index:6">
+    <div class="kick" style="font-size:10px;letter-spacing:.24em;color:var(--cobalt)">Don&rsquo;t just record it</div>
+    <div class="hd" style="font-size:52px;color:var(--ink);margin-top:13px">Shoot With Intention</div>
+  </div>
+
+  <div style="position:absolute;top:74px;left:560px;right:64px;z-index:6">
+    <div style="display:flex;gap:11px;align-items:center">
+      <div class="q-box" style="width:46px;height:46px;flex-shrink:0;border:1px dashed rgba(43,92,230,.45);display:flex;align-items:center;justify-content:center;color:var(--cobalt)">
+        <svg width="27" height="27"><use href="#qrg"/></svg></div>
+      <div>
+        <span style="display:block;font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cobalt);margin-bottom:4px">M07.7 &middot; Reel</span>
+        <div style="font-family:'Archivo';font-weight:800;font-size:10.5px;line-height:1.24;text-transform:uppercase;letter-spacing:.01em;color:var(--ink)">Six angles,<br>one setup</div>
+      </div>
+    </div>
+    <div style="font-size:11px;line-height:1.62;color:var(--slate);margin-top:14px">
+      Six frames of one subject, in the same light, before the camera moves.
+    </div>
+  </div>
+
+  <div style="position:absolute;top:192px;left:64px;right:64px;z-index:6;border-top:2px solid var(--cobalt);padding-top:11px;
+              display:flex;align-items:center;justify-content:space-between;font-family:'JetBrains Mono';font-size:8.5px;
+              letter-spacing:.2em;text-transform:uppercase;color:var(--slate)">
+    <span style="display:flex;gap:16px"><span style="color:var(--ink)">W</span><span>M</span><span>C</span><span>D</span><span>Mov</span><span>Rev</span></span>
+    <span>Frames 01 &ndash; 06</span>
+  </div>
+
+  <div style="position:absolute;top:246px;left:64px;right:64px;z-index:6;display:flex;gap:16px">
+    <div style="flex:1">
+      <div class="plate on-dark" style="height:184px"><span class="p-id">M07.1</span>
+        <div class="p-in sm" style="max-width:230px"><span class="p-type">Frame 01</span><span class="p-subj">Wide</span><span class="p-spec">16:9 &middot; 328 &times; 184</span></div></div>
+      <div style="margin-top:9px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--hair);padding-bottom:6px">
+        <span style="display:flex;gap:10px;align-items:baseline"><span class="hd" style="font-size:17px;color:var(--cobalt)">01</span><span class="sub" style="font-size:13px">Wide</span></span>
+        <span style="font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.16em;color:var(--slate)">W</span></div>
+      <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:7px;min-height:34px">Where are we. Opens the piece and gives everything after it a place to happen.</div>
+    </div>
+    <div style="flex:1">
+      <div class="plate on-dark" style="height:184px"><span class="p-id">M07.2</span>
+        <div class="p-in sm" style="max-width:230px"><span class="p-type">Frame 02</span><span class="p-subj">Medium</span><span class="p-spec">16:9 &middot; 328 &times; 184</span></div></div>
+      <div style="margin-top:9px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--hair);padding-bottom:6px">
+        <span style="display:flex;gap:10px;align-items:baseline"><span class="hd" style="font-size:17px;color:var(--cobalt)">02</span><span class="sub" style="font-size:13px">Medium</span></span>
+        <span style="font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.16em;color:var(--slate)">M</span></div>
+      <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:7px;min-height:34px">Your default. Most of what you say to camera lives here. Conversational, not formal.</div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:525px;left:64px;right:64px;z-index:6;display:flex;gap:16px">
+    <div style="flex:1">
+      <div class="plate on-dark" style="height:184px"><span class="p-id">M07.3</span>
+        <div class="p-in sm" style="max-width:230px"><span class="p-type">Frame 03</span><span class="p-subj">Close</span><span class="p-spec">16:9 &middot; 328 &times; 184</span></div></div>
+      <div style="margin-top:9px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--hair);padding-bottom:6px">
+        <span style="display:flex;gap:10px;align-items:baseline"><span class="hd" style="font-size:17px;color:var(--cobalt)">03</span><span class="sub" style="font-size:13px">Close</span></span>
+        <span style="font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.16em;color:var(--slate)">C</span></div>
+      <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:7px;min-height:34px">Save it for the line that matters. It reads as emphasis, so spend it deliberately.</div>
+    </div>
+    <div style="flex:1">
+      <div class="plate on-dark" style="height:184px"><span class="p-id">M07.4</span>
+        <div class="p-in sm" style="max-width:230px"><span class="p-type">Frame 04</span><span class="p-subj">Detail</span><span class="p-spec">16:9 &middot; 328 &times; 184</span></div></div>
+      <div style="margin-top:9px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--hair);padding-bottom:6px">
+        <span style="display:flex;gap:10px;align-items:baseline"><span class="hd" style="font-size:17px;color:var(--cobalt)">04</span><span class="sub" style="font-size:13px">Detail</span></span>
+        <span style="font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.16em;color:var(--slate)">D</span></div>
+      <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:7px;min-height:34px">Hands, product, texture. The shot that covers a cut and proves you were there.</div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:804px;left:64px;right:64px;z-index:6;display:flex;gap:16px">
+    <div style="flex:1">
+      <div class="plate on-dark" style="height:184px"><span class="p-id">M07.5</span>
+        <div class="p-in sm" style="max-width:230px"><span class="p-type">Frame 05</span><span class="p-subj">Movement</span><span class="p-spec">16:9 &middot; 328 &times; 184</span></div></div>
+      <div style="margin-top:9px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--hair);padding-bottom:6px">
+        <span style="display:flex;gap:10px;align-items:baseline"><span class="hd" style="font-size:17px;color:var(--cobalt)">05</span><span class="sub" style="font-size:13px">Movement</span></span>
+        <span style="font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.16em;color:var(--slate)">Mov</span></div>
+      <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:7px;min-height:34px">Slow push, slow pan, or walk with the subject. Start moving before you record.</div>
+    </div>
+    <div style="flex:1">
+      <div class="plate on-dark" style="height:184px"><span class="p-id">M07.6</span>
+        <div class="p-in sm" style="max-width:230px"><span class="p-type">Frame 06</span><span class="p-subj">Reveal</span><span class="p-spec">16:9 &middot; 328 &times; 184</span></div></div>
+      <div style="margin-top:9px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--hair);padding-bottom:6px">
+        <span style="display:flex;gap:10px;align-items:baseline"><span class="hd" style="font-size:17px;color:var(--cobalt)">06</span><span class="sub" style="font-size:13px">Reveal</span></span>
+        <span style="font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.16em;color:var(--slate)">Rev</span></div>
+      <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:7px;min-height:34px">Start hidden, end on the thing. Behind a door, past a shoulder, up from a table.</div>
+    </div>
+  </div>
+
+  <div class="folio"><b>07</b> / 11</div>
+</div>
+</body></html>

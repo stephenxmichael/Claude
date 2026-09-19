@@ -21,6 +21,7 @@ const BLURB = {
   iphone: ["Prototype", "All ten pages at full size. Every hatched block is a deliberate media placeholder carrying an asset ID, media type, subject and crop &mdash; no photography, screenshots or QR codes are final, and none have been faked to fill space. Copy throughout is first-pass working copy."],
   field: ["Pass 02", "Three visual directions for Shooting Stars Field Guide 001, each shown as a cover plus the Shoot With Intention interior. Cover plates carry shoot zones marking where the subject stands, where the phone sits, and which area must stay clear for the title. Nothing here is final photography, and copy is working copy."],
   fieldA: ["Pass 02.5", "Direction A evolved into the locked Field Guide language. Two covers and the Shoot With Intention interior, introducing the handwritten editorial voice as a counterpoint to the block type. Cover plates carry shoot zones marking where the subject stands, where the phone sits, and what must stay clear. Nothing here is final photography, and copy is working copy."],
+  fg: ["Design lock", "The approved Shooting Stars Field Guide system. Sheet 01 is the locked cover, sheet 07 the reference interior, and the first sheet is the component specification for the eleven-page build. Every hatched block is a media placeholder carrying an asset ID, crop and shoot direction &mdash; no photography is final, and copy is working copy."],
   framework: ["Book", "The full publication at page size."],
 };
 

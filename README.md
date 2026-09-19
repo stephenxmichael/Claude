@@ -8,6 +8,7 @@ Two products, one brand, built from the same v3 design language:
 | **The iPhone Creator Guide** (Pass 01) | 10 | `src-iphone/` | `dist/iphone-creator-guide.html` |
 | **Field Guide 001 directions** (Pass 02) | 7 | `src-field/` | `dist/field-guide-directions.html` |
 | **Field Guide 001 system** (Pass 02.5) | 3 | `src-field-a/` | `dist/field-guide-system.html` |
+| **Field Guide 001** (locked) | 3 | `src-fg/` | `dist/field-guide-001.html` |
 
 Every script takes an optional product key. Omit it and you get the Content
 Framework, exactly as before; pass `iphone` for the guide.
@@ -223,7 +224,25 @@ other Shooting Stars publication, different roles:
 
 `src-iphone/` is kept as-is so Pass 01 can still be built and compared.
 
-## Pass 02.5 — the locked language
+## Design lock — `src-fg/`
+
+The approved system lives in `src-fg/`, with the component library documented
+in place in `src-fg/head.html` and the build guide in `FIELD-GUIDE-SYSTEM.md`.
+Direction A is the identity, carrying Direction B's confidence with photography
+and Direction C's technical micro-details.
+
+    p00   system specification (internal, not one of the eleven)
+    p01   the locked cover — 55% photograph, 45% cobalt title field
+    p07   Shoot With Intention — the reference interior
+
+It is a design language, not a page template: each of the eleven sheets picks
+the composition its subject needs. The per-page rhythm plan is in
+`FIELD-GUIDE-SYSTEM.md`. Typography is locked to four faces with no script;
+real handwriting enters as a photographed artifact.
+
+The exploration trees below are kept intact and still build.
+
+## Pass 02.5 — the exploration that led to it
 
 Direction A was selected and evolved in `src-field-a/`: two cover compositions
 and the Shoot With Intention interior. See `PASS-025-SYSTEM.md`.

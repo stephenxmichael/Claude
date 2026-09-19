@@ -46,6 +46,17 @@ export const PRODUCTS = {
     probe: "CINEMA CAMERA 0123",
     geom: { left: 64, right: 64, hud: 52, spine: 34 },
   },
+  fg: {
+    key: "fg",
+    name: "Field Guide 001 — locked system",
+    src: "src-fg",
+    out: "dist/field-guide-001.html",
+    pdf: "dist/Field-Guide-001.pdf",
+    standalone: "dist/Field-Guide-001.html",
+    screens: "build/screens-fg",
+    probe: "CINEMA CAMERA 0123",
+    geom: { left: 64, right: 64, hud: 52, spine: 34 },
+  },
 };
 
 // Pulls a product key out of argv without disturbing positional args.

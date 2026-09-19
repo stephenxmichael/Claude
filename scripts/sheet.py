@@ -9,7 +9,8 @@ import pathlib, sys
 
 # optional leading product key, matching scripts/products.mjs
 PRODUCTS = {"framework": ("build/screens", ""), "iphone": ("build/screens-iphone", "-iphone"),
-            "field": ("build/screens-field", "-field"), "fieldA": ("build/screens-field-a", "-field-a")}
+            "field": ("build/screens-field", "-field"), "fieldA": ("build/screens-field-a", "-field-a"),
+            "fg": ("build/screens-fg", "-fg")}
 args = sys.argv[1:]
 key = "framework"
 if args and args[0].lstrip("-") in PRODUCTS:
