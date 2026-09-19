@@ -1,164 +1,141 @@
-# The iPhone Creator Guide — Media Asset Checklist
+# Field Guide 001 — Media Asset Checklist
 
-Every placeholder in the prototype carries an asset ID (`M<page>.<n>`) printed
-on the slot itself. Find the ID in the layout, shoot the thing described here,
-drop the file in `assets/` and swap the `.slot` div for an `<img>`.
+Every labelled placeholder in the eleven sheets, organised by page. Each entry
+carries the asset ID printed on the plate, so the built PDF doubles as the shot
+list: find the ID on the page, shoot the thing, drop it in.
 
-**25 assets total** — 6 photos, 6 screenshots, 9 video frames, 4 QR codes.
-Nothing here is a nice-to-have; each one is load-bearing for the page it sits on.
+**Nothing here is AI-generated, stock, or a mock screenshot.** Every asset is
+real work, real gear, or a real capture from your own device.
 
-Slot dimensions are the box in the layout at 800 × 1120. Deliver at **3× that**
-so the PDF holds up in print and on retina.
-
----
-
-## Priority order
-
-If the shoot has to be broken into sessions, this is the order that unblocks
-the most pages:
-
-| Session | Assets | Why first |
-|---|---|---|
-| **1 — Log comparison** | M05.1–M05.3 | One clip, three exports. Page 5 does not exist without it, and it is the single most persuasive image in the guide. |
-| **2 — Coverage set** | M06.1–M06.6 | Six frames from one existing piece. Page 6 is the most important page in the book. |
-| **3 — Screenshots** | M03.1, M04.1, M04.2, M09.1–M09.3 | No shoot required. An hour at the desk clears six assets. |
-| **4 — Hero + portraits** | M01.1, M02.1, M07.3 | Needs a second person behind the camera. |
-| **5 — Lighting pair + flat lay** | M07.1, M07.2, M08.1 | Controlled, can be done solo in one afternoon. |
-| **6 — QR codes** | M04.3, M05.4, M06.7, M10.1 | Generated last, once the Reels are live and the URLs are final. |
+Dimensions are the plate size at the page's 800 × 1120 geometry. Shoot larger
+and crop down — never upscale to fit.
 
 ---
 
-## Page 01 — Cover
+## Sheet 01 — Cover
 
-| ID | Type | Subject | Orientation | Slot | Crop / direction |
-|---|---|---|---|---|---|
-| **M01.1** | Photo | Stephen filming with the iPhone rig | Landscape | 766 × 612 (1.25:1) | Full-bleed top of the cover. Subject **left of centre**, clean space to the right so the eye falls into the title below. Shot on a real camera, not the phone. Mid-shot to wide — enough room to read the rig, close enough to read him. Environmental, not a studio white-sweep. |
-
-> The cover carries one image and nothing else. If it is soft, the whole
-> product reads soft. This is the one to hire out if any of them are.
-
-## Page 02 — Your iPhone Is Already A Serious Camera
-
-| ID | Type | Subject | Orientation | Slot | Crop / direction |
-|---|---|---|---|---|---|
-| **M02.1** | Photo | Stephen shooting handheld on iPhone | Portrait | 268 × 346 (3:4) | Waist-up. The **phone must be visible and clearly in use** — that is the whole argument of the page. Different setup and different clothing from M01.1 so the two do not read as one shoot. |
-
-*No second asset needed.* The impact ranking on this page is set in type and
-needs no artwork.
-
-## Page 03 — My Go-To iPhone Settings
-
-| ID | Type | Subject | Orientation | Slot | Crop / direction |
-|---|---|---|---|---|---|
-| **M03.1** | Screenshot | `Settings › Camera › Record Video` | Portrait | 200 × 296 | Crop to the **format list only** — not the whole phone screen, no status bar, no home indicator. 4K/30 visibly selected. Light mode, so it sits on the paper page. |
-
-## Page 04 — Native Camera vs Blackmagic Camera
-
-| ID | Type | Subject | Orientation | Slot | Crop / direction |
-|---|---|---|---|---|---|
-| **M04.1** | Screenshot | Native Camera in video mode | Portrait UI → landscape box | 328 × 214 | The app is 9:16; letterbox it into the box rather than cropping the UI away. Show the **4K/30 badge and the AE/AF lock banner**. |
-| **M04.2** | Screenshot | Blackmagic Camera, recording UI | Landscape | 328 × 214 | Native 16:9, fills the box. Show **ISO, shutter angle/speed, white balance and the Apple Log indicator** — the readouts are the reason the page exists. |
-| **M04.3** | QR code | Reel: *Blackmagic Camera, set up from scratch* | — | 58 × 58 | Dark background version. Generate once the Reel URL is final. |
-
-> Shoot both screenshots on the **same scene** so the comparison is honest.
-
-## Page 05 — Apple Log + The Cinematic Look
-
-| ID | Type | Subject | Orientation | Slot | Crop / direction |
-|---|---|---|---|---|---|
-| **M05.1** | Video frame | Apple Log, straight off the phone | Landscape | 202 × 236 | Flat, grey, low contrast. Export from the timeline with **no LUT and no correction**. |
-| **M05.2** | Video frame | The same frame, corrected | Landscape | 202 × 236 | Conversion LUT on, exposure and white balance set. Neutral and accurate, no creative push. |
-| **M05.3** | Video frame | The same frame, final grade | Landscape | 202 × 236 | The look that ships. Warmth and contrast pushed on purpose. |
-| **M05.4** | QR code | Reel: *Apple Log to finished grade* | — | 58 × 58 | Dark version. |
-
-> **Critical:** M05.1–M05.3 must be the **identical frame** of the **same clip**
-> at three stages of the same grade. A different take between panels destroys
-> the comparison. Pick a shot with a face and a bright window in it — that is
-> where Log visibly earns its keep. Export all three as stills from one project.
-
-## Page 06 — Shoot With Intention
-
-| ID | Type | Subject | Orientation | Slot | Crop / direction |
-|---|---|---|---|---|---|
-| **M06.1** | Video frame | **Wide** | Landscape | 213 × 176 | Full room, subject small in frame, environment readable. |
-| **M06.2** | Video frame | **Medium** | Landscape | 213 × 176 | Waist up, eye level, the conversational default. |
-| **M06.3** | Video frame | **Close** | Landscape | 213 × 176 | Chest up, tighter. Face carries the frame. |
-| **M06.4** | Video frame | **Detail** | Landscape | 213 × 176 | Hands, product, screen, texture. No face. |
-| **M06.5** | Video frame | **Movement** | Landscape | 213 × 176 | Grabbed mid push-in or mid pan, so the motion is legible in a still. |
-| **M06.6** | Video frame | **Reveal** | Landscape | 213 × 176 | The end of the move, at the moment the subject lands. |
-| **M06.7** | QR code | Reel: *How I film myself, all six angles* | — | 58 × 58 | Light background version. |
-
-> All six should be the **same subject in the same location and light**, pulled
-> from a piece already published. That is the point of the page: this is one
-> shoot, covered properly. Six frames from six different videos will look like
-> a mood board and teach nothing.
-
-## Page 07 — Lighting + Audio
-
-| ID | Type | Subject | Orientation | Slot | Crop / direction |
-|---|---|---|---|---|---|
-| **M07.1** | Photo | Window light, 45° off axis | Landscape | 213 × 152 | The "good" example. Soft, directional, shape on the face. |
-| **M07.2** | Photo | Overhead ceiling light | Landscape | 213 × 152 | The "bad" example. Shadows in the eye sockets, flat and unflattering. |
-| **M07.3** | Photo | Wireless lav clipped for a talking head | Landscape | 328 × 236 | Close crop on the **mic placement itself** — a hand's width below the chin, slightly off centre. Chin to sternum. Not a portrait with a mic somewhere in it. |
-
-> M07.1 and M07.2 must be the **same person, same clothes, same framing, same
-> position** — only the light changes. Shoot them back to back, minutes apart.
-> A before/after only works if nothing else moved.
-
-**Already built, no asset needed:** the light-position plan diagram in the third
-column is drawn as inline SVG.
-
-## Page 08 — Build Your iPhone Creator Rig
-
-| ID | Type | Subject | Orientation | Slot | Crop / direction |
-|---|---|---|---|---|---|
-| **M08.1** | Photo · flat lay | The full rig, laid out | Landscape | 672 × 214 (3.1:1) | Shot **straight down**. Every item named on the page, evenly spaced on a single neutral surface. Soft even light, no hard shadows, no props or coffee cups. Letterboxed strip, so lay the gear out in a wide band rather than a square cluster. |
-
-> Lay it out in tier order, left to right, so the photo reads in the same
-> direction as the three columns beneath it.
-
-## Page 09 — My iPhone Content Workflow
-
-| ID | Type | Subject | Orientation | Slot | Crop / direction |
-|---|---|---|---|---|---|
-| **M09.1** | Screenshot | Blackmagic recording to SSD | Landscape | 213 × 186 | Storage target and clip list visible. |
-| **M09.2** | Screenshot | Edit timeline, A-roll and B-roll | Landscape | 213 × 186 | Crop to the **timeline area only**. Two tracks clearly stacked and distinguishable. |
-| **M09.3** | Screenshot | Colour page, Log conversion on | Landscape | 213 × 186 | Node tree or LUT visibly applied. Crop tight — full-app screenshots at this size read as grey mush. |
-
-> All three from the **same project as M05**, so the guide follows one piece of
-> footage from capture to colour.
-
-## Page 10 — The Creator Cheat Sheet
-
-| ID | Type | Subject | Orientation | Slot | Crop / direction |
-|---|---|---|---|---|---|
-| **M10.1** | QR code | Shooting Stars Content Framework / Academy | — | 58 × 58 | On cobalt. Needs a **white or very light** QR to scan reliably against `#2B5CE6`. Destination URL still to be decided. |
-
----
-
-## QR codes — open decisions
-
-Four codes, four destinations, none of them final:
-
-| ID | Page | Destination | Status |
+| ID | Type | Spec | Direction |
 |---|---|---|---|
-| M04.3 | 04 | Blackmagic Camera setup Reel | Reel exists? URL needed |
-| M05.4 | 05 | Apple Log → grade Reel | URL needed |
-| M06.7 | 06 | Six angles / how I film myself Reel | URL needed |
-| M10.1 | 10 | Content Framework / Academy | Destination not decided |
+| M01.1 | Photograph | 766 × 616, full bleed | Stephen shooting on iPhone. Shoot zones are marked on the plate: subject right of centre, phone and rig visible, upper-left kept clear for the masthead. Cinematic, not a product shot. |
 
-Point them at a **redirect you control** (e.g. `shootingstars.link/log`) rather
-than a raw Instagram URL. The codes are printed into a PDF that will be out in
-the world for years, and Reels get reposted, archived and re-uploaded.
+## Sheet 02 — Stop Treating It Like A Phone
+
+| ID | Type | Spec | Direction |
+|---|---|---|---|
+| M02.1 | Photograph · primary | 284 × 230, 5:4 | Stephen shooting on iPhone. Documentary, mid-make, not posed. |
+| M02.2 | Photograph · nuance | 236 × 144 | The iPhone beside the pro camera. Both belong to one kit — this is the shot that stops the page reading as anti-camera. |
+
+## Sheet 03 — iPhone Over Camera
+
+| ID | Type | Spec | Direction |
+|---|---|---|---|
+| M03.1 | Video frame | 328 × 184, 16:9 | Finished frame shot on iPhone, lifestyle. Pull from real published work. |
+| M03.2 | Video frame | 328 × 184, 16:9 | Shot on iPhone, movement. Depth or motion — not a still that happens to move. |
+| M03.4 | Artifact | 236 × 142 | **The real handwritten concept note.** Scan or photograph as found — creases, ink, whatever it actually looks like. Sits tilted on the page. |
+
+> M03.3 was specified as an optional third frame and is **not in the build** —
+> the page is stronger with the negative space. The ID is left unused rather
+> than renumbered, so it still maps to the original brief.
+
+## Sheet 04 — Set It Up Once
+
+| ID | Type | Spec | Direction |
+|---|---|---|---|
+| M04.1 | Screenshot | 152 × 330, 9:19.5 | Settings › Camera › Record Video, on your device. |
+| M04.2 | Screenshot | 152 × 330, 9:19.5 | Camera app with AE/AF locked — the yellow lock banner must be visible. |
+| M04.3 | QR → video | — | Screen recording: every setting, in order. Two minutes, no talking. |
+
+## Sheet 05 — Two Apps, One Camera
+
+| ID | Type | Spec | Direction |
+|---|---|---|---|
+| M05.1 | Screenshot · UI crop | 304 × 190 | Native camera mid-record. Crop from a real device capture. |
+| M05.2 | Screenshot · UI crop | 304 × 190 | Blackmagic Camera with scopes and manual controls on screen. |
+
+## Sheet 06 — Build The Image
+
+The three frames on this page **must be the same frame from the same take**, in
+three states. Different shots break the argument the page is making.
+
+| ID | Type | Spec | Direction |
+|---|---|---|---|
+| M06.1 | Video frame · state 01 | 560 × 224, bleeds right | Ungraded Apple Log, straight off the phone. No correction, no LUT. |
+| M06.2 | Video frame · state 02 | 560 × 224, bleeds right | Corrected only. Skin and whites read true, no style yet. |
+| M06.3 | Video frame · state 03 | 560 × 224, bleeds right | Final grade — the look you would actually publish. |
+
+## Sheet 07 — Shoot With Intention
+
+Six frames of **one subject, in the same light, before the camera moves.** That
+constraint is the lesson; six unrelated pretty frames teach nothing.
+
+| ID | Type | Spec | Direction |
+|---|---|---|---|
+| M07.1 | Video frame | 328 × 184, 16:9 | Wide — where are we. |
+| M07.2 | Video frame | 328 × 184, 16:9 | Medium — the default. |
+| M07.3 | Video frame | 328 × 184, 16:9 | Close — the line that matters. |
+| M07.4 | Video frame | 328 × 184, 16:9 | Detail — hands, product, texture. |
+| M07.5 | Video frame | 328 × 184, 16:9 | Movement — push, pan or walk. |
+| M07.6 | Video frame | 328 × 184, 16:9 | Reveal — start hidden, end on the thing. |
+| M07.7 | QR → reel | — | Six angles, one setup. The same six frames cut together. |
+
+## Sheet 08 — Light + Sound
+
+| ID | Type | Spec | Direction |
+|---|---|---|---|
+| M08.1 | Frame · before | 221 × 250 | Flat. Overhead light, no direction. |
+| M08.2 | Frame · after | 223 × 250 | Intentional. **Same subject, same phone, same room** — only the light moved. Shoot these back to back or the comparison is dishonest. |
+| M08.3 | Frame | 138 × 170 | Front light. Everything visible, nothing shaped. |
+| M08.4 | Frame | 138 × 170 | Side light. Where shape comes from. |
+| M08.5 | Frame | 138 × 170 | Back light. Separation and mood. |
+| M08.6 | Photograph | 164 × 190 | Mic on the subject. Real setup, in use — not laid out on a desk. |
+
+## Sheet 09 — Build The Rig
+
+| ID | Type | Spec | Direction |
+|---|---|---|---|
+| M09.1 | Hero flat lay | 766 × 554, bleeds three edges | The kit shot top-down, even light, no props. **The six numbered crosshairs printed on the plate are the layout map** — lay each piece where its number sits. The lower-left rectangle is reserved for the caption and must stay empty. |
+
+## Sheet 10 — The Workflow
+
+| ID | Type | Spec | Direction |
+|---|---|---|---|
+| M10.1 | Screenshot | 316 × 154 | Your real edit timeline, mid-cut. Stage 04, before any colour work. |
+
+## Sheet 11 — Field Cheat Sheet
+
+| ID | Type | Spec | Direction |
+|---|---|---|---|
+| M11.1 | QR → download | — | Save the cheat sheet to your phone. |
 
 ---
 
-## Not required
+## Grouped by shoot
 
-Listed so nobody shoots them by mistake:
+Most of this collapses into a small number of sessions.
 
-- **iPhone vs pro camera product shots** (p02) — the honest comparison there is
-  set in type. Two product photos would turn a nuanced point into a versus graphic.
-- **Per-item gear photography** (p08) — the single flat lay does the job. A grid
-  of twelve product cut-outs is the Amazon-list look the page is built to avoid.
-- **A portrait of Stephen on p10** — the closing band is brand, not biography.
+**Session A — Stephen shooting (documentary)**
+M01.1, M02.1, M02.2 — one location, one afternoon. M01.1 is the cover and
+deserves the most attention; the other two can come from the same setup.
+
+**Session B — the six-frame coverage set**
+M07.1–M07.6, and M07.7 cut from them. One subject, one light, six frames.
+M03.1 and M03.2 can be pulled from existing published work instead.
+
+**Session C — light comparison**
+M08.1–M08.5. Same subject and room throughout; only the light position
+changes between frames. Do not relight between the before and after.
+
+**Session D — gear**
+M09.1 (flat lay, to the printed map) and M08.6 (mic in use). Same kit, same day.
+
+**Session E — captures, no shoot required**
+M04.1, M04.2, M05.1, M05.2, M10.1 — device screenshots and a timeline grab.
+
+**Session F — the grade set**
+M06.1–M06.3. One frame, exported three times at three stages of the grade.
+
+**Artifact**
+M03.4 — the handwritten note. Scan it; do not recreate it.
+
+**Video / QR**
+M04.3, M07.7, M11.1 — two screen recordings and one download link.

@@ -116,14 +116,14 @@ white-body / black-footer either. The subject picks the composition.
 | 01 | Cover | Image-first, cobalt title field. **Locked.** |
 | 02 | The Premise — stop treating it like a phone | **Built, provisionally locked.** Ink statement band as the hero moment, paired columns throughout, cobalt closing strip. |
 | 03 | iPhone Over Camera | **Built.** Cobalt-forward with a full-width ink case-study band. 80/20 carried by typographic scale, not a chart. The **real handwritten note** (M03.4) sits small and tilted as an artifact, not a hero. Deliberately the sparsest sheet so far. |
-| 04 | Foundation / Settings | Paper dominant. Clarity first — premium reference card, screenshots, concise settings modules. |
-| 05 | Native vs Blackmagic | Structured split comparison. Let the screenshots teach. |
-| 06 | Build The Image / Apple Log | Cinematic, may go black-dominant. The LOG → CORRECTED → GRADED progression carries the page. |
+| 04 | Set It Up Once | **Built.** Paper dominant. A full-width cobalt reference card is the hero; two true phone-aspect screenshots and a QR walkthrough below it. |
+| 05 | Two Apps, One Camera | **Built.** The only vertical split in the book: paper against ink, straight down the page, under a cobalt register rule. Closes on a cobalt strip. |
+| 06 | Build The Image | **Built.** Ink ground. Three frames bleed off the right edge with their labels in the left margin, linked by a progression spine. The only page that breaks the margin. |
 | 07 | Shoot With Intention | Image hierarchy: WIDE largest, MEDIUM and CLOSE stepping down, DETAIL / MOVEMENT / REVEAL supporting. **Reference built.** |
-| 08 | Light + Sound | Visual comparison — flat vs intentional. Audio as a smaller supporting module. |
-| 09 | Build The Rig | Premium product editorial. Large flat lay plus annotated details. Not an ecommerce catalogue. |
-| 10 | Workflow | Diagrammatic. Graphic information design carries it. |
-| 11 | Field Cheat Sheet | Utility first. Clean, readable, screenshot-friendly. Do not overdesign. |
+| 08 | Light + Sound | **Built.** Light runs the paper column, sound runs a full-height ink rail. The headline splits across the two tracks, so the page states its own hierarchy. |
+| 09 | Build The Rig | **Built.** The flat lay anchors the page to its bottom edge, bleeding on three sides, and carries the numbered shoot map. Kit list sits above it. |
+| 10 | The Workflow | **Built.** Cobalt ground. Six ink nodes in a serpentine with a drawn return elbow. The only drawn diagram in the book. |
+| 11 | Field Cheat Sheet | **Built.** Cobalt masthead band, then a 3 × 2 block grid. One cell is a cobalt settings panel, calling back to sheet 04. Closes on ink. |
 
 ## Rules that hold across every sheet
 
@@ -137,6 +137,26 @@ white-body / black-footer either. The subject picks the composition.
    emoji. Playfulness comes from composition, scale, real artifacts and rhythm.
 6. Copy is working copy. Do not invent technical facts; use
    `[TECHNICAL COPY TO VERIFY]`.
+
+## Composition register — no sheet repeats another
+
+| Sheet | Ground | Arrangement |
+|---|---|---|
+| 01 | photo / cobalt | image top, title field below |
+| 02 | paper | paired columns, ink statement band inset, cobalt closing strip |
+| 03 | cobalt | upper field, full-width ink band from 63% down |
+| 04 | paper | full-width cobalt card hero, tall screenshots |
+| 05 | paper \| ink | vertical split down the page |
+| 06 | ink | full-bleed-right strips, labels in the left margin |
+| 07 | paper | 2 × 3 frame grid |
+| 08 | paper + ink | main column plus full-height right rail |
+| 09 | paper | bottom-anchored full-bleed hero |
+| 10 | cobalt | drawn serpentine diagram |
+| 11 | paper | masthead band, 3 × 2 block grid |
+
+Cobalt leads on 01, 03, 04, 10 and 11 and carries structure on every other
+sheet. Ink is used for statement, technical and closing zones and never
+becomes the book's identity.
 
 ## Differentiation check
 
