@@ -228,14 +228,14 @@ other Shooting Stars publication, different roles:
 Direction A was selected and evolved in `src-field-a/`: two cover compositions
 and the Shoot With Intention interior. See `PASS-025-SYSTEM.md`.
 
-One new typeface joins the kit, **Caveat 600**, as the handwritten editorial
-voice. It was chosen by rendering eight candidates in situ on cobalt against
-Anton (`docs/typetest-handwriting.png`), not from specimens. The deciding
-constraint was that it has to sit beside Stephen's real handwritten note
-without reading as lettering.
+**Typography is all bold — no script or handwritten face is in use.** Covers
+run an Archivo 800 uppercase kicker over Anton at 106px; A3 runs the same
+relationship smaller.
 
-    .script   Caveat 600    Stephen's thought, the aside, the annotation
-    .hd       Anton         the lesson, the definitive headline
-
-Used selectively: never body copy, captions, specs, metadata or folios. Caveat
-is vendored by `scripts/vendor-fonts.sh` with the other three faces.
+Two handwriting directions were tested and neither shipped: editorial
+handwriting (eight candidates, `docs/typetest-handwriting.png`) and elegant
+"old money" script (twelve candidates at two scales,
+`docs/typetest-script-legibility.png`, with the five strongest rendered as the
+hero word in `docs/typetest-hero-cursive.png`). The layer is parked rather than
+forced: Caveat stays vendored and `.script` stays defined but unreferenced, so
+it can be switched back on in one place once the handwriting is resolved.

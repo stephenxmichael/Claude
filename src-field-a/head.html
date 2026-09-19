@@ -93,8 +93,10 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
 .light .folio b{color:var(--cobalt)}.dark .folio b,.cobalt .folio b{color:#fff}
 
 /* ── type ── */
-/* Handwritten editorial voice. Accent only: short phrases, never running text.
-   Caveat sits high on the line, so it is given room rather than tight leading. */
+/* PARKED. The handwritten voice is not in use: the elegant-script direction was
+   tested and rejected, and the pages are all-bold for now. Caveat stays vendored
+   and this rule stays defined so the layer can be switched back on in one place
+   once the handwriting is resolved elsewhere. Nothing currently references it. */
 .script{font-family:'Caveat','Segoe Script','Bradley Hand',cursive;font-weight:600;line-height:1.12;letter-spacing:.004em}
 .script.lt{font-weight:500}
 .kick{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.22em;text-transform:uppercase}

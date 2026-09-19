@@ -8,57 +8,60 @@ Pass 02's three directions remain in `src-field/` for comparison.
 
 ---
 
-## The handwritten face: Caveat 600
+## Typography: all bold, no script
 
-Eight candidates were rendered in situ — on cobalt, at cover scale, with
-"Your iPhone is a" sitting directly above Anton's CINEMA CAMERA — rather than
-judged from specimens. Contact sheet: `docs/typetest-handwriting.png`.
+The pages are set entirely in the existing Shooting Stars kit. **No handwritten
+or cursive face is in use.**
 
-| Candidate | Verdict |
-|---|---|
-| **Caveat 600** | **Selected.** Confident pen, compact, legible at 58px and at 23px. |
-| Bad Script | The prettier face. Rejected — see below. |
-| Kalam | Legible but neutral; reads informal-blog rather than editorial. |
-| Nothing You Could Do | Wide tracking competes with the block line for width. |
-| Just Another Hand | Fails legibility at annotation size. |
-| Neucha | Too close to an irregular sans; no personality to earn its place. |
-| Shadows Into Light Two | Delicate and wide — not a confident pen stroke. |
-| Architects Daughter | Rounded and wide; nearest the childish exclusion. |
+    Archivo 800   uppercase, letterspaced   the kicker line
+    Anton         the headline
+    Archivo       body and module titles
+    JetBrains Mono  technical metadata
 
-**Bad Script is the more beautiful face, and it lost on a constraint rather
-than on taste.** §07 says Stephen's real handwritten *iPhone Over Camera* note
-may appear in the guide, and the type has to survive sitting next to it. Bad
-Script reads as lettering — elegant, evenly slanted, faintly connected. Beside
-real handwriting it would look like a font pretending. Caveat reads as a
-person. That is the whole job.
+On the covers, "Your iPhone is a" is an Archivo 800 uppercase kicker above
+Anton at 106px. Archivo rather than a second Anton size: two sizes of the same
+condensed face stacked reads monotonous, and Archivo is already in the kit, so
+this introduces nothing new. On A3 the same relationship runs smaller —
+Archivo 800 eyebrow over Anton at 52px.
 
-**The one reservation, stated plainly:** Caveat is widely used. It is the right
-*shape*, and it is free and already vendored, so the system can be locked and
-built on it now. If the guide later wants a face nobody else has, the brief to
-a foundry or letterer is: 600-weight fine-liner, slight forward slant, open
-counters, minimal connection between letters, x-height close to Archivo's, and
-legible at 20px. Swapping it is a one-line change in `assets/fonts/fonts.css`
-and `.script` — nothing else in the system depends on it.
+Swapping the kicker to Anton is a one-line change per page if the block-on-block
+look is preferred.
 
-Vendored via `scripts/vendor-fonts.sh` alongside the existing three faces. It
-is the only new typography introduced.
+### The handwriting layer is parked, not abandoned
 
-## How the two voices are used
+Two directions were tested and neither is in the document:
 
-    .script   Caveat 600    Stephen's thought, the aside, the annotation
-    .hd       Anton         the lesson, the definitive headline
+**Round 1 — editorial handwriting.** Eight candidates rendered in situ on
+cobalt against Anton (`docs/typetest-handwriting.png`). Caveat 600 was selected
+over Bad Script, Kalam, Nothing You Could Do, Just Another Hand, Neucha,
+Shadows Into Light Two and Architects Daughter, on the grounds that Stephen's
+real handwritten *iPhone Over Camera* note may appear in the guide and the face
+has to sit beside it without reading as lettering.
 
-Applied **selectively, not as a formula** (§06). A1 and A2 use the pairing at
-full strength on the title. A3 uses one script line in the header and nothing
-else — the frames carry the page. Never body copy, captions, specs, metadata,
-folios or QR text.
+**Round 2 — elegant script.** A reference was supplied pointing at high-contrast
+"old money" scripts (Sloop, Symphony, Burgues, Safira March), which is a
+different register from Round 1 and rules most of it out. Twelve candidates were
+fetched and rendered at both cover and annotation scale
+(`docs/typetest-script-legibility.png`), then the five strongest were rendered
+as the hero word with a bold kicker above, one line and two lines stacked
+(`docs/typetest-hero-cursive.png`). Inverting the hierarchy — bold kicker over
+cursive hero — was clearly stronger than script-over-block, and Anton read
+better than Archivo as the kicker.
+
+None of the cursives were right. Rather than force one, the layer is parked and
+will be resolved separately.
+
+What that leaves in place: `Caveat` stays vendored and the `.script` rule stays
+defined in `src-field-a/head.html`, commented as parked, so the layer can be
+switched back on in one place. Nothing currently references it. The three type
+tests are kept in `docs/` as the decision record.
 
 ---
 
 ## A1 — cobalt-dominant cover, evolved
 
 The Pass 02 cover set the title as three equal Anton lines. Now it is one
-handwritten line over a single 106px block line running the full measure —
+kicker line over a single 106px block line running the full measure —
 horizontal rather than stacked, which also moves it away from the Content
 Framework's three-line cover stack.
 
@@ -78,34 +81,38 @@ photograph replaces the plate.
 ## A3 — Shoot With Intention, evolved
 
 The Pass 02 version ran cobalt band / white body / black footer. That structure
-is gone, per §13 — repeated eleven times it would have become the template the
-brief warns against.
+is gone: repeated eleven times it would have become the template the brief
+warns against.
 
-Here cobalt is a rule, the frame numerals, the plate tabs and the handwritten
-line. Nothing else. Black arrives only through the frames themselves.
+Here cobalt is a rule, the frame numerals, the plate tabs and the eyebrow.
+Nothing else. Black arrives only through the frames themselves.
 
-The grid changed from three columns of six small frames to **two columns of
-six large ones**, at a true 16:9 328 × 184 — roughly 2.4× the frame area of
-Pass 02. Technical borrows from Direction C are limited to frame IDs, `FRAME
-01`, and the `W / M / C / D / MOV / REV` index.
+The grid changed from three columns of six small frames to **two columns of six
+large ones**, at a true 16:9 328 × 184 — roughly 2.4× the frame area of Pass
+02. Technical borrows from Direction C are limited to frame IDs, `FRAME 01`,
+and the `W / M / C / D / MOV / REV` index.
 
 ---
+
+## Shoot zones
+
+Cover plates carry marked regions rather than only reserving space: a dashed
+subject zone, a crosshair for the phone, a dotted keep-clear region for the
+title's negative space, and a black caption module with crop and direction. The
+prototype is meant to brief the photograph, not just leave room for it.
 
 ## What this answers
 
 | | |
 |---|---|
-| Handwriting belongs? | Yes on covers, sparingly inside. A3 shows one line is enough. |
-| Premium enough? | Yes in shape. Ubiquity is the open question, and the swap is cheap. |
-| Different from the Framework? | Cobalt-primary, inverted spine, two type voices, 16:9 frame grid. |
-| Still Shooting Stars? | Same palette values, same three core faces, same page and spine. |
-| Human without casual? | One script line per page at most, always against block type. |
+| Different from the Framework? | Cobalt-primary, inverted spine, 16:9 frame grid, kicker-over-block titling. |
+| Still Shooting Stars? | Same palette values, same kit, same page and spine. |
 | Photography as hero? | A2 gives it 58% of the cover; A3 gives frames 2.4× the area. |
 | Flexes across page types? | A1, A2 and A3 share a language and no layout. |
-| Repeatable for 002, 003? | Yes — the language is colour roles and type voices, not a grid. |
+| Repeatable for 002, 003? | Yes — the language is colour roles and type scale, not a grid. |
 
 ## Still open
 
-Copy is working copy (§17). No technical claims were added. The other eight
-pages, IPHONE OVER CAMERA, and the revised media checklist wait on this being
-locked.
+The handwriting layer, to be resolved outside this repo. Copy is working copy;
+no technical claims were added. The other eight pages, IPHONE OVER CAMERA, and
+the revised media checklist wait on this being locked.
