@@ -112,7 +112,7 @@ white-body / black-footer either. The subject picks the composition.
 |---|---|---|
 | 01 | Cover | Image-first, cobalt title field. **Locked.** |
 | 02 | The Premise — stop treating it like a phone | **Locked.** Ink statement band as the hero moment, paired columns throughout, cobalt closing strip. |
-| 03 | The Foundation — get your iPhone right | **Copy locked.** Paper. A full-width cobalt card carries the frame-rate doctrine; three short modules below it; two doctrine lines close on ink. |
+| 03 | The Foundation — get your iPhone right | **Copy locked.** Paper. The settings page: clean-lens opener, cobalt frame-rate card, the drawn `.spec` panel and lens guidance side by side, two doctrine lines closing on ink. |
 | 04 | Take Control — native vs Blackmagic | **Copy locked.** The only vertical split in the book, paper against ink under a cobalt register rule. Closes on a cobalt strip. |
 | 05 | Build The Image | **Copy locked.** Ink ground. Manual controls run as a strip above the Log → Corrected → Graded progression, whose frames bleed off the right edge. |
 | 06 | Shoot With Intention | **Copy locked.** 2 × 3 grid of true 16:9 frames, one sequence, with the coverage doctrine closing on ink. |
@@ -121,6 +121,17 @@ white-body / black-footer either. The subject picks the composition.
 | 09 | Workflow | **Design approved, copy pending.** Cobalt ground, six ink nodes in a serpentine with a drawn return elbow. Awaiting Stephen's real process. |
 | 10 | The Experiment — iPhone over camera | **Design approved.** Cobalt upper field, full-width ink case-study band, 80/20 carried by typographic scale. A final challenge and QR pass is still to come. |
 | 11 | Field Cheat Sheet | **Provisional.** Cobalt masthead, 3 × 2 block grid. Content is drawn only from sheets 03–07 and rebuilds once 08 and 09 lock. |
+
+## The settings panel
+
+`.spec` draws the menu instead of placeholding a screenshot of it. It was built
+for the Pass 01 guide and rebuilt here on Field Guide tokens: ink header, mono
+values in cobalt, switches as `.tg` glyphs.
+
+Use it only where the reader is being sent into a menu, and only once — it
+reads as instruction, so a second one elsewhere would compete with sheet 03 and
+invite drift between two lists of the same settings. It needs nothing shot,
+which is why sheet 03 carries just two photographic assets.
 
 ## Rules that hold across every sheet
 

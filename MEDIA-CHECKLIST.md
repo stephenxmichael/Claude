@@ -30,11 +30,18 @@ and crop down — never upscale to fit.
 
 ## Sheet 03 — Get Your iPhone Right
 
+The Settings panel on this sheet is **drawn, not photographed** — it is a
+component, not an asset, so it needs nothing shot. Its values do need checking
+against a current device before publication.
+
 | ID | Type | Spec | Direction |
 |---|---|---|---|
 | M03.1 | Comparison | 356 × 138 | Dirty lens against clean lens. **Same shot, same light, wipe between the two frames** — the only variable is the glass. |
-| M03.2 | Comparison | 208 × 76 | One subject, shot on each available iPhone camera, side by side. A wide strip of crops reads best here. |
-| M03.3 | Comparison | 208 × 76 | Good light against poor light. Same subject, same phone, light changed. |
+| M03.2 | Comparison | 240 × 72 | One subject, shot on each available iPhone camera, side by side. A wide strip of crops reads best here. |
+
+> M03.3 (good light against poor light) is **retired.** Sheet 07 carries that
+> comparison properly at full size as M07.1 and M07.2; running a small version
+> of it here as well was duplication.
 
 ## Sheet 04 — Take Control
 
