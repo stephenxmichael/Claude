@@ -111,7 +111,7 @@ white-body / black-footer either. The subject picks the composition.
 | Sheet | Page | Composition |
 |---|---|---|
 | 01 | Cover | Image-first, cobalt title field. **Locked.** |
-| 02 | The Premise — stop treating it like a phone | **Locked.** Ink statement band as the hero moment, paired columns throughout, cobalt closing strip. |
+| 02 | The Premise — stop treating it like a phone | **Locked.** Four moves and nothing else: credibility, an honest account of the gap, the thesis on ink, the reframe. The friction argument came off in the density pass — sheet 10 makes it at full length and the closing strip already lands it in a line. |
 | 03 | The Foundation — get your iPhone right | **Copy locked.** Paper. The settings page: clean-lens opener, cobalt frame-rate card, the drawn `.spec` panel and lens guidance side by side, two doctrine lines closing on ink. |
 | 04 | Take Control — native vs Blackmagic | **Copy locked.** The only vertical split in the book, paper against ink under a cobalt register rule. Closes on a cobalt strip. |
 | 05 | Build The Image | **Copy locked.** Ink ground. Manual controls run as a strip above the Log → Corrected → Graded progression, whose frames bleed off the right edge. |
