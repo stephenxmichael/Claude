@@ -36,12 +36,13 @@ against a current device before publication.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M03.1 | Comparison | 356 × 138 | Dirty lens against clean lens. **Same shot, same light, wipe between the two frames** — the only variable is the glass. |
-| M03.2 | Comparison | 240 × 72 | One subject, shot on each available iPhone camera, side by side. A wide strip of crops reads best here. |
+| M03.1 | Comparison | 356 × 130 | Dirty lens against clean lens. **Same shot, same light, wipe between the two frames** — the only variable is the glass. |
 
-> M03.3 (good light against poor light) is **retired.** Sheet 07 carries that
-> comparison properly at full size as M07.1 and M07.2; running a small version
-> of it here as well was duplication.
+> M03.2 (one subject on each lens) and M03.3 (good light against poor light)
+> are both **retired.** M03.3 duplicated sheet 07, which carries that
+> comparison at full size as M07.1 and M07.2. M03.2 went when the lens
+> guidance became typographic — a 72px strip taught nothing, and the page
+> needed the room more than it needed a second small plate.
 
 ## Sheet 04 — Take Control
 
