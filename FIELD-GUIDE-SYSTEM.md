@@ -7,12 +7,9 @@ Status: design locked. Copy and media are not.
     node scripts/pdf.mjs fg    -> dist/Field-Guide-001.pdf
     node scripts/shoot.mjs fg  -> build/screens-fg/
 
-| Sheet | |
-|---|---|
-| `p00` | System specification. Internal; not one of the eleven. |
-| `p01` | **The locked cover.** |
-| `p02` | **Stop Treating It Like A Phone** — the premise. Provisionally locked. |
-| `p07` | **Shoot With Intention** — the reference interior. |
+All eleven sheets are built. `p01`–`p11` are the book in order; `spec.html`
+holds the system specification sheet and is deliberately outside the build, so
+every folio matches its PDF page. The per-sheet status table is further down.
 
 The exploration trees are untouched and still build: `src-field/` (Pass 02, the
 three directions) and `src-field-a/` (Pass 02.5). `src-fg/` is production.
@@ -114,16 +111,16 @@ white-body / black-footer either. The subject picks the composition.
 | Sheet | Page | Composition |
 |---|---|---|
 | 01 | Cover | Image-first, cobalt title field. **Locked.** |
-| 02 | The Premise — stop treating it like a phone | **Built, provisionally locked.** Ink statement band as the hero moment, paired columns throughout, cobalt closing strip. |
-| 03 | iPhone Over Camera | **Built.** Cobalt-forward with a full-width ink case-study band. 80/20 carried by typographic scale, not a chart. The **real handwritten note** (M03.4) sits small and tilted as an artifact, not a hero. Deliberately the sparsest sheet so far. |
-| 04 | Set It Up Once | **Built.** Paper dominant. A full-width cobalt reference card is the hero; two true phone-aspect screenshots and a QR walkthrough below it. |
-| 05 | Two Apps, One Camera | **Built.** The only vertical split in the book: paper against ink, straight down the page, under a cobalt register rule. Closes on a cobalt strip. |
-| 06 | Build The Image | **Built.** Ink ground. Three frames bleed off the right edge with their labels in the left margin, linked by a progression spine. The only page that breaks the margin. |
-| 07 | Shoot With Intention | Image hierarchy: WIDE largest, MEDIUM and CLOSE stepping down, DETAIL / MOVEMENT / REVEAL supporting. **Reference built.** |
-| 08 | Light + Sound | **Built.** Light runs the paper column, sound runs a full-height ink rail. The headline splits across the two tracks, so the page states its own hierarchy. |
-| 09 | Build The Rig | **Built.** The flat lay anchors the page to its bottom edge, bleeding on three sides, and carries the numbered shoot map. Kit list sits above it. |
-| 10 | The Workflow | **Built.** Cobalt ground. Six ink nodes in a serpentine with a drawn return elbow. The only drawn diagram in the book. |
-| 11 | Field Cheat Sheet | **Built.** Cobalt masthead band, then a 3 × 2 block grid. One cell is a cobalt settings panel, calling back to sheet 04. Closes on ink. |
+| 02 | The Premise — stop treating it like a phone | **Locked.** Ink statement band as the hero moment, paired columns throughout, cobalt closing strip. |
+| 03 | The Foundation — get your iPhone right | **Copy locked.** Paper. A full-width cobalt card carries the frame-rate doctrine; three short modules below it; two doctrine lines close on ink. |
+| 04 | Take Control — native vs Blackmagic | **Copy locked.** The only vertical split in the book, paper against ink under a cobalt register rule. Closes on a cobalt strip. |
+| 05 | Build The Image | **Copy locked.** Ink ground. Manual controls run as a strip above the Log → Corrected → Graded progression, whose frames bleed off the right edge. |
+| 06 | Shoot With Intention | **Copy locked.** 2 × 3 grid of true 16:9 frames, one sequence, with the coverage doctrine closing on ink. |
+| 07 | Light + Sound | **Copy locked.** Light runs the paper column, sound runs a full-height ink rail, and the headline splits across the two tracks. |
+| 08 | Build The Rig | **Design approved, copy pending.** Bottom-anchored full-bleed flat lay carrying the numbered shoot map. Awaiting Stephen's real kit and accessory philosophy. |
+| 09 | Workflow | **Design approved, copy pending.** Cobalt ground, six ink nodes in a serpentine with a drawn return elbow. Awaiting Stephen's real process. |
+| 10 | The Experiment — iPhone over camera | **Design approved.** Cobalt upper field, full-width ink case-study band, 80/20 carried by typographic scale. A final challenge and QR pass is still to come. |
+| 11 | Field Cheat Sheet | **Provisional.** Cobalt masthead, 3 × 2 block grid. Content is drawn only from sheets 03–07 and rebuilds once 08 and 09 lock. |
 
 ## Rules that hold across every sheet
 
@@ -135,8 +132,11 @@ white-body / black-footer either. The subject picks the composition.
    manual.
 5. No new fonts, no new accent colours, no decorative graphics, no stickers or
    emoji. Playfulness comes from composition, scale, real artifacts and rhythm.
-6. Copy is working copy. Do not invent technical facts; use
-   `[TECHNICAL COPY TO VERIFY]`.
+6. Copy is Stephen's doctrine, not generic instruction. Never turn his
+   preferences into universal technical laws — "my practical defaults, not
+   universal requirements" is the register. Where a detail is device or
+   version specific, keep the teaching and flag it `[Technical detail to
+   verify]` rather than inventing a specification.
 
 ## Composition register — no sheet repeats another
 
@@ -144,14 +144,14 @@ white-body / black-footer either. The subject picks the composition.
 |---|---|---|
 | 01 | photo / cobalt | image top, title field below |
 | 02 | paper | paired columns, ink statement band inset, cobalt closing strip |
-| 03 | cobalt | upper field, full-width ink band from 63% down |
-| 04 | paper | full-width cobalt card hero, tall screenshots |
-| 05 | paper \| ink | vertical split down the page |
-| 06 | ink | full-bleed-right strips, labels in the left margin |
-| 07 | paper | 2 × 3 frame grid |
-| 08 | paper + ink | main column plus full-height right rail |
-| 09 | paper | bottom-anchored full-bleed hero |
-| 10 | cobalt | drawn serpentine diagram |
+| 03 | paper | full-width cobalt card hero, three-column module row, ink closing band |
+| 04 | paper \| ink | vertical split down the page |
+| 05 | ink | control strip, then full-bleed-right frames with labels in the left margin |
+| 06 | paper | 2 × 3 frame grid |
+| 07 | paper + ink | main column plus full-height right rail |
+| 08 | paper | bottom-anchored full-bleed hero |
+| 09 | cobalt | drawn serpentine diagram |
+| 10 | cobalt | upper field, full-width ink band from 63% down |
 | 11 | paper | masthead band, 3 × 2 block grid |
 
 Cobalt leads on 01, 03, 04, 10 and 11 and carries structure on every other

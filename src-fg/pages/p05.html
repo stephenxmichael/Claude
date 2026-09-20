@@ -1,86 +1,112 @@
-<div class="tag">SHEET 05 — TWO APPS, ONE CAMERA</div>
-<div class="page light">
-  <div class="spine"><span>05 &nbsp;&mdash;&nbsp; The Comparison</span></div>
+<div class="tag">SHEET 05 — BUILD THE IMAGE</div>
+<div class="page dark grain">
+  <div class="glow" style="width:620px;height:620px;top:-260px;left:-180px;background:radial-gradient(circle,var(--deep),transparent 70%);opacity:.85"></div>
+  <div class="spine"><span>05 &nbsp;&mdash;&nbsp; Build The Image</span></div>
   <div class="hud"><span>Your iPhone Is A Cinema Camera</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Field Guide <b>001</b></span></div>
 
-  <!-- the only vertical split in the book: paper against ink, straight down
-       the page, so the comparison is the composition -->
-  <div class="band" style="top:280px;left:34px;right:0;height:2px;background:var(--cobalt);z-index:7"></div>
-  <div class="band" style="top:282px;left:400px;right:0;height:670px;background:var(--ink)"></div>
-  <div class="band grain" style="top:282px;left:400px;right:0;height:670px"></div>
-
-  <div style="position:absolute;top:82px;left:64px;width:400px;z-index:6">
-    <div class="eyebrow">The Comparison</div>
-    <div class="hd" style="font-size:72px;margin-top:15px">Two Apps.<br>One Camera.</div>
+  <div style="position:absolute;top:82px;left:64px;width:300px;z-index:6">
+    <div class="eyebrow">The Grade</div>
+    <div class="hd" style="font-size:76px;color:#fff;margin-top:15px">Build<br>The Image</div>
   </div>
-  <div style="position:absolute;top:108px;left:480px;width:256px;z-index:6">
+  <div style="position:absolute;top:112px;left:392px;width:344px;z-index:6">
     <div class="bd" style="font-size:11.5px;line-height:1.7">
-      <p style="margin-bottom:10px">The native Camera app and Blackmagic Camera are not competitors.</p>
-      <p style="color:var(--ink);font-weight:600">They are two answers to the same question: how much control does this shot need?</p>
+      <p style="margin-bottom:10px">Log gives me room. Color correction gets the image back to neutral. The grade is where I decide how I want it to feel.</p>
+      <p style="color:#fff;font-weight:600">Those are three different jobs.</p>
     </div>
   </div>
 
-  <!-- LEFT — native, on paper -->
-  <div style="position:absolute;top:312px;left:64px;width:304px;z-index:6">
-    <span class="chip">01 &nbsp;&middot;&nbsp; Built In</span>
-    <div class="hd" style="font-size:38px;margin-top:16px">Native<br>Camera</div>
-    <div class="kick" style="font-size:8px;color:var(--slate);margin-top:11px">Apple &middot; Camera.app</div>
+  <!-- the controls come before the color pass, so they sit above it -->
+  <div style="position:absolute;top:286px;left:64px;right:64px;z-index:6;border-top:2px solid var(--volt);padding-top:12px">
+    <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:8.5px;
+                letter-spacing:.2em;text-transform:uppercase;color:#8C93A5">
+      <span style="color:#fff">Control The Image Before You Grade It</span><span>Before The Color Pass</span>
+    </div>
+    <div style="display:flex;gap:13px;margin-top:17px">
+      <div style="width:124px">
+        <div class="kick" style="font-size:7.5px;color:var(--volt)">Frame Rate</div>
+        <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:6px">Choose it for how the footage needs to move.</div>
+      </div>
+      <div style="width:124px">
+        <div class="kick" style="font-size:7.5px;color:var(--volt)">Shutter</div>
+        <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:6px">A starting point is about double the frame rate. 24&rarr;1/48, 30&rarr;1/60, 60&rarr;1/120.</div>
+      </div>
+      <div style="width:124px">
+        <div class="kick" style="font-size:7.5px;color:var(--volt)">White Balance</div>
+        <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:6px">If consistency matters, do not let it shift mid-shot. Lock it when your workflow allows.</div>
+      </div>
+      <div style="width:124px">
+        <div class="kick" style="font-size:7.5px;color:var(--volt)">ISO</div>
+        <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:6px">As controlled as the scene allows. More ISO is not free light.</div>
+      </div>
+      <div style="width:124px">
+        <div class="kick" style="font-size:7.5px;color:var(--volt)">ND</div>
+        <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:6px">Cuts light in bright conditions so you keep the shutter you already chose.</div>
+      </div>
+    </div>
+    <div class="kick" style="font-size:7px;color:#5A6072;margin-top:14px">A starting point for natural motion blur, not a rule &nbsp;&middot;&nbsp; <span style="color:var(--volt)">[Technical detail to verify]</span></div>
   </div>
-  <div class="plate" style="position:absolute;top:488px;left:64px;width:304px;height:190px;z-index:6">
+
+  <!-- the progression spine linking the three states -->
+  <div class="band" style="top:456px;left:290px;width:1px;height:501px;background:rgba(77,124,255,.55)"></div>
+  <div class="band" style="top:456px;left:281px;width:20px;height:2px;background:var(--volt)"></div>
+  <div class="band" style="top:629px;left:281px;width:20px;height:2px;background:var(--volt)"></div>
+  <div class="band" style="top:802px;left:281px;width:20px;height:2px;background:var(--volt)"></div>
+
+  <div style="position:absolute;top:456px;left:64px;width:216px;z-index:6">
+    <div style="display:flex;gap:11px;align-items:baseline"><span class="hd" style="font-size:26px;color:var(--volt)">01</span><span class="sub" style="font-size:13px;color:#fff">Log</span></div>
+    <div class="sub" style="font-size:10.5px;color:var(--volt);margin-top:8px">Capture Information</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:9px">Log is supposed to look flat. I am not trying to make the image look finished in camera. I am trying to capture one that gives me more room to work in post.</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#fff;font-weight:600;margin-top:7px">Protect the image now. Make it pretty later.</div>
+  </div>
+  <div class="plate on-dark" style="position:absolute;top:456px;left:300px;right:-34px;height:155px;z-index:6;border-right:none;padding-right:34px">
     <span class="p-id">M05.1</span>
-    <div class="p-in sm" style="max-width:240px">
-      <span class="p-type">Screenshot &middot; UI Crop</span>
-      <span class="p-subj">Native camera, recording</span>
-      <span class="p-spec">304 &times; 190 &middot; crop of a device capture</span>
+    <div class="p-in sm" style="max-width:280px">
+      <span class="p-type">State 01</span>
+      <span class="p-subj">Ungraded Apple Log</span>
+      <span class="p-spec">500 &times; 155 &middot; straight off the phone</span>
     </div>
   </div>
-  <div style="position:absolute;top:706px;left:64px;width:304px;z-index:6">
-    <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:11px">Reach For It When</div>
-    <div style="display:flex;gap:11px;padding:6px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:8px;color:var(--cobalt)">01</span><span style="font-size:11px;line-height:1.5;color:#3A3D47">You have seconds, not minutes</span></div>
-    <div style="display:flex;gap:11px;padding:6px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:8px;color:var(--cobalt)">02</span><span style="font-size:11px;line-height:1.5;color:#3A3D47">The light is already doing the work</span></div>
-    <div style="display:flex;gap:11px;padding:6px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:8px;color:var(--cobalt)">03</span><span style="font-size:11px;line-height:1.5;color:#3A3D47">You are handheld and moving</span></div>
-    <div style="display:flex;gap:11px;padding:6px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)"><span class="kick" style="font-size:8px;color:var(--cobalt)">04</span><span style="font-size:11px;line-height:1.5;color:#3A3D47">Missing the moment costs more than the file</span></div>
-  </div>
-  <div style="position:absolute;top:876px;left:64px;width:304px;z-index:6">
-    <div class="sub" style="font-size:12px;margin-bottom:7px">The Trade</div>
-    <div style="font-size:10.5px;line-height:1.62;color:var(--slate)">You give up manual control to gain speed. Most of the time that is the right trade.</div>
-  </div>
 
-  <!-- RIGHT — Blackmagic, on ink -->
-  <div style="position:absolute;top:312px;left:432px;width:304px;z-index:6">
-    <span class="chip wht">02 &nbsp;&middot;&nbsp; Manual</span>
-    <div class="hd" style="font-size:38px;margin-top:16px;color:#fff">Blackmagic<br>Camera</div>
-    <div class="kick" style="font-size:8px;color:#79808F;margin-top:11px">Blackmagic Design &middot; Free</div>
+  <div style="position:absolute;top:629px;left:64px;width:216px;z-index:6">
+    <div style="display:flex;gap:11px;align-items:baseline"><span class="hd" style="font-size:26px;color:var(--volt)">02</span><span class="sub" style="font-size:13px;color:#fff">Corrected</span></div>
+    <div class="sub" style="font-size:10.5px;color:var(--volt);margin-top:8px">Get Back To Neutral</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:9px">Before I start building a look, I want the image in a good place. Exposure, white balance, contrast, natural color. Correction is about getting the image right before I start making it mine.</div>
   </div>
-  <div class="plate on-dark" style="position:absolute;top:488px;left:432px;width:304px;height:190px;z-index:6">
+  <div class="plate on-dark" style="position:absolute;top:629px;left:300px;right:-34px;height:155px;z-index:6;border-right:none;padding-right:34px">
     <span class="p-id">M05.2</span>
-    <div class="p-in sm" style="max-width:240px">
-      <span class="p-type">Screenshot &middot; UI Crop</span>
-      <span class="p-subj">Blackmagic, scopes visible</span>
-      <span class="p-spec">304 &times; 190 &middot; manual controls on screen</span>
+    <div class="p-in sm" style="max-width:280px">
+      <span class="p-type">State 02</span>
+      <span class="p-subj">Corrected, not yet graded</span>
+      <span class="p-spec">500 &times; 155 &middot; same frame as M05.1</span>
     </div>
   </div>
-  <div style="position:absolute;top:706px;left:432px;width:304px;z-index:6">
-    <div class="kick" style="font-size:8.5px;color:var(--volt);margin-bottom:11px">Reach For It When</div>
-    <div style="display:flex;gap:11px;padding:6px 0;border-top:1px solid rgba(255,255,255,.16)"><span class="kick" style="font-size:8px;color:var(--volt)">01</span><span style="font-size:11px;line-height:1.5;color:rgba(255,255,255,.78)">You are lighting the shot yourself</span></div>
-    <div style="display:flex;gap:11px;padding:6px 0;border-top:1px solid rgba(255,255,255,.16)"><span class="kick" style="font-size:8px;color:var(--volt)">02</span><span style="font-size:11px;line-height:1.5;color:rgba(255,255,255,.78)">Shutter, ISO and white balance must hold</span></div>
-    <div style="display:flex;gap:11px;padding:6px 0;border-top:1px solid rgba(255,255,255,.16)"><span class="kick" style="font-size:8px;color:var(--volt)">03</span><span style="font-size:11px;line-height:1.5;color:rgba(255,255,255,.78)">This clip has to match other footage</span></div>
-    <div style="display:flex;gap:11px;padding:6px 0;border-top:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16)"><span class="kick" style="font-size:8px;color:var(--volt)">04</span><span style="font-size:11px;line-height:1.5;color:rgba(255,255,255,.78)">You intend to grade it properly</span></div>
+
+  <div style="position:absolute;top:802px;left:64px;width:216px;z-index:6">
+    <div style="display:flex;gap:11px;align-items:baseline"><span class="hd" style="font-size:26px;color:var(--volt)">03</span><span class="sub" style="font-size:13px;color:#fff">Graded</span></div>
+    <div class="sub" style="font-size:10.5px;color:var(--volt);margin-top:8px">Build The Feel</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:9px">This is the creative pass. The grade should support the mood of the image, not distract from it. I am looking at color, contrast and feel, and deciding how far I actually need to push it.</div>
   </div>
-  <div style="position:absolute;top:876px;left:432px;width:304px;z-index:6">
-    <div class="sub" style="font-size:12px;margin-bottom:7px;color:#fff">The Trade</div>
-    <div style="font-size:10.5px;line-height:1.62;color:rgba(255,255,255,.72)">You give up speed to gain control. Worth it when the shot is planned.</div>
+  <div class="plate on-dark" style="position:absolute;top:802px;left:300px;right:-34px;height:155px;z-index:6;border-right:none;padding-right:34px">
+    <span class="p-id">M05.3</span>
+    <div class="p-in sm" style="max-width:280px">
+      <span class="p-type">State 03</span>
+      <span class="p-subj">Final grade</span>
+      <span class="p-spec">500 &times; 155 &middot; same frame as M05.1</span>
+    </div>
   </div>
 
-  <div class="band" style="top:952px;left:34px;right:0;bottom:0;background:var(--cobalt)"></div>
-  <div class="band grain" style="top:952px;left:34px;right:0;bottom:0"></div>
-  <div style="position:absolute;top:986px;left:64px;width:330px;z-index:6">
-    <div class="hd" style="font-size:30px;color:#fff">The App Isn&rsquo;t</div>
-    <div class="hd" style="font-size:30px;color:#fff">The Skill.</div>
+  <div style="position:absolute;top:992px;left:64px;width:320px;z-index:6">
+    <div class="hd" style="font-size:20px;color:#fff">Color Isn&rsquo;t There</div>
+    <div class="hd" style="font-size:20px;color:#fff">To Rescue A Bad Image.</div>
+    <div class="hd" style="font-size:20px;color:var(--volt);margin-top:9px">It&rsquo;s There To Finish</div>
+    <div class="hd" style="font-size:20px;color:var(--volt)">A Good One.</div>
   </div>
-  <div style="position:absolute;top:992px;left:432px;width:270px;z-index:6">
-    <div style="font-size:11.5px;line-height:1.58;color:rgba(255,255,255,.85)">Blackmagic will not rescue a badly lit shot. Native will not stop you making a great one.</div>
-    <div class="sub" style="font-size:12px;color:#fff;margin-top:8px">Pick the one that matches how<br>much time the shot deserves.</div>
+  <div style="position:absolute;top:992px;left:430px;width:280px;z-index:6;border-top:1px solid rgba(255,255,255,.2);padding-top:14px">
+    <div style="display:flex;align-items:center;gap:9px;font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:#fff">
+      <span>Log</span><span style="color:var(--volt)">&rarr;</span><span>Correct</span><span style="color:var(--volt)">&rarr;</span><span>Create</span>
+    </div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:12px">M05.1 to M05.3 must be the same frame from the same take, in three states. Different shots break the argument.</div>
   </div>
-  <div class="folio" style="color:rgba(255,255,255,.62)"><b style="color:#fff">05</b> / 11</div>
+
+  <div class="folio"><b>05</b> / 11</div>
 </div>
