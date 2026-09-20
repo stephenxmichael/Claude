@@ -122,6 +122,36 @@ white-body / black-footer either. The subject picks the composition.
 | 10 | The Experiment — iPhone over camera | **Design approved.** Cobalt upper field, full-width ink case-study band, 80/20 carried by typographic scale. A final challenge and QR pass is still to come. |
 | 11 | Field Cheat Sheet | **Provisional.** Cobalt masthead, 3 × 2 block grid. Content is drawn only from sheets 03–07 and rebuilds once 08 and 09 lock. |
 
+## Page density — the rule sheet 03 sets
+
+A page fails when the reader cannot tell what to look at first. That happens
+long before anything overlaps, so the box checker will not catch it. Measure
+it instead:
+
+    node scripts/density.mjs fg
+
+**Sheet 03 is the reference: five content rows, gutters of 30–35px, about 270
+words.** Every sheet should sit near that. Two numbers matter:
+
+- **Gutters below ~25px** mean the rows have been squeezed to make content
+  fit. The gutters are the design, not slack to spend — when a block overruns,
+  cut the block, never the gap. A plate and its caption, a numeral and its
+  label, or two parallel tracks will report a small gutter; those are single
+  units and are fine.
+- **Over ~330 words** means the page is explaining rather than teaching.
+
+When a page is over, cut in this order, which is how sheet 03 was fixed:
+
+1. **A block that says what another sheet already says.** This is almost
+   always available and it improves both pages.
+2. **Third and fourth lines of body copy.** A sub-headline names the idea and
+   the image shows it; the body needs one concrete line, not a paragraph.
+3. **Small plates.** A placeholder under about 90px tall teaches nothing and
+   costs a whole row. Let the section go typographic instead.
+4. **Supporting lines whose module has moved.** They read as orphans.
+
+Never shrink type to fit, and never close a gutter to buy room.
+
 ## The settings panel
 
 `.spec` draws the menu instead of placeholding a screenshot of it. It was built
