@@ -115,6 +115,7 @@ example images.
 | ID | Type | Spec | Direction |
 |---|---|---|---|
 | M11.1 | QR → download | — | Save the cheat sheet to your phone. |
+| M11.2 | QR → product | — | The Shooting Stars Content Framework. This is the guide's only outbound link to the flagship, so it points at wherever the Framework is actually sold or delivered, not a general homepage. |
 
 ---
 
@@ -153,4 +154,4 @@ M05.1–M05.3. One frame, exported three times at three stages of the grade.
 M10.4 — the handwritten note. Scan it; do not recreate it.
 
 **Video / QR**
-M11.1 — one download link.
+M11.1 (cheat-sheet download) and M11.2 (the Content Framework).
