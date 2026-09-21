@@ -102,23 +102,61 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
 .dark .rail>div.on .r-s{color:var(--volt)}
 .dark .rail>div.on .r-n{color:#fff}
 
-/* ── photo slot ──
-   For Stephen's real photography, which lives in the Canva original. This
-   session's egress policy blocks export-download.canva.com, so the images
-   could not be pulled. Rather than fake them, the slot is marked in-system
-   with the exact source page and crop. Drop the file in assets/ and swap the
-   .photoslot div for an <img> / background-image. */
-.photoslot{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;
- background:repeating-linear-gradient(45deg,rgba(77,124,255,.06) 0 11px,transparent 11px 22px),var(--ink2)}
-.photoslot::after{content:'';position:absolute;inset:0;border:1px solid rgba(77,124,255,.34);pointer-events:none}
-.light .photoslot{background:repeating-linear-gradient(45deg,rgba(43,92,230,.07) 0 11px,transparent 11px 22px),var(--bone2)}
-.light .photoslot::after{border-color:rgba(43,92,230,.3)}
-.photoslot .ps-in{text-align:center;padding:20px;position:relative;z-index:2;max-width:290px}
-.photoslot .ps-k{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.2em;
- text-transform:uppercase;color:var(--volt);display:block}
-.light .photoslot .ps-k{color:var(--cobalt)}
-.photoslot .ps-d{font-size:11.5px;line-height:1.55;color:#8C93A5;margin-top:9px}
-.light .photoslot .ps-d{color:var(--slate)}
+/* ── media plate ──
+   Reserves a photograph and briefs it in the same gesture: an asset ID, the
+   shot type, the subject, the crop spec, and where the composition needs
+   directing, shoot zones marking where the subject stands and what has to
+   stay clear. Evolved from the Field Guide's plate so both publications
+   brief media the same way; drop the real file in and all of this furniture
+   leaves with it.
+
+   Three surfaces, because the book runs three: bone, ink, and full cobalt. */
+.plate{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;
+ --zc:rgba(43,92,230,.62);--cm:rgba(43,92,230,.5);
+ background:repeating-linear-gradient(45deg,rgba(43,92,230,.07) 0 11px,transparent 11px 22px),var(--bone2);
+ border:1px solid rgba(43,92,230,.3)}
+.plate.on-dark{--zc:rgba(77,124,255,.66);--cm:rgba(77,124,255,.55);
+ background:repeating-linear-gradient(45deg,rgba(77,124,255,.1) 0 11px,transparent 11px 22px),var(--ink2);
+ border-color:rgba(77,124,255,.34)}
+.plate.on-cobalt{--zc:rgba(255,255,255,.6);--cm:rgba(255,255,255,.62);
+ background:repeating-linear-gradient(45deg,rgba(255,255,255,.075) 0 11px,transparent 11px 22px),rgba(6,20,64,.42);
+ border-color:rgba(255,255,255,.42)}
+/* corner crop marks */
+.plate::before{content:'';position:absolute;inset:7px;pointer-events:none;z-index:1;background:
+ linear-gradient(var(--cm),var(--cm)) 0 0/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 0 0/1px 10px no-repeat,
+ linear-gradient(var(--cm),var(--cm)) 100% 0/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 100% 0/1px 10px no-repeat,
+ linear-gradient(var(--cm),var(--cm)) 0 100%/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 0 100%/1px 10px no-repeat,
+ linear-gradient(var(--cm),var(--cm)) 100% 100%/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 100% 100%/1px 10px no-repeat}
+.plate .p-id{position:absolute;top:0;left:0;background:var(--cobalt);color:#fff;font-family:'JetBrains Mono';
+ font-size:8px;letter-spacing:.12em;padding:3px 7px;z-index:5;line-height:1.3}
+.plate.on-dark .p-id{background:var(--volt);color:var(--ink);font-weight:600}
+.plate.on-cobalt .p-id{background:#fff;color:var(--cobalt);font-weight:600}
+.plate .p-in{position:relative;z-index:3;text-align:center;padding:15px 13px;max-width:300px;margin:auto}
+.p-type{display:inline-block;font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;
+ border:1px solid rgba(43,92,230,.5);color:var(--cobalt);padding:3px 8px;margin-bottom:9px}
+.p-subj{display:block;font-family:'Archivo';font-weight:800;font-size:12px;line-height:1.3;text-transform:uppercase;
+ letter-spacing:.01em;color:var(--ink)}
+.p-spec{display:block;font-family:'JetBrains Mono';font-size:8px;letter-spacing:.1em;text-transform:uppercase;
+ color:var(--slate);margin-top:7px;line-height:1.75}
+.plate.on-dark .p-type{border-color:rgba(77,124,255,.55);color:var(--volt)}
+.plate.on-dark .p-subj{color:#fff}
+.plate.on-dark .p-spec{color:#79808F}
+.plate.on-cobalt .p-type{border-color:rgba(255,255,255,.55);color:#fff}
+.plate.on-cobalt .p-subj{color:#fff}
+.plate.on-cobalt .p-spec{color:rgba(255,255,255,.66)}
+.plate.sm .p-in{padding:9px 7px}
+.plate.sm .p-type{font-size:7px;padding:2px 6px;margin-bottom:6px;letter-spacing:.16em}
+.plate.sm .p-subj{font-size:10.5px;line-height:1.26}
+.plate.sm .p-spec{font-size:7.5px;margin-top:5px;line-height:1.6}
+/* shoot zones: where the subject stands, what stays clear */
+.zone{position:absolute;border:1px dashed var(--zc);z-index:3}
+.zone i{position:absolute;left:6px;top:5px;font-style:normal;font-family:'JetBrains Mono';font-size:7.5px;
+ letter-spacing:.14em;text-transform:uppercase;color:var(--zc);white-space:nowrap;line-height:1.5}
+.zone.keep{border-style:dotted}
+.zone.mark{width:26px;height:26px;border-radius:50%;border-style:solid}
+.zone.mark::before{content:'';position:absolute;left:50%;top:-8px;bottom:-8px;width:1px;background:var(--zc)}
+.zone.mark::after{content:'';position:absolute;top:50%;left:-8px;right:-8px;height:1px;background:var(--zc)}
+.zone.mark i{left:36px;top:7px}
 
 /* ── placeholder flag ──
    Stephen's own lorem ipsum / notes-to-self, surfaced rather than written over. */
