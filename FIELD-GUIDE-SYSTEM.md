@@ -194,6 +194,11 @@ which is why sheet 03 carries just two photographic assets.
    universal requirements" is the register. Where a detail is device or
    version specific, keep the teaching and flag it `[Technical detail to
    verify]` rather than inventing a specification.
+7. The guide has to stay useful across several iPhone generations. Teach the
+   lens by what it does (`2×+ · get closer`), never by a focal length a new
+   model will change. Keep "Apple Log" as written rather than tracking each
+   new Log version. Frame a setting Stephen turns off as his workflow
+   preference, not as a fault in the feature.
 
 ## Composition register — no sheet repeats another
 
