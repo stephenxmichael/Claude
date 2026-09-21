@@ -10,9 +10,6 @@ real work, real gear, or a real capture from your own device.
 Dimensions are the plate size at the page's 800 × 1120 geometry. Shoot larger
 and crop down — never upscale to fit.
 
-> **Sheets 08 and 09 are not copy-locked yet.** Their single assets below are
-> provisional and will change when the rig and workflow copy lands.
-
 ---
 
 ## Sheet 01 — Cover
@@ -89,17 +86,17 @@ example images.
 > IDs here follow page order, so M07.1 is the "before" half. The brief listed
 > window light first; the assets themselves are unchanged.
 
-## Sheet 08 — Build The Rig *(copy not locked)*
+## Sheet 08 — Build The Rig
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M08.1 | Hero flat lay | 766 × 554, bleeds three edges | The kit shot top-down, even light, no props. **The six numbered crosshairs printed on the plate are the layout map** — lay each piece where its number sits. The lower-left rectangle is reserved for the caption and must stay empty. The number of marks will change once the real kit list lands. |
+| M08.1 | Hero flat lay | 800 × 368 visible, bleeds three edges | Stephen's kit shot top-down, even light, no props. **Group the three essentials — tripod, mic, light — apart from the rest.** The page argues that four of these items are optional, and the photograph has to agree with it, so do not lay the kit out as one uniform grid. The printed band across the lower third is reserved for the caption and must stay clear. Items: iPhone, Ulanzi MT-85, DJI Mic 2, Amaran MC, SmallRig cage and handles, SmallRig ND if available by the shoot date, Samsung T7, Anker power bank, cables. |
 
-## Sheet 09 — Workflow *(copy not locked)*
+## Sheet 09 — Workflow
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M09.1 | Screenshot | 316 × 154 | Your real edit timeline, mid-cut, before any color work. |
+| M09.1 | Screenshot | 306 × 116 | Your real edit timeline at stage 05 — A-roll laid down, before color. |
 
 ## Sheet 10 — iPhone Over Camera
 
@@ -142,8 +139,9 @@ to be shot in one sitting without relighting or reframing between frames.
 M03.2. One subject, each available camera, from the same standing position.
 
 **Session E — gear**
-M08.1 (flat lay, to the printed map) and M07.3, M07.4 (light and audio in use).
-Hold until sheet 08's kit list is final.
+M08.1 (the flat lay) plus M07.3 and M07.4 (light and audio in use). Same kit,
+same day. Shoot the flat lay with the three essentials grouped apart from the
+rest, so the photograph carries the page's argument.
 
 **Session F — captures, no shoot required**
 M04.1, M04.2, M09.1 — device screenshots and a timeline grab.

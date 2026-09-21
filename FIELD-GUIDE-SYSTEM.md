@@ -117,10 +117,26 @@ white-body / black-footer either. The subject picks the composition.
 | 05 | Build The Image | **Copy locked.** Ink ground. Manual controls run as a strip above the Log → Corrected → Graded progression, whose frames bleed off the right edge. |
 | 06 | Shoot With Intention | **Copy locked.** 2 × 3 grid of true 16:9 frames, one sequence, with the coverage doctrine closing on ink. |
 | 07 | Light + Sound | **Copy locked.** Light runs the paper column, sound runs a full-height ink rail, and the headline splits across the two tracks. |
-| 08 | Build The Rig | **Design approved, copy pending.** Bottom-anchored full-bleed flat lay carrying the numbered shoot map. Awaiting Stephen's real kit and accessory philosophy. |
-| 09 | Workflow | **Design approved, copy pending.** Cobalt ground, six ink nodes in a serpentine with a drawn return elbow. Awaiting Stephen's real process. |
+| 08 | Build The Rig | **Copy locked.** Three essentials above four add-when-useful items, then the flat lay anchored to the bottom edge. The split is the page: it is a philosophy of friction, not a shopping list. |
+| 09 | Workflow | **Copy locked.** Cobalt ground, nine ink nodes in a 3 × 3 serpentine with two drawn returns. Stephen's real process, first person, because it is his. |
 | 10 | The Experiment — iPhone over camera | **Design approved.** Cobalt upper field, full-width ink case-study band, 80/20 carried by typographic scale. A final challenge and QR pass is still to come. |
-| 11 | Field Cheat Sheet | **Provisional.** Cobalt masthead, 3 × 2 block grid. Content is drawn only from sheets 03–07 and rebuilds once 08 and 09 lock. |
+| 11 | Field Cheat Sheet | **Copy locked.** Cobalt masthead, 3 × 2 block grid. Organised by use case rather than by a single capture setup, and it introduces nothing the book has not already taught. |
+
+## Voice — where "I" belongs and where "you" does
+
+**"I" is Stephen's experience, preference or workflow. "You" is instruction the
+reader can act on.** Never swap one for the other mechanically: the first person
+is what makes the guide worth reading, and the second person is what makes it
+usable.
+
+First person stays for what he shoots, what he prefers, what he has learned,
+how he uses his own camera, and his practical defaults — "my default for most
+talking heads is 4K/30" is his recommendation and reads as one. Second person
+takes over the moment the copy is teaching: "get the image into a good place
+before you build the look," not "I want the image in a good place."
+
+The test is whether the page sounds like an experienced creator teaching you,
+or an experienced creator talking about himself.
 
 ## Page density — the rule sheet 03 sets
 
