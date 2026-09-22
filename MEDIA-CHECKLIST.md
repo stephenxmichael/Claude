@@ -117,6 +117,12 @@ example images.
 | M11.1 | QR → download | — | Save the cheat sheet to your phone. |
 | M11.2 | QR → product | — | The Shooting Stars Content Framework. This is the guide's only outbound link to the flagship, so it points at wherever the Framework is actually sold or delivered, not a general homepage. |
 
+## Sheet 12 — Stephen Michael
+
+| ID | Type | Spec | Direction |
+|---|---|---|---|
+| M12.1 | Photograph | 356 × 520 | Portrait of Stephen Michael. Natural light, color. The professional closing signature of the guide. |
+
 ---
 
 ## Grouped by shoot
