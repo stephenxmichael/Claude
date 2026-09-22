@@ -156,6 +156,11 @@ M04.1, M04.2, M09.1 — device screenshots and a timeline grab.
 **Session G — the grade set**
 M05.1–M05.3. One frame, exported three times at three stages of the grade.
 
+**Session H — the contributor portrait**
+M12.1. Its own sitting, not a frame pulled from Session A: sheet 12 wants
+Stephen still and looking at the lens, where Session A wants him working.
+Shoot loose — the plate is a tall 1:1.9 column.
+
 **Artifact**
 M10.4 — the handwritten note. Scan it; do not recreate it.
 
