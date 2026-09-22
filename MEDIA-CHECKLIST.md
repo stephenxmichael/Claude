@@ -1,6 +1,6 @@
 # Field Guide 001 — Media Asset Checklist
 
-Every labelled placeholder in the eleven sheets, organised by page. Each entry
+Every labelled placeholder in the twelve sheets, organised by page. Each entry
 carries the asset ID printed on the plate, so the built PDF doubles as the shot
 list: find the ID on the page, shoot the thing, drop it in.
 
@@ -121,7 +121,7 @@ example images.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M12.1 | Photograph | 356 × 620 | Stephen Michael author portrait. Natural light, color. Professional closing signature of the Field Guide. Final image to be supplied. |
+| M12.1 | Photograph · editorial | 356 × 676, tall crop | Stephen, shot as a contributor portrait rather than a headshot. Natural light, colour, environment allowed to read. **Shoot wider than the plate and frame loose** — the page holds a 1:1.9 column, so a tight capture leaves nothing to crop against. The only asset on the sheet; the orbital watermark beside it is the existing brand mark, not a photograph. |
 
 ---
 
