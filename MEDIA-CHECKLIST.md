@@ -188,7 +188,8 @@ has to be cropped rather than squeezed, or the export refuses the build.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M08.1 | Hero flat lay | 800 × 368 visible, bleeds three edges | Stephen's kit shot top-down, even light, no props. **Group the three essentials — tripod, mic, light — apart from the rest.** The page argues that four of these items are optional, and the photograph has to agree with it, so do not lay the kit out as one uniform grid. The printed band across the lower third is reserved for the caption and must stay clear. Items: iPhone, Ulanzi MT-85, DJI Mic 2, Amaran MC, SmallRig cage and handles, SmallRig ND if available by the shoot date, Samsung T7, Anker power bank, cables. |
+| M08.1 | Hero flat lay | 800 × 368 visible, bleeds three edges | Stephen's kit shot top-down, even light, no props. **Group the three essentials — tripod, mic, light — apart from the rest.** The page argues that four of these items are optional, and the photograph has to agree with it, so do not lay the kit out as one uniform grid. The printed band across the lower third is reserved for the caption and must stay clear. The top-right corner carries the M08.2 kit link and must stay clear too. Items: iPhone, Ulanzi MT-85, DJI Mic 2, Amaran MC, SmallRig cage and handles, SmallRig ND if available by the shoot date, Samsung T7, Anker power bank, cables. |
+| M08.2 | QR → gear destination | 58 × 58 | **QR destination to be supplied.** The guide's one gear link: the kit Stephen actually shoots with, wherever it ends up living (his Amazon storefront or a Shooting Stars gear page). One code for the whole kit — no per-product links, prices or buy buttons anywhere in the guide. When the URL exists, swap the placeholder glyph for the QR image and link the \"View Stephen's Kit\" line; the destination can then change over time without touching the page. |
 
 ## Sheet 10 — Workflow  ·  assets M09.x
 
@@ -212,8 +213,8 @@ has to be cropped rather than squeezed, or the export refuses the build.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M11.1 | QR → download | — | Save the cheat sheet to your phone. |
-| M11.2 | QR → product | — | The Shooting Stars Content Framework. This is the guide's only outbound link to the flagship, so it points at wherever the Framework is actually sold or delivered, not a general homepage. |
+| M11.1 | QR → download | — | **QR destination to be supplied.** Save the cheat sheet to your phone. |
+| M11.2 | QR → product | — | **QR destination to be supplied.** The Shooting Stars Content Framework. This is the guide's only outbound link to the flagship, so it points at wherever the Framework is actually sold or delivered, not a general homepage. |
 
 ## Sheet 13 — Shooting Stars Content Academy  ·  no assets
 
@@ -275,7 +276,8 @@ two frames. M03.1 is done.
 **Session E — gear**
 M08.1 (the flat lay) plus M07.3 and M07.4 (light and audio in use). Same kit,
 same day. Shoot the flat lay with the three essentials grouped apart from the
-rest, so the photograph carries the page's argument.
+rest, so the photograph carries the page's argument, and
+keep its top-right corner clear for the M08.2 kit link.
 
 **Session F — captures, no shoot required**
 M04.1, M04.2, M09.1 — device screenshots and a timeline grab.
@@ -292,4 +294,5 @@ Shoot loose — the plate is a tall 1:1.9 column.
 M10.4 — the handwritten note. Scan it; do not recreate it.
 
 **Video / QR**
-M11.1 (cheat-sheet download) and M11.2 (the Content Framework).
+M08.2 (the kit link), M11.1 (cheat-sheet download) and M11.2 (the Content
+Framework). All three destinations are still to be supplied — none is invented.

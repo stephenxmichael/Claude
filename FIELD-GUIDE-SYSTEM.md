@@ -66,7 +66,10 @@ All in `src-fg/head.html`, documented in place.
   crosshair for the phone, `.keep` dotted region that must stay clear. The
   prototype briefs the photograph rather than only reserving room for it.
 - **`.p-meta`** — the black shot-brief module pinned inside a plate.
-- **`.qr`** — used only where video adds real instruction, never to fill space.
+- **`.qr`** — only where the destination gives the reader something the printed
+  page cannot: teaching → watch the demonstration, gear → find the kit,
+  reference → save the resource. Never decoration. A code without a supplied URL
+  keeps the placeholder glyph and is marked "QR destination to be supplied".
 - **`.eyebrow`, `.hd`, `.sub`, `.bd`, `.kick`, `.anno`, `.dl`, `.chip`**
 - **`.band`** — full-bleed structural block; a surface, not content.
 - **Geometry** — 64px margin, 52px HUD, 34px spine, 40px grid, 800 × 1120.
@@ -117,7 +120,7 @@ white-body / black-footer either. The subject picks the composition.
 | 05 | Build The Image | **Copy locked.** Ink ground. Manual controls run as a strip above the Log → Corrected → Graded progression, whose frames bleed off the right edge. |
 | 06 | Shoot With Intention | **Copy locked.** 2 × 3 grid of true 16:9 frames, one sequence, with the coverage doctrine closing on ink. |
 | 07 | Light + Sound | **Copy locked.** Light runs the paper column, sound runs a full-height ink rail, and the headline splits across the two tracks. |
-| 08 | Build The Rig | **Copy locked.** Three essentials above four add-when-useful items, then the flat lay anchored to the bottom edge. The split is the page: it is a philosophy of friction, not a shopping list. |
+| 08 | Build The Rig | **Copy locked.** Three essentials above four add-when-useful items, then the flat lay anchored to the bottom edge. The split is the page: it is a philosophy of friction, not a shopping list. One kit link (M08.2) sits in the flat lay's top-right corner: a single code for the whole kit, never per-product links. |
 | 09 | Workflow | **Copy locked.** Cobalt ground, nine ink nodes in a 3 × 3 serpentine with two drawn returns. Stephen's real process, first person, because it is his. |
 | 10 | The Experiment — iPhone over camera | **Design approved.** Cobalt upper field, full-width ink case-study band, 80/20 carried by typographic scale. A final challenge and QR pass is still to come. |
 | 11 | Field Cheat Sheet | **Copy locked.** Cobalt masthead, 3 × 2 block grid. Organised by use case rather than by a single capture setup, and it introduces nothing the book has not already taught. |
