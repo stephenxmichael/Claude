@@ -211,7 +211,25 @@ has to be cropped rather than squeezed, or the export refuses the build.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M12.1 | Photograph · editorial | 356 × 676, tall crop | Stephen, shot as a contributor portrait rather than a headshot. Natural light, colour, environment allowed to read. **Shoot wider than the plate and frame loose** — the page holds a 1:1.9 column, so a tight capture leaves nothing to crop against. The only asset on the sheet; the orbital watermark beside it is the existing brand mark, not a photograph. |
+| M12.1 | Photograph · creator | 672 × 378, 16:9 | **Supplied, but short for print.** `assets/fg-m12-1.jpg` at 1344 × 756 (2×), cut full-width from the creator frame first tried as a cover. Stephen left with his phone, the large foreground phone right; the crop keeps that relationship, which is the whole reason the frame works here. |
+
+> **This is the one outstanding print gap.** A 672-wide plate needs **2150px**
+> at 300dpi and this asset has **1344**, because the source only ever came
+> through chat at 2000px. It is fine on screen and will soften in the hardback.
+> The fix is the one the cover already had: put the original in Drive under
+> ~3.5MB and it can be recut at 4× without upscaling.
+
+The sheet also carries two brand marks. The orbital sits **behind** the
+photograph, sized to peek out at the left gutter, the right margin and the
+paper below the frame — found rather than placed. A small white badge sits
+inside the photograph's top-right, clear of the corner mark, with a soft shadow
+because that corner runs at luma 179 and plain white would vanish into the
+concrete.
+
+> **Version A is archived, not discarded.** `comps/p12-A-portrait.html` is the
+> portrait-led sheet this replaced, with its tall 356 × 676 placeholder and the
+> copy set beside it. `comps/` sits outside `src-fg/`, so nothing there can
+> reach the build; swapping back is a file copy.
 
 ---
 
