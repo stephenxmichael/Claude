@@ -16,8 +16,10 @@ exact ratio. **Store at 3.2× the plate or better** — the book prints, and at
 source allows it, 4× is cleaner because it is an exact multiple of the plate.
 Originals now come through **Google Drive, not chat**: chat caps uploads at
 2000px on the long edge and strips EXIF, which is enough for screen but short
-of print on the larger plates. Pre-cropping is not housekeeping: the PDF export refuses to write a file
-where any photo is drawn at an aspect other than its own, because a scaled photo
+of print on the larger plates.
+
+Pre-cropping is not housekeeping: the PDF export refuses to write a file where
+any photo is drawn at an aspect other than its own, because a scaled photo
 smeared on iOS once already. Entries below are marked **Supplied** as they
 arrive.
 
