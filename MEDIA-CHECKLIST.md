@@ -108,14 +108,20 @@ has to be cropped rather than squeezed, or the export refuses the build.
 | M06.2 | Video frame | 286 × 161 | **Supplied** — `fg-m06-2.jpg` from `medium.jpg`. Medium: subject from the waist, skyline behind. |
 | M06.3 | Video frame | 286 × 161 | **Supplied** — `fg-m06-3.jpg` from `close.jpg`, punched in **1.33×** (2880 × 1621 of the 4K frame). The full frame read too wide for a close beside M06.2. Tighter was tried at 1.5× and rejected: it clipped the watch and bracelet at the edges and cut the chin off the bottom, losing the face. |
 | M06.4 | Video frame | 286 × 161 | **Supplied** — `fg-m06-4.jpg` from `close1.jpg`. Detail: watch on the wrist. Matches the sheet's own caption — *hands, texture, a product* — word for word. |
-| M06.5 | Video frame | 286 × 161 | **Still open.** Movement — a push, a pan, parallax, or following the subject. The hard one: movement is temporal, so the still has to imply it. A frame mid-push with motion blur, or one where the parallax between foreground planting and skyline is obvious, will read. |
-| M06.6 | Video frame | 286 × 161 | **Supplied** — `fg-m06-6.jpg` from `detail.jpg`. Reveal: shot through foreground grass to the towers. Matches the sheet's caption — *hide part of the frame, then reveal what matters*. |
+| M06.5 | Video frame | 286 × 161 | **Supplied** — `fg-m06-5.jpg` from `detail.jpg`. Environment: shot through foreground grass to the towers, no subject in frame. |
+| M06.6 | Video frame | 286 × 161 | **Supplied** — `fg-m06-6.jpg` from `reveal.jpg`. Reveal: the subject found past an out-of-focus agave leaf and foreground planting. Full frame, no recrop. |
 
-> The Drive folder named that last frame `detail.jpg`. It is used for **Reveal**
-> instead, and `close1.jpg` took Detail, because each then matches the locked
-> caption beneath it exactly. Rendered both ways before choosing. `ss iphone
-> field guide .00_01_53_07.Still002.jpg` is unused — a second medium, close to
-> M06.2.
+> **Frame 05 was Movement and is now Environment.** Movement is temporal and a
+> single still can only gesture at it, so the slot was doing the least work on
+> the sheet. Environment earns its place instead: the frame carries no subject
+> at all, which is exactly the argument — the place is part of the story, and
+> the edit has nowhere to breathe without it. Sheet 11's shot sequence was
+> updated to match, or the cheat sheet would contradict the page it summarises.
+>
+> `close1.jpg` took Detail rather than its filename's slot, because the watch on
+> the wrist matches that caption — *hands, texture, a product* — word for word.
+> `ss iphone field guide .00_01_53_07.Still002.jpg` is unused: a second medium,
+> close to M06.2.
 
 ## Sheet 07 — Light + Sound
 
@@ -177,8 +183,7 @@ M01.1, M02.1, M02.2 — one location, one afternoon. M01.1 is the cover and
 deserves the most attention; the other two can come from the same setup.
 
 **Session B — the six-frame coverage set**
-Five of six are in from the rooftop set. **Only M06.5 (Movement) is left**, and
-it has to come from that same rooftop in that same light or the sequence breaks.
+**Complete.** All six are in from one rooftop, one skyline, one golden hour.
 M10.1 and M10.2 can be pulled from existing published work instead.
 
 **Session C — comparisons, shot back to back**
