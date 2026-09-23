@@ -37,9 +37,17 @@ pixel size — `width:100%` is a hair short, because the 1px border shrinks the
 padding box and the aspect drifts. **The cover is the one exception**: M01.1
 bleeds to three edges and carries no plate.
 
+**Sheet numbers and asset IDs no longer line up, and that is deliberate.**
+A Contents page was inserted as sheet 02, pushing every teaching sheet down by
+one. The asset IDs on the plates were *not* renumbered — M02.1 is still M02.1,
+it just now sits on sheet 03 — because renumbering them would mean editing
+finished pages and renaming every file for no gain. So: **the M-number is one
+lower than the sheet it appears on**, from sheet 03 onward. Each heading below
+states both. Sheet 13 is reserved for the Academy page and has no assets yet.
+
 ---
 
-## Sheet 01 — Cover
+## Sheet 01 — Cover  ·  assets M01.x
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
@@ -56,14 +64,14 @@ the book should say so.
 > longer needed for M02.1, which has its own frame. Kept because it is a real
 > usable frame if another slot ever wants it.
 
-## Sheet 02 — Stop Treating It Like A Phone
+## Sheet 03 — Stop Treating It Like A Phone  ·  assets M02.x
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
 | M02.1 | Photograph · primary | 284 × 230, 5:4 | **Supplied** &mdash; `assets/fg-m02-1.jpg` at 568 × 460 (2×). Phone, hands, face and the reach, with lead room on the left where he is aiming. Carries **15% headroom above the cap** and clear margin on both edges: the first crop was tighter and read as boxed-in at plate size. Going wider still was tried and rejected &mdash; at 284px the subject goes small and the block he is sitting on intrudes bottom-right. |
 | M02.2 | Photograph · nuance | 236 × 144 | The iPhone beside the pro camera. Both belong to one kit — this is the shot that stops the page reading as anti-camera. |
 
-## Sheet 03 — Get Your iPhone Right
+## Sheet 04 — Get Your iPhone Right  ·  assets M03.x
 
 The Settings panel on this sheet is **drawn, not photographed** — it is a
 component, not an asset, so it needs nothing shot. Its values do need checking
@@ -74,12 +82,12 @@ against a current device before publication.
 | M03.1 | Comparison | 356 × 130 | **Supplied** &mdash; `assets/fg-m03-1.jpg` at 712 × 260 (2×). Arrived as a finished diptych at exactly the plate's 2.74 ratio, so it is placed with no crop at all. Haze and veiled contrast on the left, clear on the right. The sheet labels the halves **Dirty** and **Clean** in mono over the foliage, because the difference is real but subtle at 356px and every other comparison in the book names its halves. |
 
 > M03.2 (one subject on each lens) and M03.3 (good light against poor light)
-> are both **retired.** M03.3 duplicated sheet 07, which carries that
+> are both **retired.** M03.3 duplicated sheet 08, which carries that
 > comparison at full size as M07.1 and M07.2. M03.2 went when the lens
 > guidance became typographic — a 72px strip taught nothing, and the page
 > needed the room more than it needed a second small plate.
 
-## Sheet 04 — Take Control
+## Sheet 05 — Take Control  ·  assets M04.x
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
@@ -91,7 +99,7 @@ against a current device before publication.
 > "real work, real gear" rule far more than a screengrab — but it changes what
 > M04.1 has to be, so its plate now briefs a photograph too.
 
-## Sheet 05 — Build The Image
+## Sheet 06 — Build The Image  ·  assets M05.x
 
 The three frames on this page **must be the same frame from the same take**, in
 three states. Different shots break the argument the page is making.
@@ -106,7 +114,7 @@ and the sequence will jitter.
 |---|---|---|---|
 | M05.1 | State 01 | 534 × 150 | **Supplied** — `fg-m05-1.jpg` from `ungraded.jpg`. Apple Log, straight off the phone. |
 | M05.2 | State 02 | 534 × 150 | **Supplied** — `fg-m05-2.jpg` from `color corrected.jpg`. |
-| M05.3 | State 03 | 534 × 150 | **Supplied** — `fg-m05-3.jpg` from `final grade.jpg`, the same frame as sheet 06's M06.2. |
+| M05.3 | State 03 | 534 × 150 | **Supplied** — `fg-m05-3.jpg` from `final grade.jpg`, the same frame as sheet 07's M06.2. |
 
 The set was chosen from four rooftop candidates rendered into the live strip.
 The medium frame won because it is the only one carrying **every reference a
@@ -132,7 +140,7 @@ grade then adds another 44% of saturation and crushes the blacks to 11. If a
 future re-export does not show that shape, the first frame is not really Log
 and the page is claiming something it does not demonstrate.
 
-## Sheet 06 — Shoot With Intention
+## Sheet 07 — Shoot With Intention  ·  assets M06.x
 
 Six frames of **one subject, in the same light, before the camera moves.** The
 strongest version of this page is one coherent sequence, not six unrelated
@@ -156,7 +164,7 @@ has to be cropped rather than squeezed, or the export refuses the build.
 > single still can only gesture at it, so the slot was doing the least work on
 > the sheet. Environment earns its place instead: the frame carries no subject
 > at all, which is exactly the argument — the place is part of the story, and
-> the edit has nowhere to breathe without it. Sheet 11's shot sequence was
+> the edit has nowhere to breathe without it. Sheet 12's shot sequence was
 > updated to match, or the cheat sheet would contradict the page it summarises.
 >
 > `close1.jpg` took Detail rather than its filename's slot, because the watch on
@@ -164,7 +172,7 @@ has to be cropped rather than squeezed, or the export refuses the build.
 > `ss iphone field guide .00_01_53_07.Still002.jpg` is unused: a second medium,
 > close to M06.2.
 
-## Sheet 07 — Light + Sound
+## Sheet 08 — Light + Sound  ·  assets M07.x
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
@@ -176,19 +184,19 @@ has to be cropped rather than squeezed, or the export refuses the build.
 > IDs here follow page order, so M07.1 is the "before" half. The brief listed
 > window light first; the assets themselves are unchanged.
 
-## Sheet 08 — Build The Rig
+## Sheet 09 — Build The Rig  ·  assets M08.x
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
 | M08.1 | Hero flat lay | 800 × 368 visible, bleeds three edges | Stephen's kit shot top-down, even light, no props. **Group the three essentials — tripod, mic, light — apart from the rest.** The page argues that four of these items are optional, and the photograph has to agree with it, so do not lay the kit out as one uniform grid. The printed band across the lower third is reserved for the caption and must stay clear. Items: iPhone, Ulanzi MT-85, DJI Mic 2, Amaran MC, SmallRig cage and handles, SmallRig ND if available by the shoot date, Samsung T7, Anker power bank, cables. |
 
-## Sheet 09 — Workflow
+## Sheet 10 — Workflow  ·  assets M09.x
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
 | M09.1 | Screenshot | 306 × 116 | Your real edit timeline at stage 05 — A-roll laid down, before color. |
 
-## Sheet 10 — iPhone Over Camera
+## Sheet 11 — iPhone Over Camera  ·  assets M10.x
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
@@ -200,14 +208,14 @@ has to be cropped rather than squeezed, or the export refuses the build.
 > the page is stronger with the negative space. The ID is left unused rather
 > than renumbered, so it still maps to the original brief.
 
-## Sheet 11 — Field Cheat Sheet
+## Sheet 12 — Field Cheat Sheet  ·  assets M11.x
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
 | M11.1 | QR → download | — | Save the cheat sheet to your phone. |
 | M11.2 | QR → product | — | The Shooting Stars Content Framework. This is the guide's only outbound link to the flagship, so it points at wherever the Framework is actually sold or delivered, not a general homepage. |
 
-## Sheet 12 — About Stephen
+## Sheet 14 — About Stephen  ·  assets M12.x
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
@@ -251,7 +259,7 @@ it has to be shot in one sitting without relighting or reframing between the
 two frames. M03.1 is done.
 
 > This session used to list M03.3 (good / poor light) and carried a Session D
-> for M03.2 (lenses). **Both of those assets are retired** — see sheet 03 — so
+> for M03.2 (lenses). **Both of those assets are retired** — see sheet 04 — so
 > neither needs shooting, and Session D is gone with them.
 
 **Session E — gear**
@@ -266,7 +274,7 @@ M04.1, M04.2, M09.1 — device screenshots and a timeline grab.
 M05.1–M05.3. One frame, exported three times at three stages of the grade.
 
 **Session H — the contributor portrait**
-M12.1. Its own sitting, not a frame pulled from Session A: sheet 12 wants
+M12.1. Its own sitting, not a frame pulled from Session A: sheet 14 wants
 Stephen still and looking at the lens, where Session A wants him working.
 Shoot loose — the plate is a tall 1:1.9 column.
 

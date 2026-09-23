@@ -7,9 +7,13 @@ Status: design locked. Copy and media are not.
     node scripts/pdf.mjs fg    -> dist/Field-Guide-001.pdf
     node scripts/shoot.mjs fg  -> build/screens-fg/
 
-All eleven sheets are built. `p01`–`p11` are the book in order; `spec.html`
-holds the system specification sheet and is deliberately outside the build, so
-every folio matches its PDF page. The per-sheet status table is further down.
+Thirteen sheets are built, numbered for a fourteen-sheet book. `p01`–`p12` and
+`p14` are the book in order; `spec.html` holds the system specification sheet
+and is deliberately outside the build. **`p13` is reserved** for the Shooting
+Stars Content Academy page, which the Contents already lists but which has not
+been designed — so the built PDF currently runs 01–12 then 14, and folios read
+`/ 14` throughout. Filenames match page numbers, so the Academy page drops in
+as `p13.html` with nothing else to change.
 
 The exploration trees are untouched and still build: `src-field/` (Pass 02, the
 three directions) and `src-field-a/` (Pass 02.5). `src-fg/` is production.
