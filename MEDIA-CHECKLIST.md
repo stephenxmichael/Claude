@@ -96,11 +96,41 @@ against a current device before publication.
 The three frames on this page **must be the same frame from the same take**, in
 three states. Different shots break the argument the page is making.
 
+Plates are **534 × 150** (ratio 3.56, near-anamorphic) and **bleed 34px off the
+right edge** by design — `right:-34px`, `border-right:none`. A 16:9 source gives
+up exactly half its height. All three were cut with one identical crop box,
+`(0, 368, 3840, 1447)`, so the frames register exactly; re-cut one on its own
+and the sequence will jitter.
+
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M05.1 | State 01 | 500 × 155 | Ungraded Apple Log, straight off the phone. No correction, no LUT. |
-| M05.2 | State 02 | 500 × 155 | Corrected only. Exposure, white balance, contrast, natural color. No style yet. |
-| M05.3 | State 03 | 500 × 155 | Final grade — the look you would actually publish. |
+| M05.1 | State 01 | 534 × 150 | **Supplied** — `fg-m05-1.jpg` from `ungraded.jpg`. Apple Log, straight off the phone. |
+| M05.2 | State 02 | 534 × 150 | **Supplied** — `fg-m05-2.jpg` from `color corrected.jpg`. |
+| M05.3 | State 03 | 534 × 150 | **Supplied** — `fg-m05-3.jpg` from `final grade.jpg`, the same frame as sheet 06's M06.2. |
+
+The set was chosen from four rooftop candidates rendered into the live strip.
+The medium frame won because it is the only one carrying **every reference a
+correction pass acts on** — skin at readable size, a near-neutral in the grey
+shirt, a saturated primary in the red cap, and real range from blown sky to
+shadowed trees. The wide frame flatters the anamorphic crop most but puts the
+subject too far away to judge colour against; the close frame hides the face
+under the cap brim.
+
+**Verified rather than assumed.** All three register as the same frame
+(structural edge difference 1.65 and 2.22 against the ungraded, far below the
+threshold for a different take), and the tone progression is honest:
+
+| | contrast (sd) | saturation | blacks (p1) | whites (p99) |
+|---|---|---|---|---|
+| Ungraded | 41.3 | 17.6 | **56** | **201** |
+| Corrected | 66.6 | 48.5 | 19 | 231 |
+| Graded | 71.7 | 70.0 | 11 | 231 |
+
+Blacks sitting at 56 and whites held at 201 with saturation at 18 is what Log
+looks like. Correction lifts contrast 61% and nearly triples saturation; the
+grade then adds another 44% of saturation and crushes the blacks to 11. If a
+future re-export does not show that shape, the first frame is not really Log
+and the page is claiming something it does not demonstrate.
 
 ## Sheet 06 — Shoot With Intention
 
