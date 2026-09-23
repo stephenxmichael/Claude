@@ -300,8 +300,13 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
     <div class="kick" style="font-size:8px;color:var(--slate);margin-top:20px;padding-top:12px;border-top:1px solid var(--hair);line-height:1.8">
       <span style="color:var(--cobalt)">Still the camera&rsquo;s</span><br>Interchangeable lenses &middot; optical depth &middot; files that push further</div>
   </div>
-  <!-- M02.1, pre-cropped to the plate so the PDF draws it 1:1. -->
-  <img src="assets/fg-m02-1.jpg" alt="" style="position:absolute;top:260px;left:452px;width:284px;height:230px;z-index:6">
+  <!-- M02.1. The plate stays once the photograph lands — frame, ID tab and
+       corner marks all keep drawing over it. Only the shot brief comes out.
+       Pre-cropped to the plate so the PDF draws it 1:1. -->
+  <div class="plate on-dark" style="position:absolute;top:260px;left:452px;width:284px;height:230px;z-index:6">
+    <span class="p-id">M02.1</span>
+    <img src="assets/fg-m02-1.jpg" alt="" style="position:absolute;top:0;left:0;width:284px;height:230px">
+  </div>
 
   <!-- the page's strongest moment: statement on ink, paired with the nuance image -->
   <div class="band" style="top:572px;left:34px;right:0;height:200px;background:var(--ink)"></div>
@@ -376,15 +381,20 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
     <div class="hd" style="font-size:30px">Wipe The Lens.</div>
     <div style="font-size:11px;line-height:1.66;color:var(--slate);margin-top:13px">Your phone lives in your hand, your pocket and your bag. Fingerprints soften the image before you press record.</div>
   </div>
-  <!-- M03.1, pre-cropped to the plate so the PDF draws it 1:1. The two labels
-       carry the reading the placeholder used to state outright: the haze is
-       real but subtle at this size, and every other comparison in the book
-       names its halves. They sit over dark foliage, so they need no scrim. -->
-  <img src="assets/fg-m03-1.jpg" alt="" style="position:absolute;top:279px;left:380px;width:356px;height:130px;z-index:6">
-  <div style="position:absolute;top:390px;left:389px;z-index:7;font-family:'JetBrains Mono';font-size:6.5px;
-              letter-spacing:.2em;text-transform:uppercase;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.9)">Dirty</div>
-  <div style="position:absolute;top:390px;left:567px;z-index:7;font-family:'JetBrains Mono';font-size:6.5px;
-              letter-spacing:.2em;text-transform:uppercase;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.9)">Clean</div>
+  <!-- M03.1. The plate stays once the photograph lands — frame, ID tab and
+       corner marks all keep drawing over it. Pre-cropped so the PDF draws it
+       1:1. The two labels carry what the shot brief used to state outright:
+       the haze is real but subtle at this size, and every other comparison in
+       the book names its halves. Inset clear of the bottom-left corner mark,
+       and over dark foliage, so they need no scrim. -->
+  <div class="plate" style="position:absolute;top:279px;left:380px;width:356px;height:130px;z-index:6">
+    <span class="p-id">M03.1</span>
+    <img src="assets/fg-m03-1.jpg" alt="" style="position:absolute;top:0;left:0;width:356px;height:130px">
+    <span style="position:absolute;left:24px;bottom:10px;z-index:4;font-family:'JetBrains Mono';font-size:6.5px;
+                 letter-spacing:.2em;text-transform:uppercase;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.9)">Dirty</span>
+    <span style="position:absolute;left:202px;bottom:10px;z-index:4;font-family:'JetBrains Mono';font-size:6.5px;
+                 letter-spacing:.2em;text-transform:uppercase;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.9)">Clean</span>
+  </div>
 
   <div class="cobalt" style="position:absolute;top:443px;left:64px;width:672px;padding:24px 28px 20px;z-index:6">
     <div style="display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono';font-size:8.5px;

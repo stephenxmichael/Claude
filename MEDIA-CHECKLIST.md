@@ -16,6 +16,14 @@ where any photo is drawn at an aspect other than its own, because a scaled photo
 smeared on iOS once already. Entries below are marked **Supplied** as they
 arrive.
 
+**A placed photograph keeps its plate.** The frame, the cobalt ID tab and the
+corner marks all stay and draw over the image; only the shot brief inside comes
+out. Without them a photograph floats loose on a page where everything else is
+held in structure. Put the `<img>` inside the `.plate` at the plate's exact
+pixel size — `width:100%` is a hair short, because the 1px border shrinks the
+padding box and the aspect drifts. **The cover is the one exception**: M01.1
+bleeds to three edges and carries no plate.
+
 ---
 
 ## Sheet 01 — Cover
