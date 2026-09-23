@@ -215,6 +215,16 @@ has to be cropped rather than squeezed, or the export refuses the build.
 | M11.1 | QR → download | — | Save the cheat sheet to your phone. |
 | M11.2 | QR → product | — | The Shooting Stars Content Framework. This is the guide's only outbound link to the flagship, so it points at wherever the Framework is actually sold or delivered, not a general homepage. |
 
+## Sheet 13 — Shooting Stars Content Academy  ·  no assets
+
+**Nothing to shoot.** The page is typographic by design: it sits between two
+photography-led sheets and earns its place by contrasting with them. Its only
+visual element is the orbital brand mark, set low and right at .055 and cropped
+by the closing cobalt band.
+
+> The **Explore Shooting Stars** line carries no destination yet. No URL was
+> invented; the href goes on that one element when the Academy address exists.
+
 ## Sheet 14 — About Stephen  ·  assets M12.x
 
 | ID | Type | Spec | Direction |
