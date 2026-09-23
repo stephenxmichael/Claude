@@ -10,8 +10,13 @@ real work, real gear, or a real capture from your own device.
 Dimensions are the plate size at the page's 800 × 1120 geometry. Shoot larger
 and crop down — never upscale to fit.
 
-Assets land in `assets/` as `fg-m<sheet>-<n>.jpg`, pre-cropped to exactly 2× the
-plate. Pre-cropping is not housekeeping: the PDF export refuses to write a file
+Assets land in `assets/` as `fg-m<sheet>-<n>.jpg`, pre-cropped to the plate's
+exact ratio. **Store at 3.2× the plate or better** — the book prints, and at
+300dpi on an A4/Letter sheet the 800 × 1120 layout scales by ~3.2. Where the
+source allows it, 4× is cleaner because it is an exact multiple of the plate.
+Originals now come through **Google Drive, not chat**: chat caps uploads at
+2000px on the long edge and strips EXIF, which is enough for screen but short
+of print on the larger plates. Pre-cropping is not housekeeping: the PDF export refuses to write a file
 where any photo is drawn at an aspect other than its own, because a scaled photo
 smeared on iOS once already. Entries below are marked **Supplied** as they
 arrive.
@@ -88,16 +93,27 @@ three states. Different shots break the argument the page is making.
 
 Six frames of **one subject, in the same light, before the camera moves.** The
 strongest version of this page is one coherent sequence, not six unrelated
-example images.
+example images. The supplied set delivers exactly that: one rooftop, one
+skyline, one golden hour.
+
+Plates are **286 × 161** (ratio 1.7764), which is *not* quite true 16:9
+(1.7778). A 3840 × 2160 frame therefore loses 3px of width — trivial, but it
+has to be cropped rather than squeezed, or the export refuses the build.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M06.1 | Video frame | 300 × 169, 16:9 | Wide — set the scene. |
-| M06.2 | Video frame | 300 × 169, 16:9 | Medium — bring us closer. |
-| M06.3 | Video frame | 300 × 169, 16:9 | Close — create emphasis. |
-| M06.4 | Video frame | 300 × 169, 16:9 | Detail — hands, texture, a product, a button being pressed. |
-| M06.5 | Video frame | 300 × 169, 16:9 | Movement — a push, a pan, parallax, or following the subject. |
-| M06.6 | Video frame | 300 × 169, 16:9 | Reveal — start hidden, end on the thing. |
+| M06.1 | Video frame | 286 × 161 | **Supplied** — `fg-m06-1.jpg` from `wide.jpg`. Wide: subject small on the rooftop, skyline behind, planting in the foreground. |
+| M06.2 | Video frame | 286 × 161 | **Supplied** — `fg-m06-2.jpg` from `medium.jpg`. Medium: subject from the waist, skyline behind. |
+| M06.3 | Video frame | 286 × 161 | **Supplied** — `fg-m06-3.jpg` from `close.jpg`. Close: hands to the cap brim, face part-hidden. |
+| M06.4 | Video frame | 286 × 161 | **Supplied** — `fg-m06-4.jpg` from `close1.jpg`. Detail: watch on the wrist. Matches the sheet's own caption — *hands, texture, a product* — word for word. |
+| M06.5 | Video frame | 286 × 161 | **Still open.** Movement — a push, a pan, parallax, or following the subject. The hard one: movement is temporal, so the still has to imply it. A frame mid-push with motion blur, or one where the parallax between foreground planting and skyline is obvious, will read. |
+| M06.6 | Video frame | 286 × 161 | **Supplied** — `fg-m06-6.jpg` from `detail.jpg`. Reveal: shot through foreground grass to the towers. Matches the sheet's caption — *hide part of the frame, then reveal what matters*. |
+
+> The Drive folder named that last frame `detail.jpg`. It is used for **Reveal**
+> instead, and `close1.jpg` took Detail, because each then matches the locked
+> caption beneath it exactly. Rendered both ways before choosing. `ss iphone
+> field guide .00_01_53_07.Still002.jpg` is unused — a second medium, close to
+> M06.2.
 
 ## Sheet 07 — Light + Sound
 
@@ -159,7 +175,8 @@ M01.1, M02.1, M02.2 — one location, one afternoon. M01.1 is the cover and
 deserves the most attention; the other two can come from the same setup.
 
 **Session B — the six-frame coverage set**
-M06.1–M06.6. One subject, one light, six frames, before the camera moves.
+Five of six are in from the rooftop set. **Only M06.5 (Movement) is left**, and
+it has to come from that same rooftop in that same light or the sequence breaks.
 M10.1 and M10.2 can be pulled from existing published work instead.
 
 **Session C — comparisons, shot back to back**
