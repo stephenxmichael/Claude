@@ -22,7 +22,18 @@ as they arrive.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M01.1 | Photograph | 766 × 616, full bleed | **Supplied** &mdash; `assets/fg-m01-1.jpg`, cover-cropped to 1532 × 1232 (2×). Subject left, foreground phone right, concrete behind. The frame runs bright across the top, so the sheet carries a scrim under the masthead row; that treatment belongs to this image and comes off with it if the frame is ever replaced. |
+| M01.1 | Photograph · product | 766 × 616, full bleed | **Supplied** &mdash; `assets/fg-m01-1.jpg`, cropped from 3:2 to 1532 × 1232 (2×), 240px off the empty left and 101px off the right where the phone already bleeds. Titanium iPhone on asphalt, hard diagonal, shallow depth. The frame runs dark across the top (luma ≈ 48), so the masthead sits straight on the photograph with **no scrim** &mdash; if this frame is ever swapped for a brighter one, that type will need a gradient under it again. |
+
+The cover also carries two marks that belong to the sheet rather than to the
+photograph: the orbital brand badge centred in the masthead, and the credit
+line **Photography by Stephen Michael** set bottom-left inside the frame. The
+credit is there because every photograph in this guide is Stephen's own, and
+the book should say so.
+
+> `assets/fg-m01-1-creator-unused.jpg` is the first cover candidate &mdash;
+> Stephen shooting, with a foreground phone. **Not in the build.** It was
+> passed over because a product frame reads more premium at thumbnail size,
+> and it is kept because it is a real frame that suits M02.1's brief closely.
 
 ## Sheet 02 — Stop Treating It Like A Phone
 
