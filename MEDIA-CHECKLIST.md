@@ -83,8 +83,13 @@ against a current device before publication.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M04.1 | Screenshot · UI crop | 304 × 90 | Native camera mid-record. Crop from a real device capture. |
-| M04.2 | Screenshot · UI crop | 304 × 90 | Blackmagic Camera with manual controls on screen. |
+| M04.1 | Photograph · device | 304 × 90 | **Still open, and the brief has changed.** Native camera mid-record, shot as a *photograph of the phone* — not a flat screengrab. Match M04.2: same angle, same surface, same light. These two sit side by side as the page's whole argument, so a screenshot opposite a photograph would read as a mistake. |
+| M04.2 | Photograph · device | 304 × 90 | **Supplied** — `fg-m04-2.jpg` at 1216 × 360 (4×) from Drive's `mo4.2.jpg` (2048 × 1366). Phone on a wood surface running Blackmagic, shot at an angle. Cropped 1450 × 429 on the control cluster: record button, the highlighted 24mm and the focal ladder, the audio meters. The full-width band was tried and rejected — the plate is only 304px wide and the controls went unreadable. |
+
+> The supplied frame is a **photograph of the device**, not the screenshot the
+> brief originally asked for. That is the better call — it suits the book's
+> "real work, real gear" rule far more than a screengrab — but it changes what
+> M04.1 has to be, so its plate now briefs a photograph too.
 
 ## Sheet 05 — Build The Image
 
