@@ -18,6 +18,12 @@ Originals now come through **Google Drive, not chat**: chat caps uploads at
 2000px on the long edge and strips EXIF, which is enough for screen but short
 of print on the larger plates.
 
+**Keep Drive files under ~3.5MB.** The connector documents a 10MB download cap
+but the real transport ceiling is far lower — 3.27MB pulls cleanly, 7.59MB kills
+the session every time, and 21MB is refused outright. This is not a resolution
+limit: the cover came through at **8192 × 5464 in 3.2MB** at JPEG quality ~80.
+Export quality, not pixels, is what to trade away.
+
 Pre-cropping is not housekeeping: the PDF export refuses to write a file where
 any photo is drawn at an aspect other than its own, because a scaled photo
 smeared on iOS once already. Entries below are marked **Supplied** as they
@@ -37,7 +43,7 @@ bleeds to three edges and carries no plate.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M01.1 | Photograph · product | 766 × 616, full bleed | **Supplied** &mdash; `assets/fg-m01-1.jpg`, cropped from 3:2 to 1532 × 1232 (2×), 240px off the empty left and 101px off the right where the phone already bleeds. Titanium iPhone on asphalt, hard diagonal, shallow depth. The frame runs dark across the top (luma ≈ 48), so the masthead sits straight on the photograph with **no scrim** &mdash; if this frame is ever swapped for a brighter one, that type will need a gradient under it again. |
+| M01.1 | Photograph · product | 766 × 616, full bleed | **Supplied at print resolution** &mdash; `assets/fg-m01-1.jpg` at **3064 × 2464 (4×)**, from Drive's `final cover.jpg` at 8192 × 5464. Cropped 3:2 → 1.2435 keeping full height, taking the empty left and the right edge where the phone already bleeds; the framing is the approved one, scaled up, not re-judged. 300dpi print needs 2444px, so this clears it by 1.25× from a 6795px crop. Titanium iPhone on asphalt, hard diagonal, shallow depth. The frame runs dark across the top (**luma 49.4**, re-measured on this export against 48 on the last), so the masthead sits straight on the photograph with **no scrim** &mdash; swap in a brighter frame and that type needs a gradient under it again. |
 
 The cover also carries two marks that belong to the sheet rather than to the
 photograph: the orbital brand badge centred in the masthead, and the credit
