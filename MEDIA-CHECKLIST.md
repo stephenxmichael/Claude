@@ -10,13 +10,19 @@ real work, real gear, or a real capture from your own device.
 Dimensions are the plate size at the page's 800 × 1120 geometry. Shoot larger
 and crop down — never upscale to fit.
 
+Assets land in `assets/` as `fg-m<sheet>-<n>.jpg`, pre-cropped to exactly 2× the
+plate. Pre-cropping is not housekeeping: the PDF export refuses to write a file
+where a photo has been scaled to fit its box, because the renderer leaves 1px
+edge strips that smear the frame on iOS. Entries below are marked **Supplied**
+as they arrive.
+
 ---
 
 ## Sheet 01 — Cover
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M01.1 | Photograph | 766 × 616, full bleed | Stephen shooting on iPhone. Shoot zones are marked on the plate: subject right of centre, phone and rig visible, upper-left kept clear for the masthead. Cinematic, not a product shot. |
+| M01.1 | Photograph | 766 × 616, full bleed | **Supplied** &mdash; `assets/fg-m01-1.jpg`, cover-cropped to 1532 × 1232 (2×). Subject left, foreground phone right, concrete behind. The frame runs bright across the top, so the sheet carries a scrim under the masthead row; that treatment belongs to this image and comes off with it if the frame is ever replaced. |
 
 ## Sheet 02 — Stop Treating It Like A Phone
 
