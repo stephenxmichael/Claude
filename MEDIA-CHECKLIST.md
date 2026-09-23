@@ -50,7 +50,7 @@ against a current device before publication.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M03.1 | Comparison | 356 × 130 | Dirty lens against clean lens. **Same shot, same light, wipe between the two frames** — the only variable is the glass. |
+| M03.1 | Comparison | 356 × 130 | **Supplied** &mdash; `assets/fg-m03-1.jpg` at 712 × 260 (2×). Arrived as a finished diptych at exactly the plate's 2.74 ratio, so it is placed with no crop at all. Haze and veiled contrast on the left, clear on the right. The sheet labels the halves **Dirty** and **Clean** in mono over the foliage, because the difference is real but subtle at 356px and every other comparison in the book names its halves. |
 
 > M03.2 (one subject on each lens) and M03.3 (good light against poor light)
 > are both **retired.** M03.3 duplicated sheet 07, which carries that
@@ -155,12 +155,13 @@ M06.1–M06.6. One subject, one light, six frames, before the camera moves.
 M10.1 and M10.2 can be pulled from existing published work instead.
 
 **Session C — comparisons, shot back to back**
-M03.1 (dirty / clean lens), M03.3 (good / poor light), M07.1 and M07.2
-(overhead / window). Each pair changes exactly one variable, so each pair has
-to be shot in one sitting without relighting or reframing between frames.
+M07.1 and M07.2 (overhead / window). The pair changes exactly one variable, so
+it has to be shot in one sitting without relighting or reframing between the
+two frames. M03.1 is done.
 
-**Session D — lenses**
-M03.2. One subject, each available camera, from the same standing position.
+> This session used to list M03.3 (good / poor light) and carried a Session D
+> for M03.2 (lenses). **Both of those assets are retired** — see sheet 03 — so
+> neither needs shooting, and Session D is gone with them.
 
 **Session E — gear**
 M08.1 (the flat lay) plus M07.3 and M07.4 (light and audio in use). Same kit,
