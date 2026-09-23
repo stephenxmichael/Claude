@@ -39,7 +39,7 @@ the book should say so.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M02.1 | Photograph · primary | 284 × 230, 5:4 | **Supplied** &mdash; `assets/fg-m02-1.jpg` at 568 × 460 (2×). Cropped tight to the act: phone, hands, face and the reach, cap to lap, with lead room on the left where he is aiming. The plate is small, so a wider frame would have lost the gesture at print size. |
+| M02.1 | Photograph · primary | 284 × 230, 5:4 | **Supplied** &mdash; `assets/fg-m02-1.jpg` at 568 × 460 (2×). Phone, hands, face and the reach, with lead room on the left where he is aiming. Carries **15% headroom above the cap** and clear margin on both edges: the first crop was tighter and read as boxed-in at plate size. Going wider still was tried and rejected &mdash; at 284px the subject goes small and the block he is sitting on intrudes bottom-right. |
 | M02.2 | Photograph · nuance | 236 × 144 | The iPhone beside the pro camera. Both belong to one kit — this is the shot that stops the page reading as anti-camera. |
 
 ## Sheet 03 — Get Your iPhone Right
