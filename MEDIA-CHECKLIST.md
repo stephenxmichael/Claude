@@ -106,7 +106,7 @@ has to be cropped rather than squeezed, or the export refuses the build.
 |---|---|---|---|
 | M06.1 | Video frame | 286 × 161 | **Supplied** — `fg-m06-1.jpg` from `wide.jpg`. Wide: subject small on the rooftop, skyline behind, planting in the foreground. |
 | M06.2 | Video frame | 286 × 161 | **Supplied** — `fg-m06-2.jpg` from `medium.jpg`. Medium: subject from the waist, skyline behind. |
-| M06.3 | Video frame | 286 × 161 | **Supplied** — `fg-m06-3.jpg` from `close.jpg`. Close: hands to the cap brim, face part-hidden. |
+| M06.3 | Video frame | 286 × 161 | **Supplied** — `fg-m06-3.jpg` from `close.jpg`, punched in **1.33×** (2880 × 1621 of the 4K frame). The full frame read too wide for a close beside M06.2. Tighter was tried at 1.5× and rejected: it clipped the watch and bracelet at the edges and cut the chin off the bottom, losing the face. |
 | M06.4 | Video frame | 286 × 161 | **Supplied** — `fg-m06-4.jpg` from `close1.jpg`. Detail: watch on the wrist. Matches the sheet's own caption — *hands, texture, a product* — word for word. |
 | M06.5 | Video frame | 286 × 161 | **Still open.** Movement — a push, a pan, parallax, or following the subject. The hard one: movement is temporal, so the still has to imply it. A frame mid-push with motion blur, or one where the parallax between foreground planting and skyline is obvious, will read. |
 | M06.6 | Video frame | 286 × 161 | **Supplied** — `fg-m06-6.jpg` from `detail.jpg`. Reveal: shot through foreground grass to the towers. Matches the sheet's caption — *hide part of the frame, then reveal what matters*. |
