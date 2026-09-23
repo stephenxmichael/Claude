@@ -12,9 +12,9 @@ and crop down — never upscale to fit.
 
 Assets land in `assets/` as `fg-m<sheet>-<n>.jpg`, pre-cropped to exactly 2× the
 plate. Pre-cropping is not housekeeping: the PDF export refuses to write a file
-where a photo has been scaled to fit its box, because the renderer leaves 1px
-edge strips that smear the frame on iOS. Entries below are marked **Supplied**
-as they arrive.
+where any photo is drawn at an aspect other than its own, because a scaled photo
+smeared on iOS once already. Entries below are marked **Supplied** as they
+arrive.
 
 ---
 
@@ -31,15 +31,15 @@ credit is there because every photograph in this guide is Stephen's own, and
 the book should say so.
 
 > `assets/fg-m01-1-creator-unused.jpg` is the first cover candidate &mdash;
-> Stephen shooting, with a foreground phone. **Not in the build.** It was
-> passed over because a product frame reads more premium at thumbnail size,
-> and it is kept because it is a real frame that suits M02.1's brief closely.
+> Stephen shooting, with a foreground phone. **Not in the build**, and no
+> longer needed for M02.1, which has its own frame. Kept because it is a real
+> usable frame if another slot ever wants it.
 
 ## Sheet 02 — Stop Treating It Like A Phone
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M02.1 | Photograph · primary | 284 × 230, 5:4 | Stephen shooting on iPhone. Documentary, mid-make, not posed. |
+| M02.1 | Photograph · primary | 284 × 230, 5:4 | **Supplied** &mdash; `assets/fg-m02-1.jpg` at 568 × 460 (2×). Cropped tight to the act: phone, hands, face and the reach, cap to lap, with lead room on the left where he is aiming. The plate is small, so a wider frame would have lost the gesture at print size. |
 | M02.2 | Photograph · nuance | 236 × 144 | The iPhone beside the pro camera. Both belong to one kit — this is the shot that stops the page reading as anti-camera. |
 
 ## Sheet 03 — Get Your iPhone Right
