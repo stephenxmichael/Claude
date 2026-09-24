@@ -71,7 +71,7 @@ the book should say so.
 | ID | Type | Spec | Direction |
 |---|---|---|---|
 | M02.1 | Photograph · primary | 224 × 224 window in a 252 × 306 Polaroid | **Supplied at print resolution** &mdash; `assets/fg-m02-1-polaroid.jpg` at 896 × 896 (4×), cut square from the 2000px chat original. Phone, hands, face and the reach, with lead room on the left where he is aiming and clear headroom above the cap. Set as a Polaroid tilted &minus;2.4°, captioned in the bottom margin in the book's mono: **SSCA &mdash; &ldquo;Creating a Brighter Tomorrow&rdquo;**. Typeset, not handwritten: a signature would have to be a scan of the real thing. `assets/fg-m02-1.jpg` (the 568 × 460 landscape cut) stays for the archived plate version in `comps/p03-A-plate.html`. |
-| M02.2 | Photograph · nuance | 236 × 144 | The iPhone beside the pro camera. Both belong to one kit — this is the shot that stops the page reading as anti-camera. |
+| M02.2 | Photograph · nuance | 236 × 144 | **Supplied at print resolution** &mdash; `assets/fg-m02-2.jpg` at 944 × 576 (4×), from Drive's `m02.2.png` at 1536 × 1024. Cut to the plate's 236:144 at full width, trimming the ledge at the bottom: the cage's top handle already meets the top edge, so nothing came off the top. The iPhone beside the FX3 in its SmallRig cage &mdash; both belong to one kit, which is the shot that stops the page reading as anti-camera. |
 
 ## Sheet 04 — Get Your Settings Right  ·  assets M03.x
 
@@ -259,8 +259,7 @@ concrete.
 Most of this collapses into a small number of sessions.
 
 **Session A — Stephen shooting (documentary)**
-M01.1, M02.1, M02.2 — one location, one afternoon. M01.1 is the cover and
-deserves the most attention; the other two can come from the same setup.
+M01.1, M02.1, M02.2 — one location, one afternoon. **All three are in.**
 
 **Session B — the six-frame coverage set**
 **Complete.** All six are in from one rooftop, one skyline, one golden hour.

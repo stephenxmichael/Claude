@@ -107,6 +107,15 @@ as every logo in the book); zero-blur shadows are plain vector and are fine.
 `scripts/pdf.mjs` refuses a blurred shadow by name, and checks the written
 file for any soft mask that paints an image, whatever produced it.
 
+Repeating backgrounds have the same kind of problem. Chrome writes one as a
+tiling pattern, and on any page that also carries a blend mode (the grain)
+iOS draws the pattern 4.17× too large: the 40px grid came out as ~167px
+squares on iPhone. The grid is therefore one non-repeating 1px layer per
+line, which lands as a thin filled rectangle wherever the viewer puts the
+pattern. The placeholder hatch and the grain still tile, so on iPhone the
+hatch stripes draw wide and the grain slightly coarse; the hatch goes as
+each photograph lands.
+
 ## Still needed
 
 ### Photography — four of six plates filled

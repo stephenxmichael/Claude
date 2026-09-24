@@ -64,11 +64,17 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
 .grain::after{content:'';position:absolute;inset:0;opacity:.055;mix-blend-mode:overlay;pointer-events:none;z-index:1;
  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 /* 40px grid. Structure, never noise: drop it on any page where photography
-   needs the room. */
-.g40::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
- background-image:linear-gradient(rgba(43,92,230,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(43,92,230,.07) 1px,transparent 1px);
- background-size:40px 40px}
-.dark.g40::before,.cobalt.g40::before{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px)}
+   needs the room. Every line is its own non-repeating 1px layer, never a
+   repeating 40px tile: Chrome writes a repeating background into the PDF as
+   a tiling pattern, and on any page that also carries a blend mode (the
+   grain) iOS draws that pattern 4.17x too large, so the squares came out at
+   ~167px. Same lines, same colour, same doubled crossings as the tile. */
+.g40::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;--gl:rgba(43,92,230,.07);
+ background-image:linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl));
+ background-size:1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px;
+ background-position:0px 0,40px 0,80px 0,120px 0,160px 0,200px 0,240px 0,280px 0,320px 0,360px 0,400px 0,440px 0,480px 0,520px 0,560px 0,600px 0,640px 0,680px 0,720px 0,760px 0,0 0px,0 40px,0 80px,0 120px,0 160px,0 200px,0 240px,0 280px,0 320px,0 360px,0 400px,0 440px,0 480px,0 520px,0 560px,0 600px,0 640px,0 680px,0 720px,0 760px,0 800px,0 840px,0 880px,0 920px,0 960px,0 1000px,0 1040px,0 1080px;
+ background-repeat:no-repeat}
+.dark.g40::before,.cobalt.g40::before{--gl:rgba(255,255,255,.04)}
 .glow{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0}
 /* full-bleed structural block: a surface, not content */
 .band{position:absolute;pointer-events:none}
@@ -441,13 +447,12 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
     <div class="hd" style="font-size:34px;color:var(--volt);margin-top:11px">It&rsquo;s A Series</div>
     <div class="hd" style="font-size:34px;color:var(--volt)">Of Decisions.</div>
   </div>
+  <!-- M02.2. The plate stays once the photograph lands: frame, ID tab and
+       corner marks all keep drawing over it. Pre-cropped to the plate so the
+       PDF draws it 1:1. -->
   <div class="plate on-dark" style="position:absolute;top:596px;left:500px;width:236px;height:144px;z-index:6">
     <span class="p-id">M02.2</span>
-    <div class="p-in sm" style="max-width:190px">
-      <span class="p-type">Photo &middot; Nuance</span>
-      <span class="p-subj">iPhone beside the pro camera</span>
-      <span class="p-spec">236 &times; 144 &middot; both in one kit</span>
-    </div>
+    <img src="assets/fg-m02-2.jpg" alt="" style="position:absolute;top:0;left:0;width:236px;height:144px">
   </div>
 
   <div style="position:absolute;top:818px;left:64px;width:356px;z-index:6">
