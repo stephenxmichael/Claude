@@ -70,7 +70,7 @@ the book should say so.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M02.1 | Photograph · primary | 210 × 210 window in a 236 × 287 Polaroid | **Supplied at print resolution** &mdash; `assets/fg-m02-1-polaroid.jpg` at 840 × 840 (4×), cut square from the 2000px chat original. Phone, hands, face and the reach, with lead room on the left where he is aiming and clear headroom above the cap. Set as a Polaroid tilted &minus;2.4°, captioned in the bottom margin in the book's mono: **SSCA &mdash; &ldquo;Creating a Brighter Tomorrow&rdquo;**. Typeset, not handwritten: a signature would have to be a scan of the real thing. `assets/fg-m02-1.jpg` (the 568 × 460 landscape cut) stays for the archived plate version in `comps/p03-A-plate.html`. |
+| M02.1 | Photograph · primary | 224 × 224 window in a 252 × 306 Polaroid | **Supplied at print resolution** &mdash; `assets/fg-m02-1-polaroid.jpg` at 896 × 896 (4×), cut square from the 2000px chat original. Phone, hands, face and the reach, with lead room on the left where he is aiming and clear headroom above the cap. Set as a Polaroid tilted &minus;2.4°, captioned in the bottom margin in the book's mono: **SSCA &mdash; &ldquo;Creating a Brighter Tomorrow&rdquo;**. Typeset, not handwritten: a signature would have to be a scan of the real thing. `assets/fg-m02-1.jpg` (the 568 × 460 landscape cut) stays for the archived plate version in `comps/p03-A-plate.html`. |
 | M02.2 | Photograph · nuance | 236 × 144 | The iPhone beside the pro camera. Both belong to one kit — this is the shot that stops the page reading as anti-camera. |
 
 ## Sheet 04 — Get Your Settings Right  ·  assets M03.x

@@ -21,31 +21,32 @@
       <span style="color:var(--cobalt)">Still the camera&rsquo;s</span><br>Interchangeable lenses &middot; optical depth &middot; files that push further</div>
   </div>
   <!-- M02.1 as a Polaroid. The frame follows Polaroid 600 proportions
-       (88.9 x 108 mm, 79 mm square window): 236 x 287 here, a 210 square
-       window, the deep bottom margin carrying the caption. It is still a
+       (88.9 x 108 mm, 79 mm square window): 252 x 306 here, a 224 square
+       window, the deep bottom margin carrying the caption. The top edge is
+       centred on y 220, the middle of the grid square under LIKE A PHONE. It is still a
        .plate, so it keeps its M02.1 tab; the corner marks are switched off
        because the white frame is the border now. The caption is set in the
        book's mono, not as handwriting: handwriting only ever appears as a
        scan of the real thing. Pre-cropped square so the PDF draws it 1:1. -->
-  <div style="position:absolute;top:258px;left:480px;width:236px;height:287px;z-index:6;transform:rotate(-2.4deg)">
+  <div style="position:absolute;top:220px;left:472px;width:252px;height:306px;z-index:6;transform:rotate(-2.4deg)">
     <!-- The shadow is cast by filter:drop-shadow() from two white cards hidden
          under the frame, never by a blurred box-shadow. Chrome writes a blurred
          box-shadow into the PDF as a soft-masked fill, and iOS ignores the mask
          and paints a solid grey block; a filter is flattened into an ordinary
          transparent image, which every viewer draws. The inset card reproduces
-         the old 0 14px 28px -10px drop exactly (drop-shadow blur is a standard
+         the old 0 14px 28px -10px drop, scaled with the frame (drop-shadow blur is a standard
          deviation, box-shadow blur twice that). scripts/pdf.mjs now refuses a
          blurred box- or text-shadow anywhere in the book. -->
-    <div style="position:absolute;inset:10px;background:#fff;filter:drop-shadow(0 14px 14px rgba(8,8,12,.38))"></div>
+    <div style="position:absolute;inset:11px;background:#fff;filter:drop-shadow(0 15px 15px rgba(8,8,12,.38))"></div>
     <div style="position:absolute;inset:0;background:#fff;filter:drop-shadow(0 1px 1px rgba(8,8,12,.1))"></div>
     <div class="plate" style="position:absolute;inset:0;--cm:transparent;border:none;
                 background:linear-gradient(162deg,#FFFFFF 0%,#FBFAF7 55%,#F2F0EB 100%);box-shadow:0 0 0 1px rgba(8,8,12,.05)">
       <span class="p-id">M02.1</span>
-      <div style="position:absolute;top:16px;left:13px;width:210px;height:210px;overflow:hidden;background:var(--ink)">
-        <img src="assets/fg-m02-1-polaroid.jpg" alt="" style="position:absolute;top:0;left:0;width:210px;height:210px">
+      <div style="position:absolute;top:17px;left:14px;width:224px;height:224px;overflow:hidden;background:var(--ink)">
+        <img src="assets/fg-m02-1-polaroid.jpg" alt="" style="position:absolute;top:0;left:0;width:224px;height:224px">
         <div style="position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(8,8,12,.16),inset 0 1px 0 rgba(8,8,12,.16)"></div>
       </div>
-      <div style="position:absolute;left:0;right:0;top:250px;text-align:center;font-family:'JetBrains Mono';font-size:7px;
+      <div style="position:absolute;left:0;right:0;top:267px;text-align:center;font-family:'JetBrains Mono';font-size:7.5px;
                   letter-spacing:.14em;text-transform:uppercase;color:var(--ink);white-space:nowrap"><b style="font-weight:600;color:var(--cobalt)">SSCA</b> &mdash; &ldquo;Creating a Brighter Tomorrow&rdquo;</div>
     </div>
   </div>

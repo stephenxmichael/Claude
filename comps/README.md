@@ -30,7 +30,7 @@ had before `final cover.jpg` came through Drive.
 # Page 03 — Polaroid
 
 **The Polaroid is live** in `src-fg/pages/p03.html`. M02.1 is recut square
-(`assets/fg-m02-1-polaroid.jpg`, 840 × 840, 4× the 210 window) and set in a
+(`assets/fg-m02-1-polaroid.jpg`, 896 × 896, 4× the 224 window) and set in a
 Polaroid 600 frame tilted −2.4°, keeping its M02.1 tab. The bottom margin
 carries a typeset caption in the book's mono: SSCA — “Creating a Brighter
 Tomorrow”. The first comp held that margin for a signature scan (M02.3); the
