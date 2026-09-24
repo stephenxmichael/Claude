@@ -93,7 +93,7 @@ against a current device before publication.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M04.1 | Photograph · device | 304 × 90 | **Still open, and the brief has changed.** Native camera mid-record, shot as a *photograph of the phone* — not a flat screengrab. Match M04.2: same angle, same surface, same light. These two sit side by side as the page's whole argument, so a screenshot opposite a photograph would read as a mistake. |
+| M04.1 | Photograph · device | 304 × 90 | **Supplied** &mdash; `fg-m04-1.jpg` at 1216 × 360 (4×) from Drive's `m04.1.jpg` (8163 × 2974). The native Camera app mid-record, shot as a photograph of the phone on a stand. Cropped 3962 × 1173 on the controls: the zoom row, pause, the red stop button and the shutter, with the phone's frame in at both edges. Shot straight-on against grey where M04.2 is angled on wood; both are photographs of the device, which is what the pair needs. |
 | M04.2 | Photograph · device | 304 × 90 | **Supplied** — `fg-m04-2.jpg` at 1216 × 360 (4×) from Drive's `mo4.2.jpg` (2048 × 1366). Phone on a wood surface running Blackmagic, shot at an angle. Cropped 1450 × 429 on the control cluster: record button, the highlighted 24mm and the focal ladder, the audio meters. The full-width band was tried and rejected — the plate is only 304px wide and the controls went unreadable. |
 
 > The supplied frame is a **photograph of the device**, not the screenshot the
@@ -281,7 +281,8 @@ rest, so the photograph carries the page's argument, and
 keep its top-right corner clear for the M08.2 kit link.
 
 **Session F — captures, no shoot required**
-M04.1, M04.2, M09.1 — device screenshots and a timeline grab.
+M09.1 — a timeline grab. M04.1 and M04.2 came in as photographs of the
+phone rather than screenshots, and both are in.
 
 **Session G — the grade set**
 M05.1–M05.3. One frame, exported three times at three stages of the grade.
