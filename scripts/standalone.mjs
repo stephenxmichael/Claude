@@ -4,9 +4,11 @@
 // alongside it. Run after build.mjs.
 import { readFileSync, writeFileSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
+import { pickProduct } from "./products.mjs";
 
-const SRC = "dist/shooting-stars-ebook.html";
-const OUT = "dist/Shooting-Stars-Content-Framework.html";
+const { product } = pickProduct(process.argv.slice(2));
+const SRC = product.out;
+const OUT = product.standalone;
 const MIME = { png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg", svg: "image/svg+xml", webp: "image/webp" };
 
 const cache = new Map();

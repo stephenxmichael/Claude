@@ -10,28 +10,32 @@
 // Usage: node scripts/audit.mjs [from] [to]
 import { chromium } from "playwright";
 import { resolve } from "node:path";
+import { pickProduct } from "./products.mjs";
 
+const { product, rest: argvRest } = pickProduct(process.argv.slice(2));
 const W = 800, H = 1120;
-const LEFT = 74, RIGHT = 74, HUD = 56, SPINE = 34;
+// Page geometry differs per product: the guide runs a 64px margin and a 52px
+// HUD against the Framework's 74/56.
+const { left: LEFT, right: RIGHT, hud: HUD, spine: SPINE } = product.geom;
 // Calibrated against Stephen's own pages 1-12, which are the reference for
 // what "correct" looks like. He routinely leaves 300px of air mid-page, so a
 // gap is only worth reporting past that; anything tighter is his house style.
 const GAP_LIMIT = 330;  // vertical emptiness beyond anything in the reference pages
 const TIGHT_LIMIT = 5;  // blocks this close are probably colliding
 
-const args = process.argv.slice(2);
+const args = argvRest;
 const from = args[0] ? +args[0] : 1;
 const to = args[1] ? +args[1] : Infinity;
 
 const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
 const page = await browser.newPage({ viewport: { width: W + 120, height: H } });
-await page.goto("file://" + resolve("dist/shooting-stars-ebook.html"), { waitUntil: "networkidle" });
+await page.goto("file://" + resolve(product.out), { waitUntil: "networkidle" });
 await page.evaluate(() => document.fonts.ready);
 
 const report = await page.evaluate(
   ({ W, H, LEFT, RIGHT, HUD, SPINE, GAP_LIMIT, TIGHT_LIMIT }) => {
     // Running marks are positioned deliberately and are not content.
-    const CHROME = ["glow", "spine", "ticks", "hud", "folio", "tag"];
+    const CHROME = ["glow", "band", "spine", "ticks", "frames", "vf", "hud", "folio", "tag"];
     const out = [];
 
     document.querySelectorAll(".page").forEach((pg, idx) => {

@@ -1,0 +1,1609 @@
+<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Field Guide 001</title><style>
+/* ══════════════════════════════════════════════════════════════════
+   SHOOTING STARS FIELD GUIDES — LOCKED DESIGN SYSTEM
+   Field Guide 001, "Your iPhone Is A Cinema Camera".
+
+   Approved: Direction A (Cobalt Field Guide) as the foundation, carrying
+   Direction B's confidence with photography and Direction C's technical
+   micro-details. A is the identity; B and C are influences, not equals.
+
+   This file is the component library for the eleven-page build. Add pages
+   against it; do not re-derive it per page, and do not add fonts or colours.
+
+   COLOUR ROLES — the primary tell against the Content Framework
+     cobalt   primary identity        .cobalt, rails, numerals, modules
+     paper    editorial teaching air  .light — the default interior ground
+     ink      technical / cinematic   .dark, footers, plates, metadata
+   The Framework is black/white dominant with a cobalt accent. This inverts
+   that. Cobalt need not occupy 40% of every page; it must be unmistakable
+   across the publication. Black must never become the primary identity again.
+
+   TYPOGRAPHY — locked, four faces, no script
+     Anton           the headline. Whole sentences, not split across voices.
+     Archivo 800     module and card titles
+     Archivo         body
+     JetBrains Mono  eyebrows, metadata, technical labels
+   Real handwriting may appear as a photographed artifact (a .plate), never
+   as a typeface.
+
+   PAGE RHYTHM — a language, not a template
+   Each subject picks its own composition. Never repeat cobalt-header /
+   white-body / black-footer down the book. Build guidance per page lives in
+   FIELD-GUIDE-SYSTEM.md.
+   ══════════════════════════════════════════════════════════════════ */
+@import url('assets/fonts/fonts.css');
+
+/* ── 1. TOKENS ─────────────────────────────────────────────────── */
+:root{
+  --ink:#08080C; --ink2:#101018;
+  --cobalt:#2B5CE6; --volt:#4D7CFF; --deep:#0B1F5C;
+  --bone:#F2F1ED; --bone2:#E8E6DF;
+  --slate:#5B6270; --line:#D9D6CE;
+  --paper:#FAF9F6; --hair:#E4E1D9;
+  --zc:rgba(43,92,230,.62);   /* shoot-zone marking, per surface */
+  --cm:rgba(43,92,230,.55);   /* crop marks, per surface */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-items:center;gap:38px;font-family:'Archivo',sans-serif}
+.page{width:800px;height:1120px;position:relative;overflow:hidden;box-shadow:0 26px 80px rgba(0,0,0,.65);flex-shrink:0}
+.tag{color:#7d8496;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:-14px;font-family:'JetBrains Mono'}
+
+/* ── 2. PRINT ── one .page per PDF page at 800x1120 ────────────── */
+@page{size:800px 1120px;margin:0}
+@media print{
+  body{background:#fff;padding:0;gap:0;display:block}
+  .tag{display:none}
+  .page{box-shadow:none;margin:0;break-after:page;page-break-after:always;break-inside:avoid;page-break-inside:avoid}
+  .page:last-of-type{break-after:auto;page-break-after:auto}
+}
+
+/* ── 3. SURFACES ───────────────────────────────────────────────── */
+.cobalt{background:var(--cobalt);color:#fff}
+.dark{background:var(--ink);color:#fff}
+.light{background:var(--paper);color:var(--ink)}
+.grain::after{content:'';position:absolute;inset:0;opacity:.055;mix-blend-mode:overlay;pointer-events:none;z-index:1;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* 40px grid. Structure, never noise: drop it on any page where photography
+   needs the room. The g40 class is the switch; build.mjs puts the grid in as
+   the page's first child, drawn from the #g40 symbol below as plain vector
+   lines. It was a CSS background first, and each form of that failed on
+   iPhone: as one repeating tile, iOS drew it 4.17x too large on any page
+   that also carries a blend mode (the grain); as one non-repeating layer per
+   line, Chrome wrote 48 full-page tiles per page and Files and Drive ran out
+   of memory and quit at page 3. Vector lines are neither. Two paths, so the
+   crossings darken exactly as the tiled version did. */
+.g40 > .grid40{position:absolute;top:0;left:0;width:800px;height:1120px;pointer-events:none;z-index:0;
+ fill:#2B5CE6;fill-opacity:.07}
+.dark.g40 > .grid40,.cobalt.g40 > .grid40{fill:#fff;fill-opacity:.04}
+.glow{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0}
+/* full-bleed structural block: a surface, not content */
+.band{position:absolute;pointer-events:none}
+.band.live{pointer-events:auto}
+
+/* ── 4. RUNNING MARKS ──────────────────────────────────────────── */
+/* Margin 64px, HUD 52px, spine 34px. The spine inverts against the
+   Framework's: cobalt on light and dark pages, ink on cobalt pages. */
+.hud{position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;
+ padding:0 34px 0 64px;font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;text-transform:uppercase;z-index:9}
+.light .hud{color:#A8A49A;border-bottom:1px solid var(--hair)}
+.dark .hud{color:#5A6072;border-bottom:1px solid rgba(255,255,255,.08)}
+.cobalt .hud{color:rgba(255,255,255,.62);border-bottom:1px solid rgba(255,255,255,.24)}
+.hud img{width:16px;opacity:.75}
+.light .hud img{filter:brightness(0);opacity:.28}
+.hud b{font-weight:400;color:var(--cobalt)}
+.dark .hud b,.cobalt .hud b{color:#fff}
+
+.spine{position:absolute;left:0;top:0;bottom:0;width:34px;display:flex;align-items:center;justify-content:center;z-index:8}
+.spine span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'JetBrains Mono';font-size:9px;letter-spacing:.34em;text-transform:uppercase}
+.cobalt .spine{background:var(--ink)}.cobalt .spine span{color:#fff}
+.light .spine{background:var(--cobalt)}.light .spine span{color:#fff}
+.dark .spine{background:var(--cobalt)}.dark .spine span{color:#fff}
+
+.folio{position:absolute;bottom:25px;right:34px;font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;z-index:9}
+.light .folio{color:#A8A49A}.dark .folio{color:rgba(255,255,255,.4)}.cobalt .folio{color:rgba(255,255,255,.62)}
+.folio b{font-weight:600}
+.light .folio b{color:var(--cobalt)}.dark .folio b,.cobalt .folio b{color:#fff}
+
+/* eyebrow row — the mono line above a headline */
+.eyebrow{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.24em;text-transform:uppercase}
+.light .eyebrow{color:var(--cobalt)}
+.dark .eyebrow,.cobalt .eyebrow{color:rgba(255,255,255,.74)}
+
+/* ── 5. TYPE ───────────────────────────────────────────────────── */
+.kick{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.22em;text-transform:uppercase}
+.hd{font-family:'Anton';text-transform:uppercase;line-height:.93;letter-spacing:.004em}
+.sub{font-family:'Archivo';font-weight:800;text-transform:uppercase;letter-spacing:.012em;line-height:1.18}
+.bd{font-size:12.5px;line-height:1.72;color:#3A3D47}
+.dark .bd,.cobalt .bd{color:rgba(255,255,255,.82)}
+.lead{font-size:15px;line-height:1.6;color:#2E3039;font-weight:500}
+.dark .lead,.cobalt .lead{color:rgba(255,255,255,.9)}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--cobalt);color:#fff;
+ font-family:'JetBrains Mono';font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px}
+.chip.blk{background:var(--ink)}
+.chip.wht{background:#fff;color:var(--cobalt);font-weight:600}
+.anno{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:8.5px;
+ letter-spacing:.16em;text-transform:uppercase;color:var(--cobalt)}
+.anno::before{content:'';width:16px;height:1px;background:currentColor;flex-shrink:0}
+.dark .anno,.cobalt .anno{color:#fff}
+
+/* ── 6. PLATE ── the media placeholder, and the production blueprint ──
+   Every plate carries an asset ID (M<page>.<n>) matching the media
+   checklist, plus type, subject and crop. Cover plates also carry SHOOT
+   ZONES: where the subject stands, where the phone sits, and what must stay
+   clear. Never fill a plate with AI or stock imagery. */
+.plate{position:relative;overflow:hidden;
+ background:repeating-linear-gradient(45deg,rgba(43,92,230,.06) 0 11px,transparent 11px 22px),var(--bone2);
+ border:1px solid rgba(43,92,230,.3)}
+.plate.on-dark{--zc:rgba(77,124,255,.66);--cm:rgba(77,124,255,.6);
+ background:repeating-linear-gradient(45deg,rgba(77,124,255,.1) 0 11px,transparent 11px 22px),var(--ink2);
+ border-color:rgba(77,124,255,.34)}
+.plate.on-cobalt{--zc:rgba(255,255,255,.6);--cm:rgba(255,255,255,.7);
+ background:repeating-linear-gradient(45deg,rgba(255,255,255,.075) 0 11px,transparent 11px 22px),rgba(6,20,64,.5);
+ border-color:rgba(255,255,255,.42)}
+.plate::before{content:'';position:absolute;inset:7px;pointer-events:none;z-index:1;
+ background:
+  linear-gradient(var(--cm),var(--cm)) 0 0/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 0 0/1px 10px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 100% 0/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 100% 0/1px 10px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 0 100%/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 0 100%/1px 10px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 100% 100%/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 100% 100%/1px 10px no-repeat}
+.plate .p-id{position:absolute;top:0;left:0;background:var(--cobalt);color:#fff;font-family:'JetBrains Mono';
+ font-size:8px;letter-spacing:.12em;padding:3px 7px;z-index:5;line-height:1.3}
+.plate.on-cobalt .p-id{background:#fff;color:var(--cobalt);font-weight:600}
+.plate.on-dark .p-id{background:var(--volt);color:var(--ink);font-weight:600}
+.plate .p-in{position:relative;z-index:3;text-align:center;padding:15px 13px;max-width:300px;margin:auto}
+.p-type{display:inline-block;font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;
+ border:1px solid rgba(43,92,230,.5);color:var(--cobalt);padding:3px 8px;margin-bottom:9px}
+.p-subj{display:block;font-family:'Archivo';font-weight:800;font-size:12px;line-height:1.3;text-transform:uppercase;
+ letter-spacing:.01em;color:var(--ink)}
+.p-spec{display:block;font-family:'JetBrains Mono';font-size:8px;letter-spacing:.1em;text-transform:uppercase;
+ color:var(--slate);margin-top:7px;line-height:1.75}
+.plate.on-dark .p-type{border-color:rgba(77,124,255,.55);color:var(--volt)}
+.plate.on-dark .p-subj{color:#fff}.plate.on-dark .p-spec{color:#79808F}
+.plate.on-cobalt .p-type{border-color:rgba(255,255,255,.55);color:#fff}
+.plate.on-cobalt .p-subj{color:#fff}.plate.on-cobalt .p-spec{color:rgba(255,255,255,.66)}
+.plate.sm .p-in{padding:9px 7px}
+.plate.sm .p-type{font-size:7px;padding:2px 6px;margin-bottom:6px;letter-spacing:.16em}
+.plate.sm .p-subj{font-size:10.5px;line-height:1.26}
+.plate.sm .p-spec{font-size:7.5px;margin-top:5px;line-height:1.6}
+
+/* shoot zones */
+.zone{position:absolute;border:1px dashed var(--zc);z-index:3}
+.zone i{position:absolute;left:6px;top:5px;font-style:normal;font-family:'JetBrains Mono';font-size:7.5px;
+ letter-spacing:.14em;text-transform:uppercase;color:var(--zc);white-space:nowrap;line-height:1.5}
+.zone.keep{border-style:dotted}
+.zone.mark{width:26px;height:26px;border-radius:50%;border-style:solid}
+.zone.mark::before{content:'';position:absolute;left:50%;top:-8px;bottom:-8px;width:1px;background:var(--zc)}
+.zone.mark::after{content:'';position:absolute;top:50%;left:-8px;right:-8px;height:1px;background:var(--zc)}
+.zone.mark i{left:36px;top:7px}
+
+/* black caption module, pinned inside a plate — the shot brief */
+.p-meta{position:absolute;z-index:4;background:var(--ink);color:#fff;padding:12px 14px;max-width:310px}
+.p-meta .pm-k{display:block;font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--volt);margin-bottom:7px}
+.p-meta .pm-t{display:block;font-family:'Archivo';font-weight:800;font-size:11.5px;line-height:1.26;text-transform:uppercase;letter-spacing:.01em}
+.p-meta .pm-s{display:block;font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:#8C93A5;margin-top:7px;line-height:1.7}
+
+/* ── 7. QR ── only where video adds real instruction ───────────── */
+.qr{display:flex;gap:12px;align-items:center}
+.qr .q-box{width:58px;height:58px;flex-shrink:0;border:1px dashed rgba(43,92,230,.45);display:flex;align-items:center;justify-content:center;color:var(--cobalt)}
+.dark .qr .q-box,.cobalt .qr .q-box{border-color:rgba(255,255,255,.36);color:rgba(255,255,255,.6)}
+.qr .q-box svg{width:34px;height:34px}
+.qr .q-k{display:block;font-family:'JetBrains Mono';font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--cobalt);margin-bottom:5px}
+.dark .qr .q-k,.cobalt .qr .q-k{color:#fff}
+.qr .q-t{font-family:'Archivo';font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.01em;line-height:1.22;color:var(--ink)}
+.dark .qr .q-t,.cobalt .qr .q-t{color:#fff}
+.qr .q-d{font-size:10.5px;line-height:1.55;color:var(--slate);margin-top:5px}
+.dark .qr .q-d,.cobalt .qr .q-d{color:rgba(255,255,255,.72)}
+
+/* ── 8. SETTINGS PANEL ── the interface, drawn ──────────────────
+   Carried over from the Pass 01 guide, rebuilt on Field Guide tokens. This
+   is neither a screenshot nor a placeholder: it is the rows the reader has
+   to go and change, set in the guide's own type. Values in mono, switches
+   as glyphs. Use it only where the reader is being sent into a menu, and
+   never as decoration — it reads as instruction, so it has to be correct. */
+.spec{border:1px solid var(--hair);background:#fff}
+.dark .spec{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.03)}
+.spec .sp-h{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;
+ color:#fff;background:var(--ink);padding:8px 14px;display:flex;justify-content:space-between;align-items:center}
+.spec .sp-r{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 14px;
+ border-top:1px solid var(--hair)}
+.dark .spec .sp-r{border-top-color:rgba(255,255,255,.1)}
+.spec .sp-r:first-of-type{border-top:0}
+.spec .sp-l{font-size:11.5px;color:#2E3039;line-height:1.35}
+.dark .spec .sp-l{color:#C3C8D4}
+.spec .sp-l i{display:block;font-style:normal;font-size:9.5px;line-height:1.45;color:var(--slate);margin-top:3px}
+.spec .sp-v{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.04em;color:var(--cobalt);
+ font-weight:600;white-space:nowrap}
+.dark .spec .sp-v{color:var(--volt)}
+/* the switch, as a glyph rather than a screenshot of one */
+.tg{width:26px;height:15px;border-radius:8px;background:var(--cobalt);position:relative;flex-shrink:0}
+.tg::after{content:'';position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:50%;background:#fff}
+.tg.off{background:#CBC8C0}
+.dark .tg.off{background:#31343E}
+.tg.off::after{right:auto;left:2px}
+
+/* ── 9. DATA ROWS ──────────────────────────────────────────────── */
+.dl{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-top:1px solid var(--hair)}
+.dl dt{font-family:'JetBrains Mono';font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.dl dd{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.06em;color:var(--cobalt);font-weight:600;text-align:right}
+.cobalt .dl{border-top-color:rgba(255,255,255,.22)}
+.cobalt .dl dt{color:rgba(255,255,255,.6)}.cobalt .dl dd{color:#fff}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="g40" viewBox="0 0 800 1120">
+<path d="M0 0h1v1120h-1zM40 0h1v1120h-1zM80 0h1v1120h-1zM120 0h1v1120h-1zM160 0h1v1120h-1zM200 0h1v1120h-1zM240 0h1v1120h-1zM280 0h1v1120h-1zM320 0h1v1120h-1zM360 0h1v1120h-1zM400 0h1v1120h-1zM440 0h1v1120h-1zM480 0h1v1120h-1zM520 0h1v1120h-1zM560 0h1v1120h-1zM600 0h1v1120h-1zM640 0h1v1120h-1zM680 0h1v1120h-1zM720 0h1v1120h-1zM760 0h1v1120h-1z"/>
+<path d="M0 0h800v1h-800zM0 40h800v1h-800zM0 80h800v1h-800zM0 120h800v1h-800zM0 160h800v1h-800zM0 200h800v1h-800zM0 240h800v1h-800zM0 280h800v1h-800zM0 320h800v1h-800zM0 360h800v1h-800zM0 400h800v1h-800zM0 440h800v1h-800zM0 480h800v1h-800zM0 520h800v1h-800zM0 560h800v1h-800zM0 600h800v1h-800zM0 640h800v1h-800zM0 680h800v1h-800zM0 720h800v1h-800zM0 760h800v1h-800zM0 800h800v1h-800zM0 840h800v1h-800zM0 880h800v1h-800zM0 920h800v1h-800zM0 960h800v1h-800zM0 1000h800v1h-800zM0 1040h800v1h-800zM0 1080h800v1h-800z"/></symbol><symbol id="qrg" viewBox="0 0 42 42">
+<g fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="13" height="13"/><rect x="28" y="1" width="13" height="13"/><rect x="1" y="28" width="13" height="13"/></g>
+<g fill="currentColor"><rect x="5" y="5" width="5" height="5"/><rect x="32" y="5" width="5" height="5"/><rect x="5" y="32" width="5" height="5"/>
+<rect x="20" y="1" width="3" height="3"/><rect x="20" y="8" width="3" height="3"/><rect x="20" y="20" width="3" height="3"/>
+<rect x="27" y="20" width="3" height="3"/><rect x="34" y="27" width="3" height="3"/><rect x="20" y="34" width="3" height="3"/>
+<rect x="27" y="34" width="3" height="3"/><rect x="34" y="20" width="3" height="3"/><rect x="1" y="20" width="3" height="3"/>
+<rect x="8" y="20" width="3" height="3"/></g></symbol></svg>
+<div class="tag">SHEET 01 — COVER</div>
+<div class="page cobalt grain">
+  <div class="glow" style="width:560px;height:560px;bottom:-240px;right:-180px;background:radial-gradient(circle,var(--deep),transparent 70%);opacity:.66"></div>
+  <div class="spine"><span>Shooting Stars Field Guide 001</span></div>
+
+  <!-- 55% photograph. The image is the reason the composition exists; the
+       cobalt field below carries the claim. -->
+  <!-- M01.1, pre-cropped to the plate so the PDF draws it 1:1. This frame runs
+       dark across the top, so the masthead sits on the bare photo — no scrim. -->
+  <img src="assets/fg-m01-1.jpg" alt="" style="position:absolute;top:0;left:34px;width:766px;height:616px;z-index:4">
+
+  <div style="position:absolute;top:40px;left:64px;right:34px;z-index:7;display:flex;justify-content:space-between;align-items:center;
+              font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.78)">
+    <span>Shooting Stars Content Academy</span>
+    <span>Sheet 01 / 14</span>
+  </div>
+  <!-- Centred on the masthead's own measure rather than the page, so it lines
+       up with the rule and the type rather than splitting the spine. -->
+  <div style="position:absolute;top:40px;left:64px;right:34px;z-index:7;display:flex;justify-content:center;align-items:center">
+    <img src="assets/Shooting_Stars_S_Icon_wht.png" alt="" style="width:23px;opacity:.95">
+  </div>
+
+  <div style="position:absolute;top:582px;left:64px;z-index:7;font-family:'JetBrains Mono';font-size:7px;
+              letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.7)">Photography by Stephen Michael</div>
+
+  <div style="position:absolute;top:656px;left:64px;right:64px;z-index:7;display:flex;justify-content:space-between;align-items:baseline">
+    <span class="eyebrow">A Shooting Stars Field Guide</span>
+    <span class="eyebrow" style="color:rgba(255,255,255,.6)">Field Guide 001</span>
+  </div>
+
+  <div style="position:absolute;top:692px;left:64px;right:64px;z-index:7">
+    <div class="hd" style="font-size:88px;color:#fff">Your iPhone</div>
+    <div class="hd" style="font-size:88px;color:#fff">Is A Cinema</div>
+    <div class="hd" style="font-size:88px;color:#fff">Camera</div>
+  </div>
+
+  <div style="position:absolute;top:962px;left:64px;right:64px;z-index:7;border-top:1px solid rgba(255,255,255,.34);padding-top:18px">
+    <div style="max-width:452px;font-size:14.5px;line-height:1.56;color:rgba(255,255,255,.9)">
+      A practical guide to shooting cinematic content with the camera already in your pocket.
+    </div>
+  </div>
+
+  <div style="position:absolute;left:64px;right:64px;bottom:34px;z-index:7;display:flex;justify-content:space-between;align-items:center;
+              font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7)">
+    <span>4K</span>
+    <span>Creating a Brighter Tomorrow.</span>
+    <span>@stephenxmichael</span>
+  </div>
+</div>
+<div class="tag">SHEET 02 — CONTENTS</div>
+<div class="page light">
+  <div class="spine"><span>02 &nbsp;&mdash;&nbsp; Contents</span></div>
+  <div class="hud"><span>Your iPhone Is A Cinema Camera</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Field Guide <b>001</b></span></div>
+
+  <!-- An index, not a table of contents: the page number is the navigation
+       device, the section label is the book's own terminology, and the module
+       title is set as it appears on its sheet. Two columns of six, on the same
+       64px margin and 40px grid as every other sheet. -->
+  <div style="position:absolute;top:82px;left:64px;width:400px;z-index:6">
+    <div class="eyebrow" style="color:var(--cobalt)">Inside The Guide</div>
+    <div class="hd" style="font-size:56px;margin-top:14px">Contents</div>
+  </div>
+  <div style="position:absolute;top:100px;left:480px;width:256px;z-index:6">
+    <div style="font-size:11px;line-height:1.7;color:var(--slate)">A practical system for shooting with more intention, more control and less friction.</div>
+  </div>
+
+  <div style="position:absolute;top:198px;left:64px;right:64px;z-index:6;border-top:2px solid var(--cobalt);padding-top:11px;
+              display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:8.5px;
+              letter-spacing:.2em;text-transform:uppercase;color:var(--slate)">
+    <span>Fourteen Sheets</span><span>Cover To Close</span>
+  </div>
+
+  <div style="position:absolute;top:258px;left:64px;width:316px;z-index:6">
+    <div style="border-top:1px solid var(--hair);padding-top:11px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span class="kick" style="font-size:10px;color:var(--cobalt)">03</span><span class="kick" style="font-size:7px;color:var(--slate)">The Premise</span></div>
+      <div class="sub" style="font-size:15px;margin-top:8px">Stop Treating It<br>Like A Phone</div>
+      <div style="font-size:9.5px;line-height:1.5;color:var(--slate);margin-top:7px">A new way to think about the camera already in your pocket.</div>
+    </div>
+    <div style="border-top:1px solid var(--hair);padding-top:11px;margin-top:20px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span class="kick" style="font-size:10px;color:var(--cobalt)">04</span><span class="kick" style="font-size:7px;color:var(--slate)">The Foundation</span></div>
+      <div class="sub" style="font-size:15px;margin-top:8px">Get Your<br>Settings Right</div>
+      <div style="font-size:9.5px;line-height:1.5;color:var(--slate);margin-top:7px">Settings, frame rates, lenses and the decisions to make before you shoot.</div>
+    </div>
+    <div style="border-top:1px solid var(--hair);padding-top:11px;margin-top:20px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span class="kick" style="font-size:10px;color:var(--cobalt)">05</span><span class="kick" style="font-size:7px;color:var(--slate)">Take Control</span></div>
+      <div class="sub" style="font-size:15px;margin-top:8px">Native<br>vs. Blackmagic</div>
+      <div style="font-size:9.5px;line-height:1.5;color:var(--slate);margin-top:7px">When speed matters. When control matters.</div>
+    </div>
+    <div style="border-top:1px solid var(--hair);padding-top:11px;margin-top:20px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span class="kick" style="font-size:10px;color:var(--cobalt)">06</span><span class="kick" style="font-size:7px;color:var(--slate)">The Grade</span></div>
+      <div class="sub" style="font-size:15px;margin-top:8px">Build<br>The Image</div>
+      <div style="font-size:9.5px;line-height:1.5;color:var(--slate);margin-top:7px">Shutter, white balance, ISO, ND and the path from Log to final colour.</div>
+    </div>
+    <div style="border-top:1px solid var(--hair);padding-top:11px;margin-top:20px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span class="kick" style="font-size:10px;color:var(--cobalt)">07</span><span class="kick" style="font-size:7px;color:var(--slate)">Coverage</span></div>
+      <div class="sub" style="font-size:15px;margin-top:8px">Shoot With<br>Intention</div>
+      <div style="font-size:9.5px;line-height:1.5;color:var(--slate);margin-top:7px">Wide. Medium. Close. Detail. Environment. Reveal.</div>
+    </div>
+    <div style="border-top:1px solid var(--hair);padding-top:11px;margin-top:20px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span class="kick" style="font-size:10px;color:var(--cobalt)">08</span><span class="kick" style="font-size:7px;color:var(--slate)">Light + Sound</span></div>
+      <div class="sub" style="font-size:15px;margin-top:8px">Fix The<br>Environment</div>
+      <div style="font-size:9.5px;line-height:1.5;color:var(--slate);margin-top:7px">Better light and better audio before more gear.</div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:258px;left:420px;width:316px;z-index:6">
+    <div style="border-top:1px solid var(--hair);padding-top:11px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span class="kick" style="font-size:10px;color:var(--cobalt)">09</span><span class="kick" style="font-size:7px;color:var(--slate)">The Kit</span></div>
+      <div class="sub" style="font-size:15px;margin-top:8px">Build<br>The Rig</div>
+      <div style="font-size:9.5px;line-height:1.5;color:var(--slate);margin-top:7px">Start with what matters. Add gear when the shot calls for it.</div>
+    </div>
+    <div style="border-top:1px solid var(--hair);padding-top:11px;margin-top:20px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span class="kick" style="font-size:10px;color:var(--cobalt)">10</span><span class="kick" style="font-size:7px;color:var(--slate)">The Workflow</span></div>
+      <div class="sub" style="font-size:15px;margin-top:8px">The<br>Workflow</div>
+      <div style="font-size:9.5px;line-height:1.5;color:var(--slate);margin-top:7px">From idea to footage to finished edit.</div>
+    </div>
+    <div style="border-top:1px solid var(--hair);padding-top:11px;margin-top:20px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span class="kick" style="font-size:10px;color:var(--cobalt)">11</span><span class="kick" style="font-size:7px;color:var(--slate)">The Experiment</span></div>
+      <div class="sub" style="font-size:15px;margin-top:8px">iPhone<br>Over Camera</div>
+      <div style="font-size:9.5px;line-height:1.5;color:var(--slate);margin-top:7px">Use the iPhone first. Reach for the camera with a reason.</div>
+    </div>
+    <div style="border-top:1px solid var(--hair);padding-top:11px;margin-top:20px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span class="kick" style="font-size:10px;color:var(--cobalt)">12</span><span class="kick" style="font-size:7px;color:var(--slate)">Reference</span></div>
+      <div class="sub" style="font-size:15px;margin-top:8px">Field<br>Cheat Sheet</div>
+      <div style="font-size:9.5px;line-height:1.5;color:var(--slate);margin-top:7px">The core system condensed into one page.</div>
+    </div>
+    <div style="border-top:1px solid var(--hair);padding-top:11px;margin-top:20px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span class="kick" style="font-size:10px;color:var(--cobalt)">13</span><span class="kick" style="font-size:7px;color:var(--slate)">The Academy</span></div>
+      <div class="sub" style="font-size:15px;margin-top:8px">Shooting Stars<br>Content Academy</div>
+      <div style="font-size:9.5px;line-height:1.5;color:var(--slate);margin-top:7px">The larger system behind the Field Guide.</div>
+    </div>
+    <div style="border-top:1px solid var(--hair);padding-top:11px;margin-top:20px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span class="kick" style="font-size:10px;color:var(--cobalt)">14</span><span class="kick" style="font-size:7px;color:var(--slate)">Creator</span></div>
+      <div class="sub" style="font-size:15px;margin-top:8px">About<br>Stephen</div>
+      <div style="font-size:9.5px;line-height:1.5;color:var(--slate);margin-top:7px">Meet the creator behind Shooting Stars.</div>
+    </div>
+  </div>
+
+  <div style="position:absolute;bottom:56px;left:64px;right:64px;z-index:6;border-top:1px solid var(--hair);padding-top:13px;
+              display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:7.5px;
+              letter-spacing:.2em;text-transform:uppercase;color:#A8A49A">
+    <span>Shooting Stars Content Academy</span><span style="color:var(--cobalt)">Creating A Brighter Tomorrow.</span>
+  </div>
+
+  <!-- The publication numeral, set as editorial typography rather than
+       decoration: it anchors the foot of the index and echoes the HUD. -->
+  <div class="hd" style="position:absolute;top:923px;left:60px;font-size:104px;line-height:.9;color:var(--bone2);z-index:5">001</div>
+
+  <div class="folio"><b>02</b> / 14</div>
+</div>
+<div class="tag">SHEET 03 — STOP TREATING IT LIKE A PHONE</div>
+<div class="page light g40">
+  <svg class="grid40" aria-hidden="true"><use href="#g40"/></svg>
+  <div class="spine"><span>03 &nbsp;&mdash;&nbsp; The Premise</span></div>
+  <div class="hud"><span>Your iPhone Is A Cinema Camera</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Field Guide <b>001</b></span></div>
+
+  <div style="position:absolute;top:76px;left:64px;right:64px;z-index:6">
+    <div class="eyebrow">Before The Settings</div>
+    <div class="hd" style="font-size:58px;margin-top:15px">Stop Treating It<br>Like A Phone</div>
+  </div>
+
+  <!-- intro, paired with the primary creator image so the column does not stack -->
+  <div style="position:absolute;top:260px;left:64px;width:356px;z-index:6">
+    <div class="bd" style="font-size:12px;line-height:1.72">
+      <p>I&rsquo;ve been shooting with dedicated cameras since 2014. For a long time, there was a clear gap between what I could create with my camera and what I could create with my phone.</p>
+      <p>That gap is still there.</p>
+      <p style="color:var(--ink);font-weight:600">But it&rsquo;s a lot smaller than it used to be.</p>
+      <p>Today&rsquo;s iPhone gives me access to tools and controls that used to exist almost exclusively on dedicated cameras. More importantly, I can apply the same principles I&rsquo;ve learned behind a camera to something that&rsquo;s already in my pocket.</p>
+      <p style="color:var(--ink);font-weight:600">That changed the way I look at it.</p>
+    </div>
+    <div class="kick" style="font-size:8px;color:var(--slate);margin-top:20px;padding-top:12px;border-top:1px solid var(--hair);line-height:1.8">
+      <span style="color:var(--cobalt)">Still the camera&rsquo;s</span><br>Interchangeable lenses &middot; optical depth &middot; files that push further</div>
+  </div>
+  <!-- M02.1 as a Polaroid. The frame follows Polaroid 600 proportions
+       (88.9 x 108 mm, 79 mm square window): 252 x 306 here, a 224 square
+       window, the deep bottom margin carrying the caption. The top edge is
+       centred on y 220, the middle of the grid square under LIKE A PHONE. It is still a
+       .plate, so it keeps its M02.1 tab; the corner marks are switched off
+       because the white frame is the border now. The caption is set in the
+       book's mono, not as handwriting: handwriting only ever appears as a
+       scan of the real thing. Pre-cropped square so the PDF draws it 1:1. -->
+  <div style="position:absolute;top:220px;left:472px;width:252px;height:306px;z-index:6;transform:rotate(-2.4deg)">
+    <!-- The shadow is cast by filter:drop-shadow() from two white cards hidden
+         under the frame, never by a blurred box-shadow. Chrome writes a blurred
+         box-shadow into the PDF as a soft-masked fill, and iOS ignores the mask
+         and paints a solid grey block; a filter is flattened into an ordinary
+         transparent image, which every viewer draws. The inset card reproduces
+         the old 0 14px 28px -10px drop, scaled with the frame (drop-shadow blur is a standard
+         deviation, box-shadow blur twice that). scripts/pdf.mjs now refuses a
+         blurred box- or text-shadow anywhere in the book. -->
+    <div style="position:absolute;inset:11px;background:#fff;filter:drop-shadow(0 15px 15px rgba(8,8,12,.38))"></div>
+    <div style="position:absolute;inset:0;background:#fff;filter:drop-shadow(0 1px 1px rgba(8,8,12,.1))"></div>
+    <div class="plate" style="position:absolute;inset:0;--cm:transparent;border:none;
+                background:linear-gradient(162deg,#FFFFFF 0%,#FBFAF7 55%,#F2F0EB 100%);box-shadow:0 0 0 1px rgba(8,8,12,.05)">
+      <span class="p-id">M02.1</span>
+      <div style="position:absolute;top:17px;left:14px;width:224px;height:224px;overflow:hidden;background:var(--ink)">
+        <img src="assets/fg-m02-1-polaroid.jpg" alt="" style="position:absolute;top:0;left:0;width:224px;height:224px">
+        <div style="position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(8,8,12,.16),inset 0 1px 0 rgba(8,8,12,.16)"></div>
+      </div>
+      <div style="position:absolute;left:0;right:0;top:267px;text-align:center;font-family:'JetBrains Mono';font-size:7.5px;
+                  letter-spacing:.14em;text-transform:uppercase;color:var(--ink);white-space:nowrap"><b style="font-weight:600;color:var(--cobalt)">SSCA</b> &mdash; &ldquo;Creating a Brighter Tomorrow&rdquo;</div>
+    </div>
+  </div>
+
+  <!-- the page's strongest moment: statement on ink, paired with the nuance image -->
+  <div class="band" style="top:572px;left:34px;right:0;height:200px;background:var(--ink)"></div>
+  <div class="band grain" style="top:572px;left:34px;right:0;height:200px"></div>
+  <div style="position:absolute;top:598px;left:64px;width:400px;z-index:6">
+    <div class="hd" style="font-size:34px;color:#fff">Cinematic Isn&rsquo;t</div>
+    <div class="hd" style="font-size:34px;color:#fff">A Resolution.</div>
+    <div class="hd" style="font-size:34px;color:var(--volt);margin-top:11px">It&rsquo;s A Series</div>
+    <div class="hd" style="font-size:34px;color:var(--volt)">Of Decisions.</div>
+  </div>
+  <!-- M02.2. The plate stays once the photograph lands: frame, ID tab and
+       corner marks all keep drawing over it. Pre-cropped to the plate so the
+       PDF draws it 1:1. -->
+  <div class="plate on-dark" style="position:absolute;top:596px;left:500px;width:236px;height:144px;z-index:6">
+    <span class="p-id">M02.2</span>
+    <img src="assets/fg-m02-2.jpg" alt="" style="position:absolute;top:0;left:0;width:236px;height:144px">
+  </div>
+
+  <div style="position:absolute;top:818px;left:64px;width:356px;z-index:6">
+    <div class="bd" style="font-size:12px;line-height:1.72">
+      <p><span style="color:var(--ink);font-weight:600">4K doesn&rsquo;t make an image cinematic.</span> Neither does 24 fps, Log, a LUT or a manual camera app.</p>
+      <p>Those tools give you control. What you do with that control determines the image.</p>
+    </div>
+    <div style="margin-top:14px;padding-top:13px;border-top:2px solid var(--ink)">
+      <div class="sub" style="font-size:13px">The technology gives you the tools.</div>
+      <div class="sub" style="font-size:13px;color:var(--cobalt)">You still have to make the image.</div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:818px;left:452px;width:284px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:11px">The Decisions</div>
+    <div style="display:flex;gap:11px;align-items:baseline;padding:3px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:8px;color:var(--cobalt)">01</span><span style="font-size:11px;line-height:1.5;color:#3A3D47">Where is the light coming from?</span></div>
+    <div style="display:flex;gap:11px;align-items:baseline;padding:3px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:8px;color:var(--cobalt)">02</span><span style="font-size:11px;line-height:1.5;color:#3A3D47">How is the frame composed?</span></div>
+    <div style="display:flex;gap:11px;align-items:baseline;padding:3px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:8px;color:var(--cobalt)">03</span><span style="font-size:11px;line-height:1.5;color:#3A3D47">Why is the camera moving?</span></div>
+    <div style="display:flex;gap:11px;align-items:baseline;padding:3px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:8px;color:var(--cobalt)">04</span><span style="font-size:11px;line-height:1.5;color:#3A3D47">What shot comes next?</span></div>
+    <div style="display:flex;gap:11px;align-items:baseline;padding:3px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)"><span class="kick" style="font-size:8px;color:var(--cobalt)">05</span><span style="font-size:11px;line-height:1.5;color:#3A3D47">What should the color make this feel like?</span></div>
+  </div>
+
+  <div class="band" style="top:1002px;left:34px;right:0;bottom:0;background:var(--cobalt)"></div>
+  <div class="band grain" style="top:1002px;left:34px;right:0;bottom:0"></div>
+  <div style="position:absolute;top:1030px;left:64px;width:330px;z-index:6">
+    <div class="hd" style="font-size:17px;color:#fff">&ldquo;I&rsquo;ll take that gap if I can<br>scale my content faster.&rdquo;</div>
+    <div class="kick" style="font-size:8px;color:rgba(255,255,255,.7);margin-top:7px">&mdash; Stephen</div>
+  </div>
+  <div style="position:absolute;top:1030px;left:410px;width:250px;z-index:6">
+    <div style="font-size:11.5px;line-height:1.5;color:rgba(255,255,255,.82)">Your phone doesn&rsquo;t need to replace your camera.</div>
+    <div class="sub" style="font-size:12.5px;color:#fff;margin-top:4px">You just need to stop treating<br>it like it isn&rsquo;t one.</div>
+  </div>
+  <div class="folio" style="color:rgba(255,255,255,.62)"><b style="color:#fff">03</b> / 14</div>
+</div>
+<div class="tag">SHEET 04 — GET YOUR SETTINGS RIGHT</div>
+<div class="page light g40">
+  <svg class="grid40" aria-hidden="true"><use href="#g40"/></svg>
+  <div class="spine"><span>04 &nbsp;&mdash;&nbsp; The Foundation</span></div>
+  <div class="hud"><span>Your iPhone Is A Cinema Camera</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Field Guide <b>001</b></span></div>
+
+  <!-- five zones with real gaps between them. Every block here earns its
+       height; anything that needed a third line belongs on another sheet. -->
+  <div style="position:absolute;top:82px;left:64px;width:400px;z-index:6">
+    <div class="eyebrow">The Foundation</div>
+    <div class="hd" style="font-size:68px;margin-top:15px">Get Your<br>Settings Right</div>
+  </div>
+  <div style="position:absolute;top:110px;left:480px;width:256px;z-index:6">
+    <div class="bd" style="font-size:11.5px;line-height:1.7">
+      <p style="margin-bottom:10px">Before you download another app or build out a rig, get the fundamentals right.</p>
+      <p style="color:var(--ink);font-weight:600">Set these once and stop deciding every time you pick up the phone.</p>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:279px;left:64px;width:290px;z-index:6">
+    <div class="hd" style="font-size:30px">Seriously.</div>
+    <div class="hd" style="font-size:30px">Wipe The Lens.</div>
+    <div style="font-size:11px;line-height:1.66;color:var(--slate);margin-top:13px">Your phone lives in your hand, your pocket and your bag. Fingerprints soften the image before you press record.</div>
+  </div>
+  <!-- M03.1. The plate stays once the photograph lands — frame, ID tab and
+       corner marks all keep drawing over it. Pre-cropped so the PDF draws it
+       1:1. The two labels carry what the shot brief used to state outright:
+       the haze is real but subtle at this size, and every other comparison in
+       the book names its halves. Inset clear of the bottom-left corner mark,
+       and over dark foliage, so they need no scrim. -->
+  <div class="plate" style="position:absolute;top:279px;left:380px;width:356px;height:130px;z-index:6">
+    <span class="p-id">M03.1</span>
+    <img src="assets/fg-m03-1.jpg" alt="" style="position:absolute;top:0;left:0;width:356px;height:130px">
+    <span style="position:absolute;left:24px;bottom:10px;z-index:4;font-family:'JetBrains Mono';font-size:6.5px;
+                 letter-spacing:.2em;text-transform:uppercase;color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.85),1px 0 0 rgba(0,0,0,.4),-1px 0 0 rgba(0,0,0,.4),0 -1px 0 rgba(0,0,0,.3)">Dirty</span>
+    <span style="position:absolute;left:202px;bottom:10px;z-index:4;font-family:'JetBrains Mono';font-size:6.5px;
+                 letter-spacing:.2em;text-transform:uppercase;color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.85),1px 0 0 rgba(0,0,0,.4),-1px 0 0 rgba(0,0,0,.4),0 -1px 0 rgba(0,0,0,.3)">Clean</span>
+  </div>
+
+  <div class="cobalt" style="position:absolute;top:443px;left:64px;width:672px;padding:24px 28px 20px;z-index:6">
+    <div style="display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono';font-size:8.5px;
+                letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.66);
+                border-bottom:1px solid rgba(255,255,255,.28);padding-bottom:11px">
+      <span>Choose The Frame Rate</span><span>For The Shot</span>
+    </div>
+    <div style="display:flex;gap:24px;margin-top:20px">
+      <div style="width:189px">
+        <div class="hd" style="font-size:32px;color:#fff">4K / 30</div>
+        <div class="kick" style="font-size:8px;color:rgba(255,255,255,.75);margin-top:9px">Everyday Content</div>
+        <div style="font-size:10px;line-height:1.66;color:rgba(255,255,255,.8);margin-top:9px;min-height:50px">My default for talking heads, lifestyle and natural motion.</div>
+      </div>
+      <div style="width:189px">
+        <div class="hd" style="font-size:32px;color:#fff">4K / 24</div>
+        <div class="kick" style="font-size:8px;color:rgba(255,255,255,.75);margin-top:9px">Cinematic Motion</div>
+        <div style="font-size:10px;line-height:1.66;color:rgba(255,255,255,.8);margin-top:9px;min-height:50px">The cadence associated with film. On an iPhone it can feel choppier depending on the shot.</div>
+      </div>
+      <div style="width:189px">
+        <div class="hd" style="font-size:32px;color:#fff">4K / 60</div>
+        <div class="kick" style="font-size:8px;color:rgba(255,255,255,.75);margin-top:9px">Slow It Down</div>
+        <div style="font-size:10px;line-height:1.66;color:rgba(255,255,255,.8);margin-top:9px;min-height:50px">When I want the option to slow the footage down in the edit.</div>
+      </div>
+    </div>
+    <div class="kick" style="font-size:7.5px;color:rgba(255,255,255,.62);margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.22)">My practical defaults, not universal requirements</div>
+  </div>
+
+  <!-- the menu itself, drawn rather than placeheld -->
+  <div class="spec" style="position:absolute;top:706px;left:64px;width:400px;z-index:6">
+    <div class="sp-h"><span>Settings &nbsp;&rsaquo;&nbsp; Camera</span><span style="opacity:.6">Set Once</span></div>
+    <div class="sp-r"><span class="sp-l">Record Video</span><span class="sp-v">4K &middot; 30 fps</span></div>
+    <div class="sp-r"><span class="sp-l">Grid</span><span class="tg"></span></div>
+    <div class="sp-r"><span class="sp-l">HDR Video<i>Off for a simpler, more predictable SDR color workflow</i></span><span class="tg off"></span></div>
+    <div class="sp-r"><span class="sp-l">Lock Camera<i>Stops the lens switching mid-take</i></span><span class="tg"></span></div>
+    <div class="sp-r"><span class="sp-l">Preserve Settings</span><span class="sp-v">Camera Mode</span></div>
+  </div>
+
+  <div style="position:absolute;top:706px;left:496px;width:240px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:13px">Which Lens To Reach For</div>
+    <div style="padding-bottom:8px;border-bottom:1px solid var(--hair)">
+      <div style="display:flex;gap:9px;align-items:baseline"><span class="hd" style="font-size:21px;color:var(--cobalt)">1&times;</span><span class="kick" style="font-size:7.5px;color:var(--slate)">Main &middot; Default</span></div>
+      <div style="font-size:10px;line-height:1.6;color:var(--slate);margin-top:6px">My starting point for most shots. Strong all-around image and low-light performance.</div>
+    </div>
+    <div style="padding:8px 0;border-bottom:1px solid var(--hair)">
+      <div style="display:flex;gap:9px;align-items:baseline"><span class="hd" style="font-size:21px">0.5&times;</span><span class="kick" style="font-size:7.5px;color:var(--slate)">Ultra Wide</span></div>
+      <div style="font-size:10px;line-height:1.6;color:var(--slate);margin-top:6px">Tight rooms, establishing shots and exaggerated perspective. Watch faces near the edges.</div>
+    </div>
+    <div style="padding-top:8px">
+      <div style="display:flex;gap:9px;align-items:baseline"><span class="hd" style="font-size:21px">2&times;+</span><span class="kick" style="font-size:7.5px;color:var(--slate)">Get Closer</span></div>
+      <div style="font-size:10px;line-height:1.6;color:var(--slate);margin-top:6px">Useful when you want a tighter frame or more compression.</div>
+    </div>
+    <div class="kick" style="font-size:7px;color:var(--cobalt);margin-top:10px">Focal lengths vary by model</div>
+  </div>
+
+  <div class="band" style="top:976px;left:34px;right:0;bottom:0;background:var(--ink)"></div>
+  <div class="band grain" style="top:976px;left:34px;right:0;bottom:0"></div>
+  <div style="position:absolute;top:1002px;left:64px;width:300px;z-index:6">
+    <div class="hd" style="font-size:19px;color:#fff">Don&rsquo;t Pick A Frame Rate</div>
+    <div class="hd" style="font-size:19px;color:#fff">Because It Sounds Cinematic.</div>
+    <div class="hd" style="font-size:19px;color:var(--volt);margin-top:8px">Pick It For What The Shot</div>
+    <div class="hd" style="font-size:19px;color:var(--volt)">Needs To Do.</div>
+  </div>
+  <div style="position:absolute;top:992px;left:430px;width:280px;z-index:6">
+    <span class="chip">From Stephen</span>
+    <div style="font-size:10.5px;line-height:1.6;color:rgba(255,255,255,.8);margin-top:12px">Tap your subject to set focus and exposure.</div>
+    <div style="font-size:10.5px;line-height:1.6;color:rgba(255,255,255,.8);margin-top:8px">Touch and hold for AE/AF Lock when you don&rsquo;t want them shifting during the shot.</div>
+  </div>
+  <div class="folio" style="color:rgba(255,255,255,.55)"><b style="color:#fff">04</b> / 14</div>
+</div>
+<div class="tag">SHEET 05 — TAKE CONTROL</div>
+<div class="page light">
+  <div class="spine"><span>05 &nbsp;&mdash;&nbsp; Take Control</span></div>
+  <div class="hud"><span>Your iPhone Is A Cinema Camera</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Field Guide <b>001</b></span></div>
+
+  <!-- the only vertical split in the book: paper against ink, straight down
+       the page, so the comparison is the composition -->
+  <div class="band" style="top:280px;left:34px;right:0;height:2px;background:var(--cobalt);z-index:7"></div>
+  <div class="band" style="top:282px;left:400px;right:0;height:690px;background:var(--ink)"></div>
+  <div class="band grain" style="top:282px;left:400px;right:0;height:690px"></div>
+
+  <div style="position:absolute;top:82px;left:64px;width:400px;z-index:6">
+    <div class="eyebrow">Take Control</div>
+    <div class="hd" style="font-size:62px;margin-top:15px">Native</div>
+    <div class="hd" style="font-size:30px;color:var(--cobalt);margin:2px 0">vs.</div>
+    <div class="hd" style="font-size:62px">Blackmagic</div>
+  </div>
+  <div style="position:absolute;top:108px;left:480px;width:256px;z-index:6">
+    <div class="bd" style="font-size:11.5px;line-height:1.7">
+      <p style="margin-bottom:10px">I use both. The native Camera app is fast, familiar and capable of producing really good footage. Blackmagic gives me more direct control over the image.</p>
+      <p style="color:var(--ink);font-weight:600">The right choice depends on what you&rsquo;re shooting.</p>
+    </div>
+  </div>
+
+  <!-- LEFT — native, on paper -->
+  <div style="position:absolute;top:306px;left:64px;width:304px;z-index:6">
+    <span class="chip">01 &nbsp;&middot;&nbsp; Speed</span>
+    <div class="hd" style="font-size:36px;margin-top:14px">Native<br>Camera</div>
+    <div class="kick" style="font-size:8px;color:var(--cobalt);margin-top:10px">When Speed Matters</div>
+  </div>
+  <div class="plate" style="position:absolute;top:461px;left:64px;width:304px;height:90px;z-index:6">
+    <span class="p-id">M04.1</span>
+    <img src="assets/fg-m04-1.jpg" alt="" style="position:absolute;top:0;left:0;width:304px;height:90px">
+  </div>
+  <div style="position:absolute;top:571px;left:64px;width:304px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:11px">Why I Use It</div>
+    <div style="padding:5px 0;border-top:1px solid var(--hair)">
+      <span class="sub" style="font-size:10.5px">Fast</span>
+      <div style="font-size:10px;line-height:1.55;color:var(--slate);margin-top:4px">It is already there. Open it and shoot.</div>
+    </div>
+    <div style="padding:5px 0;border-top:1px solid var(--hair)">
+      <span class="sub" style="font-size:10.5px">Low Friction</span>
+      <div style="font-size:10px;line-height:1.55;color:var(--slate);margin-top:4px">Lifestyle, travel and moments that happen quickly.</div>
+    </div>
+    <div style="padding:5px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)">
+      <span class="sub" style="font-size:10.5px">Great Image</span>
+      <div style="font-size:10px;line-height:1.55;color:var(--slate);margin-top:4px">You do not need a manual app to make good content.</div>
+    </div>
+  </div>
+  <div style="position:absolute;top:799px;left:64px;width:304px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:9px">Use Native When</div>
+    <div style="display:flex;gap:10px;padding:4px 0"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px">01</span><span style="font-size:10px;line-height:1.5;color:#3A3D47">The light is good</span></div>
+    <div style="display:flex;gap:10px;padding:4px 0"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px">02</span><span style="font-size:10px;line-height:1.5;color:#3A3D47">The moment matters more than the setup</span></div>
+    <div style="display:flex;gap:10px;padding:4px 0"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px">03</span><span style="font-size:10px;line-height:1.5;color:#3A3D47">You need to move quickly</span></div>
+    <div style="display:flex;gap:10px;padding:4px 0"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px">04</span><span style="font-size:10px;line-height:1.5;color:#3A3D47">You do not need every setting locked manually</span></div>
+  </div>
+  <div style="position:absolute;top:923px;left:64px;width:304px;z-index:6;border-top:2px solid var(--ink);padding-top:12px">
+    <div class="hd" style="font-size:18px">Simple Doesn&rsquo;t Mean</div>
+    <div class="hd" style="font-size:18px;color:var(--cobalt)">Low Quality.</div>
+  </div>
+
+  <!-- RIGHT — Blackmagic, on ink -->
+  <div style="position:absolute;top:306px;left:432px;width:304px;z-index:6">
+    <span class="chip wht">02 &nbsp;&middot;&nbsp; Control</span>
+    <div class="hd" style="font-size:36px;margin-top:14px;color:#fff">Blackmagic<br>Camera</div>
+    <div class="kick" style="font-size:8px;color:var(--volt);margin-top:10px">When Control Matters</div>
+  </div>
+  <div class="plate on-dark" style="position:absolute;top:461px;left:432px;width:304px;height:90px;z-index:6">
+    <span class="p-id">M04.2</span>
+    <img src="assets/fg-m04-2.jpg" alt="" style="position:absolute;top:0;left:0;width:304px;height:90px">
+  </div>
+  <div style="position:absolute;top:571px;left:432px;width:304px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--volt);margin-bottom:11px">Why I Use It</div>
+    <div style="padding:4px 0;border-top:1px solid rgba(255,255,255,.16)">
+      <span class="sub" style="font-size:10.5px;color:#fff">Manual Control</span>
+      <div style="font-size:10px;line-height:1.55;color:rgba(255,255,255,.72);margin-top:4px">Shutter, ISO, white balance, focus and exposure.</div>
+    </div>
+    <div style="padding:4px 0;border-top:1px solid rgba(255,255,255,.16)">
+      <span class="sub" style="font-size:10.5px;color:#fff">Consistency</span>
+      <div style="font-size:10px;line-height:1.55;color:rgba(255,255,255,.72);margin-top:4px">Lock decisions the camera would otherwise change.</div>
+    </div>
+    <div style="padding:4px 0;border-top:1px solid rgba(255,255,255,.16)">
+      <span class="sub" style="font-size:10.5px;color:#fff">Monitoring</span>
+      <div style="font-size:10px;line-height:1.55;color:rgba(255,255,255,.72);margin-top:4px">More information on screen while I shoot.</div>
+    </div>
+    <div style="padding:4px 0;border-top:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16)">
+      <span class="sub" style="font-size:10.5px;color:#fff">Log + Color Workflow</span>
+      <div style="font-size:10px;line-height:1.55;color:rgba(255,255,255,.72);margin-top:4px">Build the capture around the grade I&rsquo;m planning.</div>
+    </div>
+  </div>
+  <div style="position:absolute;top:799px;left:432px;width:304px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--volt);margin-bottom:7px">Use Blackmagic When</div>
+    <div style="display:flex;gap:10px;padding:1px 0"><span class="kick" style="font-size:7.5px;color:var(--volt);padding-top:2px">01</span><span style="font-size:10px;line-height:1.5;color:rgba(255,255,255,.78)">The shot is deliberate</span></div>
+    <div style="display:flex;gap:10px;padding:1px 0"><span class="kick" style="font-size:7.5px;color:var(--volt);padding-top:2px">02</span><span style="font-size:10px;line-height:1.5;color:rgba(255,255,255,.78)">Lighting is controlled</span></div>
+    <div style="display:flex;gap:10px;padding:1px 0"><span class="kick" style="font-size:7.5px;color:var(--volt);padding-top:2px">03</span><span style="font-size:10px;line-height:1.5;color:rgba(255,255,255,.78)">Shots need to match</span></div>
+    <div style="display:flex;gap:10px;padding:1px 0"><span class="kick" style="font-size:7.5px;color:var(--volt);padding-top:2px">04</span><span style="font-size:10px;line-height:1.5;color:rgba(255,255,255,.78)">You are planning to grade the footage</span></div>
+    <div style="display:flex;gap:10px;padding:1px 0"><span class="kick" style="font-size:7.5px;color:var(--volt);padding-top:2px">05</span><span style="font-size:10px;line-height:1.5;color:rgba(255,255,255,.78)">You want the phone to behave like a traditional camera</span></div>
+  </div>
+
+  <div style="position:absolute;top:923px;left:432px;width:304px;z-index:6;border-top:1px solid rgba(255,255,255,.2);padding-top:12px">
+    <div class="sub" style="font-size:11px;color:var(--volt)">The gap is closing.</div>
+    <div style="font-size:9.5px;line-height:1.58;color:rgba(255,255,255,.72);margin-top:5px">Apple&rsquo;s camera tools are adding more pro-level control, too.</div>
+  </div>
+
+  <div class="band" style="top:972px;left:34px;right:0;bottom:0;background:var(--cobalt)"></div>
+  <div class="band grain" style="top:972px;left:34px;right:0;bottom:0"></div>
+  <div style="position:absolute;top:996px;left:64px;width:290px;z-index:6">
+    <div class="hd" style="font-size:19px;color:#fff">Use Native When The Moment</div>
+    <div class="hd" style="font-size:19px;color:#fff">Matters More Than The Setup.</div>
+  </div>
+  <div style="position:absolute;top:996px;left:394px;width:300px;z-index:6">
+    <div class="hd" style="font-size:19px;color:#0B1F5C">Use Blackmagic When The Setup</div>
+    <div class="hd" style="font-size:19px;color:#0B1F5C">Is Part Of Getting It Right.</div>
+  </div>
+  <div style="position:absolute;top:1058px;left:64px;width:600px;z-index:6;border-top:1px solid rgba(255,255,255,.3);padding-top:12px">
+    <div style="font-size:11.5px;line-height:1.55;color:rgba(255,255,255,.88)">Neither one makes the shot cinematic. They just give you different ways to get there.</div>
+  </div>
+  <div class="folio" style="color:rgba(255,255,255,.62)"><b style="color:#fff">05</b> / 14</div>
+</div>
+<div class="tag">SHEET 06 — BUILD THE IMAGE</div>
+<div class="page dark grain">
+  <div class="glow" style="width:620px;height:620px;top:-260px;left:-180px;background:radial-gradient(circle,var(--deep),transparent 70%);opacity:.85"></div>
+  <div class="spine"><span>06 &nbsp;&mdash;&nbsp; Build The Image</span></div>
+  <div class="hud"><span>Your iPhone Is A Cinema Camera</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Field Guide <b>001</b></span></div>
+
+  <div style="position:absolute;top:82px;left:64px;width:300px;z-index:6">
+    <div class="eyebrow">The Grade</div>
+    <div class="hd" style="font-size:76px;color:#fff;margin-top:15px">Build<br>The Image</div>
+  </div>
+  <div style="position:absolute;top:112px;left:392px;width:344px;z-index:6">
+    <div class="bd" style="font-size:11.5px;line-height:1.7">
+      <p style="margin-bottom:10px">Log gives you room. Correction gets the image back to neutral. The grade is where you decide how it feels.</p>
+      <p style="color:#fff;font-weight:600">Those are three different jobs.</p>
+    </div>
+  </div>
+
+  <!-- the controls come before the color pass, so they sit above it -->
+  <div style="position:absolute;top:286px;left:64px;right:64px;z-index:6;border-top:2px solid var(--volt);padding-top:12px">
+    <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:8.5px;
+                letter-spacing:.2em;text-transform:uppercase;color:#8C93A5">
+      <span style="color:#fff">Control The Image Before You Grade It</span><span>Before The Color Pass</span>
+    </div>
+    <div style="display:flex;gap:13px;margin-top:17px">
+      <div style="width:124px">
+        <div class="kick" style="font-size:7.5px;color:var(--volt)">Frame Rate</div>
+        <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:6px">For how the footage needs to move.</div>
+      </div>
+      <div style="width:124px">
+        <div class="kick" style="font-size:7.5px;color:var(--volt)">Shutter</div>
+        <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:6px">About double the frame rate. 24&rarr;1/48, 30&rarr;1/60, 60&rarr;1/120.</div>
+      </div>
+      <div style="width:124px">
+        <div class="kick" style="font-size:7.5px;color:var(--volt)">White Balance</div>
+        <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:6px">Lock it when your workflow allows so it cannot shift mid-shot.</div>
+      </div>
+      <div style="width:124px">
+        <div class="kick" style="font-size:7.5px;color:var(--volt)">ISO</div>
+        <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:6px">As controlled as the scene allows. More ISO is not free light.</div>
+      </div>
+      <div style="width:124px">
+        <div class="kick" style="font-size:7.5px;color:var(--volt)">ND</div>
+        <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:6px">Cuts light so you keep the shutter you chose.</div>
+      </div>
+    </div>
+    <div class="kick" style="font-size:7px;color:#5A6072;margin-top:14px">A starting point for natural motion blur, not a rule</div>
+  </div>
+
+  <!-- the progression spine linking the three states -->
+  <div class="band" style="top:448px;left:290px;width:1px;height:510px;background:rgba(77,124,255,.55)"></div>
+  <div class="band" style="top:448px;left:281px;width:20px;height:2px;background:var(--volt)"></div>
+  <div class="band" style="top:628px;left:281px;width:20px;height:2px;background:var(--volt)"></div>
+  <div class="band" style="top:808px;left:281px;width:20px;height:2px;background:var(--volt)"></div>
+
+  <div style="position:absolute;top:448px;left:64px;width:216px;z-index:6">
+    <div style="display:flex;gap:11px;align-items:baseline"><span class="hd" style="font-size:26px;color:var(--volt)">01</span><span class="sub" style="font-size:13px;color:#fff">Log</span></div>
+    <div class="sub" style="font-size:10.5px;color:var(--volt);margin-top:8px">Capture Information</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:9px">Log isn&rsquo;t supposed to look finished in-camera. You are capturing an image with more room to work in post.</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#fff;font-weight:600;margin-top:7px">Protect the image now. Make it pretty later.</div>
+  </div>
+  <div class="plate on-dark" style="position:absolute;top:448px;left:300px;right:-34px;height:150px;z-index:6;border-right:none;padding-right:34px">
+    <span class="p-id">M05.1</span>
+    <img src="assets/fg-m05-1.jpg" alt="" style="position:absolute;top:0;left:0;width:534px;height:150px">
+  </div>
+
+  <div style="position:absolute;top:628px;left:64px;width:216px;z-index:6">
+    <div style="display:flex;gap:11px;align-items:baseline"><span class="hd" style="font-size:26px;color:var(--volt)">02</span><span class="sub" style="font-size:13px;color:#fff">Corrected</span></div>
+    <div class="sub" style="font-size:10.5px;color:var(--volt);margin-top:8px">Get Back To Neutral</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:9px">Exposure, white balance, contrast, natural color. Correction gets the image right. The grade is where you make it yours.</div>
+  </div>
+  <div class="plate on-dark" style="position:absolute;top:628px;left:300px;right:-34px;height:150px;z-index:6;border-right:none;padding-right:34px">
+    <span class="p-id">M05.2</span>
+    <img src="assets/fg-m05-2.jpg" alt="" style="position:absolute;top:0;left:0;width:534px;height:150px">
+  </div>
+
+  <div style="position:absolute;top:808px;left:64px;width:216px;z-index:6">
+    <div style="display:flex;gap:11px;align-items:baseline"><span class="hd" style="font-size:26px;color:var(--volt)">03</span><span class="sub" style="font-size:13px;color:#fff">Graded</span></div>
+    <div class="sub" style="font-size:10.5px;color:var(--volt);margin-top:8px">Build The Feel</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:9px">The creative pass. The grade should support the mood of the image, not distract from it. Decide how far it actually needs to go.</div>
+  </div>
+  <div class="plate on-dark" style="position:absolute;top:808px;left:300px;right:-34px;height:150px;z-index:6;border-right:none;padding-right:34px">
+    <span class="p-id">M05.3</span>
+    <img src="assets/fg-m05-3.jpg" alt="" style="position:absolute;top:0;left:0;width:534px;height:150px">
+  </div>
+
+  <div style="position:absolute;top:992px;left:64px;width:320px;z-index:6">
+    <div class="hd" style="font-size:20px;color:#fff">Color Isn&rsquo;t There</div>
+    <div class="hd" style="font-size:20px;color:#fff">To Rescue A Bad Image.</div>
+    <div class="hd" style="font-size:20px;color:var(--volt);margin-top:9px">It&rsquo;s There To Finish</div>
+    <div class="hd" style="font-size:20px;color:var(--volt)">A Good One.</div>
+  </div>
+  <div style="position:absolute;top:992px;left:430px;width:280px;z-index:6;border-top:1px solid rgba(255,255,255,.2);padding-top:14px">
+    <div style="display:flex;align-items:center;gap:9px;font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:#fff">
+      <span>Log</span><span style="color:var(--volt)">&rarr;</span><span>Correct</span><span style="color:var(--volt)">&rarr;</span><span>Create</span>
+    </div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:12px">M05.1 to M05.3 must be the same frame from the same take. Different shots break the argument.</div>
+  </div>
+
+  <div class="folio"><b>06</b> / 14</div>
+</div>
+<div class="tag">SHEET 07 — SHOOT WITH INTENTION</div>
+<div class="page light g40">
+  <svg class="grid40" aria-hidden="true"><use href="#g40"/></svg>
+  <div class="spine"><span>07 &nbsp;&mdash;&nbsp; Coverage</span></div>
+  <div class="hud"><span>Your iPhone Is A Cinema Camera</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Field Guide <b>001</b></span></div>
+
+  <!-- Six frames, one line of copy each. The sub-headline names the job and
+       the frame shows it; a second sentence would only crowd the grid. -->
+  <div style="position:absolute;top:70px;left:64px;width:400px;z-index:6">
+    <div class="eyebrow">Don&rsquo;t Just Record It</div>
+    <div class="hd" style="font-size:52px;color:var(--ink);margin-top:13px">Shoot With<br>Intention</div>
+  </div>
+  <div style="position:absolute;top:84px;left:430px;width:306px;z-index:6">
+    <div class="bd" style="font-size:11.5px;line-height:1.7">
+      <p style="margin-bottom:9px">Settings can improve the footage. Shot selection makes the video.</p>
+      <p style="color:var(--ink);font-weight:600">Grid on. Look at placement, balance, foreground and depth before you hit record.</p>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:232px;left:64px;right:64px;z-index:6;border-top:2px solid var(--cobalt);padding-top:11px;
+              display:flex;align-items:center;justify-content:space-between;font-family:'JetBrains Mono';font-size:8.5px;
+              letter-spacing:.2em;text-transform:uppercase;color:var(--slate)">
+    <span style="display:flex;gap:16px"><span style="color:var(--ink)">W</span><span>M</span><span>C</span><span>D</span><span>Env</span><span>Rev</span></span>
+    <span>One subject &nbsp;&middot;&nbsp; One light &nbsp;&middot;&nbsp; Six frames</span>
+  </div>
+
+  <div style="position:absolute;top:287px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between">
+    <div style="width:286px">
+      <div class="plate on-dark" style="height:161px"><span class="p-id">M06.1</span>
+        <img src="assets/fg-m06-1.jpg" alt="" style="position:absolute;top:0;left:0;width:286px;height:161px"></div>
+      <div style="margin-top:10px;display:flex;gap:10px;align-items:baseline">
+        <span class="hd" style="font-size:17px;color:var(--cobalt)">01</span>
+        <span class="sub" style="font-size:11.5px">Wide <span style="color:var(--cobalt)">&middot; Set The Scene</span></span></div>
+      <div style="font-size:9.5px;line-height:1.55;color:var(--slate);margin-top:6px">Show me where we are.</div>
+    </div>
+    <div style="width:286px">
+      <div class="plate on-dark" style="height:161px"><span class="p-id">M06.2</span>
+        <img src="assets/fg-m06-2.jpg" alt="" style="position:absolute;top:0;left:0;width:286px;height:161px"></div>
+      <div style="margin-top:10px;display:flex;gap:10px;align-items:baseline">
+        <span class="hd" style="font-size:17px;color:var(--cobalt)">02</span>
+        <span class="sub" style="font-size:11.5px">Medium <span style="color:var(--cobalt)">&middot; Bring Us Closer</span></span></div>
+      <div style="font-size:9.5px;line-height:1.55;color:var(--slate);margin-top:6px">Where natural action and talking heads live.</div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:527px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between">
+    <div style="width:286px">
+      <div class="plate on-dark" style="height:161px"><span class="p-id">M06.3</span>
+        <img src="assets/fg-m06-3.jpg" alt="" style="position:absolute;top:0;left:0;width:286px;height:161px"></div>
+      <div style="margin-top:10px;display:flex;gap:10px;align-items:baseline">
+        <span class="hd" style="font-size:17px;color:var(--cobalt)">03</span>
+        <span class="sub" style="font-size:11.5px">Close <span style="color:var(--cobalt)">&middot; Create Emphasis</span></span></div>
+      <div style="font-size:9.5px;line-height:1.55;color:var(--slate);margin-top:6px">Faces and reactions carry more weight up close.</div>
+    </div>
+    <div style="width:286px">
+      <div class="plate on-dark" style="height:161px"><span class="p-id">M06.4</span>
+        <img src="assets/fg-m06-4.jpg" alt="" style="position:absolute;top:0;left:0;width:286px;height:161px"></div>
+      <div style="margin-top:10px;display:flex;gap:10px;align-items:baseline">
+        <span class="hd" style="font-size:17px;color:var(--cobalt)">04</span>
+        <span class="sub" style="font-size:11.5px">Detail <span style="color:var(--cobalt)">&middot; Show What Matters</span></span></div>
+      <div style="font-size:9.5px;line-height:1.55;color:var(--slate);margin-top:6px">Hands, texture, a product, a button being pressed.</div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:767px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between">
+    <div style="width:286px">
+      <div class="plate on-dark" style="height:161px"><span class="p-id">M06.5</span>
+        <img src="assets/fg-m06-5.jpg" alt="" style="position:absolute;top:0;left:0;width:286px;height:161px"></div>
+      <div style="margin-top:10px;display:flex;gap:10px;align-items:baseline">
+        <span class="hd" style="font-size:17px;color:var(--cobalt)">05</span>
+        <span class="sub" style="font-size:11.5px">Environment <span style="color:var(--cobalt)">&middot; Ground The Story</span></span></div>
+      <div style="font-size:9.5px;line-height:1.55;color:var(--slate);margin-top:6px">Without the world around it, the story is half told.</div>
+    </div>
+    <div style="width:286px">
+      <div class="plate on-dark" style="height:161px"><span class="p-id">M06.6</span>
+        <img src="assets/fg-m06-6.jpg" alt="" style="position:absolute;top:0;left:0;width:286px;height:161px"></div>
+      <div style="margin-top:10px;display:flex;gap:10px;align-items:baseline">
+        <span class="hd" style="font-size:17px;color:var(--cobalt)">06</span>
+        <span class="sub" style="font-size:11.5px">Reveal <span style="color:var(--cobalt)">&middot; Give The Shot A Payoff</span></span></div>
+      <div style="font-size:9.5px;line-height:1.55;color:var(--slate);margin-top:6px">Hide part of the frame, then reveal what matters.</div>
+    </div>
+  </div>
+
+  <div class="band" style="top:1011px;left:34px;right:0;bottom:0;background:var(--ink)"></div>
+  <div class="band grain" style="top:1011px;left:34px;right:0;bottom:0"></div>
+  <div style="position:absolute;top:1040px;left:64px;width:340px;z-index:6">
+    <div class="hd" style="font-size:20px;color:#fff">Don&rsquo;t Collect Random Pretty Clips.</div>
+    <div class="hd" style="font-size:20px;color:var(--volt);margin-top:9px">Collect The Pieces Of An Edit.</div>
+  </div>
+  <div style="position:absolute;top:1036px;left:420px;width:286px;z-index:6;border-top:1px solid rgba(255,255,255,.2);padding-top:12px">
+    <div class="sub" style="font-size:11px;color:#fff">Think through the sequence A to Z.</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:7px">What starts the action? What gets us closer? What detail sells it? What does the place add? What finishes the thought?</div>
+  </div>
+  <div class="folio" style="color:rgba(255,255,255,.55)"><b style="color:#fff">07</b> / 14</div>
+</div>
+<div class="tag">SHEET 08 — LIGHT + SOUND</div>
+<div class="page light g40">
+  <svg class="grid40" aria-hidden="true"><use href="#g40"/></svg>
+  <div class="spine"><span>08 &nbsp;&mdash;&nbsp; Light &amp; Sound</span></div>
+  <div class="hud"><span>Your iPhone Is A Cinema Camera</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Field Guide <b>001</b></span></div>
+
+  <!-- sound runs as a full-height rail: supporting, never competing. The
+       headline splits across the two tracks, so the page states its hierarchy. -->
+  <div class="band" style="top:52px;left:540px;right:0;bottom:0;background:var(--ink)"></div>
+  <div class="band grain" style="top:52px;left:540px;right:0;bottom:0"></div>
+
+  <div style="position:absolute;top:84px;left:64px;width:444px;z-index:6">
+    <div class="eyebrow">Before More Gear</div>
+    <div class="hd" style="font-size:76px;margin-top:14px">Light</div>
+  </div>
+  <div style="position:absolute;top:206px;left:64px;width:444px;z-index:6">
+    <div class="bd" style="font-size:12px;line-height:1.72">
+      <p style="margin-bottom:9px">People will forgive a lot before they will forgive an image they cannot see or audio they cannot understand.</p>
+      <p style="color:var(--ink);font-weight:600">Before you add more gear, fix the environment.</p>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:306px;left:64px;width:444px;z-index:6">
+    <div class="sub" style="font-size:14px">Start With What&rsquo;s Already There</div>
+    <div style="font-size:10.5px;line-height:1.64;color:var(--slate);margin-top:9px">Good light makes the iPhone look significantly better before you change another setting. My first move is looking at the light I already have.</div>
+  </div>
+
+  <!-- one frame, split: the comparison is the image, not two images -->
+  <div style="position:absolute;top:408px;left:64px;width:444px;z-index:6">
+    <div style="display:flex">
+      <div class="plate" style="width:221px;height:210px;border-right:none">
+        <span class="p-id">M07.1</span>
+        <div class="p-in sm" style="max-width:180px">
+          <span class="p-type">Before</span>
+          <span class="p-subj">Overhead light</span>
+          <span class="p-spec">221 &times; 210<br>No direction, hard shadows</span>
+        </div>
+      </div>
+      <div class="plate" style="width:223px;height:210px;border-left:4px solid var(--cobalt)">
+        <span class="p-id">M07.2</span>
+        <div class="p-in sm" style="max-width:180px">
+          <span class="p-type">After</span>
+          <span class="p-subj">Window light</span>
+          <span class="p-spec">223 &times; 210<br>Same subject, same phone<br>Moved toward the window</span>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;margin-top:9px">
+      <div style="width:221px;padding-right:14px">
+        <div class="sub" style="font-size:11px;color:var(--slate)">Overhead Light</div>
+        <div style="font-size:9.5px;line-height:1.58;color:var(--slate);margin-top:5px">Turn it off when you can and build around a better source.</div>
+      </div>
+      <div style="flex:1">
+        <div class="sub" style="font-size:11px;color:var(--cobalt)">Window Light</div>
+        <div style="font-size:9.5px;line-height:1.58;color:var(--slate);margin-top:5px">Move toward it. Use its direction to shape the face.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:734px;left:64px;width:214px;z-index:6">
+    <div class="sub" style="font-size:12.5px">Direction</div>
+    <div style="font-size:10px;line-height:1.62;color:var(--slate);margin-top:8px">Moving yourself or your subject a few feet can completely change the image.</div>
+  </div>
+  <div style="position:absolute;top:734px;left:294px;width:214px;z-index:6">
+    <div class="sub" style="font-size:12.5px">Artificial Light</div>
+    <div style="font-size:10px;line-height:1.62;color:var(--slate);margin-top:8px">Add it when the room is not giving you what you need. Not more light. Better light.</div>
+    <div class="plate" style="height:100px;margin-top:10px"><span class="p-id">M07.3</span>
+      <div class="p-in sm" style="max-width:160px"><span class="p-type">Setup</span><span class="p-subj">One light, in use</span><span class="p-spec">214 &times; 100</span></div></div>
+  </div>
+
+  <div style="position:absolute;top:1024px;left:64px;width:444px;z-index:6;border-top:2px solid var(--ink);padding-top:13px">
+    <div class="hd" style="font-size:23px">Light The Subject.</div>
+    <div class="hd" style="font-size:23px;color:var(--cobalt)">Don&rsquo;t Just Light The Room.</div>
+  </div>
+
+  <!-- the rail -->
+  <div style="position:absolute;top:98px;left:572px;width:164px;z-index:6">
+    <div class="hd" style="font-size:40px;color:#fff">+ Sound</div>
+  </div>
+  <div style="position:absolute;top:206px;left:572px;width:164px;z-index:6">
+    <div class="sub" style="font-size:12.5px;color:#fff">Get The Mic<br>Closer</div>
+    <div style="font-size:10px;line-height:1.64;color:rgba(255,255,255,.78);margin-top:10px">The built-in mics work when the room is controlled and the phone is close. The farther it gets, the more the room becomes part of the recording.</div>
+  </div>
+  <div class="plate on-dark" style="position:absolute;top:400px;left:572px;width:164px;height:160px;z-index:6">
+    <span class="p-id">M07.4</span>
+    <div class="p-in sm" style="max-width:140px">
+      <span class="p-type">Photo</span>
+      <span class="p-subj">iPhone with external audio</span>
+      <span class="p-spec">164 &times; 160<br>Real setup, in use</span>
+    </div>
+  </div>
+  <div style="position:absolute;top:596px;left:572px;width:164px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--volt);margin-bottom:11px">When Audio Matters</div>
+    <div style="padding:8px 0;border-top:1px solid rgba(255,255,255,.16)">
+      <div style="font-size:10px;line-height:1.55;color:rgba(255,255,255,.78)">Get the microphone closer to the source.</div>
+    </div>
+    <div style="padding:8px 0;border-top:1px solid rgba(255,255,255,.16)">
+      <div style="font-size:10px;line-height:1.55;color:rgba(255,255,255,.78)">Reduce room noise where you can.</div>
+    </div>
+    <div style="padding:8px 0;border-top:1px solid rgba(255,255,255,.16)">
+      <div style="font-size:10px;line-height:1.55;color:rgba(255,255,255,.78)">Use an external or wireless mic when the room calls for it.</div>
+    </div>
+    <div style="padding:8px 0;border-top:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16)">
+      <div style="font-size:10px;line-height:1.55;color:rgba(255,255,255,.78)">Monitor your audio when your setup allows.</div>
+    </div>
+  </div>
+  <div style="position:absolute;top:1024px;left:572px;width:164px;z-index:6;border-top:2px solid var(--volt);padding-top:13px">
+    <div class="hd" style="font-size:17px;color:#fff">Bad Audio Makes</div>
+    <div class="hd" style="font-size:17px;color:var(--volt)">Good Video Feel Cheap.</div>
+  </div>
+
+  <div class="folio" style="color:rgba(255,255,255,.55)"><b style="color:#fff">08</b> / 14</div>
+</div>
+<div class="tag">SHEET 09 — BUILD THE RIG</div>
+<div class="page light g40">
+  <svg class="grid40" aria-hidden="true"><use href="#g40"/></svg>
+  <div class="spine"><span>09 &nbsp;&mdash;&nbsp; The Kit</span></div>
+  <div class="hud"><span>Your iPhone Is A Cinema Camera</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Field Guide <b>001</b></span></div>
+
+  <div style="position:absolute;top:82px;left:64px;width:330px;z-index:6">
+    <div class="eyebrow">The Kit</div>
+    <div class="hd" style="font-size:80px;margin-top:15px">Build<br>The Rig</div>
+  </div>
+  <div style="position:absolute;top:110px;left:420px;width:316px;z-index:6">
+    <div class="bd" style="font-size:11.5px;line-height:1.7">
+      <p style="margin-bottom:10px">You don&rsquo;t need to build a cinema rig every time you shoot. For everyday content, a phone, a tripod and good audio is often all it takes.</p>
+      <p style="color:var(--ink);font-weight:600">Build from there when stability, light, storage or control start to matter.</p>
+    </div>
+  </div>
+
+  <!-- the page's whole argument is this split: three things you need, four you
+       add only when the shot asks for them -->
+  <div style="position:absolute;top:294px;left:64px;right:64px;z-index:6;border-top:2px solid var(--ink);padding-top:11px;
+              display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:8.5px;
+              letter-spacing:.2em;text-transform:uppercase;color:var(--slate)">
+    <span style="color:var(--ink)">Start Here &nbsp;&middot;&nbsp; The Foundation</span><span>Need</span>
+  </div>
+  <div style="position:absolute;top:340px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between">
+    <div style="width:208px">
+      <div style="display:flex;gap:11px;align-items:baseline"><span class="hd" style="font-size:20px;color:var(--cobalt)">01</span><span class="sub" style="font-size:12.5px">A Good Tripod</span></div>
+      <div style="font-size:10px;line-height:1.62;color:var(--slate);margin-top:8px;min-height:65px">If you are filming yourself, start here. Something stable that also gives you different angles.</div>
+      <div class="kick" style="font-size:7px;color:var(--cobalt);line-height:1.8">Stephen&rsquo;s kit<br><span style="color:var(--slate)">Ulanzi MT85</span></div>
+    </div>
+    <div style="width:208px">
+      <div style="display:flex;gap:11px;align-items:baseline"><span class="hd" style="font-size:20px;color:var(--cobalt)">02</span><span class="sub" style="font-size:12.5px">Good Audio</span></div>
+      <div style="font-size:10px;line-height:1.62;color:var(--slate);margin-top:8px;min-height:65px">If people can&rsquo;t understand you, the image stops mattering. An external mic is more consistent than the built-in ones.</div>
+      <div class="kick" style="font-size:7px;color:var(--cobalt);line-height:1.8">Stephen&rsquo;s kit<br><span style="color:var(--slate)">DJI Mic 2 &middot; DJI Mic Mini</span></div>
+    </div>
+    <div style="width:208px">
+      <div style="display:flex;gap:11px;align-items:baseline"><span class="hd" style="font-size:20px;color:var(--cobalt)">03</span><span class="sub" style="font-size:12.5px">Light</span></div>
+      <div style="font-size:10px;line-height:1.62;color:var(--slate);margin-top:8px;min-height:65px">Enough control to make the light work for the shot. Available light when it works, a small light when it does not.</div>
+      <div class="kick" style="font-size:7px;color:var(--cobalt);line-height:1.8">Stephen&rsquo;s kit<br><span style="color:var(--slate)">Amaran MC</span></div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:534px;left:64px;right:64px;z-index:6;border-top:1px solid var(--line);padding-top:11px;
+              display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:8.5px;
+              letter-spacing:.2em;text-transform:uppercase;color:var(--slate)">
+    <span>Build When The Shot Calls For It</span><span style="color:var(--cobalt)">Add When Useful</span>
+  </div>
+  <div style="position:absolute;top:578px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between">
+    <div style="width:156px">
+      <div class="sub" style="font-size:11px">Cage + Handles</div>
+      <div style="font-size:9.5px;line-height:1.6;color:var(--slate);margin-top:7px;min-height:62px">More contact points make handheld movement easier to control. Mounting for mics and lights.</div>
+      <div class="kick" style="font-size:7px;color:var(--slate)">SmallRig</div>
+    </div>
+    <div style="width:156px">
+      <div class="sub" style="font-size:11px">ND Filter</div>
+      <div style="font-size:9.5px;line-height:1.6;color:var(--slate);margin-top:7px;min-height:62px">Cuts the light outdoors so you keep the shutter you chose. Less useful indoors.</div>
+      <div class="kick" style="font-size:7px;color:var(--slate)">SmallRig &middot; planned</div>
+    </div>
+    <div style="width:156px">
+      <div class="sub" style="font-size:11px">SSD</div>
+      <div style="font-size:9.5px;line-height:1.6;color:var(--slate);margin-top:7px;min-height:62px">Bigger formats make bigger files. Phone to SSD to computer.</div>
+      <div class="kick" style="font-size:7px;color:var(--slate)">Samsung T7</div>
+    </div>
+    <div style="width:156px">
+      <div class="sub" style="font-size:11px">Power</div>
+      <div style="font-size:9.5px;line-height:1.6;color:var(--slate);margin-top:7px;min-height:62px">One charge covers most shoots. The bank is for long days and travel.</div>
+      <div class="kick" style="font-size:7px;color:var(--slate)">Anker power bank</div>
+    </div>
+  </div>
+
+  <!-- the flat lay anchors the page and carries the doctrine in its caption zone -->
+  <div class="plate on-dark" style="position:absolute;top:752px;left:0;right:-34px;bottom:-34px;z-index:6;border-left:none;border-right:none;border-bottom:none">
+    <div class="p-meta" style="top:20px;left:64px;max-width:290px">
+      <span class="pm-k">M08.1 &middot; Hero Flat Lay</span>
+      <span class="pm-t">Stephen&rsquo;s kit, shot<br>from above</span>
+      <span class="pm-s">Full bleed, three edges &middot; top down<br>Even light, no props<br>Group the three essentials apart<br>from the rest, not a shopping list</span>
+    </div>
+    <div class="zone keep" style="left:78px;top:190px;width:652px;height:124px"><i>Keep this band clear &middot; caption</i></div>
+  </div>
+  <!-- M08.2 · the guide's one gear link, pinned to the flat lay it points at.
+       Destination to be supplied. When it exists: swap the q-box svg for the
+       QR image, turn "View Stephen's Kit" into the link, and delete the
+       to-be-supplied line. No URL is invented here. -->
+  <div class="dark" style="position:absolute;top:773px;left:470px;width:266px;z-index:7;background:none;border-top:1px solid rgba(255,255,255,.2);padding-top:14px">
+    <div class="qr">
+      <div class="q-box"><svg><use href="#qrg"/></svg></div>
+      <div>
+        <span class="q-k">M08.2</span>
+        <div class="q-t">Shop The Kit</div>
+        <div class="q-d">The gear I actually use<br>to shoot with my iPhone.</div>
+        <div class="kick" style="font-size:7.5px;color:var(--volt);margin-top:9px">View Stephen&rsquo;s Kit &rarr;</div>
+      </div>
+    </div>
+    <div class="kick" style="font-size:7px;letter-spacing:.14em;color:rgba(77,124,255,.66);margin-top:12px">QR destination to be supplied</div>
+  </div>
+  <div style="position:absolute;top:972px;left:92px;width:320px;z-index:7">
+    <div class="hd" style="font-size:18px;color:#fff">If You&rsquo;re Adding It Because</div>
+    <div class="hd" style="font-size:18px;color:#fff">It Solves A Problem, Rig It.</div>
+    <div class="hd" style="font-size:18px;color:var(--volt);margin-top:9px">If It Just Looks Cool,</div>
+    <div class="hd" style="font-size:18px;color:var(--volt)">You&rsquo;ve Lost The Plot.</div>
+  </div>
+  <div style="position:absolute;top:986px;left:470px;width:250px;z-index:7">
+    <div class="sub" style="font-size:12px;color:#fff">The rig should remove friction.</div>
+    <div class="sub" style="font-size:12px;color:var(--volt);margin-top:5px">Not become the friction.</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:11px">If all the shot needs is a stable frame, put the phone on the tripod and press record.</div>
+  </div>
+
+  <div class="folio" style="color:rgba(255,255,255,.55)"><b style="color:#fff">09</b> / 14</div>
+</div>
+<div class="tag">SHEET 10 — THE WORKFLOW</div>
+<div class="page cobalt grain">
+  <div class="glow" style="width:560px;height:560px;top:-220px;right:-180px;background:radial-gradient(circle,#7FA0FF,transparent 70%);opacity:.24"></div>
+  <div class="glow" style="width:520px;height:520px;bottom:60px;left:-240px;background:radial-gradient(circle,var(--deep),transparent 70%);opacity:.55"></div>
+  <div class="spine"><span>10 &nbsp;&mdash;&nbsp; The Workflow</span></div>
+  <div class="hud"><span>Your iPhone Is A Cinema Camera</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Field Guide <b>001</b></span></div>
+
+  <div style="position:absolute;top:82px;left:64px;width:330px;z-index:6">
+    <div class="eyebrow">The Loop</div>
+    <div class="hd" style="font-size:80px;color:#fff;margin-top:15px">The<br>Workflow</div>
+  </div>
+  <div style="position:absolute;top:110px;left:420px;width:316px;z-index:6">
+    <div class="bd" style="font-size:11.5px;line-height:1.7">
+      <p style="margin-bottom:10px">My creative process doesn&rsquo;t change because I&rsquo;m shooting on an iPhone. I still start with the idea, plan the shots and build the edit.</p>
+      <p style="color:#fff;font-weight:600">What changes is how fast I get from idea to footage.</p>
+    </div>
+  </div>
+  <div style="position:absolute;top:300px;left:64px;width:200px;height:118px;background:var(--ink);padding:15px;z-index:6">
+    <div class="kick" style="font-size:7.5px;color:var(--volt)">Stage 01</div>
+    <div class="hd" style="font-size:22px;color:#fff;margin-top:8px">Idea</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:9px">Capture it before you lose it. Notes or a voice note.</div>
+  </div>
+  <div style="position:absolute;top:300px;left:300px;width:200px;height:118px;background:var(--ink);padding:15px;z-index:6">
+    <div class="kick" style="font-size:7.5px;color:var(--volt)">Stage 02</div>
+    <div class="hd" style="font-size:22px;color:#fff;margin-top:8px">Script</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:9px">Know what you are shooting before you start shooting.</div>
+  </div>
+  <div style="position:absolute;top:300px;left:536px;width:200px;height:118px;background:var(--ink);padding:15px;z-index:6">
+    <div class="kick" style="font-size:7.5px;color:var(--volt)">Stage 03</div>
+    <div class="hd" style="font-size:22px;color:#fff;margin-top:8px">Shoot</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:9px">A-roll first, then the B-roll that supports it.</div>
+  </div>
+  <div style="position:absolute;top:468px;left:64px;width:200px;height:118px;background:var(--ink);padding:15px;z-index:6">
+    <div class="kick" style="font-size:7.5px;color:var(--volt)">Stage 04</div>
+    <div class="hd" style="font-size:22px;color:#fff;margin-top:8px">Music</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:9px">Choose the track before you edit. It gives the cut its rhythm.</div>
+  </div>
+  <div style="position:absolute;top:468px;left:300px;width:200px;height:118px;background:var(--ink);padding:15px;z-index:6">
+    <div class="kick" style="font-size:7.5px;color:var(--volt)">Stage 05</div>
+    <div class="hd" style="font-size:22px;color:#fff;margin-top:8px">A-Roll</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:9px">Lay the talking head down first. That is the spine.</div>
+  </div>
+  <div style="position:absolute;top:468px;left:536px;width:200px;height:118px;background:var(--ink);padding:15px;z-index:6">
+    <div class="kick" style="font-size:7.5px;color:var(--volt)">Stage 06</div>
+    <div class="hd" style="font-size:22px;color:#fff;margin-top:8px">Color</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:9px">Log starts flat. The color workflow brings the image back.</div>
+  </div>
+  <div style="position:absolute;top:636px;left:64px;width:200px;height:118px;background:var(--ink);padding:15px;z-index:6">
+    <div class="kick" style="font-size:7.5px;color:var(--volt)">Stage 07</div>
+    <div class="hd" style="font-size:22px;color:#fff;margin-top:8px">B-Roll</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:9px">Layer in what shows the viewer what you are saying.</div>
+  </div>
+  <div style="position:absolute;top:636px;left:300px;width:200px;height:118px;background:var(--ink);padding:15px;z-index:6">
+    <div class="kick" style="font-size:7.5px;color:var(--volt)">Stage 08</div>
+    <div class="hd" style="font-size:22px;color:#fff;margin-top:8px">Polish</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:9px">After the edit works. Effects enhance the edit, they don&rsquo;t carry it.</div>
+  </div>
+  <div style="position:absolute;top:636px;left:536px;width:200px;height:118px;background:var(--ink);padding:15px;z-index:6">
+    <div class="kick" style="font-size:7.5px;color:var(--volt)">Stage 09</div>
+    <div class="hd" style="font-size:22px;color:#fff;margin-top:8px">Export</div>
+    <div style="font-size:9.5px;line-height:1.6;color:#8C93A5;margin-top:9px">Export for the platform and keep the quality you built.</div>
+  </div>
+  <div class="band" style="top:358px;left:264px;width:28px;height:2px;background:rgba(255,255,255,.6)"></div>
+  <div class="band" style="top:353px;left:286px;width:0;height:0;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;background:none"></div>
+  <div class="band" style="top:358px;left:500px;width:28px;height:2px;background:rgba(255,255,255,.6)"></div>
+  <div class="band" style="top:353px;left:522px;width:0;height:0;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;background:none"></div>
+  <div class="band" style="top:526px;left:264px;width:28px;height:2px;background:rgba(255,255,255,.6)"></div>
+  <div class="band" style="top:521px;left:286px;width:0;height:0;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;background:none"></div>
+  <div class="band" style="top:526px;left:500px;width:28px;height:2px;background:rgba(255,255,255,.6)"></div>
+  <div class="band" style="top:521px;left:522px;width:0;height:0;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;background:none"></div>
+  <div class="band" style="top:694px;left:264px;width:28px;height:2px;background:rgba(255,255,255,.6)"></div>
+  <div class="band" style="top:689px;left:286px;width:0;height:0;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;background:none"></div>
+  <div class="band" style="top:694px;left:500px;width:28px;height:2px;background:rgba(255,255,255,.6)"></div>
+  <div class="band" style="top:689px;left:522px;width:0;height:0;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;background:none"></div>
+  <div class="band" style="top:418px;left:635px;width:2px;height:25px;background:rgba(255,255,255,.6)"></div>
+  <div class="band" style="top:443px;left:163px;width:474px;height:2px;background:rgba(255,255,255,.6)"></div>
+  <div class="band" style="top:443px;left:163px;width:2px;height:13px;background:rgba(255,255,255,.6)"></div>
+  <div class="band" style="top:455px;left:158px;width:0;height:0;border-top:9px solid #fff;border-left:6px solid transparent;border-right:6px solid transparent;background:none"></div>
+  <div class="band" style="top:586px;left:635px;width:2px;height:25px;background:rgba(255,255,255,.6)"></div>
+  <div class="band" style="top:611px;left:163px;width:474px;height:2px;background:rgba(255,255,255,.6)"></div>
+  <div class="band" style="top:611px;left:163px;width:2px;height:13px;background:rgba(255,255,255,.6)"></div>
+  <div class="band" style="top:623px;left:158px;width:0;height:0;border-top:9px solid #fff;border-left:6px solid transparent;border-right:6px solid transparent;background:none"></div>
+
+  <div style="position:absolute;top:796px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between">
+    <div style="width:208px">
+      <div class="kick" style="font-size:8px;color:rgba(255,255,255,.7);margin-bottom:9px">Transfer</div>
+      <div style="display:flex;align-items:center;gap:7px;font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:#fff">
+        <span>Phone</span><span style="color:#BFD0FF">&rarr;</span><span>SSD</span><span style="color:#BFD0FF">&rarr;</span><span>Computer</span>
+      </div>
+      <div style="font-size:9.5px;line-height:1.6;color:rgba(255,255,255,.78);margin-top:9px">Organize the project into a folder and edit from the drive.</div>
+      <div class="kick" style="font-size:7px;color:rgba(255,255,255,.6);margin-top:7px">Samsung T7</div>
+    </div>
+    <div style="width:208px">
+      <div class="kick" style="font-size:8px;color:rgba(255,255,255,.7);margin-bottom:9px">Your Editor</div>
+      <div class="sub" style="font-size:12px;color:#fff">Use the editor you&rsquo;ll<br>actually use.</div>
+      <div style="font-size:9.5px;line-height:1.6;color:rgba(255,255,255,.78);margin-top:9px">I work in Premiere because I already know it. For quicker cuts, CapCut or Instagram Edits.</div>
+      <div class="kick" style="font-size:7px;color:rgba(255,255,255,.6);margin-top:7px">Familiarity beats prestige</div>
+    </div>
+    <div style="width:208px">
+      <div class="kick" style="font-size:8px;color:rgba(255,255,255,.7);margin-bottom:9px">Where It Saves Me Time</div>
+      <div class="sub" style="font-size:12px;color:#fff">Setup.</div>
+      <div style="font-size:9.5px;line-height:1.6;color:rgba(255,255,255,.78);margin-top:9px">Mount the phone, dial in familiar settings, pick a camera, connect audio, shoot. Fewer steps between the idea and record.</div>
+    </div>
+  </div>
+
+  <div class="band" style="top:936px;left:34px;right:0;bottom:0;background:var(--ink)"></div>
+  <div class="band grain" style="top:936px;left:34px;right:0;bottom:0"></div>
+  <div style="position:absolute;top:966px;left:64px;width:320px;z-index:6">
+    <div class="hd" style="font-size:26px;color:#fff">Don&rsquo;t Add A Step</div>
+    <div class="hd" style="font-size:26px;color:var(--volt)">Unless It Adds Value.</div>
+    <div style="font-size:9.5px;line-height:1.66;color:#8C93A5;margin-top:14px">Don&rsquo;t build a rig because it looks professional. Don&rsquo;t shoot Log because it sounds professional. Don&rsquo;t add effects because the timeline feels empty.</div>
+  </div>
+  <div class="plate on-dark" style="position:absolute;top:962px;left:430px;width:306px;height:116px;z-index:6">
+    <span class="p-id">M09.1</span>
+    <div class="p-in sm" style="max-width:250px">
+      <span class="p-type">Screenshot</span>
+      <span class="p-subj">The edit, mid-cut</span>
+      <span class="p-spec">306 &times; 116 &middot; stage 05, before color</span>
+    </div>
+  </div>
+  <div class="folio"><b>10</b> / 14</div>
+</div>
+<div class="tag">SHEET 11 — IPHONE OVER CAMERA</div>
+<div class="page cobalt grain">
+  <div class="glow" style="width:600px;height:600px;top:-250px;right:-200px;background:radial-gradient(circle,#7FA0FF,transparent 70%);opacity:.26"></div>
+  <div class="glow" style="width:520px;height:520px;bottom:120px;left:-220px;background:radial-gradient(circle,var(--deep),transparent 70%);opacity:.6"></div>
+  <div class="spine"><span>11 &nbsp;&mdash;&nbsp; The Experiment</span></div>
+  <div class="hud"><span>Your iPhone Is A Cinema Camera</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Field Guide <b>001</b></span></div>
+
+  <div style="position:absolute;top:80px;left:64px;right:64px;z-index:6">
+    <div class="eyebrow">The Experiment</div>
+    <div class="hd" style="font-size:88px;color:#fff;margin-top:16px">iPhone<br>Over Camera</div>
+  </div>
+
+  <div style="position:absolute;top:304px;left:64px;width:330px;z-index:6">
+    <div style="font-size:13px;line-height:1.66;color:rgba(255,255,255,.88)">
+      <p style="margin-bottom:11px">I wanted to create more consistently without every piece of content becoming a full camera production.</p>
+      <p style="margin-bottom:11px">So I gave myself a new rule:</p>
+      <p style="color:#fff;font-weight:600">Don&rsquo;t reach for the camera out of habit.</p>
+      <p style="color:#fff;font-weight:600">Reach for it with a reason.</p>
+    </div>
+  </div>
+
+  <!-- the note is an archival object, not the hero: small, tilted, set into the field -->
+  <div class="plate" style="position:absolute;top:310px;left:494px;width:236px;height:142px;z-index:6;
+              border-color:rgba(255,255,255,.4);transform:rotate(-2.2deg)">
+    <span class="p-id">M10.4</span>
+    <div class="p-in sm" style="max-width:190px">
+      <span class="p-type">Artifact</span>
+      <span class="p-subj">Original concept note</span>
+      <span class="p-spec">Scan or photograph &middot; 236 &times; 142<br>Handwritten, as found</span>
+    </div>
+  </div>
+
+  <!-- 80 / 20 carried by typographic scale, not by a chart -->
+  <div style="position:absolute;top:486px;left:64px;right:64px;z-index:6;display:flex;align-items:baseline;
+              border-top:1px solid rgba(255,255,255,.34);padding-top:24px">
+    <div style="width:344px">
+      <span class="hd" style="font-size:96px;color:#fff">80</span><span class="hd" style="font-size:32px;color:rgba(255,255,255,.55)">%</span>
+    </div>
+    <div>
+      <span class="hd" style="font-size:56px;color:rgba(255,255,255,.9)">20</span><span class="hd" style="font-size:20px;color:rgba(255,255,255,.55)">%</span>
+    </div>
+  </div>
+  <div style="position:absolute;top:610px;left:64px;right:64px;z-index:6;display:flex">
+    <div style="width:344px;padding-right:28px">
+      <div class="sub" style="font-size:15px;color:#fff">iPhone First</div>
+      <div style="font-size:11.5px;line-height:1.62;color:rgba(255,255,255,.76);margin-top:9px">Challenge yourself to create with the camera already in your pocket.</div>
+    </div>
+    <div style="flex:1">
+      <div class="sub" style="font-size:15px;color:var(--volt)">Camera With A Reason</div>
+      <div style="font-size:11.5px;line-height:1.62;color:rgba(255,255,255,.76);margin-top:9px">Reach for the dedicated camera when the image genuinely calls for what it does better.</div>
+    </div>
+  </div>
+
+  <!-- the case study: real frames, the thesis, the closing line -->
+  <div class="band" style="top:706px;left:34px;right:0;bottom:0;background:var(--ink)"></div>
+  <div class="band grain" style="top:706px;left:34px;right:0;bottom:0"></div>
+
+  <div style="position:absolute;top:736px;left:64px;right:64px;z-index:6;display:flex;gap:16px">
+    <div class="plate on-dark" style="flex:1;height:184px">
+      <span class="p-id">M10.1</span>
+      <div class="p-in sm" style="max-width:230px">
+        <span class="p-type">Video Frame</span><span class="p-subj">Shot on iPhone &middot; lifestyle</span>
+        <span class="p-spec">16:9 &middot; 328 &times; 184<br>Finished frame from real work</span>
+      </div>
+    </div>
+    <div class="plate on-dark" style="flex:1;height:184px">
+      <span class="p-id">M10.2</span>
+      <div class="p-in sm" style="max-width:230px">
+        <span class="p-type">Video Frame</span><span class="p-subj">Shot on iPhone &middot; movement</span>
+        <span class="p-spec">16:9 &middot; 328 &times; 184<br>Depth or motion, not a still</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:944px;left:64px;width:290px;z-index:6">
+    <div class="hd" style="font-size:21px;color:#fff">I didn&rsquo;t learn that<br>I don&rsquo;t need my camera.</div>
+    <div class="hd" style="font-size:21px;color:var(--volt);margin-top:11px">I learned how often I don&rsquo;t<br>need to reach for it first.</div>
+    <div class="kick" style="font-size:8px;color:#79808F;margin-top:12px">&mdash; Stephen</div>
+  </div>
+
+  <div style="position:absolute;top:944px;left:408px;width:328px;z-index:6;border-top:1px solid rgba(255,255,255,.2);padding-top:16px">
+    <div class="sub" style="font-size:13.5px;color:#fff">The goal isn&rsquo;t to use less camera.</div>
+    <div class="sub" style="font-size:13.5px;color:var(--volt);margin-top:6px">It&rsquo;s to use less friction.</div>
+  </div>
+
+  <div class="folio"><b>11</b> / 14</div>
+</div>
+<div class="tag">SHEET 12 — FIELD CHEAT SHEET</div>
+<div class="page light">
+  <div class="spine"><span>12 &nbsp;&mdash;&nbsp; Reference</span></div>
+  <div class="hud"><span>Your iPhone Is A Cinema Camera</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Field Guide <b>001</b></span></div>
+
+  <!-- the whole guide compressed to one page. No new teaching here, and no
+       single capture setup presented as the correct one: it is organised by
+       what you are shooting. -->
+  <div class="band" style="top:52px;left:34px;right:0;height:156px;background:var(--cobalt)"></div>
+  <div class="band grain" style="top:52px;left:34px;right:0;height:156px"></div>
+  <div style="position:absolute;top:78px;left:64px;width:470px;z-index:6">
+    <div class="eyebrow" style="color:rgba(255,255,255,.72)">The Cheat Sheet</div>
+    <div class="hd" style="font-size:58px;color:#fff;margin-top:12px">Field Cheat Sheet</div>
+    <div class="kick" style="font-size:8px;color:rgba(255,255,255,.72);margin-top:12px">Everything in sheets 04&ndash;10, on one page</div>
+  </div>
+  <div class="cobalt" style="position:absolute;top:96px;left:566px;width:170px;z-index:6"><div class="qr">
+    <div class="q-box"><svg><use href="#qrg"/></svg></div>
+    <div>
+      <span class="q-k">M11.1</span>
+      <div class="q-t">Save this<br>to your phone</div>
+    </div>
+  </div></div>
+
+  <div class="cobalt" style="position:absolute;top:258px;left:64px;width:200px;padding:18px 18px 20px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:rgba(255,255,255,.7);margin-bottom:12px">Capture By Use Case</div>
+    <dl class="dl"><dt>Talking head</dt><dd>4K / 30</dd></dl>
+    <dl class="dl"><dt>Run + gun</dt><dd>Native</dd></dl>
+    <dl class="dl"><dt>Controlled</dt><dd>Blackmagic</dd></dl>
+    <dl class="dl"><dt>Slow-mo B-roll</dt><dd>4K / 60</dd></dl>
+    <dl class="dl" style="border-bottom:1px solid rgba(255,255,255,.22)"><dt>Bright exterior</dt><dd>Add ND</dd></dl>
+    <div style="font-size:9.5px;line-height:1.6;color:rgba(255,255,255,.82);margin-top:14px">My defaults. Pick for what the shot needs to do, not for how it sounds.</div>
+  </div>
+
+  <div style="position:absolute;top:258px;left:300px;width:200px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:10px">Before You Record</div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">01</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Clean lens</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">02</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Frame rate for the shot</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">03</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Light</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">04</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Composition</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">05</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Focus and exposure</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">06</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Audio</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">07</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Background</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">08</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Shot coverage</span></div>
+  </div>
+
+  <div style="position:absolute;top:258px;left:536px;width:200px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:10px">Which App</div>
+    <div style="padding:8px 0;border-top:1px solid var(--hair)">
+      <span class="sub" style="font-size:11px">Native</span>
+      <div style="font-size:10px;line-height:1.52;color:var(--slate);margin-top:4px">When speed matters. The light is good and you need to move.</div>
+    </div>
+    <div style="padding:8px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)">
+      <span class="sub" style="font-size:11px;color:var(--cobalt)">Blackmagic</span>
+      <div style="font-size:10px;line-height:1.52;color:var(--slate);margin-top:4px">When control matters. Shots must match, or you are grading.</div>
+    </div>
+    <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin:22px 0 10px">Manual Starting Points</div>
+    <div style="padding:6px 0;border-top:1px solid var(--hair)"><span style="font-size:10px;line-height:1.5;color:#3A3D47">Shutter about double the frame rate</span></div>
+    <div style="padding:6px 0;border-top:1px solid var(--hair)"><span style="font-size:10px;line-height:1.5;color:#3A3D47">Lock white balance</span></div>
+    <div style="padding:6px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)"><span style="font-size:10px;line-height:1.5;color:#3A3D47">Keep ISO as controlled as the scene allows</span></div>
+  </div>
+
+  <div style="position:absolute;top:600px;left:64px;width:200px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:10px">Shot Sequence</div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">W</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Wide</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">M</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Medium</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">C</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Close</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">D</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Detail</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">Env</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Environment</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">Rev</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Reveal</span></div>
+  </div>
+
+  <div style="position:absolute;top:850px;left:64px;width:200px;z-index:6">
+    <div class="hd" style="font-size:20px;color:var(--ink)">Shoot The Pieces</div>
+    <div class="hd" style="font-size:20px;color:var(--cobalt)">Of The Edit.</div>
+  </div>
+
+  <div style="position:absolute;top:600px;left:300px;width:200px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:10px">Light &amp; Sound</div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">01</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Find the light before the frame</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">02</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Move before you add a light</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">03</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Light the subject, not the room</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">04</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Get the mic closer to the source</span></div>
+    <div style="display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)"><span class="kick" style="font-size:7.5px;color:var(--cobalt);padding-top:2px;width:24px;flex-shrink:0">05</span><span style="font-size:10.5px;line-height:1.5;color:#3A3D47">Reduce room noise where you can</span></div>
+  </div>
+
+  <div style="position:absolute;top:600px;left:536px;width:200px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:10px">The Two Rules</div>
+    <div style="padding:9px 0;border-top:1px solid var(--hair)">
+      <span class="kick" style="font-size:7px;color:var(--slate)">Rig</span>
+      <div class="sub" style="font-size:12px;margin-top:5px">Add it if it solves<br>a problem.</div>
+    </div>
+    <div style="padding:9px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)">
+      <span class="kick" style="font-size:7px;color:var(--slate)">Workflow</span>
+      <div class="sub" style="font-size:12px;color:var(--cobalt);margin-top:5px">Don&rsquo;t add a step<br>unless it adds value.</div>
+    </div>
+    <div style="font-size:10px;line-height:1.6;color:var(--slate);margin-top:14px">Log starts flat. The color workflow brings the image back. Correct first, then grade.</div>
+  </div>
+
+  <div class="band" style="top:920px;left:34px;right:0;bottom:0;background:var(--ink)"></div>
+  <div class="band grain" style="top:920px;left:34px;right:0;bottom:0"></div>
+  <div style="position:absolute;top:946px;left:64px;width:330px;z-index:6">
+    <div class="hd" style="font-size:30px;color:#fff">Your iPhone Is</div>
+    <div class="hd" style="font-size:30px;color:#fff">A Cinema Camera.</div>
+    <div class="hd" style="font-size:30px;color:var(--volt);margin-top:11px">Now Go Use It Like One.</div>
+    <div class="kick" style="font-size:8px;color:rgba(255,255,255,.5);margin-top:20px">Creating a Brighter Tomorrow.</div>
+  </div>
+  <div style="position:absolute;top:944px;left:430px;width:270px;z-index:6;border-top:1px solid rgba(255,255,255,.2);padding-top:14px">
+    <div class="kick" style="font-size:7.5px;color:var(--volt);margin-bottom:14px">Where This Goes Next</div>
+    <div class="dark" style="background:none"><div class="qr">
+      <div class="q-box"><svg><use href="#qrg"/></svg></div>
+      <div>
+        <span class="q-k">M11.2</span>
+        <div class="q-t">Shooting Stars<br>Content Framework</div>
+        <div class="q-d">Strategy, structure and the way the work gets planned before a camera comes out.</div>
+      </div>
+    </div></div>
+  </div>
+  <div class="folio" style="color:rgba(255,255,255,.55)"><b style="color:#fff">12</b> / 14</div>
+</div>
+<div class="tag">SHEET 13 — SHOOTING STARS CONTENT ACADEMY</div>
+<div class="page dark grain">
+  <!-- glow low and right, so this page does not echo sheet 06's top-left field -->
+  <div class="glow" style="width:660px;height:660px;bottom:-300px;right:-220px;background:radial-gradient(circle,var(--deep),transparent 70%);opacity:.8"></div>
+  <div class="spine"><span>13 &nbsp;&mdash;&nbsp; The Academy</span></div>
+  <div class="hud"><span>Your iPhone Is A Cinema Camera</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Field Guide <b>001</b></span></div>
+
+  <!-- the orbital, low and right, cropped by the closing band. Fills the
+       quadrant the payoff leaves open without putting more copy on the page. -->
+  <img src="assets/Shooting_Stars_S_Icon_wht.png" alt="" class="band"
+       style="position:absolute;top:592px;right:-130px;width:560px;opacity:.055;z-index:0;pointer-events:none">
+
+  <!-- the statement, given the whole upper field and no explanation under it -->
+  <div style="position:absolute;top:82px;left:64px;width:672px;z-index:6">
+    <div class="eyebrow" style="color:var(--volt)">Beyond The Image</div>
+    <div class="hd" style="font-size:78px;color:#fff;margin-top:16px">The Content</div>
+    <div class="hd" style="font-size:78px;color:var(--volt)">Is The Vehicle.</div>
+  </div>
+
+  <div style="position:absolute;top:312px;left:64px;right:64px;z-index:6;border-top:2px solid var(--volt)"></div>
+
+  <div style="position:absolute;top:344px;left:64px;width:316px;z-index:6">
+    <div class="kick" style="font-size:7.5px;color:var(--volt)">The Academy</div>
+    <div class="sub" style="font-size:19px;color:#fff;margin-top:12px">Shooting Stars<br>Content Academy</div>
+    <div style="font-size:10.5px;line-height:1.72;color:rgba(255,255,255,.72);margin-top:14px">Built for creators, personal brands and entrepreneurs who know they have something valuable to offer &mdash; but need a better system for making sure people see it.</div>
+    <div style="font-size:10.5px;line-height:1.72;color:rgba(255,255,255,.72);margin-top:11px">We teach you how to turn ideas into intentional content that builds visibility, earns trust and creates opportunity.</div>
+  </div>
+
+  <div style="position:absolute;top:344px;left:420px;width:316px;z-index:6">
+    <div class="kick" style="font-size:7.5px;color:var(--volt)">Who It&rsquo;s For</div>
+    <div style="margin-top:14px;padding-top:11px;border-top:1px solid rgba(255,255,255,.16)">
+      <div style="display:flex;gap:11px;align-items:baseline"><span class="kick" style="font-size:8px;color:var(--volt)">01</span><span class="sub" style="font-size:11.5px;color:#fff">The Personal Brand</span></div>
+      <div style="font-size:10px;line-height:1.62;color:rgba(255,255,255,.66);margin-top:6px">You have something worth sharing. The challenge is getting the right people to see it, trust it and remember you.</div>
+    </div>
+    <div style="margin-top:16px;padding-top:11px;border-top:1px solid rgba(255,255,255,.16)">
+      <div style="display:flex;gap:11px;align-items:baseline"><span class="kick" style="font-size:8px;color:var(--volt)">02</span><span class="sub" style="font-size:11.5px;color:#fff">The Business</span></div>
+      <div style="font-size:10px;line-height:1.62;color:rgba(255,255,255,.66);margin-top:6px">You already have something worth selling. The challenge is building the visibility, trust and community that help it grow.</div>
+    </div>
+  </div>
+
+  <!-- the system, stated as a single row rather than a feature list -->
+  <div style="position:absolute;top:568px;left:64px;right:64px;z-index:6;border-top:1px solid rgba(255,255,255,.18);padding-top:12px;
+              display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:8px;
+              letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.62)">
+    <span>Strategy</span><span>Storytelling</span><span>Production</span><span>Distribution</span><span>Brand</span><span>Community</span>
+  </div>
+
+  <div style="position:absolute;top:664px;left:64px;width:400px;z-index:6">
+    <div class="hd" style="font-size:44px;color:#fff">Be Seen.</div>
+    <div class="hd" style="font-size:44px;color:#fff">Build Trust.</div>
+    <div class="hd" style="font-size:44px;color:var(--volt)">Create Opportunity.</div>
+  </div>
+  <div style="position:absolute;top:688px;left:500px;width:236px;z-index:6">
+    <div style="font-size:11.5px;line-height:1.66;color:rgba(255,255,255,.78)">Because the goal was never just to make better content.</div>
+    <div class="sub" style="font-size:12.5px;color:#fff;margin-top:10px">The goal is to build<br>something with it.</div>
+  </div>
+
+  <div class="band" style="top:856px;left:34px;right:0;bottom:0;background:var(--cobalt)"></div>
+  <div class="band grain" style="top:856px;left:34px;right:0;bottom:0"></div>
+
+  <div style="position:absolute;top:892px;left:64px;width:400px;z-index:6">
+    <div style="font-size:12.5px;line-height:1.56;color:rgba(255,255,255,.82)">This Field Guide teaches you to build the image.</div>
+    <div class="sub" style="font-size:14px;color:#fff;margin-top:8px">Shooting Stars teaches you<br>what to build with it.</div>
+  </div>
+  <!-- destination goes on this line once the Academy URL exists; nothing invented here -->
+  <div style="position:absolute;top:896px;left:500px;width:236px;z-index:6;text-align:right">
+    <span class="kick" style="font-size:8px;color:#fff;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:5px">Explore Shooting Stars &rarr;</span>
+  </div>
+
+  <div style="position:absolute;top:1004px;left:64px;right:34px;height:1px;background:rgba(255,255,255,.3);z-index:6"></div>
+  <div style="position:absolute;top:1028px;left:64px;width:420px;z-index:6">
+    <div class="kick" style="font-size:8px;color:#fff;letter-spacing:.22em">Shooting Stars Content Academy</div>
+    <div style="font-size:9.5px;color:rgba(255,255,255,.8);margin-top:7px">Creating a brighter tomorrow.</div>
+  </div>
+
+  <div class="folio" style="color:rgba(255,255,255,.62)"><b style="color:#fff">13</b> / 14</div>
+</div>
+<div class="tag">SHEET 14 — ABOUT STEPHEN</div>
+<div class="page light">
+  <div class="spine"><span>14 &nbsp;&mdash;&nbsp; Creator</span></div>
+  <div class="hud"><span>Your iPhone Is A Cinema Camera</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><span>Field Guide <b>001</b></span></div>
+
+
+  
+  <!-- The orbital mark sits behind the photograph, sized so it peeks out at the
+       left gutter, the right margin and the paper below the frame. Declared
+       before everything else so the photo and the closing band paint over it. -->
+  <img src="assets/Shooting_Stars_S_Icon_blk.png" alt="" class="band"
+       style="position:absolute;top:314px;left:-10px;width:820px;opacity:.07;z-index:0;pointer-events:none">
+
+  <div style="position:absolute;top:82px;left:64px;width:672px;z-index:6">
+    <div class="kick" style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--cobalt)">The Creator Behind The Guide</div>
+    <div class="hd" style="font-size:88px;margin-top:14px">About Stephen</div>
+  </div>
+
+  <div style="position:absolute;top:212px;left:64px;width:452px;z-index:6">
+    <div style="font-size:13px;line-height:1.62;color:var(--ink);font-weight:600">I&rsquo;m Stephen Michael. I&rsquo;m a filmmaker, content creator and educator with a simple belief: great content shouldn&rsquo;t feel out of reach.</div>
+  </div>
+
+  <div style="position:absolute;top:296px;left:64px;width:326px;z-index:6">
+    <div style="font-size:10.5px;line-height:1.72;color:var(--slate)">I&rsquo;ve spent more than a decade behind cameras, but the work has taken me far beyond filmmaking &mdash; creating for brands, building my own platforms, and learning how to turn ideas into content that actually connects.</div>
+  </div>
+  <div style="position:absolute;top:296px;left:410px;width:326px;z-index:6">
+    <div style="font-size:10.5px;line-height:1.72;color:var(--slate)">I created Shooting Stars Content Academy to share what I&rsquo;ve learned along the way and help other creators become more intentional with their craft, their process and the stories they tell.</div>
+  </div>
+
+  <!-- the wide frame: full measure, 16:9, the page's dominant element -->
+  <div class="plate" style="position:absolute;top:402px;left:64px;width:672px;height:378px;z-index:6">
+    <span class="p-id">M12.1</span>
+    <img src="assets/fg-m12-1.jpg" alt="" style="position:absolute;top:0;left:0;width:672px;height:378px">
+    <img src="assets/Shooting_Stars_S_Icon_wht.png" alt=""
+         style="position:absolute;top:24px;right:20px;width:22px;z-index:4;opacity:.95;
+                filter:drop-shadow(0 1px 3px rgba(0,0,0,.55))">
+  </div>
+  <div style="position:absolute;top:790px;left:64px;width:672px;z-index:6;display:flex;justify-content:space-between;
+              font-family:'JetBrains Mono';font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:#A8A49A">
+    <span>Creator &middot; Stephen Michael</span><span>Field Guide 001 &middot; M12.1</span>
+  </div>
+
+  <div class="band" style="top:872px;left:34px;right:0;bottom:0;background:var(--ink)"></div>
+  <div class="band grain" style="top:872px;left:34px;right:0;bottom:0"></div>
+
+  <div style="position:absolute;top:902px;left:64px;width:230px;z-index:6">
+    <div class="sub" style="font-size:12px;color:#fff;text-transform:uppercase;letter-spacing:.02em">Stephen Michael</div>
+    <div style="font-size:9.5px;line-height:1.6;color:rgba(255,255,255,.72);margin-top:8px">Creator &middot; Filmmaker &middot; Educator</div>
+  </div>
+
+  <div style="position:absolute;top:902px;left:380px;width:230px;z-index:6">
+    <div class="kick" style="font-size:7.5px;color:rgba(255,255,255,.5);letter-spacing:.2em">Follow The Work</div>
+    <div style="display:flex;gap:13px;align-items:center;color:rgba(255,255,255,.8);margin-top:12px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3.2v11.3a3.9 3.9 0 1 1-3.1-3.82"/><path d="M14 6.3a5.2 5.2 0 0 0 4.9 3.5"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2.2" y="5.2" width="19.6" height="13.6" rx="4"/><path d="M10.1 9.3l5.1 2.7-5.1 2.7z" fill="currentColor" stroke="none"/></svg>
+    </div>
+    <div style="font-size:9.5px;color:rgba(255,255,255,.72);margin-top:11px">@stephenxmichael</div>
+  </div>
+
+  <div style="position:absolute;top:1030px;left:64px;right:34px;height:1px;background:rgba(255,255,255,.18);z-index:6"></div>
+  <div style="position:absolute;top:1054px;left:64px;width:400px;z-index:6">
+    <div class="kick" style="font-size:8px;color:#fff;letter-spacing:.22em">Shooting Stars Content Academy</div>
+    <div style="font-size:9.5px;color:var(--volt);margin-top:7px">Creating a brighter tomorrow.</div>
+  </div>
+
+  <div class="folio" style="color:rgba(255,255,255,.55)"><b style="color:#fff">14</b> / 14</div>
+</div>
+</body></html>
