@@ -138,6 +138,22 @@ const imageMasks = [...text.matchAll(/\/S \/Luminosity\s*\/G (\d+) 0 R/g)].filte
 if (imageMasks)
   throw new Error(`the PDF carries ${imageMasks} soft mask(s) that paint an image, which iOS draws `
                 + "as solid blocks; refusing to write it. Look for a blurred shadow or a CSS mask.");
+
+// iOS (Files, Drive, Quick Look) renders every tiling pattern into a bitmap
+// the size of its tile. Chrome gives each non-repeating background layer a
+// full-page tile, so a page with dozens of them runs the viewer out of memory
+// and it quits: 48 per page, one per grid line, closed Files and Drive at
+// sheet 03. A healthy build has none; allow a handful, refuse the pattern.
+const pageTiles = [...at.keys()].filter((n) => {
+  const d = dict(n);
+  const bb = /\/PatternType 1\b/.test(d) && d.match(/\/BBox \[([-\d. ]+)\]/);
+  if (!bb) return false;
+  const [x0, y0, x1, y1] = bb[1].trim().split(/\s+/).map(Number);
+  return (x1 - x0) * (y1 - y0) >= 2400 * 3400;
+}).length;
+if (pageTiles > 4)
+  throw new Error(`the PDF carries ${pageTiles} full-page tiling patterns; iOS builds a page-sized bitmap `
+                + "for each and quits. Look for a stack of non-repeating CSS background layers.");
 writeFileSync(OUT, pdf);
 
 

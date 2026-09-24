@@ -14,13 +14,13 @@ await p.evaluate(async () => {
   await document.fonts.ready;
 });
 
-const CHROME = /\b(glow|band|spine|ticks|frames|vf|hud|folio|tag)\b/;
+const CHROME = /\b(glow|band|spine|ticks|frames|vf|hud|folio|tag|grid40)\b/;
 const rows = await p.evaluate((chrome) => {
   const re = new RegExp(chrome);
   return [...document.querySelectorAll(".page")].map((pg) => {
     const top = pg.getBoundingClientRect().top;
     const boxes = [...pg.children]
-      .filter((el) => !re.test(el.className))
+      .filter((el) => !re.test(el.getAttribute("class") || ""))
       .map((el) => {
         const r = el.getBoundingClientRect();
         return { y1: Math.round(r.top - top), y2: Math.round(r.bottom - top), t: (el.innerText || "").trim() };

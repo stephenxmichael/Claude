@@ -64,17 +64,17 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
 .grain::after{content:'';position:absolute;inset:0;opacity:.055;mix-blend-mode:overlay;pointer-events:none;z-index:1;
  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 /* 40px grid. Structure, never noise: drop it on any page where photography
-   needs the room. Every line is its own non-repeating 1px layer, never a
-   repeating 40px tile: Chrome writes a repeating background into the PDF as
-   a tiling pattern, and on any page that also carries a blend mode (the
-   grain) iOS draws that pattern 4.17x too large, so the squares came out at
-   ~167px. Same lines, same colour, same doubled crossings as the tile. */
-.g40::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;--gl:rgba(43,92,230,.07);
- background-image:linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl)),linear-gradient(var(--gl),var(--gl));
- background-size:1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,1px 100%,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px,100% 1px;
- background-position:0px 0,40px 0,80px 0,120px 0,160px 0,200px 0,240px 0,280px 0,320px 0,360px 0,400px 0,440px 0,480px 0,520px 0,560px 0,600px 0,640px 0,680px 0,720px 0,760px 0,0 0px,0 40px,0 80px,0 120px,0 160px,0 200px,0 240px,0 280px,0 320px,0 360px,0 400px,0 440px,0 480px,0 520px,0 560px,0 600px,0 640px,0 680px,0 720px,0 760px,0 800px,0 840px,0 880px,0 920px,0 960px,0 1000px,0 1040px,0 1080px;
- background-repeat:no-repeat}
-.dark.g40::before,.cobalt.g40::before{--gl:rgba(255,255,255,.04)}
+   needs the room. The g40 class is the switch; build.mjs puts the grid in as
+   the page's first child, drawn from the #g40 symbol below as plain vector
+   lines. It was a CSS background first, and each form of that failed on
+   iPhone: as one repeating tile, iOS drew it 4.17x too large on any page
+   that also carries a blend mode (the grain); as one non-repeating layer per
+   line, Chrome wrote 48 full-page tiles per page and Files and Drive ran out
+   of memory and quit at page 3. Vector lines are neither. Two paths, so the
+   crossings darken exactly as the tiled version did. */
+.g40 > .grid40{position:absolute;top:0;left:0;width:800px;height:1120px;pointer-events:none;z-index:0;
+ fill:#2B5CE6;fill-opacity:.07}
+.dark.g40 > .grid40,.cobalt.g40 > .grid40{fill:#fff;fill-opacity:.04}
 .glow{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0}
 /* full-bleed structural block: a surface, not content */
 .band{position:absolute;pointer-events:none}
@@ -228,7 +228,9 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
 .cobalt .dl{border-top-color:rgba(255,255,255,.22)}
 .cobalt .dl dt{color:rgba(255,255,255,.6)}.cobalt .dl dd{color:#fff}
 </style></head><body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="qrg" viewBox="0 0 42 42">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="g40" viewBox="0 0 800 1120">
+<path d="M0 0h1v1120h-1zM40 0h1v1120h-1zM80 0h1v1120h-1zM120 0h1v1120h-1zM160 0h1v1120h-1zM200 0h1v1120h-1zM240 0h1v1120h-1zM280 0h1v1120h-1zM320 0h1v1120h-1zM360 0h1v1120h-1zM400 0h1v1120h-1zM440 0h1v1120h-1zM480 0h1v1120h-1zM520 0h1v1120h-1zM560 0h1v1120h-1zM600 0h1v1120h-1zM640 0h1v1120h-1zM680 0h1v1120h-1zM720 0h1v1120h-1zM760 0h1v1120h-1z"/>
+<path d="M0 0h800v1h-800zM0 40h800v1h-800zM0 80h800v1h-800zM0 120h800v1h-800zM0 160h800v1h-800zM0 200h800v1h-800zM0 240h800v1h-800zM0 280h800v1h-800zM0 320h800v1h-800zM0 360h800v1h-800zM0 400h800v1h-800zM0 440h800v1h-800zM0 480h800v1h-800zM0 520h800v1h-800zM0 560h800v1h-800zM0 600h800v1h-800zM0 640h800v1h-800zM0 680h800v1h-800zM0 720h800v1h-800zM0 760h800v1h-800zM0 800h800v1h-800zM0 840h800v1h-800zM0 880h800v1h-800zM0 920h800v1h-800zM0 960h800v1h-800zM0 1000h800v1h-800zM0 1040h800v1h-800zM0 1080h800v1h-800z"/></symbol><symbol id="qrg" viewBox="0 0 42 42">
 <g fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="13" height="13"/><rect x="28" y="1" width="13" height="13"/><rect x="1" y="28" width="13" height="13"/></g>
 <g fill="currentColor"><rect x="5" y="5" width="5" height="5"/><rect x="32" y="5" width="5" height="5"/><rect x="5" y="32" width="5" height="5"/>
 <rect x="20" y="1" width="3" height="3"/><rect x="20" y="8" width="3" height="3"/><rect x="20" y="20" width="3" height="3"/>

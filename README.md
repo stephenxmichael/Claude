@@ -107,14 +107,20 @@ as every logo in the book); zero-blur shadows are plain vector and are fine.
 `scripts/pdf.mjs` refuses a blurred shadow by name, and checks the written
 file for any soft mask that paints an image, whatever produced it.
 
-Repeating backgrounds have the same kind of problem. Chrome writes one as a
-tiling pattern, and on any page that also carries a blend mode (the grain)
-iOS draws the pattern 4.17× too large: the 40px grid came out as ~167px
-squares on iPhone. The grid is therefore one non-repeating 1px layer per
-line, which lands as a thin filled rectangle wherever the viewer puts the
-pattern. The placeholder hatch and the grain still tile, so on iPhone the
-hatch stripes draw wide and the grain slightly coarse; the hatch goes as
-each photograph lands.
+CSS backgrounds are the other trap, because Chrome writes every background
+layer as a tiling pattern. On any page that also carries a blend mode (the
+grain) iOS draws those patterns 4.17× too large, so a repeating 40px grid
+came out as ~167px squares on iPhone. Splitting it into one non-repeating
+layer per line was worse: Chrome gave each layer a full-page tile, iOS built
+a page-sized bitmap for every one, and with 48 on a page Files and Drive ran
+out of memory and quit at sheet 03. The grid is now plain vector lines: one
+`#g40` symbol in the head, which `build.mjs` places as the first child of
+every page with the `g40` class. `scripts/pdf.mjs` refuses a file with more
+than a handful of full-page tiles.
+
+The placeholder hatch and the grain still tile, so on iPhone the hatch
+stripes draw wide and the grain slightly coarse; the hatch goes as each
+photograph lands.
 
 ## Still needed
 

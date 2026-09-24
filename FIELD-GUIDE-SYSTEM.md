@@ -78,7 +78,8 @@ All in `src-fg/head.html`, documented in place.
 - **Geometry** — 64px margin, 52px HUD, 34px spine, 40px grid, 800 × 1120.
 
 The grid is structure, not noise. Lighten or drop it wherever photography needs
-the room.
+the room. It is the `g40` class on the page: the build adds the lines from the
+head's `#g40` symbol. Never draw it as a CSS background (see README, PDF notes).
 
 ---
 

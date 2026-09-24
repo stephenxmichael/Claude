@@ -19,7 +19,14 @@ const pages = readdirSync(join(SRC, "pages"))
 
 const head = readFileSync(join(SRC, "head.html"), "utf8");
 const tail = readFileSync(join(SRC, "tail.html"), "utf8");
-const body = pages.map((f) => readFileSync(join(SRC, "pages", f), "utf8").trimEnd()).join("\n");
+// The 40px grid is vector lines from the head's #g40 symbol, placed as the
+// first child of every page carrying the g40 class. Only where the head
+// defines the symbol, so products without it build exactly as before.
+const grid = head.includes('id="g40"')
+  ? (html) => html.replace(/(<div class="page\b[^"]*\bg40\b[^"]*">)/g,
+      '$1\n  <svg class="grid40" aria-hidden="true"><use href="#g40"/></svg>')
+  : (html) => html;
+const body = pages.map((f) => grid(readFileSync(join(SRC, "pages", f), "utf8")).trimEnd()).join("\n");
 
 mkdirSync("dist", { recursive: true });
 writeFileSync(OUT, head + body + "\n" + tail);
