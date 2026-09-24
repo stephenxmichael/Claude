@@ -35,7 +35,9 @@ out. Without them a photograph floats loose on a page where everything else is
 held in structure. Put the `<img>` inside the `.plate` at the plate's exact
 pixel size — `width:100%` is a hair short, because the 1px border shrinks the
 padding box and the aspect drifts. **The cover is the one exception**: M01.1
-bleeds to three edges and carries no plate.
+bleeds to three edges and carries no plate. M02.1 is the other departure: it is set as a
+Polaroid. It is still a `.plate` and keeps its ID tab, but the white frame is its
+border, so the corner marks are off.
 
 **Sheet numbers and asset IDs no longer line up, and that is deliberate.**
 A Contents page was inserted as sheet 02, pushing every teaching sheet down by
@@ -68,7 +70,7 @@ the book should say so.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M02.1 | Photograph · primary | 284 × 230, 5:4 | **Supplied** &mdash; `assets/fg-m02-1.jpg` at 568 × 460 (2×). Phone, hands, face and the reach, with lead room on the left where he is aiming. Carries **15% headroom above the cap** and clear margin on both edges: the first crop was tighter and read as boxed-in at plate size. Going wider still was tried and rejected &mdash; at 284px the subject goes small and the block he is sitting on intrudes bottom-right. |
+| M02.1 | Photograph · primary | 210 × 210 window in a 236 × 287 Polaroid | **Supplied at print resolution** &mdash; `assets/fg-m02-1-polaroid.jpg` at 840 × 840 (4×), cut square from the 2000px chat original. Phone, hands, face and the reach, with lead room on the left where he is aiming and clear headroom above the cap. Set as a Polaroid tilted &minus;2.4°, captioned in the bottom margin in the book's mono: **SSCA &mdash; &ldquo;Creating a Brighter Tomorrow&rdquo;**. Typeset, not handwritten: a signature would have to be a scan of the real thing. `assets/fg-m02-1.jpg` (the 568 × 460 landscape cut) stays for the archived plate version in `comps/p03-A-plate.html`. |
 | M02.2 | Photograph · nuance | 236 × 144 | The iPhone beside the pro camera. Both belong to one kit — this is the shot that stops the page reading as anti-camera. |
 
 ## Sheet 04 — Get Your Settings Right  ·  assets M03.x

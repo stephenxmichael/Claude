@@ -401,12 +401,24 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
     <div class="kick" style="font-size:8px;color:var(--slate);margin-top:20px;padding-top:12px;border-top:1px solid var(--hair);line-height:1.8">
       <span style="color:var(--cobalt)">Still the camera&rsquo;s</span><br>Interchangeable lenses &middot; optical depth &middot; files that push further</div>
   </div>
-  <!-- M02.1. The plate stays once the photograph lands — frame, ID tab and
-       corner marks all keep drawing over it. Only the shot brief comes out.
-       Pre-cropped to the plate so the PDF draws it 1:1. -->
-  <div class="plate on-dark" style="position:absolute;top:260px;left:452px;width:284px;height:230px;z-index:6">
+  <!-- M02.1 as a Polaroid. The frame follows Polaroid 600 proportions
+       (88.9 x 108 mm, 79 mm square window): 236 x 287 here, a 210 square
+       window, the deep bottom margin carrying the caption. It is still a
+       .plate, so it keeps its M02.1 tab; the corner marks are switched off
+       because the white frame is the border now. The caption is set in the
+       book's mono, not as handwriting: handwriting only ever appears as a
+       scan of the real thing. Pre-cropped square so the PDF draws it 1:1. -->
+  <div class="plate" style="position:absolute;top:258px;left:480px;width:236px;height:287px;z-index:6;--cm:transparent;
+              border:none;background:linear-gradient(162deg,#FFFFFF 0%,#FBFAF7 55%,#F2F0EB 100%);
+              box-shadow:0 0 0 1px rgba(8,8,12,.05),0 1px 2px rgba(8,8,12,.1),0 14px 28px -10px rgba(8,8,12,.38);
+              transform:rotate(-2.4deg)">
     <span class="p-id">M02.1</span>
-    <img src="assets/fg-m02-1.jpg" alt="" style="position:absolute;top:0;left:0;width:284px;height:230px">
+    <div style="position:absolute;top:16px;left:13px;width:210px;height:210px;overflow:hidden;background:var(--ink)">
+      <img src="assets/fg-m02-1-polaroid.jpg" alt="" style="position:absolute;top:0;left:0;width:210px;height:210px">
+      <div style="position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(8,8,12,.16),inset 0 1px 4px rgba(8,8,12,.22)"></div>
+    </div>
+    <div style="position:absolute;left:0;right:0;top:250px;text-align:center;font-family:'JetBrains Mono';font-size:7px;
+                letter-spacing:.14em;text-transform:uppercase;color:var(--ink);white-space:nowrap"><b style="font-weight:600;color:var(--cobalt)">SSCA</b> &mdash; &ldquo;Creating a Brighter Tomorrow&rdquo;</div>
   </div>
 
   <!-- the page's strongest moment: statement on ink, paired with the nuance image -->
