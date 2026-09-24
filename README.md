@@ -96,6 +96,17 @@ wrong without failing. `scripts/shoot.mjs` and `scripts/pdf.mjs` both compare
 rendered width against the fallback serif and exit non-zero rather than ship
 a book set in Times.
 
+### Shadows in the PDF
+
+No blurred `box-shadow` or `text-shadow` anywhere in a page. PDF has no blur,
+so Chrome writes each one as a fill behind a soft mask that paints a greyscale
+JPEG, and iOS ignores that mask: the sheet 03 Polaroid came out as a solid
+grey rectangle on iPhone. Cast soft shadows with `filter: drop-shadow()`,
+which Chrome flattens into an ordinary transparent image (the same construct
+as every logo in the book); zero-blur shadows are plain vector and are fine.
+`scripts/pdf.mjs` refuses a blurred shadow by name, and checks the written
+file for any soft mask that paints an image, whatever produced it.
+
 ## Still needed
 
 ### Photography — four of six plates filled

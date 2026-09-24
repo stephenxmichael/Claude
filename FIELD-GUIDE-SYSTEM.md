@@ -72,6 +72,9 @@ All in `src-fg/head.html`, documented in place.
   keeps the placeholder glyph and is marked "QR destination to be supplied".
 - **`.eyebrow`, `.hd`, `.sub`, `.bd`, `.kick`, `.anno`, `.dl`, `.chip`**
 - **`.band`** — full-bleed structural block; a surface, not content.
+- **Shadows** — never a blurred `box-shadow` or `text-shadow`: iOS draws them
+  as solid blocks in the PDF. Soft shadows come from `filter: drop-shadow()`.
+  `scripts/pdf.mjs` refuses the build otherwise.
 - **Geometry** — 64px margin, 52px HUD, 34px spine, 40px grid, 800 × 1120.
 
 The grid is structure, not noise. Lighten or drop it wherever photography needs

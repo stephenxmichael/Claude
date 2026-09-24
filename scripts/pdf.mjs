@@ -2,7 +2,7 @@
 // Exports the book to PDF at exactly one .page per PDF page, 800x1120,
 // so it drops into Canva one-for-one against the original 42 pages.
 import { chromium } from "playwright";
-import { mkdirSync, statSync } from "node:fs";
+import { mkdirSync, statSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { pickProduct } from "./products.mjs";
 
@@ -70,8 +70,44 @@ if (scaled.length) {
   throw new Error(`photo not drawn 1:1 —\n  ${scaled.join("\n  ")}`);
 }
 
-await page.pdf({
-  path: OUT,
+// A blurred box-shadow or text-shadow has no PDF equivalent, so Chrome writes
+// it as a fill behind a luminosity soft mask. iOS ignores that mask and paints
+// the fill as a solid block: the sheet 03 Polaroid printed as a grey rectangle.
+// Cast soft shadows with filter:drop-shadow() instead, which Chrome flattens
+// into an ordinary transparent image that every viewer draws. A zero-blur
+// shadow is plain vector and is fine.
+const blurred = await page.evaluate(() => {
+  const split = (v) => {
+    const out = []; let depth = 0, cur = "";
+    for (const ch of v) {
+      if (ch === "(") depth++;
+      if (ch === ")") depth--;
+      if (ch === "," && !depth) { out.push(cur); cur = ""; } else cur += ch;
+    }
+    return cur ? [...out, cur] : out;
+  };
+  const pages = [...document.querySelectorAll(".page")];
+  const bad = [];
+  for (const el of document.querySelectorAll(".page *")) {
+    const s = getComputedStyle(el);
+    for (const [prop, name] of [["boxShadow", "box-shadow"], ["textShadow", "text-shadow"]]) {
+      if (s[prop] === "none") continue;
+      for (const sh of split(s[prop])) {
+        const px = sh.replace(/rgba?\([^)]*\)/g, "").match(/-?[\d.]+px/g) || [];
+        if (parseFloat(px[2] || "0") > 0)
+          bad.push(`sheet ${pages.indexOf(el.closest(".page")) + 1}: <${el.tagName.toLowerCase()}> `
+                 + `"${(el.textContent || "").trim().slice(0, 24)}" ${name}: ${sh.trim()}`);
+      }
+    }
+  }
+  return bad;
+});
+if (blurred.length) {
+  await browser.close();
+  throw new Error(`blurred shadow would print as a solid block on iOS —\n  ${blurred.join("\n  ")}`);
+}
+
+const pdf = await page.pdf({
   width: "800px",
   height: "1120px",
   printBackground: true,
@@ -80,6 +116,29 @@ await page.pdf({
 });
 
 await browser.close();
+
+// Backstop for the rule above, on the file itself. The failing construct is a
+// luminosity soft mask whose group paints an image (the blurred shadow, as a
+// greyscale JPEG). Luminosity masks that paint a gradient are fine on iOS and
+// the book carries ~170 of them, one per plate corner mark, so only masks that
+// paint an image are refused. Chrome writes its dictionaries uncompressed.
+const text = pdf.toString("latin1");
+const at = new Map();
+for (const m of text.matchAll(/(?:^|[\r\n])(\d+) 0 obj\b/g)) at.set(m[1], m.index);
+const dict = (n) => {
+  const i = at.get(n);
+  if (i === undefined) return "";
+  const s = text.indexOf("stream", i), e = text.indexOf("endobj", i);
+  return text.slice(i, Math.min(s < 0 ? Infinity : s, e < 0 ? Infinity : e));
+};
+const imageMasks = [...text.matchAll(/\/S \/Luminosity\s*\/G (\d+) 0 R/g)].filter(([, g]) => {
+  const xo = dict(g).match(/\/XObject\s*<<([^>]*)>>/);
+  return xo && [...xo[1].matchAll(/(\d+) 0 R/g)].some(([, x]) => /\/Subtype \/Image/.test(dict(x)));
+}).length;
+if (imageMasks)
+  throw new Error(`the PDF carries ${imageMasks} soft mask(s) that paint an image, which iOS draws `
+                + "as solid blocks; refusing to write it. Look for a blurred shadow or a CSS mask.");
+writeFileSync(OUT, pdf);
 
 
 console.log(`${OUT}  —  ${count} pages, ${(statSync(OUT).size / 1024 / 1024).toFixed(1)}MB, every photo drawn 1:1`);
