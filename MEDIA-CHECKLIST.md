@@ -181,7 +181,7 @@ has to be cropped rather than squeezed, or the export refuses the build.
 | M07.1 | Before | 221 × 210 | Overhead light, no direction, hard shadows. |
 | M07.2 | After | 223 × 210 | Window light, subject moved toward it. **Same subject, same phone, same room** — shoot these back to back or the comparison is dishonest. |
 | M07.3 | Setup | 214 × 100 | One artificial light, in use. A real working setup, not a product shot. |
-| M07.4 | Photograph | 164 × 160 | iPhone with external or wireless audio, in use on a real subject. |
+| M07.4 | Photograph | 164 × 160 | **Supplied at print resolution** &mdash; `fg-m07-4.jpg` at 656 × 640 (4×) from Drive's `M07.4.jpg` (4910 × 4910). Stephen's hand on the iPhone, the DJI Mic receiver in the port showing live levels and the transmitter held alongside. Cut 4098 × 3998 around the phone and both mics. |
 
 > IDs here follow page order, so M07.1 is the "before" half. The brief listed
 > window light first; the assets themselves are unchanged.
@@ -190,7 +190,7 @@ has to be cropped rather than squeezed, or the export refuses the build.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M08.1 | Hero flat lay | 800 × 368 visible, bleeds three edges | Stephen's kit shot top-down, even light, no props. **Group the three essentials — tripod, mic, light — apart from the rest.** The page argues that four of these items are optional, and the photograph has to agree with it, so do not lay the kit out as one uniform grid. The printed band across the lower third is reserved for the caption and must stay clear. The top-right corner carries the M08.2 kit link and must stay clear too. Items: iPhone, Ulanzi MT-85, DJI Mic 2, Amaran MC, SmallRig cage and handles, SmallRig ND if available by the shoot date, Samsung T7, Anker power bank, cables. |
+| M08.1 | Hero photograph | 766 × 367 visible, bleeds three edges | **Supplied at print resolution** &mdash; `fg-m08-1.jpg` at 3064 × 1468 (4×) from Drive's `M08.2.jpg` (8046 × 5209; filed under M08.2, but it is this hero). Not the flat lay first briefed: Stephen's iPhone in the SmallRig cage with both handles, the mic on the cold shoe and the drive below, which is the rig the captions talk about. Cut 7356 × 3524 with the rig left of centre and the black background under the kit link. The lower band is burned down in the file (smoothstep from 36% to 66% of the height, down to 22% brightness) so the doctrine captions read over the rig; the top half is untouched. The tab sits at x 34, clear of the spine. |
 | M08.2 | QR → gear destination | 58 × 58 | **QR destination to be supplied.** The guide's one gear link: the kit Stephen actually shoots with, wherever it ends up living (his Amazon storefront or a Shooting Stars gear page). One code for the whole kit — no per-product links, prices or buy buttons anywhere in the guide. When the URL exists, swap the placeholder glyph for the QR image and link the \"View Stephen's Kit\" line; the destination can then change over time without touching the page. |
 
 ## Sheet 10 — Workflow  ·  assets M09.x
@@ -275,10 +275,8 @@ two frames. M03.1 is done.
 > neither needs shooting, and Session D is gone with them.
 
 **Session E — gear**
-M08.1 (the flat lay) plus M07.3 and M07.4 (light and audio in use). Same kit,
-same day. Shoot the flat lay with the three essentials grouped apart from the
-rest, so the photograph carries the page's argument, and
-keep its top-right corner clear for the M08.2 kit link.
+M08.1 (the rig photograph) and M07.4 (the mic in use) are in. M07.3, one
+light in use, is the one still open; shoot it with the same kit.
 
 **Session F — captures, no shoot required**
 M09.1 — a timeline grab. M04.1 and M04.2 came in as photographs of the
