@@ -18,9 +18,11 @@ Originals now come through **Google Drive, not chat**: chat caps uploads at
 2000px on the long edge and strips EXIF, which is enough for screen but short
 of print on the larger plates.
 
-**Keep Drive files under ~3.5MB.** The connector documents a 10MB download cap
-but the real transport ceiling is far lower — 3.27MB pulls cleanly, 7.59MB kills
-the session every time, and 21MB is refused outright. This is not a resolution
+**Keep Drive files under ~5MB.** The connector documents a 10MB download cap
+but the real transport ceiling is lower — 3.27MB and 4.72MB both pulled cleanly
+(the 4.72MB file byte-for-byte), 7.59MB kills the session every time, and 21MB is
+refused outright. The limit behaves like ~10MB of base64, so ~7MB is the true edge;
+stay well inside it. This is not a resolution
 limit: the cover came through at **8192 × 5464 in 3.2MB** at JPEG quality ~80.
 Export quality, not pixels, is what to trade away.
 
@@ -203,9 +205,16 @@ has to be cropped rather than squeezed, or the export refuses the build.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M10.1 | Video frame | 328 × 184, 16:9 | Finished frame shot on iPhone, lifestyle. Pull from real published work. |
-| M10.2 | Video frame | 328 × 184, 16:9 | Shot on iPhone, movement. Depth or motion, not a still that happens to move. |
-| M10.4 | Artifact | 236 × 142 | **The real handwritten concept note.** Scan or photograph as found — creases, ink, whatever it actually looks like. Sits tilted on the page. |
+| M10.1 | Video frame · vertical | 153 × 272, 9:16 | **Supplied at print resolution** &mdash; `fg-m10-1.jpg` at 612 × 1088 (4×) from Drive's `red camera challenge pic.jpeg` (1080 × 1920), uncropped. Stephen on the beach under the palms, framing a shot with the little red camera. |
+| M10.2 | Video frame · vertical | 153 × 272, 9:16 | **Supplied at print resolution** &mdash; `fg-m10-2.jpg` at 612 × 1088 (4×) from Drive's `dr 1 - challenge pic.jpeg` (1080 × 1920), uncropped. The boardwalk to the thatched roofs, one-point perspective: depth, not a still that happens to move. |
+| M10.4 | Photograph · the phone | 236 × 142 | **Supplied at print resolution** &mdash; `fg-m10-4.jpg` at 944 × 568 (4×) from Drive's `replace with challenge note.jpg` (5464 × 8192). **Replaces the handwritten concept note**: the silver iPhone on a dark concrete ledge, low-key light. Cut 5152 × 3100 around the whole phone, centred, so the concrete frames it; square in an `on-cobalt` plate now, since the tilt belonged to the note as a found object. |
+
+> M10.1 and M10.2 were briefed as 16:9 but arrived as vertical video frames, so
+> the plates follow the frames: two 9:16 plates under iPhone First, with the quote
+> moved beside them and the friction line lifted 16px to share their bottom edge.
+> Cropping them to 16:9 would have kept 32% of each frame at 3.3× — the floor.
+> Both carry Apple's "HDTV" profile (gamma 1.96) and were converted to sRGB so they
+> print as they look on a phone; nothing else was done to either.
 
 > M10.3 was specified as an optional third frame and is **not in the build** —
 > the page is stronger with the negative space. The ID is left unused rather
@@ -263,7 +272,7 @@ M01.1, M02.1, M02.2 — one location, one afternoon. **All three are in.**
 
 **Session B — the six-frame coverage set**
 **Complete.** All six are in from one rooftop, one skyline, one golden hour.
-M10.1 and M10.2 can be pulled from existing published work instead.
+M10.1 and M10.2 came from published vertical work instead, and are in.
 
 **Session C — comparisons, shot back to back**
 **Complete.** M07.1 and M07.2 (overhead / window) are in, and M03.1 is done.
@@ -291,7 +300,7 @@ Stephen still and looking at the lens, where Session A wants him working.
 Shoot loose — the plate is a tall 1:1.9 column.
 
 **Artifact**
-M10.4 — the handwritten note. Scan it; do not recreate it.
+Retired: M10.4 is a photograph of the phone now, not the handwritten note.
 
 **Video / QR**
 M08.2 (the kit link), M11.1 (cheat-sheet download) and M11.2 (the Content
