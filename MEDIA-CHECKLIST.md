@@ -205,16 +205,19 @@ has to be cropped rather than squeezed, or the export refuses the build.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M10.1 | Video frame · vertical | 153 × 272, 9:16 | **Supplied at print resolution** &mdash; `fg-m10-1.jpg` at 612 × 1088 (4×) from Drive's `red camera challenge pic.jpeg` (1080 × 1920), uncropped. Stephen on the beach under the palms, framing a shot with the little red camera. |
-| M10.2 | Video frame · vertical | 153 × 272, 9:16 | **Supplied at print resolution** &mdash; `fg-m10-2.jpg` at 612 × 1088 (4×) from Drive's `dr 1 - challenge pic.jpeg` (1080 × 1920), uncropped. The boardwalk to the thatched roofs, one-point perspective: depth, not a still that happens to move. |
+| M10.1 | Video frame | 328 × 184, 16:9 | **Supplied** &mdash; `fg-m10-1.jpg` at 1066 × 598 (3.25×) from Drive's `red camera challenge pic.jpeg` (1080 × 1920, vertical). Cut 1080 × 606 from 560px down: Stephen framing a shot with the little red camera, both hands and the watch, palms and beach behind. |
+| M10.2 | Video frame | 328 × 184, 16:9 | **Supplied** &mdash; `fg-m10-2.jpg` at 1066 × 598 (3.25×) from Drive's `dr 1 - challenge pic.jpeg` (1080 × 1920, vertical). Cut 1080 × 606 from 740px down: the boardwalk to the thatched roofs, railings converging on one point &mdash; depth, not a still that happens to move. |
 | M10.4 | Photograph · the phone | 236 × 142 | **Supplied at print resolution** &mdash; `fg-m10-4.jpg` at 944 × 568 (4×) from Drive's `replace with challenge note.jpg` (5464 × 8192). **Replaces the handwritten concept note**: the silver iPhone on a dark concrete ledge, low-key light. Cut 5152 × 3100 around the whole phone, centred, so the concrete frames it; square in an `on-cobalt` plate now, since the tilt belonged to the note as a found object. |
 
-> M10.1 and M10.2 were briefed as 16:9 but arrived as vertical video frames, so
-> the plates follow the frames: two 9:16 plates under iPhone First, with the quote
-> moved beside them and the friction line lifted 16px to share their bottom edge.
-> Cropping them to 16:9 would have kept 32% of each frame at 3.3× — the floor.
-> Both carry Apple's "HDTV" profile (gamma 1.96) and were converted to sRGB so they
-> print as they look on a phone; nothing else was done to either.
+> M10.1 and M10.2 were briefed as 16:9 and arrived as vertical video frames. They
+> are cut to the 16:9 plates, which keeps the page's layout as designed; each keeps
+> a 1080 × 606 band, about a third of the frame. An uncropped 9:16 version (two
+> 153 × 272 plates under iPhone First, the quote beside them) was mocked up and
+> passed on. At 1080px wide the sources give 3.29×, just over the 3.2× print floor,
+> so these two are stored at 1066 × 598 (the plate's exact 41:23) rather than 4× —
+> never upscale. A taller original would buy back the headroom. Both carry Apple's
+> "HDTV" profile (gamma 1.96) and were converted to sRGB so they print as they look
+> on a phone; nothing else was done to either.
 
 > M10.3 was specified as an optional third frame and is **not in the build** —
 > the page is stronger with the negative space. The ID is left unused rather
