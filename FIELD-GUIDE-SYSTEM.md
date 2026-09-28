@@ -69,7 +69,10 @@ All in `src-fg/head.html`, documented in place.
 - **`.qr`** — only where the destination gives the reader something the printed
   page cannot: teaching → watch the demonstration, gear → find the kit,
   reference → save the resource. Never decoration. A code without a supplied URL
-  keeps the placeholder glyph and is marked "QR destination to be supplied".
+  keeps the placeholder glyph and is marked "QR destination to be supplied". A
+  supplied code is drawn inline as vector, dark on a paper tile with a 4-module
+  quiet zone (an inverted code on a dark surface won't scan reliably), and the
+  code and its text line both link to the destination for readers on a phone.
 - **`.eyebrow`, `.hd`, `.sub`, `.bd`, `.kick`, `.anno`, `.dl`, `.chip`**
 - **`.band`** — full-bleed structural block; a surface, not content.
 - **Shadows** — never a blurred `box-shadow` or `text-shadow`: iOS draws them

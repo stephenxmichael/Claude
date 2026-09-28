@@ -193,7 +193,7 @@ has to be cropped rather than squeezed, or the export refuses the build.
 | ID | Type | Spec | Direction |
 |---|---|---|---|
 | M08.1 | Hero photograph | 766 × 367 visible, bleeds three edges | **Supplied at print resolution** &mdash; `fg-m08-1.jpg` at 3064 × 1468 (4×) from Drive's `M08.2.jpg` (8046 × 5209; filed under M08.2, but it is this hero). Not the flat lay first briefed: Stephen's iPhone in the SmallRig cage with both handles, the mic on the cold shoe and the drive below, which is the rig the captions talk about. Cut 7356 × 3524 with the rig left of centre and the black background under the kit link. Two tonal passes in the file, none on the page: the lower band is burned down (smoothstep from 36% to 66% of the height, down to 22% brightness) and the wall at left is darkened (smoothstep over the left 34% of the width, down to 50%), so the doctrine can sit in the open wall at upper left and the kit link on the black at upper right, both clear of the rig. The rig itself is untouched. The tab sits at x 34, clear of the spine. |
-| M08.2 | QR → gear destination | 58 × 58 | **QR destination to be supplied.** The guide's one gear link: the kit Stephen actually shoots with, wherever it ends up living (his Amazon storefront or a Shooting Stars gear page). One code for the whole kit — no per-product links, prices or buy buttons anywhere in the guide. When the URL exists, swap the placeholder glyph for the QR image and link the \"View Stephen's Kit\" line; the destination can then change over time without touching the page. |
+| M08.2 | QR → gear destination | 54 × 54 | **Supplied** &mdash; `https://amzn.to/3si3Hrx`, Stephen's Premium Content Kit (his Amazon storefront), given by Stephen; nothing about it was invented or altered. One code for the whole kit &mdash; no per-product links, prices or buy buttons anywhere in the guide &mdash; so the storefront's contents can change without touching the page. The code is version 2, error level M (25 × 25 modules, 4-module quiet zone), drawn inline as vector on a paper tile: dark on light, because an inverted code on the photo will not scan reliably. It decodes back to the exact URL from renders at 1× through 4×. The tile and the "View Stephen's Kit" line are both links, so a reader on a phone can tap instead of scan. The shortener could not be followed from the build machine (the proxy refuses amzn.to), so scan the printed code once before release. |
 
 ## Sheet 10 — Workflow  ·  assets M09.x
 
@@ -306,5 +306,5 @@ Shoot loose — the plate is a tall 1:1.9 column.
 Retired: M10.4 is a photograph of the phone now, not the handwritten note.
 
 **Video / QR**
-M08.2 (the kit link), M11.1 (cheat-sheet download) and M11.2 (the Content
-Framework). All three destinations are still to be supplied — none is invented.
+M08.2, the kit link, is in. M11.1 (cheat-sheet download) and M11.2 (the Content
+Framework) are still to be supplied — none is invented.
