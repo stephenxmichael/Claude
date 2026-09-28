@@ -227,7 +227,7 @@ has to be cropped rather than squeezed, or the export refuses the build.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M11.1 | QR → download | — | **QR destination to be supplied.** Save the cheat sheet to your phone. |
+| M11.1 | QR → download | 80 × 80 | **Supplied** &mdash; `https://drive.google.com/file/d/1cXLAOlSBpR5ddMfKrbutNVwT-6HvFVHh/view?usp=share_link`, exactly as Stephen gave it: `Field-Guide-001-Cheat-Sheet.pdf` in Drive's Field Guide › cheat sheet folder, **public** (anyone with the link, viewer &mdash; confirmed through the Drive API) and byte-identical to the export from `node scripts/pdf.mjs fg --sheet=12 --out=dist/Field-Guide-001-Cheat-Sheet.pdf`. The 85-character link needs a version 6 code (error level M), so the tile is 80px to keep modules the size of the kit code's; it decodes back to the exact link from renders at 1× through 4×. The tile and the "Save this to your phone" text both link there. **To update the sheet, replace the file in Drive with Manage versions → Upload new version**, which keeps this link and the printed code working. |
 | M11.2 | QR → product | — | **QR destination to be supplied.** The Shooting Stars Content Framework. This is the guide's only outbound link to the flagship, so it points at wherever the Framework is actually sold or delivered, not a general homepage. |
 
 ## Sheet 13 — Shooting Stars Content Academy  ·  no assets
@@ -306,5 +306,5 @@ Shoot loose — the plate is a tall 1:1.9 column.
 Retired: M10.4 is a photograph of the phone now, not the handwritten note.
 
 **Video / QR**
-M08.2, the kit link, is in. M11.1 (cheat-sheet download) and M11.2 (the Content
-Framework) are still to be supplied — none is invented.
+M08.2 (the kit link) and M11.1 (the cheat-sheet download) are in. M11.2 (the
+Content Framework) is still to be supplied — none is invented.
