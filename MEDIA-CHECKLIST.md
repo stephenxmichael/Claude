@@ -180,7 +180,7 @@ has to be cropped rather than squeezed, or the export refuses the build.
 |---|---|---|---|
 | M07.1 | Before | 221 × 210 | **Supplied at print resolution** &mdash; `fg-m07-1.jpg` at 884 × 840 (4×) from Drive's `M07.1.jpg` (1350 × 1350). Overhead light: warm cast, hard shadow under the brim and in the eye sockets, hot spots on the forehead. Cut 1338 × 1271 from the left edge, 20px down, keeping the headroom above the cap. |
 | M07.2 | After | 223 × 210 | **Supplied at print resolution** &mdash; `fg-m07-2.jpg` at 892 × 840 (4×) from Drive's `M07.2.jpg` (1350 × 1350). Window light: even across the face, catchlights in both eyes. Same subject, cap, shirt and chain in front of the same dark doors; he has moved toward the window, so the background shifts. Cut 1350 × 1271, 25px down. **The pair is cut as one frame:** both halves use the same 6.05 source px per page px, so the face is the same size on each side and the eye line sits at the same height (77px) across the cobalt seam. Both placed as supplied, with no grade on either &mdash; correcting the before would change a second variable. |
-| M07.3 | Setup | 214 × 100 | One artificial light, in use. A real working setup, not a product shot. |
+| M07.3 | Two frames · light &rarr; result | 206 × 206, twice, joined by an arrow | **Supplied at print resolution** &mdash; one ID over two frames, tab on the first. `fg-m07-3-light.jpg` at 824 × 824 (4×) from Drive's `lighting 1 m07.3.jpeg` (1729 × 2305): the desk with the gridded softbox top right and Stephen's hand-drawn arrow pointing at it. Cut square from the top of the frame, so the softbox, the whole arrow from tail to head and the desk all stay; only the lower keyboard and the empty mat go. `fg-m07-3-result.jpg` at 824 × 824 (4×) from Drive's `lighting 2 m07.3.jpeg` (1080 × 1920, a finished vertical frame): cut square from 340px down, keeping him from the cap to the lap with the lamp and the calendar; only the ceiling and the dark desk foreground go. Both arrived tagged Display P3 and were converted to sRGB; nothing else was done to either file. The slot grew from a 214 × 100 strip under Artificial Light to a full-width pair within 4px of the height of M07.1/M07.2, so the Direction / Artificial Light row moved up 34px to make room. 206 rather than 210 keeps the gap above the closing rule at 25px, over the 22px floor `density.mjs` enforces. |
 | M07.4 | Photograph | 164 × 160 | **Supplied at print resolution** &mdash; `fg-m07-4.jpg` at 656 × 640 (4×) from Drive's `M07.4.jpg` (4910 × 4910). Stephen's hand on the iPhone, the DJI Mic receiver in the port showing live levels and the transmitter held alongside. Cut 4098 × 3998 around the phone and both mics. |
 
 > IDs here follow page order, so M07.1 is the "before" half. The brief listed
@@ -275,8 +275,8 @@ reshoot both in one sitting without relighting or reframing between them.
 > neither needs shooting, and Session D is gone with them.
 
 **Session E — gear**
-M08.1 (the rig photograph) and M07.4 (the mic in use) are in. M07.3, one
-light in use, is the one still open; shoot it with the same kit.
+**Complete.** M08.1 (the rig photograph), M07.4 (the mic in use) and M07.3
+(the light, and the frame it produced) are all in.
 
 **Session F — captures, no shoot required**
 M09.1 — a timeline grab. M04.1 and M04.2 came in as photographs of the
