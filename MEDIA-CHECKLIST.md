@@ -199,7 +199,7 @@ has to be cropped rather than squeezed, or the export refuses the build.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M09.1 | Screenshot | 306 × 116 | Your real edit timeline at stage 05 — A-roll laid down, before color. |
+| M09.1 | Screenshot | 306 × 116 | **Supplied at print resolution** &mdash; `fg-m09-1.jpg` at 1224 × 464 (4×) from Drive's `the edit.png` (1798 × 712, a Retina capture). Stephen's real Premiere timeline: timecode ruler, caption track, six video tracks and the audio waveform. Cut to the plate's 2.64:1 by taking 18px off the top (empty ruler) and the scrollbar strip off the bottom, so every timecode stays whole; the plate's border hides the channel labels under the waveform rather than slicing them. Converted from the Mac's display profile to sRGB and saved at full chroma (4:4:4), since it is UI with coloured edges and text. |
 
 ## Sheet 11 — iPhone Over Camera  ·  assets M10.x
 
@@ -291,8 +291,8 @@ reshoot both in one sitting without relighting or reframing between them.
 (the light, and the frame it produced) are all in.
 
 **Session F — captures, no shoot required**
-M09.1 — a timeline grab. M04.1 and M04.2 came in as photographs of the
-phone rather than screenshots, and both are in.
+**Complete.** M09.1, the timeline grab, is in. M04.1 and M04.2 came in as
+photographs of the phone rather than screenshots, and both are in.
 
 **Session G — the grade set**
 M05.1–M05.3. One frame, exported three times at three stages of the grade.
