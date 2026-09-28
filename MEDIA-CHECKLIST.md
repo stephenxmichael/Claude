@@ -178,8 +178,8 @@ has to be cropped rather than squeezed, or the export refuses the build.
 
 | ID | Type | Spec | Direction |
 |---|---|---|---|
-| M07.1 | Before | 221 × 210 | Overhead light, no direction, hard shadows. |
-| M07.2 | After | 223 × 210 | Window light, subject moved toward it. **Same subject, same phone, same room** — shoot these back to back or the comparison is dishonest. |
+| M07.1 | Before | 221 × 210 | **Supplied at print resolution** &mdash; `fg-m07-1.jpg` at 884 × 840 (4×) from Drive's `M07.1.jpg` (1350 × 1350). Overhead light: warm cast, hard shadow under the brim and in the eye sockets, hot spots on the forehead. Cut 1338 × 1271 from the left edge, 20px down, keeping the headroom above the cap. |
+| M07.2 | After | 223 × 210 | **Supplied at print resolution** &mdash; `fg-m07-2.jpg` at 892 × 840 (4×) from Drive's `M07.2.jpg` (1350 × 1350). Window light: even across the face, catchlights in both eyes. Same subject, cap, shirt and chain in front of the same dark doors; he has moved toward the window, so the background shifts. Cut 1350 × 1271, 25px down. **The pair is cut as one frame:** both halves use the same 6.05 source px per page px, so the face is the same size on each side and the eye line sits at the same height (77px) across the cobalt seam. Both placed as supplied, with no grade on either &mdash; correcting the before would change a second variable. |
 | M07.3 | Setup | 214 × 100 | One artificial light, in use. A real working setup, not a product shot. |
 | M07.4 | Photograph | 164 × 160 | **Supplied at print resolution** &mdash; `fg-m07-4.jpg` at 656 × 640 (4×) from Drive's `M07.4.jpg` (4910 × 4910). Stephen's hand on the iPhone, the DJI Mic receiver in the port showing live levels and the transmitter held alongside. Cut 4098 × 3998 around the phone and both mics. |
 
@@ -266,9 +266,9 @@ M01.1, M02.1, M02.2 — one location, one afternoon. **All three are in.**
 M10.1 and M10.2 can be pulled from existing published work instead.
 
 **Session C — comparisons, shot back to back**
-M07.1 and M07.2 (overhead / window). The pair changes exactly one variable, so
-it has to be shot in one sitting without relighting or reframing between the
-two frames. M03.1 is done.
+**Complete.** M07.1 and M07.2 (overhead / window) are in, and M03.1 is done.
+The pair changes exactly one variable, so if either frame is ever reshot,
+reshoot both in one sitting without relighting or reframing between them.
 
 > This session used to list M03.3 (good / poor light) and carried a Session D
 > for M03.2 (lenses). **Both of those assets are retired** — see sheet 04 — so
