@@ -6,8 +6,12 @@ import { mkdirSync, statSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { pickProduct } from "./products.mjs";
 
-const { product } = pickProduct(process.argv.slice(2));
-const OUT = product.pdf;
+const { product, rest } = pickProduct(process.argv.slice(2));
+// --sheet=N exports that one sheet as a file of its own (the cheat sheet ships
+// as a download); anything on it marked data-standalone="omit" is left out.
+const arg = (k) => (rest.find((a) => a.startsWith(`--${k}=`)) || "").slice(k.length + 3);
+const SHEET = Number(arg("sheet")) || 0;
+const OUT = arg("out") || product.pdf;
 mkdirSync("dist", { recursive: true });
 
 const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
@@ -35,6 +39,13 @@ if (!ok) {
 }
 
 const count = await page.evaluate(() => document.querySelectorAll(".page").length);
+if (SHEET && (SHEET < 1 || SHEET > count)) {
+  await browser.close();
+  throw new Error(`--sheet=${SHEET} is outside 1-${count}`);
+}
+if (SHEET)
+  await page.evaluate((n) => document.querySelectorAll(".page")[n - 1]
+    .querySelectorAll('[data-standalone="omit"]').forEach((el) => el.remove()), SHEET);
 
 // Photos are drawn 1:1 from a pre-cropped file. Scaling one into a box of a
 // different aspect is the authoring mistake that smeared p38 on iOS, so catch
@@ -112,7 +123,7 @@ const pdf = await page.pdf({
   height: "1120px",
   printBackground: true,
   margin: { top: "0", right: "0", bottom: "0", left: "0" },
-  pageRanges: `1-${count}`,
+  pageRanges: SHEET ? String(SHEET) : `1-${count}`,
 });
 
 await browser.close();
@@ -157,4 +168,4 @@ if (pageTiles > 4)
 writeFileSync(OUT, pdf);
 
 
-console.log(`${OUT}  —  ${count} pages, ${(statSync(OUT).size / 1024 / 1024).toFixed(1)}MB, every photo drawn 1:1`);
+console.log(`${OUT}  —  ${SHEET ? `sheet ${SHEET} alone` : `${count} pages`}, ${(statSync(OUT).size / 1024 / 1024).toFixed(1)}MB, every photo drawn 1:1`);

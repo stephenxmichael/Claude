@@ -44,6 +44,9 @@ Framework, exactly as before; pass `iphone` for the guide.
     node scripts/boxes.mjs iphone 3  # every block on page 3, plus collisions
     python3 scripts/sheet.py 13 22 # contact sheet for a chapter
     node scripts/pdf.mjs iphone    # -> dist/*.pdf  (10 pages, 800x1120)
+    node scripts/pdf.mjs fg --sheet=12 --out=dist/Field-Guide-001-Cheat-Sheet.pdf
+                                   # one sheet alone, same guards; drops anything
+                                   # on it marked data-standalone="omit"
     node scripts/preview.mjs field # -> dist/field-preview.html (Artifact-ready)
 
 ## Known issue — `scripts/standalone.mjs` breaks the fonts

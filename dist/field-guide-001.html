@@ -1358,7 +1358,12 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
 
   <!-- the whole guide compressed to one page. No new teaching here, and no
        single capture setup presented as the correct one: it is organised by
-       what you are shooting. -->
+       what you are shooting.
+       It also ships alone, as the buyers' download:
+         node scripts/pdf.mjs fg --sheet=12 --out=dist/Field-Guide-001-Cheat-Sheet.pdf
+       data-standalone="omit" marks what that file leaves out. M11.1 always
+       (it points at the file itself); M11.2's glyph only until its destination
+       is supplied, since a code that goes nowhere must not reach buyers. -->
   <div class="band" style="top:52px;left:34px;right:0;height:156px;background:var(--cobalt)"></div>
   <div class="band grain" style="top:52px;left:34px;right:0;height:156px"></div>
   <div style="position:absolute;top:78px;left:64px;width:470px;z-index:6">
@@ -1366,7 +1371,7 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
     <div class="hd" style="font-size:58px;color:#fff;margin-top:12px">Field Cheat Sheet</div>
     <div class="kick" style="font-size:8px;color:rgba(255,255,255,.72);margin-top:12px">Everything in sheets 04&ndash;10, on one page</div>
   </div>
-  <div class="cobalt" style="position:absolute;top:96px;left:566px;width:170px;z-index:6"><div class="qr">
+  <div class="cobalt" data-standalone="omit" style="position:absolute;top:96px;left:566px;width:170px;z-index:6"><div class="qr">
     <div class="q-box"><svg><use href="#qrg"/></svg></div>
     <div>
       <span class="q-k">M11.1</span>
@@ -1460,7 +1465,7 @@ body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-
   <div style="position:absolute;top:944px;left:430px;width:270px;z-index:6;border-top:1px solid rgba(255,255,255,.2);padding-top:14px">
     <div class="kick" style="font-size:7.5px;color:var(--volt);margin-bottom:14px">Where This Goes Next</div>
     <div class="dark" style="background:none"><div class="qr">
-      <div class="q-box"><svg><use href="#qrg"/></svg></div>
+      <div class="q-box" data-standalone="omit"><svg><use href="#qrg"/></svg></div>
       <div>
         <span class="q-k">M11.2</span>
         <div class="q-t">Shooting Stars<br>Content Framework</div>
