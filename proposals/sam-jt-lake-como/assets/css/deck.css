@@ -397,6 +397,7 @@ body[data-tone="light"] { --chrome-fg: var(--ink); --chrome-dim: rgba(26, 18, 22
 .cover__h .small { font-size: clamp(1.35rem, 3.6vw, 2.7rem); font-weight: 400; font-style: italic; margin-top: .9rem; letter-spacing: -.005em; line-height: 1.15; max-width: 30ch; }
 .cover__h .w { display: inline-block; will-change: filter, opacity, transform; }
 .cover__sub { margin: 1.6rem 0 0; font: 500 .7rem/1.7 var(--sans); letter-spacing: .26em; text-transform: uppercase; color: var(--prosecco); max-width: 40em; }
+.cover__begin { text-decoration: none; }
 .cover__begin {
   margin-top: 2rem;
   display: inline-flex; align-items: center; gap: 1rem;
@@ -611,6 +612,7 @@ body[data-tone="light"] { --chrome-fg: var(--ink); --chrome-dim: rgba(26, 18, 22
   font: 500 clamp(3.6rem, 10vw, 7.6rem)/1 var(--serif); letter-spacing: -.03em; color: var(--plum);
   font-variant-numeric: lining-nums tabular-nums;
 }
+.price__num [data-price] { display: flex; align-items: flex-start; }
 .price__num .cur { font-size: .42em; line-height: 1; margin-top: .12em; margin-right: .1em; font-weight: 400; align-self: flex-start; }
 .roll { display: inline-block; height: 1em; overflow: hidden; line-height: 1; }
 .roll > span { display: flex; flex-direction: column; transition: transform .75s var(--ease); }
@@ -742,6 +744,71 @@ body[data-tone="light"] { --chrome-fg: var(--ink); --chrome-dim: rgba(26, 18, 22
 .closing__actions { margin-top: 1.6rem; display: flex; gap: 1.6rem; flex-wrap: wrap; justify-content: center; }
 .closing__actions button, .closing__actions a { font: 500 .66rem/1 var(--sans); letter-spacing: .26em; text-transform: uppercase; color: var(--ivory); text-decoration: none; border-bottom: 1px solid rgba(247, 240, 231, .4); padding: .5rem 0; }
 
+/* ---------- Type switcher (review only; content.js typePicker) ---------- */
+.type-btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font: 500 .64rem/1 var(--sans); letter-spacing: .2em; text-transform: uppercase;
+  padding: .55rem .8rem; border: 1px dashed var(--chrome-dim); border-radius: 999px;
+}
+.type-btn:hover { border-style: solid; }
+
+/* ---------- Condensed · Your story ---------- */
+.us .quote blockquote p { font-size: clamp(2.3rem, 6.2vw, 5.4rem); }
+.us .quote footer { margin-top: 1.4rem; }
+.beats { list-style: none; margin: clamp(2rem, 6vh, 3.6rem) 0 0; padding: 0; display: grid; gap: 1.6rem; }
+@media (min-width: 760px) { .beats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.4rem; } }
+.beats li { border-top: 1px solid var(--rule); padding-top: 1.1rem; min-width: 0; }
+.beats b { display: block; font: 400 clamp(2.2rem, 4.4vw, 3.6rem)/1 var(--serif); color: var(--prosecco); letter-spacing: -.01em; }
+.beats .label { display: block; margin-top: .7rem; color: var(--prosecco); }
+.beats p { margin: .5rem 0 0; color: var(--muted); font-size: .92rem; max-width: 26em; }
+
+/* ---------- Condensed · The weekend ---------- */
+.days__head { display: grid; gap: .4rem; margin-bottom: clamp(1.6rem, 4vh, 2.6rem); }
+@media (min-width: 900px) { .days__head { grid-template-columns: minmax(0, 1fr) auto; align-items: end; column-gap: 3rem; } .days__head .eyebrow { grid-column: 1 / -1; } .days__head .where { margin: 0 0 .4rem; } }
+.days__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.8rem; }
+.dayc { display: grid; grid-template-columns: minmax(0, 38%) minmax(0, 1fr); gap: 1.2rem; align-items: center; }
+.dayc__it { margin: .5rem 0 0; font: italic 400 clamp(1.5rem, 2.4vw, 2.1rem)/1.05 var(--serif); color: var(--fg); }
+.dayc__title { margin: .45rem 0 0; font: 500 1.05rem/1.25 var(--serif); color: var(--fg); }
+.dayc__line { margin: .5rem 0 0; font-size: .86rem; color: var(--muted); line-height: 1.5; }
+.dayc .phone { padding: 6px; border-radius: 26px; }
+.dayc .phone .m { border-radius: 21px; }
+.dayc .phone::before { top: 11px; height: 13px; }
+@media (min-width: 900px) {
+  .days__list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.4rem; }
+  .dayc { grid-template-columns: minmax(0, 180px) minmax(0, 1fr); align-items: end; gap: 1.4rem; }
+  .dayc__phone { width: min(180px, 26vh); }
+}
+
+/* ---------- Condensed · Why us ---------- */
+.why { display: grid; gap: 2.4rem; }
+@media (min-width: 900px) { .why { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 4.5rem; align-items: center; } }
+.why .display { font-size: clamp(1.9rem, 4vw, 3.4rem); }
+.why .stat__v b { color: var(--plum); }
+.why .stat__v span { color: var(--fg); }
+.why .stat .label { color: var(--plum); }
+
+/* ---------- Condensed · Logistics ---------- */
+.logistics { display: grid; gap: 1.8rem; }
+@media (min-width: 1000px) {
+  .logistics { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); column-gap: 4.5rem; row-gap: 1.4rem; align-items: start; }
+  .logistics__head { grid-column: 1 / -1; }
+}
+.logistics__needs { display: grid; gap: 1.2rem; }
+.need { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+.need h3 { margin: 0; font: 500 1.3rem/1.1 var(--serif); }
+.need__lead { margin: .4rem 0 0; font-size: .92rem; color: var(--fg); }
+.need ul { list-style: none; margin: .5rem 0 0; padding: 0; display: grid; gap: .25rem; }
+.need li { position: relative; padding-left: 1rem; font-size: .8rem; line-height: 1.45; color: var(--muted); }
+.need li::before { content: ""; position: absolute; left: 0; top: .6em; width: 4px; height: 4px; border-radius: 50%; background: var(--prosecco-deep); }
+.logistics__terms .label { display: block; margin-bottom: .6rem; color: var(--accent); }
+.logistics__terms .acc button { padding-block: .85rem; font-size: clamp(1.02rem, 1.6vw, 1.25rem); }
+
+/* ---------- Reserve sign-off (condensed deck has no closing slide) ---------- */
+.signoff { margin-top: 2.4rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.6rem; }
+.signoff__line { font: italic 400 1.5rem/1 var(--serif); color: var(--plum); }
+.signoff .logo__word { font-size: 1.15rem; }
+.signoff .ig { margin: 0; }
+
 /* ---------- Short screens: tighten so desktop slides fit without scroll ---------- */
 @media (min-width: 900px) and (max-height: 820px) {
   :root { --fs-h2: clamp(2rem, 4.4vw, 3.8rem); }
@@ -753,3 +820,4 @@ body[data-tone="light"] { --chrome-fg: var(--ink); --chrome-dim: rgba(26, 18, 22
   *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
   .m__ph::before { display: none; }
 }
+@media (max-width: 480px) { .type-btn span { display: none; } .type-btn { padding: .5rem .65rem; } }

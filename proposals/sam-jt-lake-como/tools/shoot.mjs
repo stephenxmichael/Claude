@@ -13,10 +13,12 @@ const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromi
 const sizes = [["desktop", 1600, 900], ["laptop", 1366, 768], ["phone", 390, 844]];
 for (const [name, width, height] of sizes) {
   const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1, reducedMotion: "reduce" });
+  // TYPE=villa node tools/shoot.mjs  previews a typeface without editing content.js
+  if (process.env.TYPE) await page.addInitScript((t) => { try { localStorage.setItem("sjt-type", t); } catch (e) {} }, process.env.TYPE);
   const errs = [];
   page.on("pageerror", (e) => errs.push(e.message));
   page.on("console", (m) => m.type() === "error" && errs.push(m.text()));
-  await page.goto((process.env.BASE || "http://localhost:8765/") + "index.html#contents");
+  await page.goto((process.env.BASE || "http://localhost:8765/") + "index.html#" + (process.env.START || "vision"));
   await page.evaluate(() => document.fonts.ready);
   const ids = await page.$$eval(".slide", (s) => s.map((x) => x.id));
   for (const [i, id] of ids.entries()) {
@@ -24,7 +26,7 @@ for (const [name, width, height] of sizes) {
     await page.waitForTimeout(120);
     const o = await page.evaluate((id) => { const s = document.getElementById(id); return [s.scrollHeight, s.clientHeight, document.documentElement.scrollWidth > innerWidth]; }, id);
     if (o[0] > o[1] + 2 || o[2]) console.log(`${name} ${id}: content ${o[0]} > screen ${o[1]}${o[2] ? " (horizontal overflow)" : ""}`);
-    await page.screenshot({ path: `${out}/${name}-${String(i + 1).padStart(2, "0")}-${id}.png` });
+    await page.screenshot({ path: `${out}/${process.env.TYPE ? process.env.TYPE + "-" : ""}${name}-${String(i + 1).padStart(2, "0")}-${id}.png` });
   }
   if (errs.length) console.log(name, "errors:", errs);
   await page.close();

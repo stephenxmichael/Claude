@@ -54,13 +54,34 @@ window.CONTENT = {
     "vision-grounds":       { kind: "image", aspect: "3:4", src: "", alt: "The villa grounds in summer light" },
   },
 
-  // Slide order. Remove an id to drop a slide; reorder freely.
-  order: [
-    "cover", "contents", "story", "quote",
-    "weekend", "friday", "saturday", "sunday",
-    "vision", "bts", "vendors", "interviews", "bride-party", "details",
-    "team", "options", "deliverables", "needs", "terms", "reserve", "closing",
-  ],
+  // ---------------------------------------------------------------
+  // TYPE · the display and text faces for the whole deck.
+  //   "couture"  Rozha One headlines, Playfair italic accents, Jost text
+  //   "villa"    Cinzel Roman capitals, Cormorant italic accents, Tenor Sans text
+  //   "modern"   Syne headlines, Instrument Serif italic accents, Manrope text
+  //   "original" Bodoni Moda and Jost (the first version)
+  // typePicker shows an "Aa" switcher in the header so you can compare them
+  // live. Set it to false before sending the link.
+  // ---------------------------------------------------------------
+  typeface: "couture",
+  typePicker: true,
+
+  // ---------------------------------------------------------------
+  // DECK · which version to show.
+  //   "condensed" 10 slides, built to win a side-by-side comparison
+  //   "full"      all 21 slides
+  // Reorder or remove ids to change a version.
+  // ---------------------------------------------------------------
+  deck: "condensed",
+  orders: {
+    condensed: ["cover", "us", "days", "vision", "vendors", "why", "team", "options", "logistics", "reserve"],
+    full: [
+      "cover", "contents", "story", "quote",
+      "weekend", "friday", "saturday", "sunday",
+      "vision", "bts", "vendors", "interviews", "bride-party", "details",
+      "team", "options", "deliverables", "needs", "terms", "reserve", "closing",
+    ],
+  },
 
   intro: {
     place: "Lago di Como",
@@ -89,16 +110,21 @@ window.CONTENT = {
     eyebrow: "Indice · Inside",
     title: "Your weekend, in chapters",
     note: "Tap any chapter to jump there. Use the arrows, swipe or your keyboard to move through.",
+    // Chapters not in the current deck are skipped automatically.
     chapters: [
       { label: "Your story", to: "story" },
+      { label: "Your story", to: "us" },
       { label: "The weekend", to: "weekend" },
+      { label: "The weekend", to: "days" },
       { label: "The content vision", to: "vision" },
       { label: "The vendors behind the magic", to: "vendors" },
       { label: "Meet the team", to: "team" },
       { label: "Coverage options", to: "options" },
+      { label: "Why Curated by Kea", to: "why" },
       { label: "Deliverables and turnaround", to: "deliverables" },
       { label: "What we'll need from you", to: "needs" },
       { label: "Good to know", to: "terms" },
+      { label: "Logistics and fine print", to: "logistics" },
       { label: "Reserve your dates", to: "reserve" },
     ],
   },
@@ -123,6 +149,65 @@ window.CONTENT = {
   quote: {
     text: "There is nothing like a Sam and JT party.",
     attribution: "Your words. We'll prove it on camera.",
+  },
+
+  // ---- Condensed deck: slides that combine sections of the full deck ----
+
+  // Your story + the pull quote, on one slide.
+  us: {
+    eyebrow: "La vostra storia · Your story",
+    beats: [
+      { big: "14", label: "Best friends since", line: "You met at fourteen and fell for each other in high school." },
+      { big: "MN · DC", label: "Where you've been", line: "Minnesota raised you. DC is home now. The world has been your shared passport." },
+      { big: "No. 4", label: "Trips to Lake Como", line: "Three trips to the lake already. This time, it's the wedding." },
+    ],
+  },
+
+  // The three days on one slide. Days, dates and clips come from weekend.days.
+  days: {
+    eyebrow: "Il fine settimana · The weekend",
+    title: "Three days. One villa. Every moment.",
+  },
+
+  // Why hire us over another creator, with turnaround and deliverables.
+  why: {
+    eyebrow: "Perché noi · Why Curated by Kea",
+    title: "Your heirlooms are covered. We capture the weekend as it happens.",
+    body: "Mesus.studios and Unleashed Visuals will give you the photos and film you keep forever. We add the layer in between: the real-time, social-first story of your weekend, in your hands while you're still at the lake.",
+  },
+
+  // What we'll need + the terms, on one slide.
+  logistics: {
+    eyebrow: "Il necessario · What we'll need",
+    title: "The logistics, simply.",
+    columns: [
+      {
+        title: "Stay",
+        lead: "One private hotel room. Check in July 7, check out July 12, 2027. Five nights.",
+        items: [
+          "Private bathroom, reliable Wi-Fi, climate control and a secure spot for gear",
+          "All hotel and city taxes, plus early check-in or luggage storage if needed",
+          "Ideally in your hotel block, approved by Curated by Kea before booking",
+          "Option Two: Kea and Stephen share one room",
+        ],
+      },
+      {
+        title: "Getting around",
+        lead: "Private transfers for the whole team and our gear.",
+        items: [
+          "Malpensa to the hotel, and to our departure point on July 12",
+          "To, from and between every event and location",
+          "A late-night ride home after the wedding",
+          "Ideally, a dedicated media vehicle on the wedding day",
+        ],
+      },
+      {
+        title: "Meals",
+        lead: "One vendor meal per team member at the welcome party, wedding and farewell, served during guest meal service.",
+        items: [],
+      },
+    ],
+    termsTitle: "Good to know",
   },
 
   weekend: {
@@ -405,6 +490,8 @@ window.CONTENT = {
     },
     note: "Your retainer secures the dates and books airfare. Card and portal payments include a 3.5% processing fee. Zelle is available with no fee.",
     cta: "Reserve Sam & JT's weekend",
+    // Shown under the button in the condensed deck, which has no closing slide.
+    signoff: "Ci vediamo al lago.",
     // Booking or contact link. Leave empty until it's ready; the button is flagged.
     ctaUrl: "",
   },

@@ -64,7 +64,7 @@
   const ig = (handle, url) => `<a class="ig" href="${esc(url)}" target="_blank" rel="noopener">${ICON.ig}<span>${esc(handle)}</span></a>`;
 
   /* ------------------------------------------------------------ slides */
-  const order = C.order.filter((id) => id);
+  const order = ((C.orders && C.orders[C.deck]) || C.order || []).filter((id) => id);
   const numOf = (id) => order.indexOf(id) + 1;
   const dayIds = C.weekend.days.map((d) => d.id);
 
@@ -75,12 +75,14 @@
     vision: "The content vision", bts: "The content vision", vendors: "The vendors behind the magic", interviews: "The content vision",
     "bride-party": "The content vision", details: "The content vision", team: "Meet the team", options: "Coverage options",
     deliverables: "Deliverables", needs: "What we'll need", terms: "Good to know", reserve: "Reserve your dates", closing: "A presto",
+    us: "Your story", days: "The weekend", why: "Why Curated by Kea", logistics: "Logistics and fine print",
   };
   const toneOf = {
     cover: "film", contents: "ivory", story: "blush-soft", quote: "plum", weekend: "ivory",
-    friday: "blush-soft", saturday: "plum-deep", sunday: "ivory-deep", vision: "ivory", bts: "film",
+    friday: "blush-soft", saturday: "plum-deep", sunday: "ivory-deep", vision: "blush-soft", bts: "film",
     vendors: "plum-deep", interviews: "blush-soft", "bride-party": "ivory", details: "blush", team: "ivory",
-    options: "ivory-deep", deliverables: "plum", needs: "ivory", terms: "blush-soft", reserve: "ivory", closing: "film",
+    options: "blush-soft", deliverables: "plum", needs: "ivory", terms: "blush-soft", reserve: "ivory-deep", closing: "film",
+    us: "plum", days: "ivory", why: "ivory-deep", logistics: "ivory",
   };
 
   S.cover = () => {
@@ -309,12 +311,56 @@
     </div></div>`;
   };
 
+  const accordion = (items, key) => items.map((it, i) => `<div class="acc" data-a><h3><button type="button" aria-expanded="false" aria-controls="${key}-${i}" id="${key}-b-${i}">${esc(it.title)}<span class="pm" aria-hidden="true"></span></button></h3>
+        <div class="acc__panel" id="${key}-${i}" role="region" aria-labelledby="${key}-b-${i}"><div><p>${t(it.body)}</p></div></div></div>`).join("");
+
   S.terms = () => {
     const tm = C.terms;
     return `<div class="slide__body"><div class="wrap terms">
       <div>${eyebrow(tm.eyebrow)}<h2 class="display" data-a>${esc(tm.title)}</h2></div>
-      <div>${tm.items.map((it, i) => `<div class="acc" data-a><h3><button type="button" aria-expanded="false" aria-controls="acc-${i}" id="acc-b-${i}">${esc(it.title)}<span class="pm" aria-hidden="true"></span></button></h3>
-        <div class="acc__panel" id="acc-${i}" role="region" aria-labelledby="acc-b-${i}"><div><p>${t(it.body)}</p></div></div></div>`).join("")}</div>
+      <div>${accordion(tm.items, "terms")}</div>
+    </div></div>`;
+  };
+
+  /* ---- condensed deck ---- */
+  S.us = () => {
+    const u = C.us, q = C.quote;
+    const html = words(q.text).replace(/class="w">(Sam|JT)</g, 'class="w hl">$1<');
+    return `<div class="slide__body"><div class="wrap us">
+      ${eyebrow(u.eyebrow)}
+      <figure class="quote" style="margin:0"><blockquote><p>${html}</p></blockquote><footer data-a>${esc(q.attribution)}</footer></figure>
+      <ol class="beats">${u.beats.map((b) => `<li data-a><b>${esc(b.big)}</b><span class="label">${esc(b.label)}</span><p>${t(b.line)}</p></li>`).join("")}</ol>
+    </div></div>`;
+  };
+
+  S.days = () => {
+    const w = C.weekend, d = C.days;
+    return `<div class="slide__body"><div class="wrap days">
+      <div class="days__head">${eyebrow(d.eyebrow)}<h2 class="display" data-a>${esc(d.title)}</h2>
+        <p class="where" data-a>${ICON.pin}<span>${esc(w.location)}</span></p></div>
+      <ol class="days__list">${w.days.map((x) => `<li class="dayc">
+        <div class="dayc__phone">${media(x.video, { phone: true })}</div>
+        <div data-a><p class="label">${esc(x.date)}</p><h3 class="dayc__it">${esc(x.italian)}</h3><p class="dayc__title">${esc(x.title)}</p><p class="dayc__line">${t(x.line)}</p></div>
+      </li>`).join("")}</ol>
+    </div></div>`;
+  };
+
+  S.why = () => {
+    const y = C.why, d = C.deliverables;
+    return `<div class="slide__body"><div class="wrap why">
+      <div>${eyebrow(y.eyebrow)}<h2 class="display" data-a>${esc(y.title)}</h2><p class="lead" data-a>${t(y.body)}</p>
+        <div class="stats">${d.stats.map((x) => `<div class="stat" data-a><div class="stat__v"><b>${esc(x.value)}</b><span>${esc(x.unit)}</span></div><span class="label">${esc(x.label)}</span><p>${t(x.note)}</p></div>`).join("")}</div>
+      </div>
+      <div class="dlist" data-a><h3>${esc(d.listTitle)}</h3><ul>${d.rows.map((r) => `<li><b>${t(r.item)}</b><span>${t(r.detail)}</span></li>`).join("")}</ul></div>
+    </div></div>`;
+  };
+
+  S.logistics = () => {
+    const l = C.logistics, icons = [ICON.stay, ICON.car, ICON.meal];
+    return `<div class="slide__body"><div class="wrap logistics">
+      <div class="logistics__head">${eyebrow(l.eyebrow)}<h2 class="display" data-a>${esc(l.title)}</h2></div>
+      <div class="logistics__needs">${l.columns.map((c, i) => `<section class="need" data-a><span class="col__icon">${icons[i] || ""}</span><div><h3>${esc(c.title)}</h3><p class="need__lead">${t(c.lead)}</p>${c.items.length ? `<ul>${c.items.map((x) => `<li>${t(x)}</li>`).join("")}</ul>` : ""}</div></section>`).join("")}</div>
+      <div class="logistics__terms"><p class="label" data-a>${esc(l.termsTitle)}</p>${accordion(C.terms.items, "lterms")}</div>
     </div></div>`;
   };
 
@@ -337,6 +383,7 @@
         <p class="reserve__note" data-a>${t(r.note)}</p>
         <div data-a><a class="cta${has ? "" : " is-placeholder"}" href="${has ? esc(r.ctaUrl) : "#reserve"}"${has ? ' target="_blank" rel="noopener"' : ""}><span>${esc(r.cta)}</span>${ICON.next}</a>
         ${has ? "" : `<span class="cta__flag">${t("[CONFIRM booking or contact link in content.js]")}</span>`}</div>
+        ${!order.includes("closing") && r.signoff ? `<div class="signoff" data-a><span class="signoff__line">${esc(r.signoff)}</span><span class="logo">${logo(false)}</span><a class="ig" href="${esc(C.brand.instagramUrl)}" target="_blank" rel="noopener">${ICON.ig}<span>${esc(C.brand.instagram)}</span></a></div>` : ""}
       </div>
     </div></div>`;
   };
@@ -357,6 +404,28 @@
       </div></div>`;
   };
 
+  /* ------------------------------------------------------------ type */
+  // Typeface comes from content.js; the review switcher (typePicker) can
+  // override it for this browser only.
+  const TYPES = [["couture", "Couture"], ["villa", "Villa"], ["modern", "Modern"], ["original", "Original"]];
+  let typeface = C.typeface || "couture";
+  if (C.typePicker) { try { typeface = localStorage.getItem("sjt-type") || typeface; } catch (e) { /* storage blocked */ } }
+  if (!TYPES.some((x) => x[0] === typeface)) typeface = "couture";
+  document.documentElement.dataset.type = typeface;
+  const typeBtn = $("#typeBtn");
+  if (C.typePicker && typeBtn) {
+    typeBtn.hidden = false;
+    const label = () => { typeBtn.querySelector("span").textContent = TYPES.find((x) => x[0] === typeface)[1]; };
+    label();
+    typeBtn.addEventListener("click", () => {
+      typeface = TYPES[(TYPES.findIndex((x) => x[0] === typeface) + 1) % TYPES.length][0];
+      document.documentElement.dataset.type = typeface;
+      try { localStorage.setItem("sjt-type", typeface); } catch (e) { /* storage blocked */ }
+      label();
+      dispatchEvent(new Event("resize"));
+    });
+  }
+
   /* ------------------------------------------------------------ mount */
   document.title = C.meta.title;
   const deck = $("#deck");
@@ -364,7 +433,7 @@
     `<section class="slide s-${id} tone-${toneOf[id] || "ivory"}${id === "bts" ? " s-film" : ""}" id="${id}" data-id="${id}" tabindex="-1" aria-roledescription="slide" aria-label="${i + 1} of ${order.length}: ${esc(chapterOf[id] || id)}">
       ${S[id]()}
       <div class="folio" aria-hidden="true">
-        <span class="folio__nav">${i > 0 ? `<a href="#${order[i - 1]}">Previous</a>` : ""}${id !== "contents" ? `<a href="#contents">Contents</a>` : ""}</span>
+        <span class="folio__nav">${i > 0 ? `<a href="#${order[i - 1]}">Previous</a>` : ""}${id !== "contents" && order.includes("contents") ? `<a href="#contents">Contents</a>` : ""}</span>
         <span>${esc(C.meta.title)}</span>
         <span class="folio__nav"><span>${pad(i + 1)} / ${pad(order.length)}</span>${i < order.length - 1 ? `<a href="#${order[i + 1]}">Next</a>` : `<a href="#cover">Back to the start</a>`}</span>
       </div>
@@ -374,7 +443,9 @@
   const isDark = (s) => /tone-(plum|plum-deep|film)/.test(s.className);
 
   $("#logo").innerHTML = logo(false);
-  $("#menuList").innerHTML = `<ol class="chapters">${C.contents.chapters.filter((ch) => ids.includes(ch.to)).map((ch, i) =>
+  const menuChapters = C.contents.chapters.filter((ch, k, all) => ids.includes(ch.to) && all.findIndex((x) => x.to === ch.to) === k)
+    .sort((a, b) => ids.indexOf(a.to) - ids.indexOf(b.to));
+  $("#menuList").innerHTML = `<ol class="chapters">${menuChapters.map((ch, i) =>
     `<li><a href="#${esc(ch.to)}"><span class="n">${pad(i + 1)}</span><span class="t">${esc(ch.label)}</span><span class="p">p. ${pad(ids.indexOf(ch.to) + 1)}</span></a></li>`).join("")}</ol>`;
   $("#ticks").innerHTML = slides.map((s, i) => `<button type="button" aria-label="Go to slide ${i + 1}: ${esc(chapterOf[s.id] || s.id)}"></button>`).join("");
   const ticks = $$("#ticks button");
@@ -527,6 +598,8 @@
   };
   hooks.details = (s, g, d) => { if (g) g.fromTo($$(".swatches i", s), { scaleY: 0 }, { scaleY: 1, duration: 1.1, ease: "expo.out", stagger: .08, delay: d + .5, clearProps: "transform" }); };
   hooks.options = (s, g, d) => { if (g) g.fromTo($$(".hours .bar i", s), { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "expo.inOut", stagger: .12, delay: d + .5, clearProps: "transform" }); };
+  hooks.us = (s, g, d) => { if (g) blurWords($$(".quote .w", s), d + .1, .07); };
+  hooks.days = (s, g, d) => { if (g) g.fromTo($$(".dayc .phone", s), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.3, ease: "expo.out", stagger: .12, delay: d + .2, clearProps: "transform" }); };
   hooks.reserve = (s, g, d) => { if (g) g.fromTo($$(".steps .link", s), { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "expo.inOut", delay: d + .6, clearProps: "transform" }); };
   hooks.vendors = (s, g, d) => WorldMap.play(g, d);
 

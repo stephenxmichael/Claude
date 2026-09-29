@@ -31,6 +31,7 @@ a dashed outline so nothing slips through. Search `content.js` for `[` to find t
 - [ ] **Reserve button link.** `reserve.ctaUrl`: your booking or contact page. Until it's set, the button is outlined and a note sits under it.
 
 ## Before you send
+- [ ] Pick the typeface (`typeface`) and set `typePicker: false`.
 - [ ] Search `content.js` for `[`. Nothing should be left.
-- [ ] Re-export the PDF (`node tools/export-pdf.mjs`) so it matches the live deck.
+- [ ] If a PDF goes too, re-export it (`node tools/export-pdf.mjs`) so it matches the live deck.
 - [ ] Confirm the venue is still shown only as "the villa at Lake Como".

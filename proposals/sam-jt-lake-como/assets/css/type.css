@@ -1,0 +1,77 @@
+/* ==================================================================
+   Type options. Each option is one family name for display type,
+   whose italic is a *different* face chosen as its accent, and one
+   text family. Pick the option in content.js (typeface).
+   Weight ranges are declared wide on single-weight files so the
+   browser never fakes a bold or an italic.
+   ================================================================== */
+
+/* Couture · Rozha One + Playfair Display italic + Jost */
+@font-face { font-family: "SJT Couture"; src: url("../fonts/rozha-one-latin-400-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "SJT Couture"; src: url("../fonts/playfair-display-latin-wght-italic.woff2") format("woff2-variations"); font-weight: 100 900; font-style: italic; font-display: swap; }
+
+/* Villa · Cinzel + Cormorant Garamond italic + Tenor Sans */
+@font-face { font-family: "SJT Villa"; src: url("../fonts/cinzel-latin-wght-normal.woff2") format("woff2-variations"); font-weight: 400 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "SJT Villa"; src: url("../fonts/cormorant-garamond-latin-500-italic.woff2") format("woff2"); font-weight: 100 900; font-style: italic; font-display: swap; }
+@font-face { font-family: "SJT Villa Text"; src: url("../fonts/tenor-sans-latin-400-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "SJT Villa Text"; src: url("../fonts/tenor-sans-latin-400-normal.woff2") format("woff2"); font-weight: 100 900; font-style: italic; font-display: swap; }
+
+/* Modern · Syne + Instrument Serif italic + Manrope */
+@font-face { font-family: "SJT Modern"; src: url("../fonts/syne-latin-wght-normal.woff2") format("woff2-variations"); font-weight: 400 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "SJT Modern"; src: url("../fonts/instrument-serif-latin-400-italic.woff2") format("woff2"); font-weight: 100 900; font-style: italic; font-display: swap; }
+@font-face { font-family: "SJT Modern Text"; src: url("../fonts/manrope-latin-wght-normal.woff2") format("woff2-variations"); font-weight: 200 800; font-style: normal; font-display: swap; }
+
+/* ---------- Couture: heavy fashion Didone, masthead energy ---------- */
+html[data-type="couture"] {
+  --serif: "SJT Couture", "Bodoni 72", Didot, Georgia, serif;
+  --fs-mega: clamp(3.1rem, 11.4vw, 9.8rem);
+  --fs-h2: clamp(2rem, 4.9vw, 4.1rem);
+}
+html[data-type="couture"] .display,
+html[data-type="couture"] .cover__h .roman { letter-spacing: -.005em; line-height: 1.04; }
+html[data-type="couture"] .cover__h .italic,
+html[data-type="couture"] .quote blockquote p,
+html[data-type="couture"] .closing__line { font-weight: 500; }
+
+/* ---------- Villa: Roman inscription capitals, Lake Como stone ---------- */
+html[data-type="villa"] {
+  --serif: "SJT Villa", "Trajan Pro", "Cinzel", Georgia, serif;
+  --sans: "SJT Villa Text", "Optima", "Candara", "Helvetica Neue", Arial, sans-serif;
+  --fs-mega: clamp(2.7rem, 9.6vw, 8.2rem);
+  --fs-h2: clamp(1.8rem, 4.2vw, 3.5rem);
+  --fs-h3: clamp(1.25rem, 2.2vw, 1.8rem);
+}
+html[data-type="villa"] .display,
+html[data-type="villa"] .cover__h .roman,
+html[data-type="villa"] .day__title, html[data-type="villa"] .panel__title,
+html[data-type="villa"] .hours h3, html[data-type="villa"] .col h3, html[data-type="villa"] .need h3,
+html[data-type="villa"] .dayc__title { font-weight: 600; letter-spacing: .03em; line-height: 1.12; }
+html[data-type="villa"] .cover__h .roman { letter-spacing: .02em; }
+/* Cormorant's italic runs small: give the accent lines more size */
+html[data-type="villa"] .cover__h .italic,
+html[data-type="villa"] .quote blockquote p,
+html[data-type="villa"] .closing__line,
+html[data-type="villa"] .day__it,
+html[data-type="villa"] .dayc__it,
+html[data-type="villa"] .team__name { font-size-adjust: .5; }
+html[data-type="villa"] body { font-size: .97rem; }
+
+/* ---------- Modern: architectural grotesque, editorial italic accents ---------- */
+html[data-type="modern"] {
+  --serif: "SJT Modern", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  --sans: "SJT Modern Text", "Helvetica Neue", Arial, sans-serif;
+  --fs-mega: clamp(2.9rem, 10.4vw, 9rem);
+  --fs-h2: clamp(1.9rem, 4.4vw, 3.7rem);
+}
+html[data-type="modern"] .display,
+html[data-type="modern"] .cover__h .roman,
+html[data-type="modern"] .day__title, html[data-type="modern"] .panel__title,
+html[data-type="modern"] .hours h3, html[data-type="modern"] .col h3, html[data-type="modern"] .need h3,
+html[data-type="modern"] .dayc__title, html[data-type="modern"] .price__num,
+html[data-type="modern"] .steps .amt, html[data-type="modern"] .beats b, html[data-type="modern"] .stat__v b { font-weight: 700; letter-spacing: -.035em; line-height: 1; }
+html[data-type="modern"] .cover__h .italic,
+html[data-type="modern"] .quote blockquote p,
+html[data-type="modern"] .closing__line,
+html[data-type="modern"] .day__it,
+html[data-type="modern"] .dayc__it,
+html[data-type="modern"] .team__name { letter-spacing: -.01em; font-size-adjust: .52; }

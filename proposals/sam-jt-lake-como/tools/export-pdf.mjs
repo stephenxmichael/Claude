@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url";
 import { statSync } from "node:fs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const OUT = resolve(root, "Sam-and-JT-Lake-Como-Proposal.pdf");
+const OUT = resolve(root, "pdf", process.env.OUT || "Sam-and-JT-Lake-Como-Proposal.pdf");
 const BASE = process.env.BASE || "http://localhost:8765/";
 
 const browser = await chromium.launch({ executablePath: process.env.CHROMIUM || "/opt/pw-browsers/chromium" });
@@ -19,10 +19,13 @@ const page = await browser.newPage({ viewport: { width: 1600, height: 900 }, red
 await page.goto(BASE + "index.html", { waitUntil: "networkidle" });
 await page.evaluate(() => document.fonts.ready);
 
-// Refuse to ship a PDF set in fallback fonts.
-const ok = await page.evaluate(() => document.fonts.check('500 40px "Bodoni Moda"') && document.fonts.check('400 16px "Jost"')
-  && [...document.fonts].some((f) => f.family.includes("Bodoni") && f.status === "loaded"));
-if (!ok) { await browser.close(); throw new Error("Bodoni Moda / Jost did not load; serve the folder over http and retry."); }
+// Refuse to ship a PDF set in fallback fonts: every face the deck asked for must have loaded.
+const faces = await page.evaluate(async () => {
+  await document.fonts.ready;
+  const used = [...document.fonts].filter((f) => f.status !== "unloaded");
+  return { loaded: used.filter((f) => f.status === "loaded").length, failed: used.filter((f) => f.status === "error").map((f) => f.family) };
+});
+if (!faces.loaded || faces.failed.length) { await browser.close(); throw new Error(`fonts did not load (${faces.failed.join(", ") || "none loaded"}); serve the folder over http and retry.`); }
 
 await page.emulateMedia({ media: "print" });
 await page.evaluate(() => { window.dispatchEvent(new Event("beforeprint")); window.dispatchEvent(new Event("resize")); });

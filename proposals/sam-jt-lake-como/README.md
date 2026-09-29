@@ -2,22 +2,45 @@
 
 A click-through presentation for Sam & JT's wedding weekend (July 9 to 11, 2027),
 from Curated by Kea. It opens with an animated Lake Como title sequence, then runs as
-21 full-screen slides with cinematic wipes, video slots, an animated vendor map and
-an interactive coverage toggle. The same deck exports to a clickable PDF.
+full-screen slides with cinematic wipes, video slots, an animated vendor map and an
+interactive coverage toggle.
+
+Two versions live in the same files. Pick one with `deck` in `content.js`:
+
+- `"condensed"` (default): 10 slides, built to hold up next to other creators' proposals.
+  Cover · Your story · The weekend · What we'll capture · The vendors · Why Curated by Kea ·
+  Meet Kea · Coverage options · Logistics and fine print · Reserve.
+- `"full"`: the original 21 slides.
+
+## Typeface
+
+Set `typeface` in `content.js`:
+
+| Option | Headlines | Italic accents | Text |
+|---|---|---|---|
+| `couture` (default) | Rozha One | Playfair Display italic | Jost |
+| `villa` | Cinzel | Cormorant Garamond italic | Tenor Sans |
+| `modern` | Syne | Instrument Serif italic | Manrope |
+| `original` | Bodoni Moda | Bodoni Moda italic | Jost |
+
+While `typePicker: true`, an "Aa" button in the header switches between them in your
+browser only, so you can compare them on real slides. `pdf/type-options.jpg` shows all
+three side by side. Set `typePicker: false` before sending the link.
 
 ## Files
 
     index.html                 page shell (no copy lives here)
     content.js                 ALL copy, slide order and media paths. Edit this one.
     assets/css/deck.css        design system and slide layouts
+    assets/css/type.css        the typeface options
     assets/css/print.css       PDF / print layout: one slide per 16:9 page
     assets/js/deck.js          renders slides from content.js, navigation, motion, video
     assets/js/world-dots.js    dotted world map data for the vendor slide
     assets/js/vendor/gsap.min.js   animation engine (GSAP 3.12.5), bundled locally
-    assets/fonts/              Bodoni Moda and Jost (SIL Open Font License), bundled locally
+    assets/fonts/              all typeface options (SIL Open Font License), bundled locally
     media/README.md            every media slot, its ratio and target file size
     PLACEHOLDERS.md            everything still needed from Kea
-    Sam-and-JT-Lake-Como-Proposal.pdf   exported PDF
+    pdf/                       PDF fallback and the typeface comparison sheet
     tools/export-pdf.mjs       rebuilds the PDF
     tools/shoot.mjs            screenshots every slide at phone, laptop and desktop sizes
 
@@ -46,17 +69,18 @@ The fonts need to be served over http (browsers block them from `file://`):
     python3 -m http.server 8765
     # open http://localhost:8765
 
-## Export the PDF
+## Export the PDF (fallback)
+
+The HTML deck is the main piece. The PDF is kept in `pdf/` in case it's needed.
 
 With the preview server running:
 
     npm install              # from the repo root, once (installs Playwright)
     node proposals/sam-jt-lake-como/tools/export-pdf.mjs
 
-This writes `Sam-and-JT-Lake-Como-Proposal.pdf`: 21 landscape pages at 1600×900.
+This writes `pdf/Sam-and-JT-Lake-Como-Proposal.pdf`: one landscape page per slide at 1600×900.
 Both coverage options appear side by side, every term is expanded, and all map pins
-are lit. The contents page and the "Contents" link in every footer jump between
-pages. Instagram and booking links open in the browser. Video slots print their
+are lit. Every footer has Previous and Next links (plus Contents in the full deck). Instagram and booking links open in the browser. Video slots print their
 poster image, so add posters before exporting.
 
 ## Deploy (Vercel or Netlify)
