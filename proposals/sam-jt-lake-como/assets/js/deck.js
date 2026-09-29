@@ -49,8 +49,10 @@
     } else if (!empty) {
       inner += `<img src="${esc(m.src)}" alt="${alt}" loading="lazy" decoding="async">`;
     }
-    const role = empty ? ` role="img" aria-label="${alt}. Placeholder for ${esc(slot)}."` : "";
-    const el = `<div class="m${empty ? " is-empty" : ""}" style="--ar:${a} / ${b}" data-slot="${esc(slot)}"${mask ? " data-mask" : ""}${role}>${inner}</div>`;
+    const link = empty && m.link;
+    if (link) inner += `<a class="m__link" href="${esc(m.link)}" target="_blank" rel="noopener">${ICON.play}<span>${esc(m.linkLabel || "Watch")}</span><small>on Instagram</small></a>`;
+    const role = empty && !link ? ` role="img" aria-label="${alt}. Placeholder for ${esc(slot)}."` : "";
+    const el = `<div class="m${empty ? " is-empty" : ""}${link ? " has-link" : ""}" style="--ar:${a} / ${b}" data-slot="${esc(slot)}"${mask ? " data-mask" : ""}${role}>${inner}</div>`;
     return phone ? `<div class="phone" data-a>${el}</div>` : el;
   }
 
@@ -64,25 +66,14 @@
   const ig = (handle, url) => `<a class="ig" href="${esc(url)}" target="_blank" rel="noopener">${ICON.ig}<span>${esc(handle)}</span></a>`;
 
   /* ------------------------------------------------------------ slides */
-  const order = ((C.orders && C.orders[C.deck]) || C.order || []).filter((id) => id);
+  const order = C.order.filter((id) => id);
   const numOf = (id) => order.indexOf(id) + 1;
-  const dayIds = C.weekend.days.map((d) => d.id);
 
   const S = {};
-  const chapterOf = {
-    cover: "Sam & JT", contents: "Contents", story: "Your story", quote: "Your story",
-    weekend: "The weekend", friday: "The weekend · Friday", saturday: "The weekend · Saturday", sunday: "The weekend · Sunday",
-    vision: "The content vision", bts: "The content vision", vendors: "The vendors behind the magic", interviews: "The content vision",
-    "bride-party": "The content vision", details: "The content vision", team: "Meet the team", options: "Coverage options",
-    deliverables: "Deliverables", needs: "What we'll need", terms: "Good to know", reserve: "Reserve your dates", closing: "A presto",
-    us: "Your story", days: "The weekend", why: "Why Curated by Kea", logistics: "Logistics and fine print",
-  };
+  const chapterOf = C.labels || {};
   const toneOf = {
-    cover: "film", contents: "ivory", story: "blush-soft", quote: "plum", weekend: "ivory",
-    friday: "blush-soft", saturday: "plum-deep", sunday: "ivory-deep", vision: "blush-soft", bts: "film",
-    vendors: "plum-deep", interviews: "blush-soft", "bride-party": "ivory", details: "blush", team: "ivory",
-    options: "blush-soft", deliverables: "plum", needs: "ivory", terms: "blush-soft", reserve: "ivory-deep", closing: "film",
-    us: "plum", days: "ivory", why: "ivory-deep", logistics: "ivory",
+    cover: "film", us: "plum", days: "ivory", vision: "blush-soft", vendors: "plum-deep",
+    why: "ivory-deep", team: "ivory", options: "blush-soft", logistics: "ivory", reserve: "ivory-deep",
   };
 
   S.cover = () => {
@@ -96,12 +87,15 @@
     return `
       <div class="cover__bg">${bg}</div>
       <div class="cover__scrim"></div>
+      <div class="cover__reel${c.reel ? "" : " no-reel"}">
+      ${c.reel ? `<div class="cover__phone">${media(c.reel, { phone: true, mask: false })}</div>` : ""}
       <div class="stamp" aria-hidden="true">
         <svg viewBox="0 0 120 120"><defs><path id="stampPath" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs>
         <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width=".6" opacity=".6"/>
         <circle cx="60" cy="60" r="36" fill="none" stroke="currentColor" stroke-width=".6" opacity=".6"/>
         <text><textPath href="#stampPath">${esc(c.stamp.repeat(2))}</textPath></text></svg>
         <span class="core">VII</span>
+      </div>
       </div>
       <div class="slide__body"><div class="wrap cover__content">
         <h1 class="cover__h">${lines}</h1>
@@ -110,89 +104,16 @@
       </div></div>`;
   };
 
-  S.contents = () => {
-    const c = C.contents;
-    const items = c.chapters.filter((ch) => order.includes(ch.to)).map((ch, i) =>
-      `<li data-a><a href="#${esc(ch.to)}"><span class="n">${pad(i + 1)}</span><span class="t">${esc(ch.label)}</span><span class="p">p. ${pad(numOf(ch.to))}</span></a></li>`).join("");
-    return `<div class="slide__body"><div class="wrap contents">
-      <div>${eyebrow(c.eyebrow)}<h2 class="display" data-a>${esc(c.title)}</h2><p class="note" data-a>${esc(c.note)}</p></div>
-      <ol class="chapters">${items}</ol>
-    </div></div>`;
-  };
-
-  S.story = () => {
-    const s = C.story;
-    return `<div class="slide__body"><div class="wrap story">
-      <div class="bignum" data-a><b>${esc(s.bigNumber)}</b><span class="label">${esc(s.bigNumberCaption)}</span></div>
-      <div>
-        ${eyebrow(s.eyebrow)}
-        <h2 class="display" data-a>${esc(s.title)}</h2>
-        <div style="margin-top:1.6rem">${s.paragraphs.map((p) => `<p class="body" data-a>${t(p)}</p>`).join("")}</div>
-        <ol class="journey" data-a><span class="track" aria-hidden="true"></span>${s.journey.map((j) => `<li><span class="place">${esc(j.place)}</span><span class="note">${esc(j.note)}</span></li>`).join("")}</ol>
-      </div>
-    </div></div>`;
-  };
-
-  S.quote = () => {
-    const q = C.quote;
-    const html = words(q.text).replace(/>(Sam|JT)</g, ' data-hl>$1<').replace(/class="w" data-hl/g, 'class="w hl"');
-    return `<div class="slide__body"><div class="wrap"><figure class="quote" style="margin:0">
-      <p class="eyebrow" data-a>La citazione · In your words</p>
-      <blockquote><p>${html}</p></blockquote>
-      <footer data-a>${esc(q.attribution)}</footer>
-    </figure></div></div>`;
-  };
-
-  S.weekend = () => {
-    const w = C.weekend;
-    return `<div class="slide__body"><div class="wrap weekend">
-      <div>${eyebrow(w.eyebrow)}<h2 class="display" data-a>${esc(w.title)}</h2><p class="lead" data-a>${esc(w.intro)}</p>
-        <p class="where" data-a>${ICON.pin}<span>${esc(w.location)}</span></p></div>
-      <ol class="tl">
-        <svg class="tl__line" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 2 100"><line class="ghost" x1="1" y1="0" x2="1" y2="100"/><line class="draw" x1="1" y1="0" x2="1" y2="100" pathLength="1"/></svg>
-        ${w.days.map((d) => `<li data-a><a href="#${d.id}"><span class="it">${esc(d.italian)}</span><span class="en label"><b>${esc(d.date)}</b> · ${esc(d.title)}</span></a></li>`).join("")}
-      </ol>
-    </div></div>`;
-  };
-
-  const daySlide = (d, i) => () => {
-    const n = d.date.match(/\d+/)[0];
-    const mini = C.weekend.days.map((x, k) => `${k ? `<i class="${k <= i ? "on" : ""}"></i>` : ""}<span class="${k <= i ? "on" : ""}">${esc(x.date.split(",")[0].slice(0, 3))}</span>`).join("");
-    return `<div class="slide__body"><div class="wrap day">
-      <span class="day__ghost" aria-hidden="true">${pad(n)}</span>
-      <div class="split split--phone">
-        <div>
-          <div class="minitl" data-a aria-hidden="true">${mini}</div>
-          <p class="eyebrow" data-a>${esc(d.date)}</p>
-          <h2 class="day__it" data-a>${esc(d.italian)}</h2>
-          <h3 class="day__title" data-a>${esc(d.title)}</h3>
-          <p class="day__line" data-a>${t(d.line)}</p>
-          <p class="label" style="margin-top:1.8rem" data-a>What we'll capture</p>
-          <ul class="chips" data-a>${d.capture.map((c) => `<li>${esc(c)}</li>`).join("")}</ul>
-        </div>
-        <div class="phone-col">${media(d.video, { phone: true })}</div>
-      </div>
-    </div></div>`;
-  };
-  C.weekend.days.forEach((d, i) => (S[d.id] = daySlide(d, i)));
-
-  const pillarSlide = { bts: "bts", vendors: "vendors", interviews: "interviews", bride: "bride-party", party: "bride-party", details: "details" };
   S.vision = () => {
     const v = C.vision;
     return `<div class="slide__body"><div class="wrap">
       <div class="vision__head"><div>${eyebrow(v.eyebrow)}<h2 class="display" data-a>${esc(v.title)}</h2></div><p class="lead" data-a>${esc(v.intro)}</p></div>
       <ol class="pillars">${v.pillars.map((p, i) => {
-        const to = order.includes(pillarSlide[p.id]) ? pillarSlide[p.id] : null;
+        const to = p.id === "vendors" && order.includes("vendors") ? "vendors" : null;
         const inner = `${p.image ? media(p.image) : ""}<span class="n">${pad(i + 1)}</span><span class="t">${esc(p.title)}</span><span class="l">${t(p.line)}</span>`;
         return `<li data-a>${to ? `<a href="#${to}">${inner}</a>` : inner}</li>`;
       }).join("")}</ol>
     </div></div>`;
-  };
-
-  S.bts = () => {
-    const b = C.bts;
-    return `<div class="film__bg">${media(b.video, { mask: false })}</div><div class="film__scrim"></div>
-      <div class="slide__body"><div class="wrap film__copy">${eyebrow(b.eyebrow)}<h2 class="display" data-a>${esc(b.title)}</h2><p class="body" data-a>${t(b.body)}</p></div></div>`;
   };
 
   S.vendors = () => {
@@ -202,35 +123,6 @@
         <ul class="vlist" data-a>${v.list.map((x) => `<li class="${x.lat == null ? "unpinned" : ""}"><i aria-hidden="true"></i><b>${esc(x.name)}</b><span>${esc(x.role)} · ${t(x.home)}</span></li>`).join("")}</ul>
       </div>
       <div class="map" data-a><div class="map__svg"></div><p class="label map__note">${esc(v.mapNote)}</p></div>
-    </div></div>`;
-  };
-
-  S.interviews = () => {
-    const v = C.interviews;
-    return `<div class="slide__body"><div class="wrap interviews">
-      <div class="split split--phone split--reverse">
-        <div>${eyebrow(v.eyebrow)}<h2 class="display" data-a>${esc(v.title)}</h2><p class="lead" data-a>${t(v.body)}</p></div>
-        <div class="phone-col">${media(v.video, { phone: true })}</div>
-      </div>
-    </div></div>`;
-  };
-
-  S["bride-party"] = () => {
-    const b = C.brideParty;
-    const item = (slot, x, label) => `<div class="duo__item"><div data-a data-parallax>${media(slot)}</div><div><p class="eyebrow" data-a>${esc(label)}</p><h2 class="display" data-a>${esc(x.title)}</h2><p class="body" data-a>${t(x.body)}</p></div></div>`;
-    return `<div class="slide__body"><div class="wrap">
-      <div class="duo">${item("vision-bride", b.bride, "La sposa · The bride")}${item("vision-party", b.party, "La festa · The party")}</div>
-    </div></div>`;
-  };
-
-  S.details = () => {
-    const d = C.details;
-    return `<div class="slide__body"><div class="wrap details">
-      <div>${eyebrow(d.eyebrow)}<h2 class="display" data-a>${esc(d.title)}</h2><p class="lead" data-a>${t(d.body)}</p>
-        <ul class="swatches" data-a>${d.palette.map((p) => `<li><i style="background:var(--${p.token})"></i><span>${esc(p.name)}</span></li>`).join("")}</ul>
-        <p class="dresses" data-a><span class="label">The dresses</span><b>${esc(d.dresses)}</b></p>
-      </div>
-      <div class="details__imgs">${d.images.map((s) => `<div data-a data-parallax>${media(s)}</div>`).join("")}</div>
     </div></div>`;
   };
 
@@ -293,52 +185,25 @@
     </div></div>`;
   };
 
-  S.deliverables = () => {
-    const d = C.deliverables;
-    return `<div class="slide__body"><div class="wrap deliv">
-      <div>${eyebrow(d.eyebrow)}<h2 class="display" data-a>${esc(d.title)}</h2>
-        <div class="stats">${d.stats.map((s) => `<div class="stat" data-a><div class="stat__v"><b>${esc(s.value)}</b><span>${esc(s.unit)}</span></div><span class="label">${esc(s.label)}</span><p>${t(s.note)}</p></div>`).join("")}</div>
-      </div>
-      <div class="dlist" data-a><h3>${esc(d.listTitle)}</h3><ul>${d.rows.map((r) => `<li><b>${t(r.item)}</b><span>${t(r.detail)}</span></li>`).join("")}</ul></div>
-    </div></div>`;
-  };
-
-  S.needs = () => {
-    const n = C.needs, icons = [ICON.stay, ICON.car, ICON.meal];
-    return `<div class="slide__body"><div class="wrap needs">
-      <div class="needs__head">${eyebrow(n.eyebrow)}<h2 class="display" data-a>${esc(n.title)}</h2></div>
-      <div class="cols">${n.columns.map((c, i) => `<section class="col" data-a><span class="col__icon">${icons[i] || ""}</span><h3>${esc(c.title)}</h3><p class="lead">${t(c.lead)}</p><ul>${c.items.map((x) => `<li>${t(x)}</li>`).join("")}</ul></section>`).join("")}</div>
-    </div></div>`;
-  };
-
   const accordion = (items, key) => items.map((it, i) => `<div class="acc" data-a><h3><button type="button" aria-expanded="false" aria-controls="${key}-${i}" id="${key}-b-${i}">${esc(it.title)}<span class="pm" aria-hidden="true"></span></button></h3>
         <div class="acc__panel" id="${key}-${i}" role="region" aria-labelledby="${key}-b-${i}"><div><p>${t(it.body)}</p></div></div></div>`).join("");
 
-  S.terms = () => {
-    const tm = C.terms;
-    return `<div class="slide__body"><div class="wrap terms">
-      <div>${eyebrow(tm.eyebrow)}<h2 class="display" data-a>${esc(tm.title)}</h2></div>
-      <div>${accordion(tm.items, "terms")}</div>
-    </div></div>`;
-  };
-
-  /* ---- condensed deck ---- */
   S.us = () => {
-    const u = C.us, q = C.quote;
-    const html = words(q.text).replace(/class="w">(Sam|JT)</g, 'class="w hl">$1<');
+    const u = C.us;
+    const html = words(u.quote).replace(/class="w">(Sam|JT)</g, 'class="w hl">$1<');
     return `<div class="slide__body"><div class="wrap us">
       ${eyebrow(u.eyebrow)}
-      <figure class="quote" style="margin:0"><blockquote><p>${html}</p></blockquote><footer data-a>${esc(q.attribution)}</footer></figure>
+      <figure class="quote" style="margin:0"><blockquote><p>${html}</p></blockquote><footer data-a>${esc(u.attribution)}</footer></figure>
       <ol class="beats">${u.beats.map((b) => `<li data-a><b>${esc(b.big)}</b><span class="label">${esc(b.label)}</span><p>${t(b.line)}</p></li>`).join("")}</ol>
     </div></div>`;
   };
 
   S.days = () => {
-    const w = C.weekend, d = C.days;
+    const d = C.days;
     return `<div class="slide__body"><div class="wrap days">
       <div class="days__head">${eyebrow(d.eyebrow)}<h2 class="display" data-a>${esc(d.title)}</h2>
-        <p class="where" data-a>${ICON.pin}<span>${esc(w.location)}</span></p></div>
-      <ol class="days__list">${w.days.map((x) => `<li class="dayc">
+        <p class="where" data-a>${ICON.pin}<span>${esc(d.location)}</span></p></div>
+      <ol class="days__list">${d.days.map((x) => `<li class="dayc">
         <div class="dayc__phone">${media(x.video, { phone: true })}</div>
         <div data-a><p class="label">${esc(x.date)}</p><h3 class="dayc__it">${esc(x.italian)}</h3><p class="dayc__title">${esc(x.title)}</p><p class="dayc__line">${t(x.line)}</p></div>
       </li>`).join("")}</ol>
@@ -346,7 +211,7 @@
   };
 
   S.why = () => {
-    const y = C.why, d = C.deliverables;
+    const y = C.why, d = C.why;
     return `<div class="slide__body"><div class="wrap why">
       <div>${eyebrow(y.eyebrow)}<h2 class="display" data-a>${esc(y.title)}</h2><p class="lead" data-a>${t(y.body)}</p>
         <div class="stats">${d.stats.map((x) => `<div class="stat" data-a><div class="stat__v"><b>${esc(x.value)}</b><span>${esc(x.unit)}</span></div><span class="label">${esc(x.label)}</span><p>${t(x.note)}</p></div>`).join("")}</div>
@@ -360,7 +225,7 @@
     return `<div class="slide__body"><div class="wrap logistics">
       <div class="logistics__head">${eyebrow(l.eyebrow)}<h2 class="display" data-a>${esc(l.title)}</h2></div>
       <div class="logistics__needs">${l.columns.map((c, i) => `<section class="need" data-a><span class="col__icon">${icons[i] || ""}</span><div><h3>${esc(c.title)}</h3><p class="need__lead">${t(c.lead)}</p>${c.items.length ? `<ul>${c.items.map((x) => `<li>${t(x)}</li>`).join("")}</ul>` : ""}</div></section>`).join("")}</div>
-      <div class="logistics__terms"><p class="label" data-a>${esc(l.termsTitle)}</p>${accordion(C.terms.items, "lterms")}</div>
+      <div class="logistics__terms"><p class="label" data-a>${esc(l.termsTitle)}</p>${accordion(l.terms, "terms")}</div>
     </div></div>`;
   };
 
@@ -383,25 +248,9 @@
         <p class="reserve__note" data-a>${t(r.note)}</p>
         <div data-a><a class="cta${has ? "" : " is-placeholder"}" href="${has ? esc(r.ctaUrl) : "#reserve"}"${has ? ' target="_blank" rel="noopener"' : ""}><span>${esc(r.cta)}</span>${ICON.next}</a>
         ${has ? "" : `<span class="cta__flag">${t("[CONFIRM booking or contact link in content.js]")}</span>`}</div>
-        ${!order.includes("closing") && r.signoff ? `<div class="signoff" data-a><span class="signoff__line">${esc(r.signoff)}</span><span class="logo">${logo(false)}</span><a class="ig" href="${esc(C.brand.instagramUrl)}" target="_blank" rel="noopener">${ICON.ig}<span>${esc(C.brand.instagram)}</span></a></div>` : ""}
+        ${r.signoff ? `<div class="signoff" data-a><span class="signoff__line">${esc(r.signoff)}</span><span class="logo">${logo(false)}</span><a class="ig" href="${esc(C.brand.instagramUrl)}" target="_blank" rel="noopener">${ICON.ig}<span>${esc(C.brand.instagram)}</span></a></div>` : ""}
       </div>
     </div></div>`;
-  };
-
-  S.closing = () => {
-    const c = C.closing;
-    return `<div class="film__bg">${media(c.video, { mask: false })}</div><div class="film__scrim" style="background:rgba(26,8,20,.62)"></div>
-      <div class="slide__body"><div class="wrap closing">
-        ${eyebrow(c.eyebrow)}
-        <h2 class="closing__line">${words(c.line)}</h2>
-        <p class="closing__tr" data-a>${esc(c.translation)}</p>
-        <div class="closing__sign" data-a><span class="logo">${logo(true)}</span><p class="closing__foot">${t(c.footer)}</p></div>
-        <div class="closing__actions" data-a>
-          ${order.includes("reserve") ? `<a href="#reserve">${esc(C.reserve.cta)}</a>` : ""}
-          <a href="${esc(C.brand.instagramUrl)}" target="_blank" rel="noopener">${esc(C.brand.instagram)}</a>
-          <a href="#cover">Back to the start</a>
-        </div>
-      </div></div>`;
   };
 
   /* ------------------------------------------------------------ type */
@@ -430,7 +279,7 @@
   document.title = C.meta.title;
   const deck = $("#deck");
   deck.innerHTML = order.filter((id) => S[id]).map((id, i) =>
-    `<section class="slide s-${id} tone-${toneOf[id] || "ivory"}${id === "bts" ? " s-film" : ""}" id="${id}" data-id="${id}" tabindex="-1" aria-roledescription="slide" aria-label="${i + 1} of ${order.length}: ${esc(chapterOf[id] || id)}">
+    `<section class="slide s-${id} tone-${toneOf[id] || "ivory"}" id="${id}" data-id="${id}" tabindex="-1" aria-roledescription="slide" aria-label="${i + 1} of ${order.length}: ${esc(chapterOf[id] || id)}">
       ${S[id]()}
       <div class="folio" aria-hidden="true">
         <span class="folio__nav">${i > 0 ? `<a href="#${order[i - 1]}">Previous</a>` : ""}${id !== "contents" && order.includes("contents") ? `<a href="#contents">Contents</a>` : ""}</span>
@@ -443,8 +292,7 @@
   const isDark = (s) => /tone-(plum|plum-deep|film)/.test(s.className);
 
   $("#logo").innerHTML = logo(false);
-  const menuChapters = C.contents.chapters.filter((ch, k, all) => ids.includes(ch.to) && all.findIndex((x) => x.to === ch.to) === k)
-    .sort((a, b) => ids.indexOf(a.to) - ids.indexOf(b.to));
+  const menuChapters = ids.filter((id) => id !== "cover").map((id) => ({ to: id, label: chapterOf[id] || id }));
   $("#menuList").innerHTML = `<ol class="chapters">${menuChapters.map((ch, i) =>
     `<li><a href="#${esc(ch.to)}"><span class="n">${pad(i + 1)}</span><span class="t">${esc(ch.label)}</span><span class="p">p. ${pad(ids.indexOf(ch.to) + 1)}</span></a></li>`).join("")}</ol>`;
   $("#ticks").innerHTML = slides.map((s, i) => `<button type="button" aria-label="Go to slide ${i + 1}: ${esc(chapterOf[s.id] || s.id)}"></button>`).join("");
@@ -583,20 +431,6 @@
   const blurWords = (els, delay, stagger = .12) => gsap.fromTo(els, { opacity: 0, filter: "blur(14px)", y: 12 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 1.4, ease: "power2.out", stagger, delay, clearProps: "filter,transform" });
 
   hooks.cover = (s, g, d) => { if (g) blurWords($$(".cover__h .w", s), d + .1, .11); };
-  hooks.quote = (s, g, d) => { if (g) blurWords($$(".quote .w", s), d + .1, .07); };
-  hooks.closing = (s, g, d) => { if (g) blurWords($$(".closing__line .w", s), d + .1, .12); };
-  hooks.story = (s, g, d) => {
-    const b = $(".bignum b", s);
-    if (!g) { b.style.setProperty("--fill", "100%"); return; }
-    g.fromTo(b, { "--fill": "0%" }, { "--fill": "100%", duration: 2.2, ease: "power2.inOut", delay: d + .5 });
-    g.fromTo($(".journey .track", s), { scaleX: 0 }, { scaleX: 1, duration: 1.8, ease: "expo.inOut", delay: d + .9 });
-  };
-  hooks.weekend = (s, g, d) => {
-    const line = $(".tl__line .draw", s);
-    if (!g) return;
-    g.fromTo(line, { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.8, ease: "expo.inOut", delay: d + .2 });
-  };
-  hooks.details = (s, g, d) => { if (g) g.fromTo($$(".swatches i", s), { scaleY: 0 }, { scaleY: 1, duration: 1.1, ease: "expo.out", stagger: .08, delay: d + .5, clearProps: "transform" }); };
   hooks.options = (s, g, d) => { if (g) g.fromTo($$(".hours .bar i", s), { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "expo.inOut", stagger: .12, delay: d + .5, clearProps: "transform" }); };
   hooks.us = (s, g, d) => { if (g) blurWords($$(".quote .w", s), d + .1, .07); };
   hooks.days = (s, g, d) => { if (g) g.fromTo($$(".dayc .phone", s), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.3, ease: "expo.out", stagger: .12, delay: d + .2, clearProps: "transform" }); };

@@ -13,13 +13,14 @@ a dashed outline so nothing slips through. Search `content.js` for `[` to find t
 ## Portfolio and weekend media (see `media/README.md`)
 - [ ] `kea-reel`: Kea's portfolio reel (9:16)
 - [ ] `stephen-reel`: Stephen's portfolio reel (9:16)
-- [ ] `hero-reel`: cover film (16:9). Until it's added, a painted lake at golden hour plays instead.
+- [ ] **`couple-reel`: Sam & JT's Instagram reel for the cover** (https://www.instagram.com/reel/DW2RKA8GTNm/). Save the video, encode it per `media/README.md`, drop it in as `media/couple-reel.mp4` with a poster, and set `src`. Until then the cover's phone frame links to the reel on Instagram.
+- [ ] `hero-reel` (optional): full-bleed cover film (16:9). Until it's added, a painted lake at golden hour plays behind the headline.
 - [ ] `day-welcome`, `day-wedding`, `day-farewell`: one 9:16 mood clip per day
-- [ ] `bts-reel` (16:9), `vendor-reel` (9:16), `closing-reel` (16:9)
-- [ ] Six vision images: `vision-getting-ready`, `vision-vendors`, `vision-bride`, `vision-party`, `vision-details`, `vision-grounds`
+- [ ] `vendor-reel` (9:16)
+- [ ] Five vision images: `vision-getting-ready`, `vision-vendors`, `vision-bride`, `vision-party`, `vision-details`
 
 ## Deliverables
-- [ ] `deliverables.rows`: replace each `[CONFIRM deliverable, count and format]` with what you'll deliver for that part of the weekend. Add or remove rows as needed.
+- [ ] `why.rows`: replace each `[CONFIRM deliverable, count and format]` with what you'll deliver for that part of the weekend. Add or remove rows as needed.
 - [ ] Raw footage row: `[CONFIRM delivery method]` (for example, a shared drive link).
 
 ## Vendor map
@@ -31,7 +32,6 @@ a dashed outline so nothing slips through. Search `content.js` for `[` to find t
 - [ ] **Reserve button link.** `reserve.ctaUrl`: your booking or contact page. Until it's set, the button is outlined and a note sits under it.
 
 ## Before you send
-- [ ] Pick the typeface (`typeface`) and set `typePicker: false`.
 - [ ] Search `content.js` for `[`. Nothing should be left.
 - [ ] If a PDF goes too, re-export it (`node tools/export-pdf.mjs`) so it matches the live deck.
 - [ ] Confirm the venue is still shown only as "the villa at Lake Como".

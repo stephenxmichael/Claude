@@ -75,3 +75,4 @@ html[data-type="modern"] .closing__line,
 html[data-type="modern"] .day__it,
 html[data-type="modern"] .dayc__it,
 html[data-type="modern"] .team__name { letter-spacing: -.01em; font-size-adjust: .52; }
+html[data-type="villa"] .vendors .display { font-size: clamp(1.8rem, 3.5vw, 2.9rem); }

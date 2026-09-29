@@ -5,12 +5,11 @@ from Curated by Kea. It opens with an animated Lake Como title sequence, then ru
 full-screen slides with cinematic wipes, video slots, an animated vendor map and an
 interactive coverage toggle.
 
-Two versions live in the same files. Pick one with `deck` in `content.js`:
+Ten slides, built to hold up next to other creators' proposals:
 
-- `"condensed"` (default): 10 slides, built to hold up next to other creators' proposals.
-  Cover · Your story · The weekend · What we'll capture · The vendors · Why Curated by Kea ·
-  Meet Kea · Coverage options · Logistics and fine print · Reserve.
-- `"full"`: the original 21 slides.
+Cover (with Sam & JT's reel) · Your story · The weekend · What we'll capture ·
+The vendors · Why Curated by Kea · Meet Kea · Coverage options ·
+Logistics and fine print · Reserve.
 
 ## Typeface
 
@@ -18,14 +17,13 @@ Set `typeface` in `content.js`:
 
 | Option | Headlines | Italic accents | Text |
 |---|---|---|---|
-| `couture` (default) | Rozha One | Playfair Display italic | Jost |
-| `villa` | Cinzel | Cormorant Garamond italic | Tenor Sans |
+| `villa` (chosen) | Cinzel | Cormorant Garamond italic | Tenor Sans |
+| `couture` | Rozha One | Playfair Display italic | Jost |
 | `modern` | Syne | Instrument Serif italic | Manrope |
 | `original` | Bodoni Moda | Bodoni Moda italic | Jost |
 
-While `typePicker: true`, an "Aa" button in the header switches between them in your
-browser only, so you can compare them on real slides. `pdf/type-options.jpg` shows all
-three side by side. Set `typePicker: false` before sending the link.
+The others stay available. Setting `typePicker: true` shows an "Aa" button that switches
+between them in your own browser. `pdf/type-options.jpg` shows three side by side.
 
 ## Files
 
@@ -47,7 +45,7 @@ three side by side. Set `typePicker: false` before sending the link.
 ## Getting around the deck
 
 - Arrows at the bottom, swipe left or right on a phone, or use the arrow keys, Page Up/Down, Space, Home and End.
-- "Chapters" opens a menu to jump anywhere. The Contents slide links the same way.
+- "Chapters" opens a menu to jump anywhere.
 - Tall slides on a phone scroll up and down; swipe sideways to change slides.
 - Each slide has its own link, like `…/#options`, so you can send someone straight to the pricing.
 - Anyone with reduced motion turned on gets a still, complete deck with no autoplay.
@@ -80,7 +78,7 @@ With the preview server running:
 
 This writes `pdf/Sam-and-JT-Lake-Como-Proposal.pdf`: one landscape page per slide at 1600×900.
 Both coverage options appear side by side, every term is expanded, and all map pins
-are lit. Every footer has Previous and Next links (plus Contents in the full deck). Instagram and booking links open in the browser. Video slots print their
+are lit. Every footer has Previous and Next links. Instagram and booking links open in the browser. Video slots print their
 poster image, so add posters before exporting.
 
 ## Deploy (Vercel or Netlify)
