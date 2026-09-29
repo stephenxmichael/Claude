@@ -104,7 +104,7 @@
       <div class="slide__body"><div class="wrap cover__content">
         <h1 class="cover__h">${lines}</h1>
         <p class="cover__sub" data-a>${t(c.subline)}</p>
-        <button class="cover__begin" type="button" data-next data-a>${esc(c.begin)}<span class="line"></span></button>
+        <a class="cover__begin" href="#${order[1] || "cover"}" data-next data-a>${esc(c.begin)}<span class="line"></span></a>
       </div></div>`;
   };
 
@@ -363,7 +363,11 @@
   deck.innerHTML = order.filter((id) => S[id]).map((id, i) =>
     `<section class="slide s-${id} tone-${toneOf[id] || "ivory"}${id === "bts" ? " s-film" : ""}" id="${id}" data-id="${id}" tabindex="-1" aria-roledescription="slide" aria-label="${i + 1} of ${order.length}: ${esc(chapterOf[id] || id)}">
       ${S[id]()}
-      <div class="folio" aria-hidden="true"><a href="#contents">Contents</a><span>${esc(C.meta.title)}</span><span>${pad(i + 1)} / ${pad(order.length)}</span></div>
+      <div class="folio" aria-hidden="true">
+        <span class="folio__nav">${i > 0 ? `<a href="#${order[i - 1]}">Previous</a>` : ""}${id !== "contents" ? `<a href="#contents">Contents</a>` : ""}</span>
+        <span>${esc(C.meta.title)}</span>
+        <span class="folio__nav"><span>${pad(i + 1)} / ${pad(order.length)}</span>${i < order.length - 1 ? `<a href="#${order[i + 1]}">Next</a>` : `<a href="#cover">Back to the start</a>`}</span>
+      </div>
     </section>`).join("");
   const slides = $$(".slide", deck);
   const ids = slides.map((s) => s.id);

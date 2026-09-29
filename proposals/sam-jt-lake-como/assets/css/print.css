@@ -5,7 +5,7 @@
 html, body { height: auto !important; overflow: visible !important; background: var(--ivory) !important; }
 * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; animation: none !important; transition: none !important; }
 
-.intro, .chrome, .menu, #live, .m__sound, .cover__begin, .intro__skip { display: none !important; }
+.intro, .chrome, .menu, #live, .m__sound, .intro__skip { display: none !important; }
 
 .deck { position: static !important; overflow: visible !important; }
 .slide {
@@ -28,6 +28,9 @@ html, body { height: auto !important; overflow: visible !important; background: 
   color: var(--muted); border-top: 1px solid var(--rule); padding-top: 12px;
 }
 .folio a { color: var(--accent); text-decoration: none; }
+.folio__nav { display: flex; gap: 1.6rem; align-items: center; }
+.folio__nav a { padding: 4px 0; border-bottom: 1px solid currentColor; }
+.cover__begin { text-decoration: none; }
 .s-cover .folio, .s-closing .folio { border-color: transparent; }
 
 /* Coverage options side by side, both prices */
