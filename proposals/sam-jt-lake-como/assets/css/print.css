@@ -1,0 +1,57 @@
+/* Print / PDF: one slide per 16:9 page, every state shown at once.
+   Both coverage options, every accordion open, all pins lit, no motion. */
+@page { size: 1600px 900px; margin: 0; }
+
+html, body { height: auto !important; overflow: visible !important; background: var(--ivory) !important; }
+* { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; animation: none !important; transition: none !important; }
+
+.intro, .chrome, .menu, #live, .m__sound, .cover__begin, .intro__skip { display: none !important; }
+
+.deck { position: static !important; overflow: visible !important; }
+.slide {
+  position: relative !important; inset: auto !important;
+  visibility: visible !important;
+  width: 1600px; height: 900px;
+  overflow: hidden !important;
+  clip-path: none !important; opacity: 1 !important; transform: none !important;
+  break-after: page; page-break-after: always;
+}
+.slide:last-child { break-after: auto; page-break-after: auto; }
+.slide [data-a], .slide .m, .slide .w { opacity: 1 !important; filter: none !important; transform: none !important; clip-path: none !important; }
+.slide__body { min-height: 900px; height: 900px; padding-block: 64px 80px; }
+
+/* Folio with a clickable way back to the contents page */
+.folio {
+  display: flex !important; justify-content: space-between; gap: 2rem;
+  position: absolute; left: var(--gutter); right: var(--gutter); bottom: 26px; z-index: 5;
+  font: 500 .62rem/1 var(--sans); letter-spacing: .26em; text-transform: uppercase;
+  color: var(--muted); border-top: 1px solid var(--rule); padding-top: 12px;
+}
+.folio a { color: var(--accent); text-decoration: none; }
+.s-cover .folio, .s-closing .folio { border-color: transparent; }
+
+/* Coverage options side by side, both prices */
+.s-options .toggle, .s-reserve .toggle, .s-options .price { display: none !important; }
+.s-options .panels { grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.6rem; }
+.s-options .panel { grid-area: auto !important; opacity: 1 !important; filter: none !important; transform: none !important; }
+.s-options .panel__price { font: 500 2.6rem/1 var(--serif); color: var(--plum); letter-spacing: -.02em; display: block; margin-top: .6rem; text-transform: none; }
+.s-options .panel__title { margin-top: .8rem !important; font-size: 1.4rem; }
+.s-options .panel__line { font-size: .86rem; }
+.s-options .mate { grid-template-columns: 64px 1fr; padding: .7rem; gap: .9rem; }
+.s-options .mate p { font-size: .76rem; }
+.s-options .display { font-size: 3.2rem; }
+
+.s-reserve .sched { grid-template-columns: 1fr 1fr; gap: 2.4rem; }
+.s-reserve .sched > div { grid-area: auto !important; opacity: 1 !important; filter: none !important; }
+.s-reserve .steps .amt { font-size: 2.2rem; }
+.sched__name { color: var(--plum) !important; margin-bottom: 1rem; }
+
+.acc__panel { grid-template-rows: 1fr !important; }
+.acc .pm { display: none; }
+.acc button { padding-block: .7rem .2rem; }
+.acc__panel p { padding-bottom: .8rem; font-size: .9rem; }
+
+.map .pin circle.ring { display: none; }
+.stamp svg { animation: none !important; }
+.m__ph::before { display: none; }
+.panel__tab, .sched__name { display: block !important; }
