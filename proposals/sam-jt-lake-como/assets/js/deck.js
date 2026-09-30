@@ -623,7 +623,13 @@
     function loop(tm) { if (!on) return; if (tm - last > 33) { draw(tm); last = tm; } raf = requestAnimationFrame(loop); }
     build(); draw(1200);
     addEventListener("resize", () => { build(); draw(performance.now()); });
-    addEventListener("beforeprint", () => { build(); draw(1200); });
+    // For print and PDF, flatten the lake to one opaque JPEG. Printing the canvas
+    // directly records its translucent strokes as soft masks, which some PDF
+    // viewers draw as grey boxes.
+    addEventListener("beforeprint", () => {
+      build(); draw(1200);
+      try { cv.parentElement.style.backgroundImage = `url(${cv.toDataURL("image/jpeg", .9)})`; } catch (e) { /* tainted or unsupported */ }
+    });
     return {
       toggle(v) {
         if (reduced) return;
