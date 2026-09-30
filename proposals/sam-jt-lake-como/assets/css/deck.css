@@ -592,6 +592,7 @@ body[data-tone="light"] { --chrome-fg: var(--ink); --chrome-dim: rgba(26, 18, 22
 .np__chip--planned { background: #dbeddb; color: #1c3829; } .np__chip--draft { background: #fdecc8; color: #402c1b; } .np__chip--idea { background: #e3e2e0; color: #32302c; }
 .np__chip--video { background: #fadec9; color: #49290e; } .np__chip--story { background: #f5e0e9; color: #4c2337; } .np__chip--raw { background: #e3e2e0; color: #32302c; }
 .np__note { margin: .8rem 0 0; font-size: .74rem; color: var(--muted); font-style: italic; }
+.np__label { margin-right: .7rem; font: 500 .58rem/1 var(--sans); font-style: normal; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); }
 .np__shot { margin: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(63, 31, 40, .55); }
 .np__shot img { width: 100%; height: auto; }
 

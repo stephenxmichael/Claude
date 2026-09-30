@@ -14,9 +14,9 @@ a dashed outline so nothing slips through. Search `content.js` for `[` to find t
 ## Facts to confirm
 - [ ] **Kea's page.** Confirm: 3 years in business, "millions of views", 23K+ across Instagram and TikTok, featured in Essence and seen on BET, Houston based. Kea to approve the bio wording in `kea.bio` and the line in `kea.philosophy`.
 - [ ] **Stephen's page.** 12+ years in video production, 40K+ followers, 5 years filming weddings, brand work with Adobe, Toyota, Samsung and Home Depot, professional photography, weddings and live events. Update anything that has moved.
-- [ ] **Deliverables.** `weekend.events`: hours, edited-video counts and the mini story package are working numbers until the content strategy call.
+- [ ] **Deliverables.** `weekend.events`: hours, edited-video counts and the Story Takeover scope are working numbers until the content strategy call.
 - [ ] **Raw footage archive.** `weekend.archive`: the deck promises "all usable raw footage" only, with no clip count, hours or storage period. Decide how it's delivered (for example, a download link) and how long that link stays live, and put both in the contract, not the deck.
-- [ ] **Package scope.** `options.footnote` and `logistics`: confirm what the $2,750 and $5,250 cover, and the 4 to 5 night lodging estimate.
+- [ ] **Package scope.** `options.footnote` and `logistics`: confirm what the $3,000 and $5,000 cover, and the 4 to 5 night lodging estimate.
 - [ ] **Sample plan.** `plan.sample` is illustration only. Check nothing in it reads as a promise.
 
 ## Before you send

@@ -105,7 +105,7 @@ window.CONTENT = {
         hours: "Up to 4 hours of coverage",
         items: [
           "Up to 2 edited videos",
-          "A curated mini story package, ready to post",
+          "Mini Story Takeover",
         ],
       },
       {
@@ -116,7 +116,7 @@ window.CONTENT = {
         featured: true,
         items: [
           "Up to 5 to 6 edited videos",
-          "A curated mini story package, ready to post",
+          "Wedding Day Story Takeover",
           "Final edit concepts chosen together during your content strategy call",
         ],
       },
@@ -127,7 +127,7 @@ window.CONTENT = {
         hours: "Up to 3 hours of coverage",
         items: [
           "Up to 2 edited videos",
-          "A curated mini story package, ready to post",
+          "Mini Story Takeover",
         ],
       },
     ],
@@ -166,6 +166,7 @@ window.CONTENT = {
       "The welcome party and the farewell",
     ],
     // Shown on the sample plan so nobody reads it as final.
+    sampleLabel: "Example moments",
     sampleNote: "A sample of how we plan. Yours is built together before the wedding.",
     // The sample plan drawn until media["content-plan"] has a real screenshot.
     sample: {
@@ -181,17 +182,17 @@ window.CONTENT = {
       rows: [
         ["Guest arrivals on the dock", "Welcome party", "Stephen", "Guests", "Arrivals and first reactions", "Edited video", "High", "Planned"],
         ["Golden-hour couple moments", "Welcome party", "Kea", "Both", "Slow, candid couple reel", "Edited video", "High", "Planned"],
-        ["Welcome toast", "Welcome party", "Kea", "Both", "Toast and crowd reactions", "Story-ready", "Medium", "Planned"],
+        ["Welcome toast", "Welcome party", "Kea", "Both", "Toast and crowd reactions", "Story", "Medium", "Planned"],
         ["Sam getting ready", "Wedding day", "Kea", "Bride", "Getting ready, dress reveal", "Edited video", "High", "Planned"],
         ["JT getting ready", "Wedding day", "Stephen", "Groom", "JT and his crew", "Edited video", "High", "Planned"],
-        ["Bridal party", "Wedding day", "Both", "Both", "Bridesmaids and groomsmen", "Story-ready", "Medium", "Draft"],
+        ["Bridal party", "Wedding day", "Both", "Both", "Bridesmaids and groomsmen", "Story", "Medium", "Draft"],
         ["Vows and first kiss", "Wedding day", "Both", "Both", "Two angles, wide and close", "Edited video", "High", "Planned"],
         ["Reception entrance", "Wedding day", "Both", "Both", "Entrance energy", "Edited video", "High", "Planned"],
         ["First dance", "Wedding day", "Both", "Both", "Close and wide", "Edited video", "High", "Planned"],
         ["Speeches", "Wedding day", "Kea", "Both", "Reactions around the room", "Archive", "Medium", "Draft"],
         ["Dance floor", "Wedding day", "Stephen", "Groom", "JT on the dance floor", "Edited video", "High", "Planned"],
         ["Vendor features", "Wedding day", "Stephen", "Vendors", "Vendor spotlights", "Edited video", "Medium", "Idea"],
-        ["Vendor interviews", "Lead-up", "Kea", "Vendors", "Short interviews, the build", "Story-ready", "Medium", "Idea"],
+        ["Vendor interviews", "Lead-up", "Kea", "Vendors", "Short interviews, the build", "Story", "Medium", "Idea"],
         ["Pool and goodbyes", "Farewell", "Kea", "Both", "Slow morning recap", "Edited video", "Medium", "Draft"],
       ],
     },
@@ -216,7 +217,7 @@ window.CONTENT = {
     instagram: "@curatedxkea",
     instagramUrl: "https://instagram.com/curatedxkea",
     photo: "kea-photo",
-    next: "Option Two adds Stephen as our second creator. Meet him next.",
+    next: "Option Two adds Stephen as your second creator. Meet him next.",
   },
 
   // Stephen's page, right after Kea's. Begins selling Option Two.
@@ -263,7 +264,7 @@ window.CONTENT = {
           "One perspective, following the timeline as it unfolds",
           "All usable raw footage, your archive from one point of view",
         ],
-        price: 2750,
+        price: 3000,
         select: "Choose Option One",
       },
       {
@@ -280,7 +281,7 @@ window.CONTENT = {
           "A deeper raw archive: the moment and the reaction, both sides of the room, captured at the same time",
         ],
         closer: "More perspectives now means a richer library later, and a fuller story without pulling either of you away from living it.",
-        price: 5250,
+        price: 5000,
         select: "Choose Option Two",
       },
     ],
@@ -293,7 +294,7 @@ window.CONTENT = {
     title: "What we'll need from you.",
     intro: "These sit outside the package investment. You can arrange them, or we can coordinate them and invoice separately. Whatever's easiest for you.",
     items: [
-      { icon: "stay", title: "Lodging", line: "A 4 to 5 night stay for the team, depending on final flight schedules. Staying in your room block keeps it simple." },
+      { icon: "stay", title: "Lodging", line: "One private room for the team for approximately 4–5 nights, depending on final flight schedules. Staying within your room block keeps it simple." },
       { icon: "car", title: "Transfers", line: "Round-trip transfer between Milan and Lake Como for the team and our gear." },
       { icon: "route", title: "Weekend transportation", line: "Rides to and from every scheduled event and required location." },
       { icon: "meal", title: "Meals", line: "One vendor meal per team member at each event, served during guest meal service." },

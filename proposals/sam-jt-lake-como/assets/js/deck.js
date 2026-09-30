@@ -150,7 +150,7 @@
   const chipKind = {
     Kea: "kea", Stephen: "stephen", Both: "both",
     High: "high", Medium: "medium", Planned: "planned", Draft: "draft", Idea: "idea",
-    "Edited video": "video", "Story-ready": "story", Archive: "raw",
+    "Edited video": "video", Story: "story", Archive: "raw",
   };
   function planSample(p) {
     const s = p.sample;
@@ -173,7 +173,7 @@
     const p = C.plan, shot = M["content-plan"] || {};
     const visual = shot.src
       ? `<figure class="np__shot"><img src="${esc(shot.src)}" alt="${esc(shot.alt || "")}" loading="lazy" decoding="async"></figure>`
-      : `${planSample(p)}<p class="np__note">${t(p.sampleNote)}</p>`;
+      : `${planSample(p)}<p class="np__note">${p.sampleLabel ? `<span class="np__label">${esc(p.sampleLabel)}</span>` : ""}${t(p.sampleNote)}</p>`;
     return `<div class="slide__body"><div class="wrap plan">
       <div class="plan__visual" data-a>${visual}</div>
       <div class="plan__copy">
