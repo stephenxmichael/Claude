@@ -5,11 +5,11 @@ from Curated by Kea. It opens with an animated Lake Como title sequence, then ru
 full-screen slides with cinematic wipes, video slots, an animated vendor map and an
 interactive coverage toggle.
 
-Ten slides, built to hold up next to other creators' proposals:
+Eleven slides, built to hold up next to other creators' proposals:
 
 Cover (with Sam & JT's reel) · Your story · The weekend · What we'll capture ·
-The vendors · Why Curated by Kea · Meet Kea · Coverage options ·
-Logistics and fine print · Reserve.
+The vendors · Why Curated by Kea · Meet Kea · Meet Stephen (second shooter) ·
+Coverage options · Logistics and fine print · Reserve.
 
 ## Typeface
 

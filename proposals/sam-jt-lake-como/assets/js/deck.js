@@ -60,7 +60,7 @@
     const src = light ? C.brand.logoLight || C.brand.logo : C.brand.logo;
     return src
       ? `<img src="${esc(src)}" alt="${esc(C.brand.name)}">`
-      : `<span class="logo__word">${esc(C.brand.name)}</span><span class="logo__slot" title="Logo placeholder">Logo</span>`;
+      : `<span class="wordmark" aria-label="${esc(C.brand.name)}"><b>Curated</b><small>by Kea</small></span>`;
   };
   const eyebrow = (s) => `<p class="eyebrow" data-a>${t(s)}</p>`;
   const ig = (handle, url) => `<a class="ig" href="${esc(url)}" target="_blank" rel="noopener">${ICON.ig}<span>${esc(handle)}</span></a>`;
@@ -73,7 +73,7 @@
   const chapterOf = C.labels || {};
   const toneOf = {
     cover: "film", us: "plum", days: "ivory", vision: "blush-soft", vendors: "plum-deep",
-    why: "ivory-deep", team: "ivory", options: "blush-soft", logistics: "ivory", reserve: "ivory-deep",
+    why: "ivory-deep", team: "ivory", stephen: "plum-deep", options: "blush-soft", logistics: "ivory", reserve: "ivory-deep",
   };
 
   S.cover = () => {
@@ -128,16 +128,43 @@
 
   S.team = () => {
     const k = C.team.kea;
-    const hasOptions = order.includes("options");
     return `<div class="slide__body"><div class="wrap">
       <div class="team">
         <div class="phone-col">${media(k.video, { phone: true })}</div>
         <div>${eyebrow(C.team.eyebrow)}
           <h2 class="team__name" data-a>${esc(k.name)}</h2>
           <p class="label team__role" data-a>${esc(k.role)}</p>
+          ${k.tagline ? `<p class="team__tag" data-a>${esc(k.tagline)}</p>` : ""}
           <p class="body" data-a>${t(k.bio)}</p>
+          ${statRow(k.stats)}
           <div data-a>${ig(k.instagram, k.instagramUrl)}</div>
-          ${hasOptions ? `<p class="team__next" data-a>${t(C.team.optionTwoNote)}</p>` : ""}
+          ${order.includes("stephen") ? `<p class="team__next" data-a><a href="#stephen">${t(C.team.optionTwoNote)}</a></p>` : ""}
+        </div>
+      </div>
+    </div></div>`;
+  };
+
+  const statRow = (stats = []) => stats.length ? `<ul class="creds" data-a>${stats.map((x) => `<li><b>${esc(x.value)}</b><span class="label">${esc(x.label)}</span></li>`).join("")}</ul>` : "";
+
+  S.stephen = () => {
+    const p = C.stephen;
+    return `<div class="slide__body"><div class="wrap">
+      <div class="team team--second">
+        <div>${eyebrow(p.eyebrow)}
+          <p class="mate__tag" data-a>${esc(p.tag)}</p>
+          <h2 class="team__name" data-a>${esc(p.name)}</h2>
+          <p class="label team__role" data-a>${esc(p.role)}</p>
+          <p class="body" data-a>${t(p.lead)}</p>
+          ${statRow(p.stats)}
+          <p class="partners" data-a><span class="label">${esc(p.partnersLabel)}</span>${p.partners.map((x) => `<b>${esc(x)}</b>`).join('<i aria-hidden="true">·</i>')}</p>
+          <p class="second__also" data-a>${t(p.also)}</p>
+          <div data-a>${ig(p.instagram, p.instagramUrl)}</div>
+        </div>
+        <div class="second__side">
+          <div class="phone-col">${media(p.video, { phone: true })}</div>
+          <div class="two" data-a><p class="label">${esc(p.twoTitle)}</p>
+            <ol>${p.two.map((x, i) => `<li><span class="two__n">${i + 1}</span><div><b>${esc(x.title)}</b><p>${t(x.line)}</p></div></li>`).join("")}</ol>
+          </div>
         </div>
       </div>
     </div></div>`;
@@ -155,7 +182,8 @@
     </div>`;
 
   S.options = () => {
-    const o = C.options, st = o.stephen, k = C.team.kea;
+    const o = C.options, k = C.team.kea;
+    const st = { ...C.stephen, role: "Second shooter · Cinematic filmmaker", bio: "12+ years in video production. 40K+ followers built on cinematic content" };
     const mate = (p, tag, reel) => `<div class="mate">
         <div class="phone">${media(reel, { mask: false })}</div>
         <div>${tag ? `<span class="mate__tag">${esc(tag)}</span>` : ""}<p class="mate__name">${esc(p.name)}</p><p>${t(p.role)}${p.bio && tag ? `. ${t(p.bio)}` : ""}</p>${ig(p.instagram, p.instagramUrl)}</div>

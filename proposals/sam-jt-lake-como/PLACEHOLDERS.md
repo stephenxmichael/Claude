@@ -4,11 +4,11 @@ Everything below lives in `content.js`. On the slides, bracketed placeholders sh
 a dashed outline so nothing slips through. Search `content.js` for `[` to find them all.
 
 ## Brand
-- [ ] **Logo.** `brand.logo`, plus `brand.logoLight` for the dark slides (SVG or transparent PNG). It appears top left on every slide and in the closing sign-off. Until it's set, a "Logo" tag sits next to the wordmark.
+- [ ] **Logo.** `brand.logo`, plus `brand.logoLight` for the dark slides (SVG or transparent PNG). It appears top left on every slide and in the sign-off. Until it's set, a typeset CURATED / BY KEA lockup stands in.
 
 ## Bios
-- [ ] **Kea's bio.** `team.kea.bio`: two or three sentences on your style and how you work a wedding day.
-- [ ] **Stephen's bio line.** `options.stephen.bio`: keep "12+ years in video production", then add a line on his style.
+- [ ] **Kea's page.** `team.kea`: the bio, tagline and credentials are drafted from @curatedxkea (8K+ followers, seen in Essence and on BET, Houston + worldwide). Kea to approve the wording, and add NYBFW or other features if she wants them shown.
+- [ ] **Stephen's page.** `stephen`: 12+ years in video production, 40K+ followers, 5 years filming weddings, brand work with Adobe, Toyota, Samsung and Home Depot. Update any figure that has moved before sending.
 
 ## Portfolio and weekend media (see `media/README.md`)
 - [ ] `kea-reel`: Kea's portfolio reel (9:16)

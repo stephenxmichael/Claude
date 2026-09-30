@@ -59,13 +59,13 @@ window.CONTENT = {
   typeface: "villa",
   typePicker: false, // true shows an "Aa" switcher for comparing typefaces
 
-  // The ten slides, in order.
-  order: ["cover", "us", "days", "vision", "vendors", "why", "team", "options", "logistics", "reserve"],
+  // The slides, in order.
+  order: ["cover", "us", "days", "vision", "vendors", "why", "team", "stephen", "options", "logistics", "reserve"],
 
   // Names for the progress bar and the Chapters menu.
   labels: {
     cover: "Sam & JT", us: "Your story", days: "The weekend", vision: "The content vision",
-    vendors: "The vendors behind the magic", why: "Why Curated by Kea", team: "Meet Kea",
+    vendors: "The vendors behind the magic", why: "Why Curated by Kea", team: "Meet Kea", stephen: "Meet Stephen",
     options: "Coverage options", logistics: "Logistics and fine print", reserve: "Reserve your dates",
   },
 
@@ -227,17 +227,50 @@ window.CONTENT = {
     ],
   },
 
+  // Kea's page. Details from @curatedxkea.
   team: {
-    eyebrow: "Chi siamo · Meet the team",
+    eyebrow: "Chi siamo · Meet Kea",
     kea: {
       name: "Kea",
-      role: "Content creator · Curated by Kea",
-      bio: "[KEA BIO: two or three sentences on your style, how you work on a wedding day and why this weekend matters to you.]",
+      role: "Founder · Curated by Kea",
+      tagline: "Your story, intentionally curated.",
+      bio: "Kea is a wedding and event content creator who films the day the way it felt to be in the room. Weddings, events and brands, from Houston to wherever the celebration is. Her work has been seen in Essence and on BET.",
+      stats: [
+        { value: "8K+", label: "Followers on Instagram" },
+        { value: "Essence", label: "Featured, and seen on BET" },
+        { value: "Worldwide", label: "Houston based, booked everywhere" },
+      ],
       instagram: "@curatedxkea",
       instagramUrl: "https://instagram.com/curatedxkea",
       video: "kea-reel",
     },
-    optionTwoNote: "Choosing Option Two adds Stephen to the team. Meet him on the next slide.",
+    optionTwoNote: "Option Two adds Stephen as your second shooter. Meet him next.",
+  },
+
+  // Stephen's page, right after Kea's. Sells the two-creator team.
+  stephen: {
+    eyebrow: "Il secondo sguardo · Meet Stephen",
+    tag: "Your second shooter · Option Two",
+    name: "Stephen",
+    role: "Cinematic filmmaker and content creator",
+    lead: "Stephen turns real moments into cinematic stories. Over a decade behind the lens, five years filming weddings and an audience of 40,000+ built on that look.",
+    stats: [
+      { value: "12+", label: "Years in video production" },
+      { value: "40K+", label: "Followers built on cinematic content" },
+      { value: "5", label: "Years filming weddings" },
+    ],
+    partnersLabel: "Brand work with",
+    partners: ["Adobe", "Toyota", "Samsung", "Home Depot"],
+    also: "Founder of Shooting Stars Content Academy, where he teaches creators to shoot cinematic content.",
+    twoTitle: "What a second creator gets you",
+    two: [
+      { title: "Both sides at once", line: "Sam's suite and JT's crew, getting ready at the same time. Nobody's moment gets missed." },
+      { title: "Two angles on every big moment", line: "The vows, the first kiss, the first dance. One wide, one close." },
+      { title: "More content, sooner", line: "Two creators means more footage off the weekend, and more to share while you're still at the lake." },
+    ],
+    instagram: "@stephenxmichael",
+    instagramUrl: "https://instagram.com/stephenxmichael",
+    video: "stephen-reel",
   },
 
   options: {
@@ -257,18 +290,10 @@ window.CONTENT = {
         id: "two",
         tab: "Option Two",
         title: "Kea and Stephen, a two-creator team",
-        line: "More angles and more moments covered at once. While one of us is with Sam, the other can be on the dance floor with JT.",
+        line: "Two creators working the weekend at once. Both getting-ready rooms, two angles on every big moment and more content in your hands, sooner.",
         price: 5250,
       },
     ],
-    stephen: {
-      name: "Stephen",
-      role: "Cinematic filmmaker and content creator",
-      bio: "12+ years in video production. [KEA: add a line or two on Stephen's style.]",
-      instagram: "@stephenxmichael",
-      instagramUrl: "https://instagram.com/stephenxmichael",
-      video: "stephen-reel",
-    },
     hoursTitle: "Proposed coverage",
     hoursLabel: "To be finalized together",
     hours: [
