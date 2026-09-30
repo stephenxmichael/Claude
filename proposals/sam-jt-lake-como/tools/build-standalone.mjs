@@ -23,7 +23,6 @@ html = html
   .replace('<link rel="stylesheet" href="assets/css/type.css">', () => `<style>\n${css("assets/css/type.css")}\n</style>`)
   .replace('<link rel="stylesheet" href="assets/css/print.css" media="print">', () => `<style media="print">\n${css("assets/css/print.css")}\n</style>`)
   .replace('<script src="content.js"></script>', () => `<script>\n${content.replace(/<\/script/gi, "<\\/script")}\n</script>`)
-  .replace('<script src="assets/js/world-dots.js"></script>', () => `<script>\n${js("assets/js/world-dots.js")}\n</script>`)
   .replace('<script src="assets/js/vendor/gsap.min.js"></script>', () => `<script>\n${js("assets/js/vendor/gsap.min.js")}\n</script>`)
   .replace('<script src="assets/js/deck.js"></script>', () => `<script>\n${js("assets/js/deck.js")}\n</script>`);
 if (/(href|src)="assets\//.test(html)) throw new Error("an asset reference was not inlined");

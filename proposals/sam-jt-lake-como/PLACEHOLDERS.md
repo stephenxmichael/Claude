@@ -1,35 +1,23 @@
-# Still needed from Kea
+# Still needed from Kea and Stephen
 
-Everything below lives in `content.js`. On the slides, bracketed placeholders show with
-a dashed outline so nothing slips through. Search `content.js` for `[` to find them all.
+Everything below lives in `content.js`. Bracketed placeholders show on the slides with
+a dashed outline so nothing slips through. Search `content.js` for `[` to find them.
 
-## Brand
-- [ ] **Logo.** `brand.logo`, plus `brand.logoLight` for the dark slides (SVG or transparent PNG). It appears top left on every slide and in the sign-off. Until it's set, a typeset CURATED / BY KEA lockup stands in.
+## Photos and screenshots (see `media/README.md`)
+- [ ] `kea-photo`: portrait of Kea for her page (9:16, shown in the phone frame).
+- [ ] `stephen-photo`: portrait of Stephen for his page (9:16).
+- [ ] `content-plan`: a screenshot of a real content plan. Until it's added, the plan slide draws a sample Notion-style plan, labelled as a sample.
+- [ ] `love-1` to `love-5`: screenshots of real client messages. Crop to the message itself, blur names or numbers if needed. Until they're added, the slide shows marked placeholders. Never type quotes into `content.js`.
+- [ ] `couple-reel`: Sam & JT's reel for the cover (https://www.instagram.com/reel/DW2RKA8GTNm/). Until it's added, the cover frame links to Instagram.
+- [ ] `hero-reel` (optional): full-bleed cover film. Until it's added, a painted lake plays behind the headline.
+- [ ] **Logo.** `brand.logo` (and `brand.logoLight` for dark slides). Until it's set, a typeset CURATED / BY KEA lockup stands in.
 
-## Bios
-- [ ] **Kea's page.** `team.kea`: the bio, tagline and credentials are drafted from @curatedxkea (8K+ followers, seen in Essence and on BET, Houston + worldwide). Kea to approve the wording, and add NYBFW or other features if she wants them shown.
-- [ ] **Stephen's page.** `stephen`: 12+ years in video production, 40K+ followers, 5 years filming weddings, brand work with Adobe, Toyota, Samsung and Home Depot. Update any figure that has moved before sending.
-
-## Portfolio and weekend media (see `media/README.md`)
-- [ ] `kea-reel`: Kea's portfolio reel (9:16)
-- [ ] `stephen-reel`: Stephen's portfolio reel (9:16)
-- [ ] **`couple-reel`: Sam & JT's Instagram reel for the cover** (https://www.instagram.com/reel/DW2RKA8GTNm/). Save the video, encode it per `media/README.md`, drop it in as `media/couple-reel.mp4` with a poster, and set `src`. Until then the cover's phone frame links to the reel on Instagram.
-- [ ] `hero-reel` (optional): full-bleed cover film (16:9). Until it's added, a painted lake at golden hour plays behind the headline.
-- [ ] `day-welcome`, `day-wedding`, `day-farewell`: one 9:16 mood clip per day
-- [ ] `vendor-reel` (9:16)
-- [ ] Five vision images: `vision-getting-ready`, `vision-vendors`, `vision-bride`, `vision-party`, `vision-details`
-
-## Deliverables
-- [ ] `why.rows`: replace each `[CONFIRM deliverable, count and format]` with what you'll deliver for that part of the weekend. Add or remove rows as needed.
-- [ ] Raw footage row: `[CONFIRM delivery method]` (for example, a shared drive link).
-
-## Vendor map
-- [ ] For each vendor in `vendors.list`, set `home` to their city and add `lat` and `lng` so their pin lights up on the map. Vendors without coordinates are listed but not pinned.
-- [ ] The two planners are pinned at country level for now (United States, Italy). Move them to their real cities.
-- [ ] Double-check that the list matches the vendors Sam & JT want featured.
-
-## Booking
-- [ ] **Reserve button link.** `reserve.ctaUrl`: your booking or contact page. Until it's set, the button is outlined and a note sits under it.
+## Facts to confirm
+- [ ] **Kea's page.** Confirm: 3 years in business, "millions of views", 23K+ across Instagram and TikTok, featured in Essence and seen on BET, Houston based. Kea to approve the bio wording in `kea.bio` and the line in `kea.philosophy`.
+- [ ] **Stephen's page.** 12+ years in video production, 40K+ followers, 5 years filming weddings, brand work with Adobe, Toyota, Samsung and Home Depot, Shooting Stars Content Academy. Update anything that has moved.
+- [ ] **Deliverables.** `weekend.events`: hours, edited-video counts and the mini story package are working numbers until the content strategy call.
+- [ ] **Package scope.** `options.footnote` and `logistics`: confirm what the $2,750 and $5,250 cover, and the 4 to 5 night lodging estimate.
+- [ ] **Sample plan.** `plan.sample` is illustration only. Check nothing in it reads as a promise.
 
 ## Before you send
 - [ ] Search `content.js` for `[`. Nothing should be left.

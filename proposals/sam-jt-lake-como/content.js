@@ -6,8 +6,8 @@
 
   Media
   - A slot with src: "" shows a styled placeholder with its slot name.
-  - To add a clip, drop the file in /media and set src, for example
-      src: "media/hero-reel.mp4", poster: "media/hero-reel.jpg"
+  - To add a file, drop it in /media and set src, for example
+      src: "media/kea-photo.jpg"
   - See media/README.md for sizes and aspect ratios.
 
   Placeholders
@@ -15,7 +15,8 @@
     with a dashed outline so it is easy to spot. Replace it before sending.
   - PLACEHOLDERS.md lists every one.
 
-  Voice rules: short sentences, warm, no emojis, no em dashes.
+  Voice: Kea speaking to Sam & JT. Warm, direct, short sentences.
+  No emojis, no em dashes, no guarantees the contract can't keep.
 */
 window.CONTENT = {
   meta: {
@@ -25,7 +26,7 @@ window.CONTENT = {
 
   brand: {
     name: "Curated by Kea",
-    // Path to the logo (SVG or transparent PNG). Empty shows a wordmark placeholder.
+    // Path to the logo (SVG or transparent PNG). Empty shows a typeset lockup.
     logo: "",
     logoLight: "", // optional light version for dark slides
     instagram: "@curatedxkea",
@@ -34,24 +35,22 @@ window.CONTENT = {
 
   // ---------------------------------------------------------------
   // MEDIA · every clip and image in one place. Slides refer to these by name.
-  // src: "media/hero-reel.mp4"   poster: "media/hero-reel.jpg"
   // ---------------------------------------------------------------
   media: {
     "hero-reel":     { kind: "video", aspect: "16:9", src: "", poster: "", alt: "Golden hour over Lake Como" },
-    // Sam & JT's own reel, shown in a phone frame on the cover. Until the file is
+    // Sam & JT's own reel, in a phone frame on the cover. Until the file is
     // added, the frame links to the reel on Instagram.
     "couple-reel":   { kind: "video", aspect: "9:16", src: "", poster: "", alt: "Sam and JT's reel", link: "https://www.instagram.com/reel/DW2RKA8GTNm/", linkLabel: "Watch your reel" },
-    "day-welcome":   { kind: "video", aspect: "9:16", src: "", poster: "", alt: "Welcome boat party at golden hour" },
-    "day-wedding":   { kind: "video", aspect: "9:16", src: "", poster: "", alt: "Sam and JT's wedding day at the villa" },
-    "day-farewell":  { kind: "video", aspect: "9:16", src: "", poster: "", alt: "Farewell morning by the pool" },
-    "vendor-reel":   { kind: "video", aspect: "9:16", src: "", poster: "", alt: "A vendor interview at the villa" },
-    "kea-reel":      { kind: "video", aspect: "9:16", src: "", poster: "", alt: "Kea's portfolio reel" },
-    "stephen-reel":  { kind: "video", aspect: "9:16", src: "", poster: "", alt: "Stephen's portfolio reel" },
-    "vision-getting-ready": { kind: "image", aspect: "4:5", src: "", alt: "Getting ready on the wedding morning" },
-    "vision-vendors":       { kind: "image", aspect: "4:5", src: "", alt: "Vendors at work at the villa" },
-    "vision-bride":         { kind: "image", aspect: "4:5", src: "", alt: "Sam in her wedding dress" },
-    "vision-party":         { kind: "image", aspect: "4:5", src: "", alt: "JT on the dance floor" },
-    "vision-details":       { kind: "image", aspect: "4:5", src: "", alt: "Florals and table details in blush and plum" },
+    // Real screenshot of the content plan. Until it's added, a sample plan is drawn in its place.
+    "content-plan":  { kind: "image", aspect: "16:10", src: "", alt: "Sam and JT's content plan" },
+    "kea-photo":     { kind: "image", aspect: "9:16", src: "", alt: "Kea, founder of Curated by Kea" },
+    "stephen-photo": { kind: "image", aspect: "9:16", src: "", alt: "Stephen, cinematic filmmaker and content creator" },
+    // Client text screenshots. Any height works; they keep their own shape.
+    "love-1": { kind: "image", aspect: "3:4", src: "", alt: "A message from a Curated by Kea couple" },
+    "love-2": { kind: "image", aspect: "3:4", src: "", alt: "A message from a Curated by Kea couple" },
+    "love-3": { kind: "image", aspect: "3:4", src: "", alt: "A message from a Curated by Kea couple" },
+    "love-4": { kind: "image", aspect: "3:4", src: "", alt: "A message from a Curated by Kea couple" },
+    "love-5": { kind: "image", aspect: "3:4", src: "", alt: "A message from a Curated by Kea couple" },
   },
 
   // Typeface: "villa" (Cinzel capitals, Cormorant italic, Tenor Sans).
@@ -60,13 +59,13 @@ window.CONTENT = {
   typePicker: false, // true shows an "Aa" switcher for comparing typefaces
 
   // The slides, in order.
-  order: ["cover", "us", "days", "vision", "vendors", "why", "team", "stephen", "options", "logistics", "reserve"],
+  order: ["cover", "weekend", "plan", "kea", "stephen", "options", "logistics", "love", "closing"],
 
   // Names for the progress bar and the Chapters menu.
   labels: {
-    cover: "Sam & JT", us: "Your story", days: "The weekend", vision: "The content vision",
-    vendors: "The vendors behind the magic", why: "Why Curated by Kea", team: "Meet Kea", stephen: "Meet Stephen",
-    options: "Coverage options", logistics: "Logistics and fine print", reserve: "Reserve your dates",
+    cover: "Sam & JT", weekend: "The weekend", plan: "Your content plan", kea: "Meet Kea",
+    stephen: "Meet Stephen", options: "Choose your coverage", logistics: "Travel and logistics",
+    love: "Client love", closing: "Why us",
   },
 
   intro: {
@@ -94,163 +93,133 @@ window.CONTENT = {
     reel: "couple-reel",
   },
 
-  // Your story, led by their own words.
-  us: {
-    eyebrow: "La vostra storia · Your story",
-    quote: "There is nothing like a Sam and JT party.",
-    attribution: "Your words. We'll prove it on camera.",
-    beats: [
-      { big: "14", label: "Best friends since", line: "You met at fourteen and fell for each other in high school." },
-      { big: "MN · DC", label: "Where you've been", line: "Minnesota raised you. DC is home now. The world has been your shared passport." },
-      { big: "No. 4", label: "Trips to Lake Como", line: "Three trips to the lake already. This time, it's the wedding." },
-    ],
-  },
-
-  // The three days on one slide.
-  days: {
+  // What you actually get, event by event.
+  weekend: {
     eyebrow: "Il fine settimana · The weekend",
-    title: "Three days. One villa. Every moment.",
+    title: "Three days. One complete story.",
+    intro: "From the first toast to the last goodbye, we'll capture the moments you'll want to relive, and the ones you never even saw happen.",
     location: "The villa at Lake Como",
-    days: [
+    events: [
       {
-        id: "friday",
         italian: "Venerdì 9 luglio",
-        date: "Friday, July 9",
+        day: "Friday",
         title: "Welcome boat party",
-        line: "Golden hour on the water. Arrivals, first toasts and the whole crew together for the first time.",
-        video: "day-welcome",
+        hours: "Up to 4 hours of coverage",
+        items: [
+          "All usable raw vertical content",
+          "Up to 2 edited videos",
+          "A curated mini story package, ready to post",
+        ],
       },
       {
-        id: "saturday",
         italian: "Sabato 10 luglio",
-        date: "Saturday, July 10",
-        title: "The wedding",
-        line: "Getting ready. Both dresses. The bridal party of 18. The ceremony, the reception and JT on the dance floor.",
-        video: "day-wedding",
+        day: "Saturday",
+        title: "The wedding day",
+        hours: "Up to 10 hours of coverage",
+        featured: true,
+        items: [
+          "All usable raw vertical content",
+          "Up to 5 to 6 edited videos",
+          "A curated mini story package, ready to post",
+          "Final edit concepts chosen together during your content strategy call",
+        ],
       },
       {
-        id: "sunday",
         italian: "Domenica 11 luglio",
-        date: "Sunday, July 11",
+        day: "Sunday",
         title: "Farewell brunch or pool party",
-        line: "Slow morning energy, poolside moments and the goodbyes nobody wants to say.",
-        video: "day-farewell",
+        hours: "Up to 3 hours of coverage",
+        items: [
+          "All usable raw vertical content",
+          "Up to 2 edited videos",
+          "A curated mini story package, ready to post",
+        ],
       },
+    ],
+    // Turnaround, and what makes this different from photo and film.
+    promises: [
+      { value: "24 hrs", label: "Raw content", note: "Our goal, depending on Wi-Fi at the villa." },
+      { value: "5 to 7", label: "Business days for edits", note: "After the final event of the weekend." },
+      { value: "Social first", label: "Made to share", note: "Shot vertical and edited to post, alongside your photo and film teams." },
     ],
   },
 
-  vision: {
-    eyebrow: "La visione · The content vision",
+  // The content plan, and what goes in it.
+  plan: {
+    eyebrow: "Il piano · Your content plan",
     title: "What we'll capture",
-    intro: "Six threads run through all three days. Together they tell the full story of your weekend.",
-    pillars: [
-      {
-        id: "bts",
-        title: "Behind the scenes and getting ready",
-        line: "Everyone, both sides. The laughter, the nerves and the real moments before anyone is ready.",
-        image: "vision-getting-ready",
-      },
-      {
-        id: "vendors",
-        title: "The vendors behind the magic",
-        line: "A feature on each vendor and where in the world they came from.",
-        image: "vision-vendors",
-      },
-      {
-        id: "interviews",
-        title: "Vendor interviews and the lead-up",
-        line: "Short interviews before the wedding, and the build to the day.",
-        image: "vendor-reel",
-      },
-      {
-        id: "bride",
-        title: "Bride-centered storytelling",
-        line: "Sam first, always.",
-        image: "vision-bride",
-      },
-      {
-        id: "party",
-        title: "The party",
-        line: "The dancing, the energy and JT's personality at full volume.",
-        image: "vision-party",
-      },
-      {
-        id: "details",
-        title: "The details",
-        line: "The palette, the florals, both dresses and the villa grounds.",
-        image: "vision-details",
-      },
+    lead: "Before we ever get to Lake Como, we'll build your content plan together. We map the moments you already know you want, the people and vendors who matter to you, and the content we want to make across the weekend. Then we leave room for the moments nobody can plan.",
+    captureLabel: "On the plan",
+    capture: [
+      "Sam getting ready",
+      "JT and his crew",
+      "The ceremony and the big emotional moments",
+      "Both dresses and the fashion",
+      "Your bridal party",
+      "Reception energy and the dance floor",
+      "Details, florals and the lake itself",
+      "The candid moments in between",
+      "Vendor features and short interviews",
+      "The welcome party and the farewell",
     ],
-  },
-
-  vendors: {
-    eyebrow: "La squadra · The vendors behind the magic",
-    title: "A global team of Black vendors. One lake.",
-    body: "You reached out to Black vendors from all over the world and built a team that looks like your community. We'll feature every one of them, and trace how each found their way to Lake Como.",
-    mapNote: "Every pin lights a path to the lake.",
-    destination: { name: "Lake Como", lat: 45.99, lng: 9.26 },
-    // Where the couple's story began. Drawn as a dashed route to the lake.
-    route: [
-      { name: "Minnesota", note: "Where it started", lat: 46.0, lng: -94.3, label: "left" },
-      { name: "Washington, DC", note: "Home now", lat: 38.9, lng: -77.0, label: "right" },
-    ],
-    // Add lat and lng for each vendor's home base to light their pin.
-    // A vendor without coordinates is listed but not pinned.
-    // Optional label: "left" | "right" | "below" | "above" if two names collide.
-    list: [
-      { name: "ellybevents", role: "U.S. planner", home: "United States [CONFIRM city]", lat: 38.0, lng: -97.0, label: "below" },
-      { name: "moments_labs", role: "Italy planner", home: "Italy [CONFIRM city]", lat: 43.0, lng: 12.5, label: "below" },
-      { name: "Unleashed Visuals", role: "Videography", home: "[CONFIRM home base]", lat: null, lng: null },
-      { name: "Mesus.studios", role: "Photography", home: "[CONFIRM home base]", lat: null, lng: null },
-      { name: "Winnie Couture", role: "Wedding dress", home: "[CONFIRM home base]", lat: null, lng: null },
-      { name: "Vainglorious Brides", role: "Second dress", home: "[CONFIRM home base]", lat: null, lng: null },
-    ],
-  },
-
-  // Why hire us over another creator, with turnaround and deliverables.
-  why: {
-    eyebrow: "Perché noi · Why Curated by Kea",
-    title: "Your heirlooms are covered. We capture the weekend as it happens.",
-    body: "Mesus.studios and Unleashed Visuals will give you the photos and film you keep forever. We add the layer in between: the real-time, social-first story of your weekend, in your hands while you're still at the lake.",
-    stats: [
-      { value: "24", unit: "hours", label: "Raw footage", note: "Our goal for delivery, depending on Wi-Fi and connectivity at the villa." },
-      { value: "5 to 7", unit: "business days", label: "Edited content", note: "After the final event of the weekend." },
-    ],
-    listTitle: "What you'll receive",
-    // Replace each [CONFIRM] with the real deliverable, count and format.
-    rows: [
-      { item: "Welcome boat party", detail: "[CONFIRM deliverable, count and format]" },
-      { item: "Wedding day", detail: "[CONFIRM deliverable, count and format]" },
-      { item: "Farewell", detail: "[CONFIRM deliverable, count and format]" },
-      { item: "Vendor features and interviews", detail: "[CONFIRM deliverable, count and format]" },
-      { item: "Raw footage", detail: "[CONFIRM delivery method]" },
-    ],
-  },
-
-  // Kea's page. Details from @curatedxkea.
-  team: {
-    eyebrow: "Chi siamo · Meet Kea",
-    kea: {
-      name: "Kea",
-      role: "Founder · Curated by Kea",
-      tagline: "Your story, intentionally curated.",
-      bio: "Kea is a wedding and event content creator who films the day the way it felt to be in the room. Weddings, events and brands, from Houston to wherever the celebration is. Her work has been seen in Essence and on BET.",
-      stats: [
-        { value: "8K+", label: "Followers on Instagram" },
-        { value: "Essence", label: "Featured, and seen on BET" },
-        { value: "Worldwide", label: "Houston based, booked everywhere" },
+    // Shown on the sample plan so nobody reads it as final.
+    sampleNote: "A sample of how we plan. Yours is built together before the wedding.",
+    // The sample plan drawn until media["content-plan"] has a real screenshot.
+    sample: {
+      path: ["Curated by Kea", "Clients", "Sam & JT"],
+      title: "Sam & JT · Content Plan",
+      props: [
+        ["Dates", "July 9 to 11, 2027"],
+        ["Location", "The villa, Lake Como"],
+        ["Team", "Kea · Stephen"],
       ],
-      instagram: "@curatedxkea",
-      instagramUrl: "https://instagram.com/curatedxkea",
-      video: "kea-reel",
+      views: ["By event", "By creator", "Vendor features"],
+      columns: ["Moment", "Event", "Creator", "Focus", "Concept", "Deliverable", "Priority", "Status"],
+      rows: [
+        ["Guest arrivals on the dock", "Welcome party", "Stephen", "Guests", "Arrivals and first reactions", "Edited video", "High", "Planned"],
+        ["Golden-hour couple moments", "Welcome party", "Kea", "Both", "Slow, candid couple reel", "Edited video", "High", "Planned"],
+        ["Welcome toast", "Welcome party", "Kea", "Both", "Toast and crowd reactions", "Story-ready", "Medium", "Planned"],
+        ["Sam getting ready", "Wedding day", "Kea", "Bride", "Getting ready, dress reveal", "Edited video", "High", "Planned"],
+        ["JT getting ready", "Wedding day", "Stephen", "Groom", "JT and his crew", "Edited video", "High", "Planned"],
+        ["Bridal party", "Wedding day", "Both", "Both", "Bridesmaids and groomsmen", "Story-ready", "Medium", "Draft"],
+        ["Vows and first kiss", "Wedding day", "Both", "Both", "Two angles, wide and close", "Edited video", "High", "Planned"],
+        ["Reception entrance", "Wedding day", "Both", "Both", "Entrance energy", "Edited video", "High", "Planned"],
+        ["First dance", "Wedding day", "Both", "Both", "Close and wide", "Edited video", "High", "Planned"],
+        ["Speeches", "Wedding day", "Kea", "Both", "Reactions around the room", "Raw", "Medium", "Draft"],
+        ["Dance floor", "Wedding day", "Stephen", "Groom", "JT on the dance floor", "Edited video", "High", "Planned"],
+        ["Vendor features", "Wedding day", "Stephen", "Vendors", "Vendor spotlights", "Edited video", "Medium", "Idea"],
+        ["Vendor interviews", "Lead-up", "Kea", "Vendors", "Short interviews, the build", "Story-ready", "Medium", "Idea"],
+        ["Pool and goodbyes", "Farewell", "Kea", "Both", "Slow morning recap", "Edited video", "Medium", "Draft"],
+      ],
     },
-    optionTwoNote: "Option Two adds Stephen as your second shooter. Meet him next.",
   },
 
-  // Stephen's page, right after Kea's. Sells the two-creator team.
+  // Kea's page. The founder and lead creative, so it carries the most weight.
+  kea: {
+    eyebrow: "La fondatrice · Meet Kea",
+    name: "Kea",
+    role: "Founder and lead creative · Houston based, available worldwide",
+    philosophy: "If you felt it, I want it in the edit.",
+    bio: [
+      "I've spent three years building Curated by Kea around one idea: when you watch your wedding back, it should feel the way it felt to be there.",
+      "I stay close without getting in the way. I pay as much attention to your people as I do to the timeline. And I know how to make content your community actually wants to watch. That's how my work has reached millions of views.",
+    ],
+    stats: [
+      { value: "3 years", label: "Founder of Curated by Kea" },
+      { value: "Millions", label: "Of views across my work" },
+      { value: "23K+", label: "Community across Instagram and TikTok" },
+      { value: "Essence", label: "Featured in Essence, seen on BET" },
+    ],
+    instagram: "@curatedxkea",
+    instagramUrl: "https://instagram.com/curatedxkea",
+    photo: "kea-photo",
+    next: "Option Two adds Stephen as our second creator. Meet him next.",
+  },
+
+  // Stephen's page, right after Kea's. Begins selling Option Two.
   stephen: {
     eyebrow: "Il secondo sguardo · Meet Stephen",
-    tag: "Your second shooter · Option Two",
+    tag: "Second creator · Option Two",
     name: "Stephen",
     role: "Cinematic filmmaker and content creator",
     lead: "Stephen turns real moments into cinematic stories. Over a decade behind the lens, five years filming weddings and an audience of 40,000+ built on that look.",
@@ -264,104 +233,93 @@ window.CONTENT = {
     also: "Founder of Shooting Stars Content Academy, where he teaches creators to shoot cinematic content.",
     twoTitle: "What a second creator gets you",
     two: [
-      { title: "Both sides at once", line: "Sam's suite and JT's crew, getting ready at the same time. Nobody's moment gets missed." },
-      { title: "Two angles on every big moment", line: "The vows, the first kiss, the first dance. One wide, one close." },
-      { title: "More content, sooner", line: "Two creators means more footage off the weekend, and more to share while you're still at the lake." },
+      { title: "Both of you, at the same time", line: "Sam getting ready and JT with his crew, covered side by side instead of one after the other." },
+      { title: "More than one perspective", line: "The vows, the first kiss, the entrances, the first dance. One of us close, one of us wide." },
+      { title: "More of the room", line: "Guests, reactions, vendors and details, captured while the two of you stay covered." },
     ],
     instagram: "@stephenxmichael",
     instagramUrl: "https://instagram.com/stephenxmichael",
-    video: "stephen-reel",
+    photo: "stephen-photo",
   },
 
+  // Option Two opens selected and is marked as recommended.
   options: {
-    eyebrow: "Le opzioni · Coverage options",
-    title: "Choose your coverage",
-    priceLabel: "Flat travel investment",
-    note: "No separate content package fee. Your investment covers the team's travel to Lake Como.",
+    eyebrow: "Le opzioni · Choose your coverage",
+    title: "The way we'd recommend covering Lake Como.",
+    defaultOption: "two",
+    priceLabel: "Package investment",
     items: [
       {
         id: "one",
         tab: "Option One",
-        title: "Kea, your content creator",
-        line: "One creator, fully devoted to your weekend and your story.",
+        who: "Kea",
+        title: "One dedicated creator",
+        line: "Me, capturing your weekend from a single perspective. It's focused, personal coverage. One creator follows one timeline at a time, so when two moments happen at once, I'm with one of them.",
+        points: [
+          "Kea across all three events",
+          "One perspective, following the timeline as it unfolds",
+        ],
         price: 2750,
+        select: "Choose Option One",
       },
       {
         id: "two",
         tab: "Option Two",
-        title: "Kea and Stephen, a two-creator team",
-        line: "Two creators working the weekend at once. Both getting-ready rooms, two angles on every big moment and more content in your hands, sooner.",
+        badge: "Recommended · The full weekend experience",
+        who: "Kea + Stephen",
+        title: "Two creators. Two perspectives. One complete story.",
+        line: "With two of us there, your weekend doesn't have to happen from one point of view. While I'm with Sam, Stephen is with JT. While one of us follows the moment, the other catches the reaction.",
+        points: [
+          "Sam and JT covered at the same time on the wedding morning",
+          "Complementary angles on the ceremony, first kiss, entrances and first dance",
+          "Guests, details, vendors and behind the scenes, while you two stay covered",
+        ],
+        closer: "It gives us the freedom to tell a fuller story without pulling either of you away from living it.",
         price: 5250,
+        select: "Choose Option Two",
       },
     ],
-    hoursTitle: "Proposed coverage",
-    hoursLabel: "To be finalized together",
-    hours: [
-      { event: "Welcome party", hours: 4 },
-      { event: "Wedding day", hours: 10 },
-      { event: "Farewell", hours: 3 },
-    ],
+    footnote: "Your investment covers our content services and the travel already built into the package. Team lodging, the Milan and Lake Como transfers, and transportation during the weekend are separate. You can arrange them, or we can coordinate and invoice them for you. More on the next page.",
   },
 
-  // What we'll need + the terms, on one slide.
+  // What sits outside the package. Contract-level terms come later.
   logistics: {
-    eyebrow: "Il necessario · What we'll need",
-    title: "The logistics, simply.",
-    columns: [
-      {
-        title: "Stay",
-        lead: "One private hotel room. Check in July 7, check out July 12, 2027. Five nights.",
-        items: [
-          "Private bathroom, reliable Wi-Fi, climate control and a secure spot for gear",
-          "All hotel and city taxes, plus early check-in or luggage storage if needed",
-          "Ideally in your hotel block, approved by Curated by Kea before booking",
-          "Option Two: Kea and Stephen share one room",
-        ],
-      },
-      {
-        title: "Getting around",
-        lead: "Private transfers for the whole team and our gear.",
-        items: [
-          "Malpensa to the hotel, and to our departure point on July 12",
-          "To, from and between every event and location",
-          "A late-night ride home after the wedding",
-          "Ideally, a dedicated media vehicle on the wedding day",
-        ],
-      },
-      {
-        title: "Meals",
-        lead: "One vendor meal per team member at the welcome party, wedding and farewell, served during guest meal service.",
-        items: [],
-      },
+    eyebrow: "Il viaggio · Travel and logistics",
+    title: "What we'll need from you.",
+    intro: "These sit outside the package investment. You can arrange them, or we can coordinate them and invoice separately. Whatever's easiest for you.",
+    items: [
+      { icon: "stay", title: "Lodging", line: "A 4 to 5 night stay for the team, depending on final flight schedules. Staying in your room block keeps it simple." },
+      { icon: "car", title: "Transfers", line: "Round-trip transfer between Milan and Lake Como for the team and our gear." },
+      { icon: "route", title: "Weekend transportation", line: "Rides to and from every scheduled event and required location." },
+      { icon: "meal", title: "Meals", line: "One vendor meal per team member at each event, served during guest meal service." },
     ],
-    termsTitle: "Good to know",
-    terms: [
-      { title: "If the day runs long", body: "Overtime or schedule delays past the contracted time are $350 per hour, plus extended private transportation." },
-      { title: "If a transfer falls through", body: "If a promised transfer falls through, the team books a reasonable replacement and the added cost is billed to you." },
-      { title: "If travel is disrupted", body: "Flight delays or cancellations are handled through travel insurance first. Necessary costs outside insurance may be billed separately." },
-      { title: "If the ceremony is in a church", body: "Any filming permits, credentials or fees are covered by the couple. We'll confirm filming rules in advance." },
-      { title: "After the weekend", body: "The team's personal travel after July 12 is never billed to you." },
-    ],
+    convenience: {
+      title: "Rather not manage it?",
+      line: "We can coordinate transportation and logistics for you and invoice those costs separately.",
+    },
+    after: "Timing, terms and the fine print go in your contract once you decide to move forward.",
   },
 
-  reserve: {
-    eyebrow: "Prenota · Reserve your dates",
-    title: "Two steps to the lake.",
-    schedules: {
-      one: [
-        { when: "At signing", amount: 1500, what: "Nonrefundable reservation retainer" },
-        { when: "May 10, 2027", amount: 1250, what: "Remaining balance" },
-      ],
-      two: [
-        { when: "At signing", amount: 3000, what: "Nonrefundable reservation retainer" },
-        { when: "May 10, 2027", amount: 2250, what: "Remaining balance" },
-      ],
-    },
-    note: "Your retainer secures the dates and books airfare. Card and portal payments include a 3.5% processing fee. Zelle is available with no fee.",
-    cta: "Reserve Sam & JT's weekend",
-    // Sign-off under the button.
-    signoff: "Ci vediamo al lago.",
-    // Booking or contact link. Leave empty until it's ready; the button is flagged.
-    ctaUrl: "",
+  // Real client messages. Never write quotes here; add screenshots in media.
+  love: {
+    eyebrow: "Dalle mie coppie · Client love",
+    title: "From the couples who've trusted me.",
+    intro: "Straight from my messages.",
+    slots: ["love-1", "love-2", "love-3", "love-4", "love-5"],
+  },
+
+  // The close. No hard sell.
+  closing: {
+    eyebrow: "Perché noi · Why us",
+    title: "You live it. We'll keep it.",
+    paragraphs: [
+      "You've already put so much intention into bringing the people you love to Lake Como. Our job is to make sure you don't have to choose between living it and remembering it.",
+      "Your photographer and videographer will give you the polished heirlooms. We keep the in-between: what it looked like, sounded like and felt like while it was happening, made to share while it's still fresh.",
+      "We'll come in with a plan, stay close enough to catch the moments that matter, and leave room for the ones nobody could have planned.",
+    ],
+    two: "And with two of us there, your story doesn't have to happen from one point of view.",
+    last: "If it feels like the right fit, we'd love to be there.",
+    signature: "Kea",
+    lake: "Ci vediamo al lago.",
   },
 };

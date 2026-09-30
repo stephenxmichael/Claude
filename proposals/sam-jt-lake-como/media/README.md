@@ -17,31 +17,22 @@ the clip or photo.
 |---|---|---|---|---|
 | `couple-reel` | Cover, phone frame beside the headline (Sam & JT's reel) | 9:16 | 1080×1920 | under 8 MB |
 | `hero-reel` | Cover, full-bleed background (optional) | 16:9 | 1920×1080 | under 8 MB, 10 to 20 s loop |
-| `day-welcome` | The weekend slide, Friday | 9:16 | 1080×1920 | under 8 MB |
-| `day-wedding` | The weekend slide, Saturday | 9:16 | 1080×1920 | under 8 MB |
-| `day-farewell` | The weekend slide, Sunday | 9:16 | 1080×1920 | under 8 MB |
-| `vendor-reel` | What we'll capture, vendor interviews tile | 9:16 | 1080×1920 | under 8 MB |
-| `kea-reel` | Meet the team, and Option One card | 9:16 | 1080×1920 | under 8 MB |
-| `stephen-reel` | Option Two card only | 9:16 | 1080×1920 | under 8 MB |
 
-Every video plays muted and on loop while its slide is on screen, pauses when you
-move on, and has a sound button to unmute. Clips only start downloading when their
-slide (or the one next to it) comes up.
-
-Give each video a `poster` JPG (the first frame, around 200 KB). It shows while
-the clip loads and it's what the PDF prints.
+Videos play muted and on loop while their slide is on screen, pause when you move on,
+and have a sound button to unmute. Give each one a `poster` JPG (the first frame,
+around 200 KB). It shows while the clip loads and it's what the PDF prints.
 
 ## Images
 
 | Slot | Where it appears | Aspect | Size |
 |---|---|---|---|
-| `vision-getting-ready` | Vision grid | 4:5 | 1200×1500 |
-| `vision-vendors` | Vision grid | 4:5 | 1200×1500 |
-| `vision-bride` | Vision grid | 4:5 | 1200×1500 |
-| `vision-party` | Vision grid | 4:5 | 1200×1500 |
-| `vision-details` | Vision grid | 4:5 | 1200×1500 |
+| `kea-photo` | Meet Kea, in the phone frame | 9:16 | 1080×1920 |
+| `stephen-photo` | Meet Stephen, in the phone frame | 9:16 | 1080×1920 |
+| `content-plan` | Content plan slide, replaces the sample plan | about 16:10 | 1800 px wide |
+| `love-1` to `love-5` | Client love, message screenshots | any, keeps its own shape | 900 px wide |
 
-Export images as JPG (quality around 80) or WebP, under about 400 KB each.
+Export images as JPG (quality around 80) or WebP, under about 400 KB each. Portraits
+are cropped to fill the frame, so keep faces in the middle third.
 
 ## Encoding loops for the web
 

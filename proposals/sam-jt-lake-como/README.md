@@ -2,14 +2,13 @@
 
 A click-through presentation for Sam & JT's wedding weekend (July 9 to 11, 2027),
 from Curated by Kea. It opens with an animated Lake Como title sequence, then runs as
-full-screen slides with cinematic wipes, video slots, an animated vendor map and an
-interactive coverage toggle.
+full-screen slides with cinematic wipes and a coverage chooser.
 
-Eleven slides, built to hold up next to other creators' proposals:
+Nine slides:
 
-Cover (with Sam & JT's reel) · Your story · The weekend · What we'll capture ·
-The vendors · Why Curated by Kea · Meet Kea · Meet Stephen (second shooter) ·
-Coverage options · Logistics and fine print · Reserve.
+Cover (with Sam & JT's reel) · The weekend (what you receive) · Your content plan ·
+Meet Kea · Meet Stephen · Choose your coverage (Option Two recommended) ·
+Travel and logistics · Client love · Why us.
 
 ## Typeface
 
@@ -33,7 +32,6 @@ between them in your own browser. `pdf/type-options.jpg` shows three side by sid
     assets/css/type.css        the typeface options
     assets/css/print.css       PDF / print layout: one slide per 16:9 page
     assets/js/deck.js          renders slides from content.js, navigation, motion, video
-    assets/js/world-dots.js    dotted world map data for the vendor slide
     assets/js/vendor/gsap.min.js   animation engine (GSAP 3.12.5), bundled locally
     assets/fonts/              all typeface options (SIL Open Font License), bundled locally
     media/README.md            every media slot, its ratio and target file size
@@ -41,6 +39,7 @@ between them in your own browser. `pdf/type-options.jpg` shows three side by sid
     pdf/                       PDF fallback and the typeface comparison sheet
     tools/export-pdf.mjs       rebuilds the PDF
     tools/shoot.mjs            screenshots every slide at phone, laptop and desktop sizes
+    tools/build-standalone.mjs builds pdf/Sam-and-JT-Lake-Como.html, one self-contained file
 
 ## Getting around the deck
 
@@ -77,8 +76,7 @@ With the preview server running:
     node proposals/sam-jt-lake-como/tools/export-pdf.mjs
 
 This writes `pdf/Sam-and-JT-Lake-Como-Proposal.pdf`: one landscape page per slide at 1600×900.
-Both coverage options appear side by side, every term is expanded, and all map pins
-are lit. Every footer has Previous and Next links. Instagram and booking links open in the browser. Video slots print their
+Both coverage options appear side by side. Every footer has Previous and Next links. Instagram links open in the browser. Video slots print their
 poster image, so add posters before exporting.
 
 ## Deploy (Vercel or Netlify)

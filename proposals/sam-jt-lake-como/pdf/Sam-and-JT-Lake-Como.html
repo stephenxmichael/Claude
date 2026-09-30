@@ -452,57 +452,6 @@ body[data-tone="light"] { --chrome-fg: var(--ink); --chrome-dim: rgba(26, 18, 22
 .stamp .core { position: absolute; inset: 0; display: grid; place-items: center; font: italic 400 clamp(.95rem, 1.6vw, 1.3rem)/1 var(--serif); color: var(--ivory); }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ---------- Quote (Your story slide) ---------- */
-.quote { position: relative; max-width: 1100px; }
-.quote blockquote { margin: 0; }
-.quote blockquote p { margin: 0; font: italic 400 clamp(2.5rem, 7.6vw, 6.4rem)/1.02 var(--serif); letter-spacing: -.015em; text-wrap: balance; color: var(--ivory); }
-.quote blockquote .w { display: inline-block; }
-.quote blockquote .hl { color: var(--blush); }
-.quote footer { margin-top: 2rem; font: 500 .72rem/1.6 var(--sans); letter-spacing: .26em; text-transform: uppercase; color: var(--prosecco); }
-
-/* ---------- What we'll capture ---------- */
-.vision__head { display: grid; gap: 1rem; margin-bottom: clamp(1.6rem, 4vh, 2.8rem); }
-@media (min-width: 900px) { .vision__head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; gap: 5rem; } .vision__head .lead { margin: 0; } }
-.pillars { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.6rem 1rem; }
-@media (min-width: 700px) { .pillars { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (min-width: 1100px) {
-  .pillars { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1.1rem; }
-  .pillars li:nth-child(even) { margin-top: 2.6rem; }
-}
-.pillars a { display: block; text-decoration: none; }
-.pillars .m { aspect-ratio: 4 / 5; }
-.pillars .m, .pillars .phone { transition: transform .8s var(--ease); }
-.pillars a:hover .m { transform: scale(.98); }
-.pillars .n { display: block; margin-top: .9rem; font: 500 .62rem/1 var(--sans); letter-spacing: .2em; color: var(--accent); }
-.pillars .t { display: block; margin-top: .45rem; font: 500 clamp(1rem, 1.35vw, 1.12rem)/1.2 var(--serif); color: var(--fg); }
-.pillars .l { display: block; margin-top: .35rem; font-size: .8rem; line-height: 1.45; color: var(--muted); }
-
-/* ---------- Vendors map ---------- */
-.vendors { display: grid; gap: 2rem; align-items: center; }
-@media (min-width: 1000px) { .vendors { grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr); gap: 3.5rem; } }
-.vendors .display { font-size: clamp(2rem, 4.4vw, 3.7rem); }
-.vendors .body { margin-top: 1.2rem; }
-.vlist { list-style: none; margin: 1.8rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem 1.2rem; }
-.vlist li { min-width: 0; display: grid; grid-template-columns: 10px 1fr; gap: .2rem .7rem; align-items: baseline; }
-.vlist i { width: 7px; height: 7px; border-radius: 50%; background: var(--prosecco); translate: 0 -1px; }
-.vlist li.unpinned i { background: transparent; border: 1px dashed var(--prosecco); }
-.vlist b { font: 500 .98rem/1.2 var(--serif); color: var(--fg); min-width: 0; overflow-wrap: anywhere; }
-.vlist span { grid-column: 2; font-size: .74rem; line-height: 1.4; color: var(--muted); }
-.map { position: relative; min-width: 0; }
-.map svg { width: 100%; height: auto; overflow: visible; }
-.map .dots { stroke: rgba(247, 240, 231, .22); stroke-linecap: round; fill: none; }
-.map .arc { fill: none; stroke: var(--prosecco); stroke-width: 1.4; stroke-linecap: round; }
-.map .arc.route { stroke: var(--blush); stroke-dasharray: 2 7; }
-.map .pin circle.dot { fill: var(--prosecco); }
-.map .pin.route circle.dot { fill: var(--blush); }
-.map .pin circle.ring { fill: none; stroke: var(--prosecco); transform-box: fill-box; transform-origin: center; animation: pulse 2.6s var(--ease) infinite; }
-.map .pin.home circle.dot { fill: var(--ivory); }
-.map .pin.home circle.ring { stroke: var(--ivory); }
-.map .pin text { fill: var(--ivory); font-family: var(--sans); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
-.map .pin.home text { font-family: var(--serif); font-style: italic; letter-spacing: 0; text-transform: none; }
-.map__note { margin-top: .8rem; text-align: right; }
-@keyframes pulse { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(3.2); opacity: 0; } }
-
 /* ---------- Meet Kea ---------- */
 .team { display: grid; gap: 2.4rem; align-items: center; }
 @media (min-width: 900px) { .team { grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: 5rem; } }
@@ -550,140 +499,165 @@ body[data-tone="light"] { --chrome-fg: var(--ink); --chrome-dim: rgba(26, 18, 22
 .wordmark b { font-weight: 500; font-style: normal; font-size: 1.05rem; letter-spacing: .16em; text-transform: uppercase; }
 .wordmark small { margin-top: .22rem; font-family: var(--sans); font-size: .42rem; letter-spacing: .42em; text-transform: uppercase; opacity: .85; }
 
-/* ---------- Coverage options ---------- */
-.opts { display: grid; gap: 2.4rem; }
-@media (min-width: 1000px) { .opts { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 5rem; align-items: center; } }
-.opts .hours { margin-top: 2.4rem; padding-top: 1.6rem; border-top: 1px solid var(--rule); }
-.toggle {
-  display: inline-grid; grid-template-columns: 1fr 1fr; position: relative;
-  border: 1px solid var(--rule); border-radius: 999px; padding: 4px; margin: 1.6rem 0 2rem;
-  background: rgba(255, 255, 255, .35);
-}
-.toggle button {
-  position: relative; z-index: 1;
-  padding: .85rem 1.4rem;
-  font: 500 .68rem/1 var(--sans); letter-spacing: .24em; text-transform: uppercase;
-  color: var(--muted); transition: color .5s var(--ease);
-  white-space: nowrap;
-}
-.toggle button[aria-pressed="true"] { color: var(--ivory); }
-.toggle__pill { position: absolute; z-index: 0; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); border-radius: 999px; background: var(--plum); transition: transform .6s var(--ease); }
-.toggle[data-sel="two"] .toggle__pill { transform: translateX(100%); }
-.panels { display: grid; }
-.panel { grid-area: 1 / 1; transition: opacity .7s var(--ease), transform .7s var(--ease), filter .7s var(--ease); }
-.panel[aria-hidden="true"] { opacity: 0; transform: translateY(10px); filter: blur(4px); pointer-events: none; }
-.panel__title { margin: 0; font: 500 var(--fs-h3)/1.15 var(--serif); }
-.panel .mate { margin-top: 1.2rem; }
-.panel__line { margin: .8rem 0 0; color: var(--muted); max-width: 32em; }
-.price { margin-top: 1.8rem; }
-.price__num {
-  display: flex; align-items: flex-start;
-  font: 500 clamp(3.6rem, 10vw, 7.6rem)/1 var(--serif); letter-spacing: -.03em; color: var(--plum);
-  font-variant-numeric: lining-nums tabular-nums;
-}
-.price__num [data-price] { display: flex; align-items: flex-start; }
-.price__num .cur { font-size: .42em; line-height: 1; margin-top: .12em; margin-right: .1em; font-weight: 400; align-self: flex-start; }
-.roll { display: inline-block; height: 1em; overflow: hidden; line-height: 1; }
-.roll > span { display: flex; flex-direction: column; transition: transform .75s var(--ease); }
-.roll > span > span { height: 1em; line-height: 1; }
-.price .label { display: block; margin-top: .8rem; }
-.panel__tab, .sched__name { display: none; }
-.opts__note { margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); color: var(--fg); font: italic 400 1.1rem/1.45 var(--serif); max-width: 30em; }
-.mate { margin-top: 1.8rem; display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 1.2rem; align-items: center; padding: 1rem; border: 1px solid var(--rule); border-radius: 18px; background: rgba(255, 255, 255, .3); max-width: 560px; }
-.mate .phone { padding: 5px; border-radius: 20px; }
-.mate .phone .m { border-radius: 16px; }
-.mate .phone::before { display: none; }
-.mate .m__ph svg, .mate .m__ph .spec { display: none; }
-.mate .m__ph .slot { font-size: .7rem; }
-.mate .m__sound { width: 28px; height: 28px; right: 6px; bottom: 6px; }
-.mate__name { font: italic 400 1.9rem/1 var(--serif); margin: 0; }
+/* ---------- The weekend: deliverables by event ---------- */
+.wk__head { display: grid; gap: 1rem; margin-bottom: clamp(1.4rem, 3.4vh, 2.4rem); }
+@media (min-width: 900px) { .wk__head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4rem; align-items: end; } .wk__head .lead { margin: 0; } }
+.wk__head .where { margin-top: 1rem; }
+.wk__events { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+@media (min-width: 900px) { .wk__events { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1fr); gap: 1.2rem; align-items: stretch; } }
+.evt { padding: clamp(1.1rem, 2.4vh, 1.6rem) 1.4rem; border: 1px solid var(--rule); border-radius: 18px; background: rgba(255, 255, 255, .35); min-width: 0; }
+.evt--main { background: var(--plum); border-color: var(--plum); color: var(--ivory); --fg: var(--ivory); --muted: #e3cfd6; --accent: var(--prosecco); --rule: rgba(247, 240, 231, .2); box-shadow: 0 24px 50px -28px rgba(42, 12, 31, .7); }
+.evt__day { color: var(--accent); }
+.evt__it { margin: .5rem 0 0; font: italic 400 clamp(1.5rem, 2.3vw, 2rem)/1.05 var(--serif); color: var(--fg); }
+.evt__title { margin: .35rem 0 0; font: 600 1.02rem/1.25 var(--serif); letter-spacing: .02em; color: var(--fg); }
+.evt__hours { margin: .9rem 0 0; padding-top: .8rem; border-top: 1px solid var(--rule); font: italic 400 1.15rem/1.2 var(--serif); color: var(--accent); }
+.evt__list { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; gap: .4rem; }
+.evt__list li { position: relative; padding-left: 1rem; font-size: .86rem; line-height: 1.45; color: var(--muted); }
+.evt__list li::before { content: ""; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; border-radius: 50%; background: var(--prosecco); }
+.wk__promises { list-style: none; margin: clamp(1.2rem, 3vh, 2rem) 0 0; padding: 0; display: grid; gap: 1rem; }
+@media (min-width: 700px) { .wk__promises { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; } }
+.wk__promises li { display: grid; grid-template-columns: auto 1fr; column-gap: .8rem; align-items: baseline; border-top: 1px solid var(--rule); padding-top: .8rem; }
+.wk__promises b { font: 500 clamp(1.3rem, 2vw, 1.7rem)/1 var(--serif); color: var(--plum); white-space: nowrap; }
+.wk__promises p { grid-column: 1 / -1; margin: .35rem 0 0; font-size: .8rem; color: var(--muted); line-height: 1.45; }
+
+/* ---------- Content plan: sample Notion-style plan ---------- */
+.plan { display: grid; gap: 2rem; align-items: center; }
+@media (min-width: 1000px) { .plan { grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); gap: 3.5rem; } }
+.plan > * { min-width: 0; }
+@media (max-width: 999px) { .plan__visual { order: 2; } }
+.plan .display { font-size: clamp(2rem, 3.6vw, 3rem); }
+.plan .lead { font-size: .98rem; }
+.plan__label { display: block; margin-top: 1.4rem; color: var(--accent); }
+.plan__list { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .1rem 1.2rem; }
+.plan__list li { padding: .42rem 0; border-top: 1px solid var(--rule); font-size: .82rem; line-height: 1.35; color: var(--fg); }
+.np__fit { position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 30px 60px -30px rgba(42, 12, 31, .55), 0 0 0 1px rgba(26, 18, 22, .08); }
+.np__win { width: 900px; transform-origin: 0 0; background: #fff; color: #37352f; font: 400 12px/1.4 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; letter-spacing: 0; text-transform: none; }
+.np__bar { display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px; border-bottom: 1px solid #ededeb; background: #fbfbfa; }
+.np__bar i { width: 10px; height: 10px; border-radius: 50%; background: #e3e2e0; }
+.np__bar i:first-child { background: #ff5f57; } .np__bar i:nth-child(2) { background: #febc2e; } .np__bar i:nth-child(3) { background: #28c840; }
+.np__crumbs { margin-left: 12px; color: #787774; font-size: 12px; }
+.np__crumbs em { font-style: normal; margin: 0 4px; color: #c7c6c4; }
+.np__share { margin-left: auto; color: #787774; }
+.np__page { padding: 22px 34px 26px; }
+.np__icon svg { width: 40px; height: 40px; display: block; }
+.np__title { margin: 10px 0 10px; font: 700 26px/1.2 ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; color: #37352f; letter-spacing: -.01em; }
+.np__props { margin: 0 0 14px; display: grid; gap: 4px; }
+.np__props div { display: grid; grid-template-columns: 110px 1fr; }
+.np__props dt { color: #9b9a97; } .np__props dd { margin: 0; }
+.np__views { display: flex; gap: 14px; align-items: center; border-bottom: 1px solid #ededeb; padding-bottom: 6px; margin-bottom: 0; color: #9b9a97; font-weight: 500; }
+.np__views .on { color: #37352f; box-shadow: 0 8px 0 -6px #37352f; }
+.np__new { margin-left: auto; background: #2383e2; color: #fff; border-radius: 4px; padding: 2px 8px; }
+.np__table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.np__table th { text-align: left; font-weight: 400; color: #9b9a97; padding: 7px 6px; border-bottom: 1px solid #ededeb; white-space: nowrap; }
+.np__table td { padding: 5px 6px; border-bottom: 1px solid #f1f1ef; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.np__table th:nth-child(1) { width: 172px; } .np__table th:nth-child(2) { width: 96px; } .np__table th:nth-child(3) { width: 74px; }
+.np__table th:nth-child(4) { width: 58px; } .np__table th:nth-child(5) { width: 182px; } .np__table th:nth-child(6) { width: 92px; }
+.np__table th:nth-child(7) { width: 66px; }
+.np__table td b { font-weight: 600; }
+.np__chip { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 11.5px; line-height: 1.5; }
+.np__chip--kea { background: #f5e0e9; color: #4c2337; } .np__chip--stephen { background: #e8deee; color: #412454; } .np__chip--both { background: #d3e5ef; color: #183347; }
+.np__chip--high { background: #ffe2dd; color: #5d1715; } .np__chip--medium { background: #fdecc8; color: #402c1b; }
+.np__chip--planned { background: #dbeddb; color: #1c3829; } .np__chip--draft { background: #fdecc8; color: #402c1b; } .np__chip--idea { background: #e3e2e0; color: #32302c; }
+.np__chip--video { background: #fadec9; color: #49290e; } .np__chip--story { background: #f5e0e9; color: #4c2337; } .np__chip--raw { background: #e3e2e0; color: #32302c; }
+.np__note { margin: .8rem 0 0; font-size: .74rem; color: var(--muted); font-style: italic; }
+.np__shot { margin: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(42, 12, 31, .55); }
+.np__shot img { width: 100%; height: auto; }
+
+/* ---------- Meet Kea: founder weight ---------- */
+.team--lead .team__name { font-size: clamp(4.2rem, 11vw, 7.4rem); }
+.team--lead .team__next { margin-top: 1.4rem; padding-top: .9rem; }
+.team--lead .team__tag { font-size: clamp(1.35rem, 2.2vw, 1.9rem); }
+.team--lead .body { margin-top: .9rem; }
+.team--lead .body + .body { margin-top: .7rem; }
+.creds--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 680px; }
+@media (min-width: 700px) { .creds--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 900px) { .team--lead { grid-template-columns: minmax(0, .62fr) minmax(0, 1.38fr); gap: 4.5rem; } .team--lead .phone-col { width: min(100%, 300px, 44vh); } }
+.team--second .team__name { font-size: clamp(3.4rem, 8vw, 6rem); }
+
+/* ---------- Choose your coverage ---------- */
+.opts__head { margin-bottom: clamp(1.2rem, 3vh, 2rem); }
+.opts__head .display { font-size: clamp(1.9rem, 3.8vw, 3.2rem); }
+.offers { display: grid; gap: 1.2rem; align-items: stretch; }
+@media (min-width: 900px) { .offers { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: 1.6rem; } }
+.offer { position: relative; display: flex; flex-direction: column; padding: clamp(1.2rem, 2.6vh, 1.8rem) 1.6rem; border: 1px solid var(--rule); border-radius: 20px; background: rgba(255, 255, 255, .4); transition: border-color .5s var(--ease), box-shadow .5s var(--ease), transform .5s var(--ease); min-width: 0; }
+.offer--rec { background: var(--plum); border-color: var(--plum); color: var(--ivory); --fg: var(--ivory); --muted: #e3cfd6; --accent: var(--prosecco); --rule: rgba(247, 240, 231, .2); }
+.offer.is-selected { box-shadow: 0 0 0 2px var(--prosecco), 0 28px 60px -30px rgba(42, 12, 31, .7); }
+@media (max-width: 899px) { .offer--two { order: -1; } .offer__badge { position: static !important; align-self: flex-start; margin: 0 0 .8rem !important; } }
+.offer__badge { position: absolute; top: -.8rem; left: 1.6rem; margin: 0; padding: .45rem .8rem; border-radius: 999px; background: var(--prosecco); color: var(--plum-deep); font: 600 .6rem/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; }
+.offer__tab { margin: 0; color: var(--accent); }
+.offer__tab span { color: var(--fg); }
+.offer__title { margin: .6rem 0 0; font: 600 clamp(1.15rem, 1.8vw, 1.55rem)/1.2 var(--serif); letter-spacing: .02em; color: var(--fg); }
+.offer__price { margin: .8rem 0 0; display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap; font: 500 clamp(2.2rem, 4vw, 3.2rem)/1 var(--serif); color: var(--plum); }
+.offer--rec .offer__price { color: var(--ivory); }
+.offer__price .label { font-size: .58rem; }
+.offer__line { margin: .9rem 0 0; font-size: .9rem; line-height: 1.55; color: var(--muted); }
+.offer__points { list-style: none; margin: .8rem 0 0; padding: 0; display: grid; gap: .35rem; }
+.offer__points li { position: relative; padding-left: 1rem; font-size: .84rem; line-height: 1.45; color: var(--fg); }
+.offer__points li::before { content: ""; position: absolute; left: 0; top: .6em; width: 5px; height: 5px; border-radius: 50%; background: var(--prosecco); }
+.offer__closer { margin: .9rem 0 0; font: italic 400 1.08rem/1.4 var(--serif); color: var(--accent); }
+.offer__pick { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: .6rem; padding: .75rem 1.1rem; margin-block-start: 1.1rem; border: 1px solid var(--rule); border-radius: 999px; font: 500 .64rem/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--fg); }
+.offer__dot { width: 12px; height: 12px; border-radius: 50%; border: 1px solid currentColor; display: grid; place-items: center; }
+.offer__pick[aria-checked="true"] { border-color: var(--accent); color: var(--accent); }
+.offer__pick[aria-checked="true"] .offer__dot::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.opts__foot { margin: 1.2rem 0 0; padding-top: .9rem; border-top: 1px solid var(--rule); font-size: .8rem; line-height: 1.55; color: var(--muted); max-width: 70em; }
+
+/* ---------- Travel and logistics ---------- */
+.lg__head { max-width: 760px; }
+.lg__head .display { font-size: clamp(2rem, 4.4vw, 3.6rem); }
+.lg__items { list-style: none; margin: clamp(1.6rem, 4vh, 2.6rem) 0 0; padding: 0; display: grid; gap: 1.4rem; }
+@media (min-width: 700px) { .lg__items { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .lg__items { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; } }
+.lg__items li { border-top: 1px solid var(--fg); padding-top: 1.1rem; min-width: 0; }
+.lg__items h3 { margin: .8rem 0 0; font: 600 1.25rem/1.15 var(--serif); letter-spacing: .02em; }
+.lg__items p { margin: .5rem 0 0; font-size: .9rem; line-height: 1.55; color: var(--muted); }
+.lg__easy { margin-top: 1.8rem; padding: 1.1rem 1.4rem; border-radius: 16px; background: var(--blush-soft); display: grid; gap: .3rem; max-width: 760px; }
+@media (min-width: 700px) { .lg__easy { grid-template-columns: auto 1fr; gap: 1.4rem; align-items: baseline; } }
+.lg__easy b { font: italic 400 1.25rem/1.2 var(--serif); color: var(--plum); }
+.lg__easy p { margin: 0; font-size: .9rem; color: var(--fg); }
+.lg__after { margin: 1.2rem 0 0; font-size: .78rem; color: var(--muted); }
+
+/* ---------- Client love: screenshot wall ---------- */
+.love__head { display: grid; gap: .6rem; margin-bottom: clamp(1.4rem, 3.4vh, 2.4rem); }
+@media (min-width: 900px) { .love__head { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); align-items: end; gap: 3rem; } .love__head .eyebrow { grid-column: 1 / -1; } .love__head .lead { margin: 0 0 .4rem; } }
+.love__wall { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-items: start; }
+@media (min-width: 900px) { .love__wall { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.1rem; } .love__wall > :nth-child(even) { margin-top: 2.4rem; } }
+@media (max-width: 899px) { .love__wall > :nth-child(5) { grid-column: 1 / -1; max-width: 50%; justify-self: center; } }
+.msg:not(.msg--img) { aspect-ratio: 9 / 15; display: flex; flex-direction: column; }
+.msg:not(.msg--img) .msg__body { flex: 1; align-content: start; }
+.msg { margin: 0; border-radius: 18px; background: #fff; box-shadow: 0 20px 44px -26px rgba(42, 12, 31, .5), 0 0 0 1px rgba(26, 18, 22, .06); overflow: hidden; min-width: 0; }
+.msg--img img { width: 100%; height: auto; display: block; }
+.msg__top { display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 12px 0 10px; border-bottom: 1px solid #efeff2; background: #f7f7f9; }
+.msg__av { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(145deg, #d9d9df, #b9b9c2); }
+.msg__name { width: 44%; height: 6px; border-radius: 3px; background: #dcdce2; }
+.msg__body { display: grid; gap: 7px; padding: 14px 12px 12px; }
+.msg__b { justify-self: start; width: var(--w); display: grid; gap: 5px; padding: 9px 11px; border-radius: 16px 16px 16px 5px; background: #e9e9eb; }
+.msg__b i { display: block; height: 5px; border-radius: 3px; background: #cfcfd4; }
+.msg__b i + i { width: 70%; }
+.msg__b--me { justify-self: end; border-radius: 16px 16px 5px 16px; background: #3b8cf7; }
+.msg__b--me i { background: rgba(255, 255, 255, .55); }
+.msg figcaption { padding: 0 12px 12px; font-size: .66rem; color: #6b6470; }
+.msg__b--time { justify-self: center; width: 30%; background: none; padding: 2px 0; }
+.msg__b--time i { background: #e4e4e8; height: 4px; }
+
+/* ---------- Closing: why us ---------- */
+.close { display: grid; gap: 2rem; align-items: center; }
+@media (min-width: 900px) { .close { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 5rem; } }
+.close__title { margin: 0; font: italic 400 clamp(2.8rem, 7vw, 6rem)/1.02 var(--serif); letter-spacing: -.01em; color: var(--ivory); text-wrap: balance; }
+.close__title .w { display: inline-block; }
+.close__lake { margin: 1.2rem 0 0; font: 500 .7rem/1 var(--sans); letter-spacing: .3em; text-transform: uppercase; color: var(--prosecco); }
+.close__copy .body { color: var(--muted); font-size: 1rem; }
+.close__copy .body + .body { margin-top: .9rem; }
+.close__two { margin: 1.3rem 0 0; font: italic 400 clamp(1.3rem, 2.1vw, 1.7rem)/1.3 var(--serif); color: var(--blush); max-width: 26em; }
+.close__last { margin: 1.3rem 0 0; font-size: 1.02rem; color: var(--ivory); }
+.close__sign { margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap; }
+.close__sig { font: italic 400 2.6rem/1 var(--serif); color: var(--prosecco); }
+
+/* ---------- Shared bits kept from earlier layouts ---------- */
+.where { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.6rem; font: 500 .7rem/1 var(--sans); letter-spacing: .24em; text-transform: uppercase; color: var(--accent); }
+.where svg { width: 14px; height: 14px; }
+.col__icon { display: block; width: 30px; height: 30px; color: var(--accent); }
+.col__icon svg { width: 30px; height: 30px; }
 .mate__tag { display: inline-block; margin-bottom: .5rem; font: 500 .58rem/1 var(--sans); letter-spacing: .22em; text-transform: uppercase; padding: .4rem .6rem; border-radius: 999px; background: var(--plum); color: var(--ivory); }
-.mate p { margin: .45rem 0 0; font-size: .84rem; color: var(--muted); line-height: 1.5; }
-.mate .ig { margin-top: .6rem; font-size: .62rem; }
-.hours h3 { margin: 0; font: 500 var(--fs-h3)/1.15 var(--serif); }
-.hours .label { display: block; margin-top: .5rem; }
-.hours ul { list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; gap: 1.2rem; }
-.hours li { display: grid; grid-template-columns: 1fr auto; gap: .45rem 1rem; }
-.hours .ev { font: 500 1.02rem/1.2 var(--serif); }
-.hours .hr { font: 500 .7rem/1.2 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-.hours .bar { grid-column: 1 / -1; height: 3px; background: var(--rule); position: relative; overflow: hidden; border-radius: 3px; }
-.hours .bar i { position: absolute; inset: 0; width: var(--w); background: linear-gradient(90deg, var(--prosecco), var(--plum)); transform-origin: left; border-radius: 3px; }
-.hours .scale { display: flex; justify-content: space-between; margin-top: .6rem; font: 500 .58rem/1 var(--sans); letter-spacing: .14em; color: var(--muted); }
-
-/* ---------- Turnaround and deliverables (Why slide) ---------- */
-.deliv { display: grid; gap: 2.4rem; }
-@media (min-width: 900px) { .deliv { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 5rem; align-items: center; } }
-.stats { display: grid; gap: 1.8rem; margin-top: 2.2rem; }
-@media (min-width: 560px) { .stats { grid-template-columns: 1fr 1fr; } }
-.stat__v { display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap; }
-.stat__v b { font: 400 clamp(3.4rem, 8vw, 5.6rem)/.95 var(--serif); color: var(--prosecco); letter-spacing: -.03em; }
-.stat__v span { font: italic 400 1.1rem/1.2 var(--serif); color: var(--ivory); }
-.stat .label { display: block; margin-top: .7rem; color: var(--prosecco); }
-.stat p { margin: .5rem 0 0; font-size: .86rem; color: var(--muted); max-width: 22em; line-height: 1.5; }
-.dlist h3 { margin: 0 0 1rem; font: italic 400 var(--fs-h3)/1.15 var(--serif); }
-.dlist ul { list-style: none; margin: 0; padding: 0; }
-.dlist li { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--rule); align-items: baseline; }
-.dlist li:last-child { border-bottom: 1px solid var(--rule); }
-.dlist b { font: 500 1.02rem/1.3 var(--serif); }
-.dlist span { font-size: .82rem; color: var(--muted); }
-
-/* ---------- Accordions (Logistics slide) ---------- */
-.terms { display: grid; gap: 2rem; }
-@media (min-width: 900px) { .terms { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 5rem; align-items: center; } }
-.acc { border-top: 1px solid var(--rule); }
-.acc:last-child { border-bottom: 1px solid var(--rule); }
-.acc h3 { margin: 0; }
-.acc button {
-  width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-  padding: 1.15rem 0; text-align: left;
-  font: 400 clamp(1.15rem, 2vw, 1.5rem)/1.2 var(--serif); color: var(--fg);
-}
-.acc button:hover { font-style: italic; }
-.acc .pm { position: relative; width: 14px; height: 14px; flex: none; }
-.acc .pm::before, .acc .pm::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--accent); transition: transform .5s var(--ease); }
-.acc .pm::after { transform: rotate(90deg); }
-.acc button[aria-expanded="true"] .pm::after { transform: rotate(0deg); }
-.acc__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .6s var(--ease); }
-.acc__panel > div { overflow: hidden; }
-.acc__panel p { margin: 0; padding: 0 2.4rem 1.3rem 0; color: var(--muted); max-width: 36em; }
-.acc button[aria-expanded="true"] + .acc__panel { grid-template-rows: 1fr; }
-
-/* ---------- Reserve ---------- */
-.reserve { display: grid; gap: 2.4rem; }
-@media (min-width: 900px) { .reserve { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 5rem; align-items: center; } }
-.reserve .toggle { margin-bottom: 0; }
-.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; position: relative; }
-.steps::before { content: ""; position: absolute; left: 22px; right: calc(50% - 22px); top: 22px; height: 1px; background: var(--rule); }
-.steps .link { position: absolute; left: 22px; top: 22px; height: 1px; width: calc(50% - 22px + .5rem); background: var(--plum); transform-origin: left; }
-.steps li { position: relative; min-width: 0; }
-.steps .dot { width: 45px; height: 45px; border-radius: 50%; display: grid; place-items: center; background: var(--bg); border: 1px solid var(--plum); font: italic 400 1.2rem/1 var(--serif); color: var(--plum); position: relative; }
-.steps li:first-child .dot { background: var(--plum); color: var(--ivory); }
-.steps .when { display: block; margin-top: 1.2rem; }
-.steps .amt { display: block; margin-top: .5rem; font: 500 clamp(2.2rem, 5vw, 3.6rem)/1 var(--serif); letter-spacing: -.02em; color: var(--fg); font-variant-numeric: lining-nums tabular-nums; }
-.steps .what { display: block; margin-top: .5rem; font-size: .84rem; color: var(--muted); line-height: 1.45; }
-.sched { display: grid; }
-.sched > div { grid-area: 1 / 1; transition: opacity .6s var(--ease), filter .6s var(--ease); }
-.sched > div[aria-hidden="true"] { opacity: 0; filter: blur(4px); pointer-events: none; }
-.total { margin-top: 1.8rem; padding-top: 1rem; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
-.total b { font: 500 1.4rem/1 var(--serif); color: var(--plum); font-variant-numeric: lining-nums tabular-nums; }
-.reserve__note { margin-top: 1.4rem; font-size: .86rem; color: var(--muted); max-width: 34em; line-height: 1.55; }
-.cta {
-  display: inline-flex; align-items: center; gap: 1rem;
-  margin-top: 2rem; padding: 1.15rem 1.7rem 1.15rem 1.9rem;
-  background: var(--plum); color: var(--ivory);
-  border-radius: 999px; text-decoration: none;
-  font: 500 .74rem/1.2 var(--sans); letter-spacing: .22em; text-transform: uppercase;
-  position: relative; overflow: hidden;
-  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
-  box-shadow: 0 14px 30px -14px rgba(79, 26, 62, .6);
-}
-.cta::before { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(220, 195, 147, .35) 50%, transparent 70%); transform: translateX(-100%); transition: transform 1s var(--ease); }
-.cta:hover { transform: translateY(-2px); box-shadow: 0 20px 36px -14px rgba(79, 26, 62, .7); }
-.cta:hover::before { transform: translateX(100%); }
-.cta svg { width: 16px; height: 16px; position: relative; }
-.cta span { position: relative; }
-.cta.is-placeholder { outline: 1px dashed var(--plum); outline-offset: 5px; }
-.cta__flag { display: block; margin-top: .9rem; font-size: .72rem; color: var(--muted); }
 
 /* ---------- Type switcher (review only; content.js typePicker) ---------- */
 .type-btn {
@@ -693,73 +667,9 @@ body[data-tone="light"] { --chrome-fg: var(--ink); --chrome-dim: rgba(26, 18, 22
 }
 .type-btn:hover { border-style: solid; }
 
-/* ---------- Your story ---------- */
-.us .quote blockquote p { font-size: clamp(2.3rem, 6.2vw, 5.4rem); }
-.us .quote footer { margin-top: 1.4rem; }
-.beats { list-style: none; margin: clamp(2rem, 6vh, 3.6rem) 0 0; padding: 0; display: grid; gap: 1.6rem; }
-@media (min-width: 760px) { .beats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.4rem; } }
-.beats li { border-top: 1px solid var(--rule); padding-top: 1.1rem; min-width: 0; }
-.beats b { display: block; font: 400 clamp(2.2rem, 4.4vw, 3.6rem)/1 var(--serif); color: var(--prosecco); letter-spacing: -.01em; }
-.beats .label { display: block; margin-top: .7rem; color: var(--prosecco); }
-.beats p { margin: .5rem 0 0; color: var(--muted); font-size: .92rem; max-width: 26em; }
-
-/* ---------- The weekend ---------- */
-.where { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.6rem; font: 500 .7rem/1 var(--sans); letter-spacing: .24em; text-transform: uppercase; color: var(--accent); }
-.where svg { width: 14px; height: 14px; }
-
-.days__head { display: grid; gap: .4rem; margin-bottom: clamp(1.6rem, 4vh, 2.6rem); }
-@media (min-width: 900px) { .days__head { grid-template-columns: minmax(0, 1fr) auto; align-items: end; column-gap: 3rem; } .days__head .eyebrow { grid-column: 1 / -1; } .days__head .where { margin: 0 0 .4rem; } }
-.days__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.8rem; }
-.dayc { display: grid; grid-template-columns: minmax(0, 38%) minmax(0, 1fr); gap: 1.2rem; align-items: center; }
-.dayc__it { margin: .5rem 0 0; font: italic 400 clamp(1.5rem, 2.4vw, 2.1rem)/1.05 var(--serif); color: var(--fg); }
-.dayc__title { margin: .45rem 0 0; font: 500 1.05rem/1.25 var(--serif); color: var(--fg); }
-.dayc__line { margin: .5rem 0 0; font-size: .86rem; color: var(--muted); line-height: 1.5; }
-.dayc .phone { padding: 6px; border-radius: 26px; }
-.dayc .phone .m { border-radius: 21px; }
-.dayc .phone::before { top: 11px; height: 13px; }
-@media (min-width: 900px) {
-  .days__list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.4rem; }
-  .dayc { grid-template-columns: minmax(0, 180px) minmax(0, 1fr); align-items: end; gap: 1.4rem; }
-  .dayc__phone { width: min(180px, 26vh); }
-}
-
-/* ---------- Why Curated by Kea ---------- */
-.why { display: grid; gap: 2.4rem; }
-@media (min-width: 900px) { .why { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 4.5rem; align-items: center; } }
-.why .display { font-size: clamp(1.9rem, 4vw, 3.4rem); }
-.why .stat__v b { color: var(--plum); }
-.why .stat__v span { color: var(--fg); }
-.why .stat .label { color: var(--plum); }
-
-/* ---------- Logistics ---------- */
-.col__icon { display: block; width: 30px; height: 30px; color: var(--accent); }
-.col__icon svg { width: 30px; height: 30px; }
-
-.logistics { display: grid; gap: 1.8rem; }
-@media (min-width: 1000px) {
-  .logistics { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); column-gap: 4.5rem; row-gap: 1.4rem; align-items: start; }
-  .logistics__head { grid-column: 1 / -1; }
-}
-.logistics__needs { display: grid; gap: 1.2rem; }
-.need { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
-.need h3 { margin: 0; font: 500 1.3rem/1.1 var(--serif); }
-.need__lead { margin: .4rem 0 0; font-size: .92rem; color: var(--fg); }
-.need ul { list-style: none; margin: .5rem 0 0; padding: 0; display: grid; gap: .25rem; }
-.need li { position: relative; padding-left: 1rem; font-size: .8rem; line-height: 1.45; color: var(--muted); }
-.need li::before { content: ""; position: absolute; left: 0; top: .6em; width: 4px; height: 4px; border-radius: 50%; background: var(--prosecco-deep); }
-.logistics__terms .label { display: block; margin-bottom: .6rem; color: var(--accent); }
-.logistics__terms .acc button { padding-block: .85rem; font-size: clamp(1.02rem, 1.6vw, 1.25rem); }
-
-/* ---------- Reserve sign-off ---------- */
-.signoff { margin-top: 2.4rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.6rem; }
-.signoff__line { font: italic 400 1.5rem/1 var(--serif); color: var(--plum); }
-.signoff .logo__word { font-size: 1.15rem; }
-.signoff .ig { margin: 0; }
-
 /* ---------- Short screens: tighten so desktop slides fit without scroll ---------- */
 @media (min-width: 900px) and (max-height: 820px) {
   :root { --fs-h2: clamp(2rem, 4.4vw, 3.8rem); }
-  .needs .col li { padding-block: .38rem; }
 }
 
 /* ---------- Reduced motion: static, complete, no autoplay ---------- */
@@ -804,7 +714,7 @@ html[data-type="couture"] .display,
 html[data-type="couture"] .cover__h .roman { letter-spacing: -.005em; line-height: 1.04; }
 html[data-type="couture"] .cover__h .italic,
 html[data-type="couture"] .quote blockquote p,
-html[data-type="couture"] .closing__line { font-weight: 500; }
+html[data-type="couture"] .close__title { font-weight: 500; }
 
 /* ---------- Villa: Roman inscription capitals, Lake Como stone ---------- */
 html[data-type="villa"] {
@@ -823,9 +733,9 @@ html[data-type="villa"] .cover__h .roman { letter-spacing: .02em; }
 /* Cormorant's italic runs small: give the accent lines more size */
 html[data-type="villa"] .cover__h .italic,
 html[data-type="villa"] .quote blockquote p,
-html[data-type="villa"] .closing__line,
+html[data-type="villa"] .close__title,
 html[data-type="villa"] .day__it,
-html[data-type="villa"] .dayc__it,
+html[data-type="villa"] .evt__it,
 html[data-type="villa"] .team__name { font-size-adjust: .5; }
 html[data-type="villa"] body { font-size: .97rem; }
 
@@ -844,11 +754,10 @@ html[data-type="modern"] .dayc__title, html[data-type="modern"] .price__num,
 html[data-type="modern"] .steps .amt, html[data-type="modern"] .beats b, html[data-type="modern"] .stat__v b { font-weight: 700; letter-spacing: -.035em; line-height: 1; }
 html[data-type="modern"] .cover__h .italic,
 html[data-type="modern"] .quote blockquote p,
-html[data-type="modern"] .closing__line,
+html[data-type="modern"] .close__title,
 html[data-type="modern"] .day__it,
-html[data-type="modern"] .dayc__it,
+html[data-type="modern"] .evt__it,
 html[data-type="modern"] .team__name { letter-spacing: -.01em; font-size-adjust: .52; }
-html[data-type="villa"] .vendors .display { font-size: clamp(1.8rem, 3.5vw, 2.9rem); }
 
 </style>
   <style media="print">
@@ -885,33 +794,13 @@ html, body { height: auto !important; overflow: visible !important; background: 
 .folio__nav { display: flex; gap: 1.6rem; align-items: center; }
 .folio__nav a { padding: 4px 0; border-bottom: 1px solid currentColor; }
 .cover__begin { text-decoration: none; }
-.s-cover .folio, .s-closing .folio { border-color: transparent; }
+.s-cover .folio { border-color: transparent; }
 
-/* Coverage options side by side, both prices */
-.s-options .toggle, .s-reserve .toggle, .s-options .price { display: none !important; }
-.s-options .panels { grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.6rem; }
-.s-options .panel { grid-area: auto !important; opacity: 1 !important; filter: none !important; transform: none !important; }
-.s-options .panel__price { font: 500 2.6rem/1 var(--serif); color: var(--plum); letter-spacing: -.02em; display: block; margin-top: .6rem; text-transform: none; }
-.s-options .panel__title { margin-top: .8rem !important; font-size: 1.4rem; }
-.s-options .panel__line { font-size: .86rem; }
-.s-options .mate { grid-template-columns: 64px 1fr; padding: .7rem; gap: .9rem; }
-.s-options .mate p { font-size: .76rem; }
-.s-options .display { font-size: 3.2rem; }
+/* Coverage: both offers are already side by side */
+.offer__pick { display: none !important; }
 
-.s-reserve .sched { grid-template-columns: 1fr 1fr; gap: 2.4rem; }
-.s-reserve .sched > div { grid-area: auto !important; opacity: 1 !important; filter: none !important; }
-.s-reserve .steps .amt { font-size: 2.2rem; }
-.sched__name { color: var(--plum) !important; margin-bottom: 1rem; }
-
-.acc__panel { grid-template-rows: 1fr !important; }
-.acc .pm { display: none; }
-.acc button { padding-block: .7rem .2rem; }
-.acc__panel p { padding-bottom: .8rem; font-size: .9rem; }
-
-.map .pin circle.ring { display: none; }
 .stamp svg { animation: none !important; }
 .m__ph::before { display: none; }
-.panel__tab, .sched__name { display: block !important; }
 
 </style>
 </head>
@@ -960,8 +849,8 @@ html, body { height: auto !important; overflow: visible !important; background: 
 
   Media
   - A slot with src: "" shows a styled placeholder with its slot name.
-  - To add a clip, drop the file in /media and set src, for example
-      src: "media/hero-reel.mp4", poster: "media/hero-reel.jpg"
+  - To add a file, drop it in /media and set src, for example
+      src: "media/kea-photo.jpg"
   - See media/README.md for sizes and aspect ratios.
 
   Placeholders
@@ -969,7 +858,8 @@ html, body { height: auto !important; overflow: visible !important; background: 
     with a dashed outline so it is easy to spot. Replace it before sending.
   - PLACEHOLDERS.md lists every one.
 
-  Voice rules: short sentences, warm, no emojis, no em dashes.
+  Voice: Kea speaking to Sam & JT. Warm, direct, short sentences.
+  No emojis, no em dashes, no guarantees the contract can't keep.
 */
 window.CONTENT = {
   meta: {
@@ -979,7 +869,7 @@ window.CONTENT = {
 
   brand: {
     name: "Curated by Kea",
-    // Path to the logo (SVG or transparent PNG). Empty shows a wordmark placeholder.
+    // Path to the logo (SVG or transparent PNG). Empty shows a typeset lockup.
     logo: "",
     logoLight: "", // optional light version for dark slides
     instagram: "@curatedxkea",
@@ -988,24 +878,22 @@ window.CONTENT = {
 
   // ---------------------------------------------------------------
   // MEDIA · every clip and image in one place. Slides refer to these by name.
-  // src: "media/hero-reel.mp4"   poster: "media/hero-reel.jpg"
   // ---------------------------------------------------------------
   media: {
     "hero-reel":     { kind: "video", aspect: "16:9", src: "", poster: "", alt: "Golden hour over Lake Como" },
-    // Sam & JT's own reel, shown in a phone frame on the cover. Until the file is
+    // Sam & JT's own reel, in a phone frame on the cover. Until the file is
     // added, the frame links to the reel on Instagram.
     "couple-reel":   { kind: "video", aspect: "9:16", src: "", poster: "", alt: "Sam and JT's reel", link: "https://www.instagram.com/reel/DW2RKA8GTNm/", linkLabel: "Watch your reel" },
-    "day-welcome":   { kind: "video", aspect: "9:16", src: "", poster: "", alt: "Welcome boat party at golden hour" },
-    "day-wedding":   { kind: "video", aspect: "9:16", src: "", poster: "", alt: "Sam and JT's wedding day at the villa" },
-    "day-farewell":  { kind: "video", aspect: "9:16", src: "", poster: "", alt: "Farewell morning by the pool" },
-    "vendor-reel":   { kind: "video", aspect: "9:16", src: "", poster: "", alt: "A vendor interview at the villa" },
-    "kea-reel":      { kind: "video", aspect: "9:16", src: "", poster: "", alt: "Kea's portfolio reel" },
-    "stephen-reel":  { kind: "video", aspect: "9:16", src: "", poster: "", alt: "Stephen's portfolio reel" },
-    "vision-getting-ready": { kind: "image", aspect: "4:5", src: "", alt: "Getting ready on the wedding morning" },
-    "vision-vendors":       { kind: "image", aspect: "4:5", src: "", alt: "Vendors at work at the villa" },
-    "vision-bride":         { kind: "image", aspect: "4:5", src: "", alt: "Sam in her wedding dress" },
-    "vision-party":         { kind: "image", aspect: "4:5", src: "", alt: "JT on the dance floor" },
-    "vision-details":       { kind: "image", aspect: "4:5", src: "", alt: "Florals and table details in blush and plum" },
+    // Real screenshot of the content plan. Until it's added, a sample plan is drawn in its place.
+    "content-plan":  { kind: "image", aspect: "16:10", src: "", alt: "Sam and JT's content plan" },
+    "kea-photo":     { kind: "image", aspect: "9:16", src: "", alt: "Kea, founder of Curated by Kea" },
+    "stephen-photo": { kind: "image", aspect: "9:16", src: "", alt: "Stephen, cinematic filmmaker and content creator" },
+    // Client text screenshots. Any height works; they keep their own shape.
+    "love-1": { kind: "image", aspect: "3:4", src: "", alt: "A message from a Curated by Kea couple" },
+    "love-2": { kind: "image", aspect: "3:4", src: "", alt: "A message from a Curated by Kea couple" },
+    "love-3": { kind: "image", aspect: "3:4", src: "", alt: "A message from a Curated by Kea couple" },
+    "love-4": { kind: "image", aspect: "3:4", src: "", alt: "A message from a Curated by Kea couple" },
+    "love-5": { kind: "image", aspect: "3:4", src: "", alt: "A message from a Curated by Kea couple" },
   },
 
   // Typeface: "villa" (Cinzel capitals, Cormorant italic, Tenor Sans).
@@ -1014,13 +902,13 @@ window.CONTENT = {
   typePicker: false, // true shows an "Aa" switcher for comparing typefaces
 
   // The slides, in order.
-  order: ["cover", "us", "days", "vision", "vendors", "why", "team", "stephen", "options", "logistics", "reserve"],
+  order: ["cover", "weekend", "plan", "kea", "stephen", "options", "logistics", "love", "closing"],
 
   // Names for the progress bar and the Chapters menu.
   labels: {
-    cover: "Sam & JT", us: "Your story", days: "The weekend", vision: "The content vision",
-    vendors: "The vendors behind the magic", why: "Why Curated by Kea", team: "Meet Kea", stephen: "Meet Stephen",
-    options: "Coverage options", logistics: "Logistics and fine print", reserve: "Reserve your dates",
+    cover: "Sam & JT", weekend: "The weekend", plan: "Your content plan", kea: "Meet Kea",
+    stephen: "Meet Stephen", options: "Choose your coverage", logistics: "Travel and logistics",
+    love: "Client love", closing: "Why us",
   },
 
   intro: {
@@ -1048,163 +936,133 @@ window.CONTENT = {
     reel: "couple-reel",
   },
 
-  // Your story, led by their own words.
-  us: {
-    eyebrow: "La vostra storia · Your story",
-    quote: "There is nothing like a Sam and JT party.",
-    attribution: "Your words. We'll prove it on camera.",
-    beats: [
-      { big: "14", label: "Best friends since", line: "You met at fourteen and fell for each other in high school." },
-      { big: "MN · DC", label: "Where you've been", line: "Minnesota raised you. DC is home now. The world has been your shared passport." },
-      { big: "No. 4", label: "Trips to Lake Como", line: "Three trips to the lake already. This time, it's the wedding." },
-    ],
-  },
-
-  // The three days on one slide.
-  days: {
+  // What you actually get, event by event.
+  weekend: {
     eyebrow: "Il fine settimana · The weekend",
-    title: "Three days. One villa. Every moment.",
+    title: "Three days. One complete story.",
+    intro: "From the first toast to the last goodbye, we'll capture the moments you'll want to relive, and the ones you never even saw happen.",
     location: "The villa at Lake Como",
-    days: [
+    events: [
       {
-        id: "friday",
         italian: "Venerdì 9 luglio",
-        date: "Friday, July 9",
+        day: "Friday",
         title: "Welcome boat party",
-        line: "Golden hour on the water. Arrivals, first toasts and the whole crew together for the first time.",
-        video: "day-welcome",
+        hours: "Up to 4 hours of coverage",
+        items: [
+          "All usable raw vertical content",
+          "Up to 2 edited videos",
+          "A curated mini story package, ready to post",
+        ],
       },
       {
-        id: "saturday",
         italian: "Sabato 10 luglio",
-        date: "Saturday, July 10",
-        title: "The wedding",
-        line: "Getting ready. Both dresses. The bridal party of 18. The ceremony, the reception and JT on the dance floor.",
-        video: "day-wedding",
+        day: "Saturday",
+        title: "The wedding day",
+        hours: "Up to 10 hours of coverage",
+        featured: true,
+        items: [
+          "All usable raw vertical content",
+          "Up to 5 to 6 edited videos",
+          "A curated mini story package, ready to post",
+          "Final edit concepts chosen together during your content strategy call",
+        ],
       },
       {
-        id: "sunday",
         italian: "Domenica 11 luglio",
-        date: "Sunday, July 11",
+        day: "Sunday",
         title: "Farewell brunch or pool party",
-        line: "Slow morning energy, poolside moments and the goodbyes nobody wants to say.",
-        video: "day-farewell",
+        hours: "Up to 3 hours of coverage",
+        items: [
+          "All usable raw vertical content",
+          "Up to 2 edited videos",
+          "A curated mini story package, ready to post",
+        ],
       },
+    ],
+    // Turnaround, and what makes this different from photo and film.
+    promises: [
+      { value: "24 hrs", label: "Raw content", note: "Our goal, depending on Wi-Fi at the villa." },
+      { value: "5 to 7", label: "Business days for edits", note: "After the final event of the weekend." },
+      { value: "Social first", label: "Made to share", note: "Shot vertical and edited to post, alongside your photo and film teams." },
     ],
   },
 
-  vision: {
-    eyebrow: "La visione · The content vision",
+  // The content plan, and what goes in it.
+  plan: {
+    eyebrow: "Il piano · Your content plan",
     title: "What we'll capture",
-    intro: "Six threads run through all three days. Together they tell the full story of your weekend.",
-    pillars: [
-      {
-        id: "bts",
-        title: "Behind the scenes and getting ready",
-        line: "Everyone, both sides. The laughter, the nerves and the real moments before anyone is ready.",
-        image: "vision-getting-ready",
-      },
-      {
-        id: "vendors",
-        title: "The vendors behind the magic",
-        line: "A feature on each vendor and where in the world they came from.",
-        image: "vision-vendors",
-      },
-      {
-        id: "interviews",
-        title: "Vendor interviews and the lead-up",
-        line: "Short interviews before the wedding, and the build to the day.",
-        image: "vendor-reel",
-      },
-      {
-        id: "bride",
-        title: "Bride-centered storytelling",
-        line: "Sam first, always.",
-        image: "vision-bride",
-      },
-      {
-        id: "party",
-        title: "The party",
-        line: "The dancing, the energy and JT's personality at full volume.",
-        image: "vision-party",
-      },
-      {
-        id: "details",
-        title: "The details",
-        line: "The palette, the florals, both dresses and the villa grounds.",
-        image: "vision-details",
-      },
+    lead: "Before we ever get to Lake Como, we'll build your content plan together. We map the moments you already know you want, the people and vendors who matter to you, and the content we want to make across the weekend. Then we leave room for the moments nobody can plan.",
+    captureLabel: "On the plan",
+    capture: [
+      "Sam getting ready",
+      "JT and his crew",
+      "The ceremony and the big emotional moments",
+      "Both dresses and the fashion",
+      "Your bridal party",
+      "Reception energy and the dance floor",
+      "Details, florals and the lake itself",
+      "The candid moments in between",
+      "Vendor features and short interviews",
+      "The welcome party and the farewell",
     ],
-  },
-
-  vendors: {
-    eyebrow: "La squadra · The vendors behind the magic",
-    title: "A global team of Black vendors. One lake.",
-    body: "You reached out to Black vendors from all over the world and built a team that looks like your community. We'll feature every one of them, and trace how each found their way to Lake Como.",
-    mapNote: "Every pin lights a path to the lake.",
-    destination: { name: "Lake Como", lat: 45.99, lng: 9.26 },
-    // Where the couple's story began. Drawn as a dashed route to the lake.
-    route: [
-      { name: "Minnesota", note: "Where it started", lat: 46.0, lng: -94.3, label: "left" },
-      { name: "Washington, DC", note: "Home now", lat: 38.9, lng: -77.0, label: "right" },
-    ],
-    // Add lat and lng for each vendor's home base to light their pin.
-    // A vendor without coordinates is listed but not pinned.
-    // Optional label: "left" | "right" | "below" | "above" if two names collide.
-    list: [
-      { name: "ellybevents", role: "U.S. planner", home: "United States [CONFIRM city]", lat: 38.0, lng: -97.0, label: "below" },
-      { name: "moments_labs", role: "Italy planner", home: "Italy [CONFIRM city]", lat: 43.0, lng: 12.5, label: "below" },
-      { name: "Unleashed Visuals", role: "Videography", home: "[CONFIRM home base]", lat: null, lng: null },
-      { name: "Mesus.studios", role: "Photography", home: "[CONFIRM home base]", lat: null, lng: null },
-      { name: "Winnie Couture", role: "Wedding dress", home: "[CONFIRM home base]", lat: null, lng: null },
-      { name: "Vainglorious Brides", role: "Second dress", home: "[CONFIRM home base]", lat: null, lng: null },
-    ],
-  },
-
-  // Why hire us over another creator, with turnaround and deliverables.
-  why: {
-    eyebrow: "Perché noi · Why Curated by Kea",
-    title: "Your heirlooms are covered. We capture the weekend as it happens.",
-    body: "Mesus.studios and Unleashed Visuals will give you the photos and film you keep forever. We add the layer in between: the real-time, social-first story of your weekend, in your hands while you're still at the lake.",
-    stats: [
-      { value: "24", unit: "hours", label: "Raw footage", note: "Our goal for delivery, depending on Wi-Fi and connectivity at the villa." },
-      { value: "5 to 7", unit: "business days", label: "Edited content", note: "After the final event of the weekend." },
-    ],
-    listTitle: "What you'll receive",
-    // Replace each [CONFIRM] with the real deliverable, count and format.
-    rows: [
-      { item: "Welcome boat party", detail: "[CONFIRM deliverable, count and format]" },
-      { item: "Wedding day", detail: "[CONFIRM deliverable, count and format]" },
-      { item: "Farewell", detail: "[CONFIRM deliverable, count and format]" },
-      { item: "Vendor features and interviews", detail: "[CONFIRM deliverable, count and format]" },
-      { item: "Raw footage", detail: "[CONFIRM delivery method]" },
-    ],
-  },
-
-  // Kea's page. Details from @curatedxkea.
-  team: {
-    eyebrow: "Chi siamo · Meet Kea",
-    kea: {
-      name: "Kea",
-      role: "Founder · Curated by Kea",
-      tagline: "Your story, intentionally curated.",
-      bio: "Kea is a wedding and event content creator who films the day the way it felt to be in the room. Weddings, events and brands, from Houston to wherever the celebration is. Her work has been seen in Essence and on BET.",
-      stats: [
-        { value: "8K+", label: "Followers on Instagram" },
-        { value: "Essence", label: "Featured, and seen on BET" },
-        { value: "Worldwide", label: "Houston based, booked everywhere" },
+    // Shown on the sample plan so nobody reads it as final.
+    sampleNote: "A sample of how we plan. Yours is built together before the wedding.",
+    // The sample plan drawn until media["content-plan"] has a real screenshot.
+    sample: {
+      path: ["Curated by Kea", "Clients", "Sam & JT"],
+      title: "Sam & JT · Content Plan",
+      props: [
+        ["Dates", "July 9 to 11, 2027"],
+        ["Location", "The villa, Lake Como"],
+        ["Team", "Kea · Stephen"],
       ],
-      instagram: "@curatedxkea",
-      instagramUrl: "https://instagram.com/curatedxkea",
-      video: "kea-reel",
+      views: ["By event", "By creator", "Vendor features"],
+      columns: ["Moment", "Event", "Creator", "Focus", "Concept", "Deliverable", "Priority", "Status"],
+      rows: [
+        ["Guest arrivals on the dock", "Welcome party", "Stephen", "Guests", "Arrivals and first reactions", "Edited video", "High", "Planned"],
+        ["Golden-hour couple moments", "Welcome party", "Kea", "Both", "Slow, candid couple reel", "Edited video", "High", "Planned"],
+        ["Welcome toast", "Welcome party", "Kea", "Both", "Toast and crowd reactions", "Story-ready", "Medium", "Planned"],
+        ["Sam getting ready", "Wedding day", "Kea", "Bride", "Getting ready, dress reveal", "Edited video", "High", "Planned"],
+        ["JT getting ready", "Wedding day", "Stephen", "Groom", "JT and his crew", "Edited video", "High", "Planned"],
+        ["Bridal party", "Wedding day", "Both", "Both", "Bridesmaids and groomsmen", "Story-ready", "Medium", "Draft"],
+        ["Vows and first kiss", "Wedding day", "Both", "Both", "Two angles, wide and close", "Edited video", "High", "Planned"],
+        ["Reception entrance", "Wedding day", "Both", "Both", "Entrance energy", "Edited video", "High", "Planned"],
+        ["First dance", "Wedding day", "Both", "Both", "Close and wide", "Edited video", "High", "Planned"],
+        ["Speeches", "Wedding day", "Kea", "Both", "Reactions around the room", "Raw", "Medium", "Draft"],
+        ["Dance floor", "Wedding day", "Stephen", "Groom", "JT on the dance floor", "Edited video", "High", "Planned"],
+        ["Vendor features", "Wedding day", "Stephen", "Vendors", "Vendor spotlights", "Edited video", "Medium", "Idea"],
+        ["Vendor interviews", "Lead-up", "Kea", "Vendors", "Short interviews, the build", "Story-ready", "Medium", "Idea"],
+        ["Pool and goodbyes", "Farewell", "Kea", "Both", "Slow morning recap", "Edited video", "Medium", "Draft"],
+      ],
     },
-    optionTwoNote: "Option Two adds Stephen as your second shooter. Meet him next.",
   },
 
-  // Stephen's page, right after Kea's. Sells the two-creator team.
+  // Kea's page. The founder and lead creative, so it carries the most weight.
+  kea: {
+    eyebrow: "La fondatrice · Meet Kea",
+    name: "Kea",
+    role: "Founder and lead creative · Houston based, available worldwide",
+    philosophy: "If you felt it, I want it in the edit.",
+    bio: [
+      "I've spent three years building Curated by Kea around one idea: when you watch your wedding back, it should feel the way it felt to be there.",
+      "I stay close without getting in the way. I pay as much attention to your people as I do to the timeline. And I know how to make content your community actually wants to watch. That's how my work has reached millions of views.",
+    ],
+    stats: [
+      { value: "3 years", label: "Founder of Curated by Kea" },
+      { value: "Millions", label: "Of views across my work" },
+      { value: "23K+", label: "Community across Instagram and TikTok" },
+      { value: "Essence", label: "Featured in Essence, seen on BET" },
+    ],
+    instagram: "@curatedxkea",
+    instagramUrl: "https://instagram.com/curatedxkea",
+    photo: "kea-photo",
+    next: "Option Two adds Stephen as our second creator. Meet him next.",
+  },
+
+  // Stephen's page, right after Kea's. Begins selling Option Two.
   stephen: {
     eyebrow: "Il secondo sguardo · Meet Stephen",
-    tag: "Your second shooter · Option Two",
+    tag: "Second creator · Option Two",
     name: "Stephen",
     role: "Cinematic filmmaker and content creator",
     lead: "Stephen turns real moments into cinematic stories. Over a decade behind the lens, five years filming weddings and an audience of 40,000+ built on that look.",
@@ -1218,112 +1076,96 @@ window.CONTENT = {
     also: "Founder of Shooting Stars Content Academy, where he teaches creators to shoot cinematic content.",
     twoTitle: "What a second creator gets you",
     two: [
-      { title: "Both sides at once", line: "Sam's suite and JT's crew, getting ready at the same time. Nobody's moment gets missed." },
-      { title: "Two angles on every big moment", line: "The vows, the first kiss, the first dance. One wide, one close." },
-      { title: "More content, sooner", line: "Two creators means more footage off the weekend, and more to share while you're still at the lake." },
+      { title: "Both of you, at the same time", line: "Sam getting ready and JT with his crew, covered side by side instead of one after the other." },
+      { title: "More than one perspective", line: "The vows, the first kiss, the entrances, the first dance. One of us close, one of us wide." },
+      { title: "More of the room", line: "Guests, reactions, vendors and details, captured while the two of you stay covered." },
     ],
     instagram: "@stephenxmichael",
     instagramUrl: "https://instagram.com/stephenxmichael",
-    video: "stephen-reel",
+    photo: "stephen-photo",
   },
 
+  // Option Two opens selected and is marked as recommended.
   options: {
-    eyebrow: "Le opzioni · Coverage options",
-    title: "Choose your coverage",
-    priceLabel: "Flat travel investment",
-    note: "No separate content package fee. Your investment covers the team's travel to Lake Como.",
+    eyebrow: "Le opzioni · Choose your coverage",
+    title: "The way we'd recommend covering Lake Como.",
+    defaultOption: "two",
+    priceLabel: "Package investment",
     items: [
       {
         id: "one",
         tab: "Option One",
-        title: "Kea, your content creator",
-        line: "One creator, fully devoted to your weekend and your story.",
+        who: "Kea",
+        title: "One dedicated creator",
+        line: "Me, capturing your weekend from a single perspective. It's focused, personal coverage. One creator follows one timeline at a time, so when two moments happen at once, I'm with one of them.",
+        points: [
+          "Kea across all three events",
+          "One perspective, following the timeline as it unfolds",
+        ],
         price: 2750,
+        select: "Choose Option One",
       },
       {
         id: "two",
         tab: "Option Two",
-        title: "Kea and Stephen, a two-creator team",
-        line: "Two creators working the weekend at once. Both getting-ready rooms, two angles on every big moment and more content in your hands, sooner.",
+        badge: "Recommended · The full weekend experience",
+        who: "Kea + Stephen",
+        title: "Two creators. Two perspectives. One complete story.",
+        line: "With two of us there, your weekend doesn't have to happen from one point of view. While I'm with Sam, Stephen is with JT. While one of us follows the moment, the other catches the reaction.",
+        points: [
+          "Sam and JT covered at the same time on the wedding morning",
+          "Complementary angles on the ceremony, first kiss, entrances and first dance",
+          "Guests, details, vendors and behind the scenes, while you two stay covered",
+        ],
+        closer: "It gives us the freedom to tell a fuller story without pulling either of you away from living it.",
         price: 5250,
+        select: "Choose Option Two",
       },
     ],
-    hoursTitle: "Proposed coverage",
-    hoursLabel: "To be finalized together",
-    hours: [
-      { event: "Welcome party", hours: 4 },
-      { event: "Wedding day", hours: 10 },
-      { event: "Farewell", hours: 3 },
-    ],
+    footnote: "Your investment covers our content services and the travel already built into the package. Team lodging, the Milan and Lake Como transfers, and transportation during the weekend are separate. You can arrange them, or we can coordinate and invoice them for you. More on the next page.",
   },
 
-  // What we'll need + the terms, on one slide.
+  // What sits outside the package. Contract-level terms come later.
   logistics: {
-    eyebrow: "Il necessario · What we'll need",
-    title: "The logistics, simply.",
-    columns: [
-      {
-        title: "Stay",
-        lead: "One private hotel room. Check in July 7, check out July 12, 2027. Five nights.",
-        items: [
-          "Private bathroom, reliable Wi-Fi, climate control and a secure spot for gear",
-          "All hotel and city taxes, plus early check-in or luggage storage if needed",
-          "Ideally in your hotel block, approved by Curated by Kea before booking",
-          "Option Two: Kea and Stephen share one room",
-        ],
-      },
-      {
-        title: "Getting around",
-        lead: "Private transfers for the whole team and our gear.",
-        items: [
-          "Malpensa to the hotel, and to our departure point on July 12",
-          "To, from and between every event and location",
-          "A late-night ride home after the wedding",
-          "Ideally, a dedicated media vehicle on the wedding day",
-        ],
-      },
-      {
-        title: "Meals",
-        lead: "One vendor meal per team member at the welcome party, wedding and farewell, served during guest meal service.",
-        items: [],
-      },
+    eyebrow: "Il viaggio · Travel and logistics",
+    title: "What we'll need from you.",
+    intro: "These sit outside the package investment. You can arrange them, or we can coordinate them and invoice separately. Whatever's easiest for you.",
+    items: [
+      { icon: "stay", title: "Lodging", line: "A 4 to 5 night stay for the team, depending on final flight schedules. Staying in your room block keeps it simple." },
+      { icon: "car", title: "Transfers", line: "Round-trip transfer between Milan and Lake Como for the team and our gear." },
+      { icon: "route", title: "Weekend transportation", line: "Rides to and from every scheduled event and required location." },
+      { icon: "meal", title: "Meals", line: "One vendor meal per team member at each event, served during guest meal service." },
     ],
-    termsTitle: "Good to know",
-    terms: [
-      { title: "If the day runs long", body: "Overtime or schedule delays past the contracted time are $350 per hour, plus extended private transportation." },
-      { title: "If a transfer falls through", body: "If a promised transfer falls through, the team books a reasonable replacement and the added cost is billed to you." },
-      { title: "If travel is disrupted", body: "Flight delays or cancellations are handled through travel insurance first. Necessary costs outside insurance may be billed separately." },
-      { title: "If the ceremony is in a church", body: "Any filming permits, credentials or fees are covered by the couple. We'll confirm filming rules in advance." },
-      { title: "After the weekend", body: "The team's personal travel after July 12 is never billed to you." },
-    ],
+    convenience: {
+      title: "Rather not manage it?",
+      line: "We can coordinate transportation and logistics for you and invoice those costs separately.",
+    },
+    after: "Timing, terms and the fine print go in your contract once you decide to move forward.",
   },
 
-  reserve: {
-    eyebrow: "Prenota · Reserve your dates",
-    title: "Two steps to the lake.",
-    schedules: {
-      one: [
-        { when: "At signing", amount: 1500, what: "Nonrefundable reservation retainer" },
-        { when: "May 10, 2027", amount: 1250, what: "Remaining balance" },
-      ],
-      two: [
-        { when: "At signing", amount: 3000, what: "Nonrefundable reservation retainer" },
-        { when: "May 10, 2027", amount: 2250, what: "Remaining balance" },
-      ],
-    },
-    note: "Your retainer secures the dates and books airfare. Card and portal payments include a 3.5% processing fee. Zelle is available with no fee.",
-    cta: "Reserve Sam & JT's weekend",
-    // Sign-off under the button.
-    signoff: "Ci vediamo al lago.",
-    // Booking or contact link. Leave empty until it's ready; the button is flagged.
-    ctaUrl: "",
+  // Real client messages. Never write quotes here; add screenshots in media.
+  love: {
+    eyebrow: "Dalle mie coppie · Client love",
+    title: "From the couples who've trusted me.",
+    intro: "Straight from my messages.",
+    slots: ["love-1", "love-2", "love-3", "love-4", "love-5"],
+  },
+
+  // The close. No hard sell.
+  closing: {
+    eyebrow: "Perché noi · Why us",
+    title: "You live it. We'll keep it.",
+    paragraphs: [
+      "You've already put so much intention into bringing the people you love to Lake Como. Our job is to make sure you don't have to choose between living it and remembering it.",
+      "Your photographer and videographer will give you the polished heirlooms. We keep the in-between: what it looked like, sounded like and felt like while it was happening, made to share while it's still fresh.",
+      "We'll come in with a plan, stay close enough to catch the moments that matter, and leave room for the ones nobody could have planned.",
+    ],
+    two: "And with two of us there, your story doesn't have to happen from one point of view.",
+    last: "If it feels like the right fit, we'd love to be there.",
+    signature: "Kea",
+    lake: "Ci vediamo al lago.",
   },
 };
-
-</script>
-  <script>
-/* Land mask for the vendor map: equirectangular, 2° cells from 74°N, -170°E. One hex row per latitude band. Generated from Natural Earth 50m land. */
-window.WORLD_DOTS = {"step":2,"lat0":74,"lng0":-170,"cols":180,"rows":["000001e00a00007fffc00000000040007ff0004000000","000001be985f003fffc00000000180c5fffffc1d00000","0ffc0c1fe61df02fffc00000f00011fffffffffff8000","1ffffff0cbb1f81ff8000007ffcbffdfffffffffffff8","3fffffffffd0e41fc03c000ffe3ffffffffffffffffff","07ffffffffb8780f8038003f7f7ffffffffffffffffe0","1ffffffffe078007000000fcfffffffffffffffffef80","3fa1fffffc01c001000000fe07ffffffffffffffe2000","01005ffffe01fc000000101cbffffffffffffff004000","04000fffffc1fe0000001038ffffffffffffffc01e000","00001ffffff3ff800000c83fffffffffffffffd018000","000007fffffbffc00000dcfffffffffffffffff808000","000003fffffff040000003fffffffffffffffff000000","000001fffffff0e000001fffffffffffffffffe000000","000000fffffffd00000007fffafcffffffffffc880000","000001ffffffe800000007d7f079ffffffffff8c00000","000001ffffffc00000007e19f03cfffffffffe0000000","000001ffffff000000007d059ffcffffffffb81000000","000000fffffe00000000780cdffcffffffff8c1000000","0000007ffffe0000000003e001ffffffffffc43000000","0000003ffffe000000003fe001ffffffffffc1c000000","0000001ffff8000000007ff9c1ffffffffffc00000000","00000007ff88000000007ffffff9ffffffffc00000000","0000000bf80800000001fffffffdffffffffc00000000","00000005f80000000003fffffefe3fffffff800000000","00000002f80000000003fffffe7ec1ffffff000000000","00000000781400000007ffffff7fe0ffdffc000000000","0000000078c100000007ffffff3fc03f8fe0000000000","000000003f8008000007ffffffbfc03e07e0200000000","00000000058000000007ffffff9f003c03f0400000000","0000000000f000000007ffffffd8001c01f0000000000","00000000003060000007ffffffe000180070100000000","000000000010bc000001fffffffe00080020000000000","000000000003ff000001fffffffc00040100180000000","000000000001ff800000fcfffffc00000080800000000","000000000001fff00000003ffff800000283000000000","000000000003fff00000003ffff000000147000000000","000000000007fff80000003fffe00000018f400000000","000000000007fffe0000003fffc0000000e742a000000","000000000007ffffc000001fff8000000040607c00000","000000000007fffff000000fff8000000020001e80000","000000000003fffff000000fff8000000006003a00000","000000000003ffffe000000fff8000000000500100000","000000000001ffffe000000fffc000000000008800000","000000000001ffffc000000fffc600000000038800000","000000000000ffffc000001fffcc000000000fcc00000","0000000000003fffc000001fff0c000000001ffe00020","0000000000003fff8000000ffe0c000000007fff00000","0000000000003fff80000007fe1c00000003ffff00000","0000000000003ffc00000007fe1800000003ffff80000","0000000000003ff800000007fc0000000001ffffc0000","0000000000003ff800000007fc0000000001ffffc0000","0000000000003ff000000003f80000000001ffffc0000","0000000000003ff000000001f00000000001fcffc0000","0000000000003fe000000001c00000000001807f80000","0000000000007f8000000000000000000000001f80080","0000000000007f8000000000000000000000000e00060","0000000000007c0000000000000000000000000500040","000000000000f80000000000000000000000000300180","000000000000780000000000000000000000000000200","000000000000700000000000000000000000000000600","000000000000780000000000000000000000000000000","000000000000700000000000000000000000000000000","000000000000600000000000000000000000000000000","000000000000700000000000000000000000000000000","000000000000000000000000000000000000000000000"]};
 
 </script>
   <script>
@@ -1373,6 +1215,7 @@ window.WORLD_DOTS = {"step":2,"lat0":74,"lng0":-170,"cols":180,"rows":["000001e0
     ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor"/></svg>',
     stay: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><path d="M4 24V9M4 18h24v6M28 18v-3a4 4 0 0 0-4-4H14v7"/><circle cx="9" cy="14" r="2.5"/></svg>',
     car: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><path d="M5 20v-4l3-6h16l3 6v4z"/><path d="M5 20v3h3v-3M24 20v3h3v-3M5 16h22"/><circle cx="10" cy="18" r=".8" fill="currentColor"/><circle cx="22" cy="18" r=".8" fill="currentColor"/></svg>',
+    route: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><circle cx="8" cy="24" r="3"/><circle cx="24" cy="8" r="3"/><path d="M11 24h9a4 4 0 0 0 0-8h-8a4 4 0 0 1 0-8h9"/></svg>',
     meal: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><path d="M10 4h8l-.6 6a3.4 3.4 0 0 1-6.8 0z"/><path d="M14 13.5V26M10 26h8"/><path d="M22 4v22M22 4c2.5 1.5 3 5 3 8h-3"/></svg>',
   };
 
@@ -1415,8 +1258,8 @@ window.WORLD_DOTS = {"step":2,"lat0":74,"lng0":-170,"cols":180,"rows":["000001e0
   const S = {};
   const chapterOf = C.labels || {};
   const toneOf = {
-    cover: "film", us: "plum", days: "ivory", vision: "blush-soft", vendors: "plum-deep",
-    why: "ivory-deep", team: "ivory", stephen: "plum-deep", options: "blush-soft", logistics: "ivory", reserve: "ivory-deep",
+    cover: "film", weekend: "ivory", plan: "blush-soft", kea: "ivory", stephen: "plum-deep",
+    options: "ivory-deep", logistics: "ivory", love: "blush-soft", closing: "plum-deep",
   };
 
   S.cover = () => {
@@ -1447,48 +1290,87 @@ window.WORLD_DOTS = {"step":2,"lat0":74,"lng0":-170,"cols":180,"rows":["000001e0
       </div></div>`;
   };
 
-  S.vision = () => {
-    const v = C.vision;
-    return `<div class="slide__body"><div class="wrap">
-      <div class="vision__head"><div>${eyebrow(v.eyebrow)}<h2 class="display" data-a>${esc(v.title)}</h2></div><p class="lead" data-a>${esc(v.intro)}</p></div>
-      <ol class="pillars">${v.pillars.map((p, i) => {
-        const to = p.id === "vendors" && order.includes("vendors") ? "vendors" : null;
-        const inner = `${p.image ? media(p.image) : ""}<span class="n">${pad(i + 1)}</span><span class="t">${esc(p.title)}</span><span class="l">${t(p.line)}</span>`;
-        return `<li data-a>${to ? `<a href="#${to}">${inner}</a>` : inner}</li>`;
-      }).join("")}</ol>
-    </div></div>`;
-  };
+  const statRow = (stats = [], cls = "") => stats.length ? `<ul class="creds ${cls}" data-a>${stats.map((x) => `<li><b>${esc(x.value)}</b><span class="label">${esc(x.label)}</span></li>`).join("")}</ul>` : "";
 
-  S.vendors = () => {
-    const v = C.vendors;
-    return `<div class="slide__body"><div class="wrap vendors">
-      <div>${eyebrow(v.eyebrow)}<h2 class="display" data-a>${esc(v.title)}</h2><p class="body" data-a>${t(v.body)}</p>
-        <ul class="vlist" data-a>${v.list.map((x) => `<li class="${x.lat == null ? "unpinned" : ""}"><i aria-hidden="true"></i><b>${esc(x.name)}</b><span>${esc(x.role)} · ${t(x.home)}</span></li>`).join("")}</ul>
+  /* ---- The weekend: what you actually get ---- */
+  S.weekend = () => {
+    const w = C.weekend;
+    return `<div class="slide__body"><div class="wrap wk">
+      <div class="wk__head">
+        <div>${eyebrow(w.eyebrow)}<h2 class="display" data-a>${esc(w.title)}</h2></div>
+        <div><p class="lead" data-a>${t(w.intro)}</p><p class="where" data-a>${ICON.pin}<span>${esc(w.location)}</span></p></div>
       </div>
-      <div class="map" data-a><div class="map__svg"></div><p class="label map__note">${esc(v.mapNote)}</p></div>
+      <ol class="wk__events">${w.events.map((e) => `<li class="evt${e.featured ? " evt--main" : ""}" data-a>
+        <p class="label evt__day">${esc(e.day)}</p>
+        <h3 class="evt__it">${esc(e.italian)}</h3>
+        <p class="evt__title">${esc(e.title)}</p>
+        <p class="evt__hours">${esc(e.hours)}</p>
+        <ul class="evt__list">${e.items.map((x) => `<li>${t(x)}</li>`).join("")}</ul>
+      </li>`).join("")}</ol>
+      <ul class="wk__promises">${w.promises.map((p) => `<li data-a><b>${esc(p.value)}</b><span class="label">${esc(p.label)}</span><p>${t(p.note)}</p></li>`).join("")}</ul>
     </div></div>`;
   };
 
-  S.team = () => {
-    const k = C.team.kea;
+  /* ---- Content plan: sample Notion-style plan + what we'll capture ---- */
+  const chip = (text, kind) => `<span class="np__chip np__chip--${kind}">${esc(text)}</span>`;
+  const chipKind = {
+    Kea: "kea", Stephen: "stephen", Both: "both",
+    High: "high", Medium: "medium", Planned: "planned", Draft: "draft", Idea: "idea",
+    "Edited video": "video", "Story-ready": "story", Raw: "raw",
+  };
+  function planSample(p) {
+    const s = p.sample;
+    const cell = (v, col) => (["Creator", "Deliverable", "Priority", "Status"].includes(col) ? chip(v, chipKind[v] || "idea") : esc(v));
+    return `<div class="np__fit" role="img" aria-label="A sample content plan: moments across the weekend, each with a creator, focus, concept, deliverable, priority and status.">
+      <div class="np__win" aria-hidden="true">
+        <div class="np__bar"><i></i><i></i><i></i><span class="np__crumbs">${s.path.map(esc).join(' <em>/</em> ')}</span><span class="np__share">Share</span></div>
+        <div class="np__page">
+          <div class="np__icon"><svg viewBox="0 0 40 40"><rect width="40" height="40" rx="8" fill="#4f1a3e"/><path d="M22 8c-1 7-3 11-6 14M21 23c-2 3-6 6-9 9M21 23c1 3 3 6 6 9" fill="none" stroke="#dcc393" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+          <h4 class="np__title">${esc(s.title)}</h4>
+          <dl class="np__props">${s.props.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
+          <div class="np__views">${s.views.map((v, i) => `<span class="${i ? "" : "on"}">${esc(v)}</span>`).join("")}<span class="np__new">New</span></div>
+          <table class="np__table"><thead><tr>${s.columns.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead>
+            <tbody>${s.rows.map((r) => `<tr>${r.map((v, i) => `<td>${i === 0 ? `<b>${esc(v)}</b>` : cell(v, s.columns[i])}</td>`).join("")}</tr>`).join("")}</tbody></table>
+        </div>
+      </div>
+    </div>`;
+  }
+  S.plan = () => {
+    const p = C.plan, shot = M["content-plan"] || {};
+    const visual = shot.src
+      ? `<figure class="np__shot"><img src="${esc(shot.src)}" alt="${esc(shot.alt || "")}" loading="lazy" decoding="async"></figure>`
+      : `${planSample(p)}<p class="np__note">${t(p.sampleNote)}</p>`;
+    return `<div class="slide__body"><div class="wrap plan">
+      <div class="plan__visual" data-a>${visual}</div>
+      <div class="plan__copy">
+        ${eyebrow(p.eyebrow)}<h2 class="display" data-a>${esc(p.title)}</h2>
+        <p class="lead" data-a>${t(p.lead)}</p>
+        <p class="label plan__label" data-a>${esc(p.captureLabel)}</p>
+        <ul class="plan__list" data-a>${p.capture.map((x) => `<li>${t(x)}</li>`).join("")}</ul>
+      </div>
+    </div></div>`;
+  };
+
+  /* ---- Meet Kea: founder page, the heaviest of the two ---- */
+  S.kea = () => {
+    const k = C.kea;
     return `<div class="slide__body"><div class="wrap">
-      <div class="team">
-        <div class="phone-col">${media(k.video, { phone: true })}</div>
-        <div>${eyebrow(C.team.eyebrow)}
+      <div class="team team--lead">
+        <div class="phone-col">${media(k.photo, { phone: true })}</div>
+        <div>${eyebrow(k.eyebrow)}
           <h2 class="team__name" data-a>${esc(k.name)}</h2>
           <p class="label team__role" data-a>${esc(k.role)}</p>
-          ${k.tagline ? `<p class="team__tag" data-a>${esc(k.tagline)}</p>` : ""}
-          <p class="body" data-a>${t(k.bio)}</p>
-          ${statRow(k.stats)}
+          <p class="team__tag" data-a>${esc(k.philosophy)}</p>
+          ${k.bio.map((p) => `<p class="body" data-a>${t(p)}</p>`).join("")}
+          ${statRow(k.stats, "creds--4")}
           <div data-a>${ig(k.instagram, k.instagramUrl)}</div>
-          ${order.includes("stephen") ? `<p class="team__next" data-a><a href="#stephen">${t(C.team.optionTwoNote)}</a></p>` : ""}
+          ${order.includes("stephen") && k.next ? `<p class="team__next" data-a><a href="#stephen">${t(k.next)}</a></p>` : ""}
         </div>
       </div>
     </div></div>`;
   };
 
-  const statRow = (stats = []) => stats.length ? `<ul class="creds" data-a>${stats.map((x) => `<li><b>${esc(x.value)}</b><span class="label">${esc(x.label)}</span></li>`).join("")}</ul>` : "";
-
+  /* ---- Meet Stephen: second creator, sells Option Two ---- */
   S.stephen = () => {
     const p = C.stephen;
     return `<div class="slide__body"><div class="wrap">
@@ -1504,7 +1386,7 @@ window.WORLD_DOTS = {"step":2,"lat0":74,"lng0":-170,"cols":180,"rows":["000001e0
           <div data-a>${ig(p.instagram, p.instagramUrl)}</div>
         </div>
         <div class="second__side">
-          <div class="phone-col">${media(p.video, { phone: true })}</div>
+          <div class="phone-col">${media(p.photo, { phone: true })}</div>
           <div class="two" data-a><p class="label">${esc(p.twoTitle)}</p>
             <ol>${p.two.map((x, i) => `<li><span class="two__n">${i + 1}</span><div><b>${esc(x.title)}</b><p>${t(x.line)}</p></div></li>`).join("")}</ol>
           </div>
@@ -1513,113 +1395,73 @@ window.WORLD_DOTS = {"step":2,"lat0":74,"lng0":-170,"cols":180,"rows":["000001e0
     </div></div>`;
   };
 
-  const rollHTML = (n) => {
-    const s = Number(n).toLocaleString("en-US");
-    return `<span class="cur">$</span>` + [...s].map((ch) => /\d/.test(ch)
-      ? `<span class="roll" data-d="${ch}"><span style="transform:translateY(-${ch}em)">${"0123456789".split("").map((d) => `<span>${d}</span>`).join("")}</span></span>`
-      : `<span>${ch}</span>`).join("");
-  };
-  const toggle = (name) => `<div class="toggle" role="group" aria-label="Coverage option" data-toggle="${name}" data-sel="one" data-a>
-      <span class="toggle__pill" aria-hidden="true"></span>
-      ${C.options.items.map((o, i) => `<button type="button" data-opt="${o.id}" aria-pressed="${i === 0}">${esc(o.tab)}</button>`).join("")}
-    </div>`;
-
+  /* ---- Choose your coverage: Option Two recommended and selected ---- */
   S.options = () => {
-    const o = C.options, k = C.team.kea;
-    const st = { ...C.stephen, role: "Second shooter · Cinematic filmmaker", bio: "12+ years in video production. 40K+ followers built on cinematic content" };
-    const mate = (p, tag, reel) => `<div class="mate">
-        <div class="phone">${media(reel, { mask: false })}</div>
-        <div>${tag ? `<span class="mate__tag">${esc(tag)}</span>` : ""}<p class="mate__name">${esc(p.name)}</p><p>${t(p.role)}${p.bio && tag ? `. ${t(p.bio)}` : ""}</p>${ig(p.instagram, p.instagramUrl)}</div>
-      </div>`;
-    const max = Math.max(...o.hours.map((h) => h.hours));
+    const o = C.options;
     return `<div class="slide__body"><div class="wrap opts">
-      <div>
-        ${eyebrow(o.eyebrow)}<h2 class="display" data-a>${esc(o.title)}</h2>
-        ${toggle("options")}
-        <div class="price" data-a><div class="price__num" aria-live="polite" aria-atomic="true"><span class="sr-only" data-price-sr>${money(o.items[0].price)}</span><span aria-hidden="true" data-price>${rollHTML(o.items[0].price)}</span></div><span class="label">${esc(o.priceLabel)}</span></div>
-        <p class="opts__note" data-a>${esc(o.note)}</p>
+      <div class="opts__head">${eyebrow(o.eyebrow)}<h2 class="display" data-a>${esc(o.title)}</h2></div>
+      <div class="offers" role="radiogroup" aria-label="Coverage options">
+        ${o.items.map((it) => `<article class="offer offer--${it.id}${it.badge ? " offer--rec" : ""}" data-offer="${it.id}" data-a>
+          ${it.badge ? `<p class="offer__badge">${esc(it.badge)}</p>` : ""}
+          <p class="label offer__tab">${esc(it.tab)} · <span>${esc(it.who)}</span></p>
+          <h3 class="offer__title">${esc(it.title)}</h3>
+          <p class="offer__price tabular">${money(it.price)}<span class="label">${esc(o.priceLabel)}</span></p>
+          <p class="offer__line">${t(it.line)}</p>
+          <ul class="offer__points">${it.points.map((x) => `<li>${t(x)}</li>`).join("")}</ul>
+          ${it.closer ? `<p class="offer__closer">${t(it.closer)}</p>` : ""}
+          <button class="offer__pick" type="button" role="radio" aria-checked="false" data-opt="${it.id}"><span class="offer__dot" aria-hidden="true"></span>${esc(it.select)}</button>
+        </article>`).join("")}
       </div>
-      <div>
-        <div class="panels" data-a>
-          ${o.items.map((it, i) => `<div class="panel" data-panel="${it.id}" aria-hidden="${i !== 0}">
-            <p class="label panel__tab">${esc(it.tab)} · <span class="panel__price">${money(it.price)}</span></p>
-            <h3 class="panel__title">${esc(it.title)}</h3><p class="panel__line">${t(it.line)}</p>
-            ${it.id === "two" ? mate(st, "Joins in Option Two", st.video) : mate(k, "", k.video)}
-          </div>`).join("")}
-        </div>
-        <div class="hours" data-a>
-          <h3>${esc(o.hoursTitle)}</h3><span class="label">${esc(o.hoursLabel)}</span>
-          <ul>${o.hours.map((h) => `<li><span class="ev">${esc(h.event)}</span><span class="hr">Up to ${h.hours} hours</span><span class="bar"><i style="--w:${(h.hours / max) * 100}%"></i></span></li>`).join("")}</ul>
-          <div class="scale" aria-hidden="true"><span>0</span><span>${max / 2} hrs</span><span>${max} hrs</span></div>
-        </div>
-      </div>
+      <p class="opts__foot" data-a>${t(o.footnote)}</p>
     </div></div>`;
   };
 
-  const accordion = (items, key) => items.map((it, i) => `<div class="acc" data-a><h3><button type="button" aria-expanded="false" aria-controls="${key}-${i}" id="${key}-b-${i}">${esc(it.title)}<span class="pm" aria-hidden="true"></span></button></h3>
-        <div class="acc__panel" id="${key}-${i}" role="region" aria-labelledby="${key}-b-${i}"><div><p>${t(it.body)}</p></div></div></div>`).join("");
-
-  S.us = () => {
-    const u = C.us;
-    const html = words(u.quote).replace(/class="w">(Sam|JT)</g, 'class="w hl">$1<');
-    return `<div class="slide__body"><div class="wrap us">
-      ${eyebrow(u.eyebrow)}
-      <figure class="quote" style="margin:0"><blockquote><p>${html}</p></blockquote><footer data-a>${esc(u.attribution)}</footer></figure>
-      <ol class="beats">${u.beats.map((b) => `<li data-a><b>${esc(b.big)}</b><span class="label">${esc(b.label)}</span><p>${t(b.line)}</p></li>`).join("")}</ol>
-    </div></div>`;
-  };
-
-  S.days = () => {
-    const d = C.days;
-    return `<div class="slide__body"><div class="wrap days">
-      <div class="days__head">${eyebrow(d.eyebrow)}<h2 class="display" data-a>${esc(d.title)}</h2>
-        <p class="where" data-a>${ICON.pin}<span>${esc(d.location)}</span></p></div>
-      <ol class="days__list">${d.days.map((x) => `<li class="dayc">
-        <div class="dayc__phone">${media(x.video, { phone: true })}</div>
-        <div data-a><p class="label">${esc(x.date)}</p><h3 class="dayc__it">${esc(x.italian)}</h3><p class="dayc__title">${esc(x.title)}</p><p class="dayc__line">${t(x.line)}</p></div>
-      </li>`).join("")}</ol>
-    </div></div>`;
-  };
-
-  S.why = () => {
-    const y = C.why, d = C.why;
-    return `<div class="slide__body"><div class="wrap why">
-      <div>${eyebrow(y.eyebrow)}<h2 class="display" data-a>${esc(y.title)}</h2><p class="lead" data-a>${t(y.body)}</p>
-        <div class="stats">${d.stats.map((x) => `<div class="stat" data-a><div class="stat__v"><b>${esc(x.value)}</b><span>${esc(x.unit)}</span></div><span class="label">${esc(x.label)}</span><p>${t(x.note)}</p></div>`).join("")}</div>
-      </div>
-      <div class="dlist" data-a><h3>${esc(d.listTitle)}</h3><ul>${d.rows.map((r) => `<li><b>${t(r.item)}</b><span>${t(r.detail)}</span></li>`).join("")}</ul></div>
-    </div></div>`;
-  };
-
+  /* ---- Travel and logistics: what sits outside the package ---- */
   S.logistics = () => {
-    const l = C.logistics, icons = [ICON.stay, ICON.car, ICON.meal];
-    return `<div class="slide__body"><div class="wrap logistics">
-      <div class="logistics__head">${eyebrow(l.eyebrow)}<h2 class="display" data-a>${esc(l.title)}</h2></div>
-      <div class="logistics__needs">${l.columns.map((c, i) => `<section class="need" data-a><span class="col__icon">${icons[i] || ""}</span><div><h3>${esc(c.title)}</h3><p class="need__lead">${t(c.lead)}</p>${c.items.length ? `<ul>${c.items.map((x) => `<li>${t(x)}</li>`).join("")}</ul>` : ""}</div></section>`).join("")}</div>
-      <div class="logistics__terms"><p class="label" data-a>${esc(l.termsTitle)}</p>${accordion(l.terms, "terms")}</div>
+    const l = C.logistics;
+    return `<div class="slide__body"><div class="wrap lg">
+      <div class="lg__head">${eyebrow(l.eyebrow)}<h2 class="display" data-a>${esc(l.title)}</h2><p class="lead" data-a>${t(l.intro)}</p></div>
+      <ul class="lg__items">${l.items.map((x) => `<li data-a><span class="col__icon">${ICON[x.icon] || ""}</span><h3>${esc(x.title)}</h3><p>${t(x.line)}</p></li>`).join("")}</ul>
+      <div class="lg__easy" data-a><b>${esc(l.convenience.title)}</b><p>${t(l.convenience.line)}</p></div>
+      <p class="lg__after" data-a>${t(l.after)}</p>
     </div></div>`;
   };
 
-  S.reserve = () => {
-    const r = C.reserve;
-    const sched = (id) => {
-      const s = r.schedules[id], opt = C.options.items.find((o) => o.id === id);
-      const total = s.reduce((a, x) => a + x.amount, 0);
-      return `<div data-sched="${id}" aria-hidden="${id !== "one"}">
-        <p class="label sched__name">${esc(opt ? opt.tab : id)}</p>
-        <ol class="steps"><span class="link" aria-hidden="true"></span>${s.map((x, i) => `<li><span class="dot">${i + 1}</span><span class="label when">${esc(x.when)}</span><span class="amt">${money(x.amount)}</span><span class="what">${t(x.what)}</span></li>`).join("")}</ol>
-        <p class="total"><span class="label">Total travel investment</span><b>${money(total)}</b></p>
-      </div>`;
-    };
-    const has = !!r.ctaUrl;
-    return `<div class="slide__body"><div class="wrap reserve">
-      <div>${eyebrow(r.eyebrow)}<h2 class="display" data-a>${esc(r.title)}</h2>${toggle("reserve")}</div>
-      <div>
-        <div class="sched" data-a>${Object.keys(r.schedules).map(sched).join("")}</div>
-        <p class="reserve__note" data-a>${t(r.note)}</p>
-        <div data-a><a class="cta${has ? "" : " is-placeholder"}" href="${has ? esc(r.ctaUrl) : "#reserve"}"${has ? ' target="_blank" rel="noopener"' : ""}><span>${esc(r.cta)}</span>${ICON.next}</a>
-        ${has ? "" : `<span class="cta__flag">${t("[CONFIRM booking or contact link in content.js]")}</span>`}</div>
-        ${r.signoff ? `<div class="signoff" data-a><span class="signoff__line">${esc(r.signoff)}</span><span class="logo">${logo(false)}</span><a class="ig" href="${esc(C.brand.instagramUrl)}" target="_blank" rel="noopener">${ICON.ig}<span>${esc(C.brand.instagram)}</span></a></div>` : ""}
+  /* ---- Client love: real screenshots only, placeholders until then ---- */
+  const loveCard = (slot, i) => {
+    const m = M[slot] || {};
+    if (m.src) return `<figure class="msg msg--img" data-a><img src="${esc(m.src)}" alt="${esc(m.alt || "A message from a client")}" loading="lazy" decoding="async"></figure>`;
+    const lines = [[72, 48, 86, 64], [84, 90, 40, 70], [60, 88, 76, 50], [88, 70, 58, 82], [52, 80, 36, 90]][i % 5];
+    return `<figure class="msg" data-a role="img" aria-label="Placeholder for client screenshot ${i + 1}">
+      <div class="msg__top" aria-hidden="true"><span class="msg__av"></span><span class="msg__name"></span></div>
+      <div class="msg__body" aria-hidden="true">
+        <span class="msg__b msg__b--time"><i></i></span>
+        ${lines.map((w, k) => `<span class="msg__b${k === lines.length - 1 && i % 2 ? " msg__b--me" : ""}" style="--w:${w}%"><i></i>${w > 60 ? "<i></i>" : ""}</span>`).join("")}
+      </div>
+      <figcaption>${t(`[Client screenshot ${i + 1}]`)}</figcaption>
+    </figure>`;
+  };
+  S.love = () => {
+    const l = C.love;
+    return `<div class="slide__body"><div class="wrap love">
+      <div class="love__head">${eyebrow(l.eyebrow)}<h2 class="display" data-a>${esc(l.title)}</h2><p class="lead" data-a>${t(l.intro)}</p></div>
+      <div class="love__wall">${l.slots.map(loveCard).join("")}</div>
+    </div></div>`;
+  };
+
+  /* ---- Closing: why us, then a soft sign-off ---- */
+  S.closing = () => {
+    const c = C.closing;
+    return `<div class="slide__body"><div class="wrap close">
+      <div class="close__lead">${eyebrow(c.eyebrow)}
+        <h2 class="close__title">${words(c.title)}</h2>
+        <p class="close__lake" data-a>${esc(c.lake)}</p>
+      </div>
+      <div class="close__copy">
+        ${c.paragraphs.map((p) => `<p class="body" data-a>${t(p)}</p>`).join("")}
+        <p class="close__two" data-a>${t(c.two)}</p>
+        <p class="close__last" data-a>${t(c.last)}</p>
+        <div class="close__sign" data-a><span class="close__sig">${esc(c.signature)}</span><span class="logo">${logo(true)}</span></div>
       </div>
     </div></div>`;
   };
@@ -1802,11 +1644,8 @@ window.WORLD_DOTS = {"step":2,"lat0":74,"lng0":-170,"cols":180,"rows":["000001e0
   const blurWords = (els, delay, stagger = .12) => gsap.fromTo(els, { opacity: 0, filter: "blur(14px)", y: 12 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 1.4, ease: "power2.out", stagger, delay, clearProps: "filter,transform" });
 
   hooks.cover = (s, g, d) => { if (g) blurWords($$(".cover__h .w", s), d + .1, .11); };
-  hooks.options = (s, g, d) => { if (g) g.fromTo($$(".hours .bar i", s), { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "expo.inOut", stagger: .12, delay: d + .5, clearProps: "transform" }); };
-  hooks.us = (s, g, d) => { if (g) blurWords($$(".quote .w", s), d + .1, .07); };
-  hooks.days = (s, g, d) => { if (g) g.fromTo($$(".dayc .phone", s), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.3, ease: "expo.out", stagger: .12, delay: d + .2, clearProps: "transform" }); };
-  hooks.reserve = (s, g, d) => { if (g) g.fromTo($$(".steps .link", s), { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "expo.inOut", delay: d + .6, clearProps: "transform" }); };
-  hooks.vendors = (s, g, d) => WorldMap.play(g, d);
+  hooks.closing = (s, g, d) => { if (g) blurWords($$(".close__title .w", s), d + .1, .1); };
+  hooks.plan = (s, g, d) => { fitPlan(); if (g) g.fromTo($$(".np__table tbody tr", s), { opacity: 0, x: -8 }, { opacity: 1, x: 0, duration: .6, ease: "power2.out", stagger: .045, delay: d + .5, clearProps: "transform" }); };
 
   /* ------------------------------------------------------------ video */
   const Media = (() => {
@@ -1847,123 +1686,26 @@ window.WORLD_DOTS = {"step":2,"lat0":74,"lng0":-170,"cols":180,"rows":["000001e0
   })();
 
   /* ------------------------------------------------------------ options */
-  let sel = "one";
+  // Option Two opens selected (content.js options.defaultOption).
   function setOption(id) {
-    sel = id;
-    const it = C.options.items.find((o) => o.id === id);
-    $$("[data-toggle]").forEach((tg) => { tg.dataset.sel = id; $$("button", tg).forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.opt === id))); });
-    $$("[data-panel]").forEach((p) => p.setAttribute("aria-hidden", String(p.dataset.panel !== id)));
-    $$("[data-sched]").forEach((p) => p.setAttribute("aria-hidden", String(p.dataset.sched !== id)));
-    const price = $("[data-price]");
-    if (price && it) {
-      const s = Number(it.price).toLocaleString("en-US");
-      const rolls = $$(".roll", price);
-      if (rolls.length === s.replace(/\D/g, "").length) {
-        [...s.replace(/\D/g, "")].forEach((d, k) => {
-          const strip = rolls[k].firstElementChild;
-          strip.style.transitionDelay = reduced ? "0s" : `${k * .05}s`;
-          strip.style.transform = `translateY(-${d}em)`;
-        });
-      } else price.innerHTML = rollHTML(it.price);
-      $("[data-price-sr]").textContent = money(it.price);
-    }
-    if (cur >= 0) Media.activate(cur);
+    $$("[data-offer]").forEach((c) => c.classList.toggle("is-selected", c.dataset.offer === id));
+    $$("[data-opt]").forEach((b) => b.setAttribute("aria-checked", String(b.dataset.opt === id)));
   }
   document.addEventListener("click", (e) => { const b = e.target.closest("[data-opt]"); if (b) setOption(b.dataset.opt); });
 
-  /* ------------------------------------------------------------ accordions */
-  $$(".acc button").forEach((b) => b.addEventListener("click", () => b.setAttribute("aria-expanded", String(b.getAttribute("aria-expanded") !== "true"))));
-
-  /* ------------------------------------------------------------ vendor map */
-  const WorldMap = (() => {
-    const W = window.WORLD_DOTS, v = C.vendors, host = $(".map__svg");
-    if (!W || !host) return { play() {} };
-    const CELL = 10;
-    const X = (lng) => ((lng - W.lng0) / W.step) * CELL;
-    const Y = (lat) => ((W.lat0 - lat) / W.step) * CELL + CELL / 2;
-    let d = "";
-    W.rows.forEach((hex, r) => {
-      const bits = [...hex].map((h) => parseInt(h, 16).toString(2).padStart(4, "0")).join("");
-      for (let c = 0; c < W.cols; c++) if (bits[c] === "1") d += `M${c * CELL + CELL / 2} ${r * CELL + CELL / 2}h0`;
+  /* ------------------------------------------------------------ sample content plan */
+  // Drawn at a fixed design width, then scaled to fit its column like a screenshot.
+  function fitPlan() {
+    $$(".np__fit").forEach((fit) => {
+      const win = fit.firstElementChild;
+      const k = Math.min(1, fit.clientWidth / win.offsetWidth);
+      win.style.transform = `scale(${k})`;
+      fit.style.height = `${win.offsetHeight * k}px`;
     });
-    const dest = v.destination;
-    const pins = [
-      ...v.route.map((p) => ({ ...p, kind: "route" })),
-      ...v.list.filter((p) => p.lat != null && p.lng != null).map((p) => ({ ...p, kind: "vendor" })),
-    ];
-    const DX = X(dest.lng), DY = Y(dest.lat);
-    const arc = (x1, y1, x2, y2) => {
-      const mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dist = Math.hypot(x2 - x1, y2 - y1);
-      return `M${x1.toFixed(1)} ${y1.toFixed(1)}Q${mx.toFixed(1)} ${(my - dist * .32).toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
-    };
-    // The couple's route runs pin to pin (Minnesota, DC, the lake); vendors fly straight in.
-    const routePts = [...v.route, dest];
-    const routeArcs = routePts.slice(1).map((p, k) => arc(X(routePts[k].lng), Y(routePts[k].lat), X(p.lng), Y(p.lat)));
-    const vendorArcs = pins.filter((p) => p.kind === "vendor").map((p) => arc(X(p.lng), Y(p.lat), DX, DY));
-    const allX = [...pins.map((p) => X(p.lng)), DX], allY = [...pins.map((p) => Y(p.lat)), DY];
-
-    // Label side: set `label: "left" | "right" | "below" | "above"` on a pin in content.js, or leave it to the layout.
-    const pinSVG = (p, cls) => {
-      const x = X(p.lng), y = Y(p.lat);
-      const side = p.label || (cls === "home" ? "right" : x < DX - 40 ? "left" : "right");
-      return `<g class="pin ${cls}" data-side="${side}" transform="translate(${x.toFixed(1)} ${y.toFixed(1)})">
-        <circle class="ring" r="5"/><circle class="dot" r="5"/><text class="pin__t">${esc(p.name)}</text></g>`;
-    };
-    host.innerHTML = `<svg role="img" aria-label="World map. Pins for ${esc(pins.map((p) => p.name).join(", "))}, each connected to Lake Como.">
-      <path class="dots" d="${d}"/>
-      ${routeArcs.map((a) => `<path class="arc route" d="${a}"/>`).join("")}
-      ${vendorArcs.map((a) => `<path class="arc vendor" d="${a}" pathLength="1"/>`).join("")}
-      ${pins.map((p) => pinSVG(p, p.kind)).join("")}
-      ${pinSVG(dest, "home")}
-    </svg>`;
-    const svg = $("svg", host);
-
-    // Frame the pins with room for the continents around them.
-    function frame() {
-      const wide = host.clientWidth >= 560;
-      const px = wide ? 190 : 110, x0 = Math.max(0, Math.min(...allX) - px), x1 = Math.min(W.cols * CELL, Math.max(...allX) + px * (wide ? 1 : 1.9));
-      const w = x1 - x0, h = w * (wide ? .56 : .72), cy = (Math.min(...allY) + Math.max(...allY)) / 2;
-      const vb = [x0, Math.max(0, cy - h * .48), w, h];
-      svg.setAttribute("viewBox", vb.map((n) => n.toFixed(0)).join(" "));
-      const k = vb[2] / Math.max(host.clientWidth, 1); // svg units per css px
-      svg.querySelector(".dots").style.strokeWidth = Math.min(CELL * .5, 3 * k).toFixed(2);
-      $$(".pin", svg).forEach((g) => {
-        const home = g.classList.contains("home"), r = (home ? 5 : 3.6) * k;
-        g.querySelector(".dot").setAttribute("r", r);
-        g.querySelector(".ring").setAttribute("r", r);
-        g.querySelector(".ring").style.strokeWidth = k;
-        const tx = g.querySelector("text"), fs = (home ? 15 : 9) * k, off = (home ? 10 : 8) * k;
-        tx.style.fontSize = fs + "px";
-        const side = g.dataset.side;
-        tx.setAttribute("text-anchor", side === "left" ? "end" : side === "right" ? "start" : "middle");
-        tx.setAttribute("x", side === "left" ? -off : side === "right" ? off : 0);
-        tx.setAttribute("y", side === "below" ? off + fs * .8 : side === "above" ? -off : fs * .34);
-      });
-      $$(".arc", svg).forEach((a) => (a.style.strokeWidth = (a.classList.contains("route") ? 1.3 : 1.1) * k));
-      $$(".arc.route", svg).forEach((a) => (a.style.strokeDasharray = `${2 * k} ${6 * k}`));
-    }
-    frame();
-    addEventListener("resize", frame);
-
-    return {
-      play(g, d) {
-        frame();
-        if (!g) return;
-        const dots = svg.querySelector(".dots");
-        const routeArcs = $$(".arc.route", svg), vArcs = $$(".arc.vendor", svg);
-        const routePins = $$(".pin.route", svg), vPins = $$(".pin.vendor", svg), home = $(".pin.home", svg);
-        const tl = g.timeline({ delay: d });
-        tl.fromTo(dots, { opacity: 0 }, { opacity: 1, duration: 1.4, ease: "power2.out" }, 0)
-          .fromTo(home, { opacity: 0, scale: 0, transformOrigin: "center" }, { opacity: 1, scale: 1, duration: .8, ease: "back.out(2)" }, .5)
-          .fromTo(routePins, { opacity: 0 }, { opacity: 1, duration: .6, stagger: .35 }, .9)
-          .fromTo(routeArcs, { opacity: 0, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: 1.4, stagger: .5, ease: "power2.inOut", clearProps: "clipPath" }, 1.1);
-        vPins.forEach((p, k) => {
-          tl.fromTo(p, { opacity: 0 }, { opacity: 1, duration: .6, ease: "power2.out" }, 2 + k * .55);
-          tl.fromTo(vArcs[k], { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" }, 2.1 + k * .55);
-        });
-      },
-    };
-  })();
+  }
+  addEventListener("resize", fitPlan);
+  addEventListener("beforeprint", fitPlan);
+  document.fonts && document.fonts.ready.then(fitPlan);
 
   /* ------------------------------------------------------------ painted lake (hero fallback) */
   // A slow golden-hour lake: layered ridges, a low sun and glints on the water.
@@ -2116,7 +1858,8 @@ window.WORLD_DOTS = {"step":2,"lat0":74,"lng0":-170,"cols":180,"rows":["000001e0
   }
 
   /* ------------------------------------------------------------ boot */
-  setOption("one");
+  setOption(C.options.defaultOption || "two");
+  fitPlan();
   const startId = (location.hash || "").slice(1);
   const start = Math.max(0, ids.indexOf(startId));
   if (start === 0) {

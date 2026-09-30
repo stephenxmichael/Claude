@@ -30,6 +30,7 @@
     ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor"/></svg>',
     stay: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><path d="M4 24V9M4 18h24v6M28 18v-3a4 4 0 0 0-4-4H14v7"/><circle cx="9" cy="14" r="2.5"/></svg>',
     car: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><path d="M5 20v-4l3-6h16l3 6v4z"/><path d="M5 20v3h3v-3M24 20v3h3v-3M5 16h22"/><circle cx="10" cy="18" r=".8" fill="currentColor"/><circle cx="22" cy="18" r=".8" fill="currentColor"/></svg>',
+    route: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><circle cx="8" cy="24" r="3"/><circle cx="24" cy="8" r="3"/><path d="M11 24h9a4 4 0 0 0 0-8h-8a4 4 0 0 1 0-8h9"/></svg>',
     meal: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><path d="M10 4h8l-.6 6a3.4 3.4 0 0 1-6.8 0z"/><path d="M14 13.5V26M10 26h8"/><path d="M22 4v22M22 4c2.5 1.5 3 5 3 8h-3"/></svg>',
   };
 
@@ -72,8 +73,8 @@
   const S = {};
   const chapterOf = C.labels || {};
   const toneOf = {
-    cover: "film", us: "plum", days: "ivory", vision: "blush-soft", vendors: "plum-deep",
-    why: "ivory-deep", team: "ivory", stephen: "plum-deep", options: "blush-soft", logistics: "ivory", reserve: "ivory-deep",
+    cover: "film", weekend: "ivory", plan: "blush-soft", kea: "ivory", stephen: "plum-deep",
+    options: "ivory-deep", logistics: "ivory", love: "blush-soft", closing: "plum-deep",
   };
 
   S.cover = () => {
@@ -104,48 +105,87 @@
       </div></div>`;
   };
 
-  S.vision = () => {
-    const v = C.vision;
-    return `<div class="slide__body"><div class="wrap">
-      <div class="vision__head"><div>${eyebrow(v.eyebrow)}<h2 class="display" data-a>${esc(v.title)}</h2></div><p class="lead" data-a>${esc(v.intro)}</p></div>
-      <ol class="pillars">${v.pillars.map((p, i) => {
-        const to = p.id === "vendors" && order.includes("vendors") ? "vendors" : null;
-        const inner = `${p.image ? media(p.image) : ""}<span class="n">${pad(i + 1)}</span><span class="t">${esc(p.title)}</span><span class="l">${t(p.line)}</span>`;
-        return `<li data-a>${to ? `<a href="#${to}">${inner}</a>` : inner}</li>`;
-      }).join("")}</ol>
-    </div></div>`;
-  };
+  const statRow = (stats = [], cls = "") => stats.length ? `<ul class="creds ${cls}" data-a>${stats.map((x) => `<li><b>${esc(x.value)}</b><span class="label">${esc(x.label)}</span></li>`).join("")}</ul>` : "";
 
-  S.vendors = () => {
-    const v = C.vendors;
-    return `<div class="slide__body"><div class="wrap vendors">
-      <div>${eyebrow(v.eyebrow)}<h2 class="display" data-a>${esc(v.title)}</h2><p class="body" data-a>${t(v.body)}</p>
-        <ul class="vlist" data-a>${v.list.map((x) => `<li class="${x.lat == null ? "unpinned" : ""}"><i aria-hidden="true"></i><b>${esc(x.name)}</b><span>${esc(x.role)} · ${t(x.home)}</span></li>`).join("")}</ul>
+  /* ---- The weekend: what you actually get ---- */
+  S.weekend = () => {
+    const w = C.weekend;
+    return `<div class="slide__body"><div class="wrap wk">
+      <div class="wk__head">
+        <div>${eyebrow(w.eyebrow)}<h2 class="display" data-a>${esc(w.title)}</h2></div>
+        <div><p class="lead" data-a>${t(w.intro)}</p><p class="where" data-a>${ICON.pin}<span>${esc(w.location)}</span></p></div>
       </div>
-      <div class="map" data-a><div class="map__svg"></div><p class="label map__note">${esc(v.mapNote)}</p></div>
+      <ol class="wk__events">${w.events.map((e) => `<li class="evt${e.featured ? " evt--main" : ""}" data-a>
+        <p class="label evt__day">${esc(e.day)}</p>
+        <h3 class="evt__it">${esc(e.italian)}</h3>
+        <p class="evt__title">${esc(e.title)}</p>
+        <p class="evt__hours">${esc(e.hours)}</p>
+        <ul class="evt__list">${e.items.map((x) => `<li>${t(x)}</li>`).join("")}</ul>
+      </li>`).join("")}</ol>
+      <ul class="wk__promises">${w.promises.map((p) => `<li data-a><b>${esc(p.value)}</b><span class="label">${esc(p.label)}</span><p>${t(p.note)}</p></li>`).join("")}</ul>
     </div></div>`;
   };
 
-  S.team = () => {
-    const k = C.team.kea;
+  /* ---- Content plan: sample Notion-style plan + what we'll capture ---- */
+  const chip = (text, kind) => `<span class="np__chip np__chip--${kind}">${esc(text)}</span>`;
+  const chipKind = {
+    Kea: "kea", Stephen: "stephen", Both: "both",
+    High: "high", Medium: "medium", Planned: "planned", Draft: "draft", Idea: "idea",
+    "Edited video": "video", "Story-ready": "story", Raw: "raw",
+  };
+  function planSample(p) {
+    const s = p.sample;
+    const cell = (v, col) => (["Creator", "Deliverable", "Priority", "Status"].includes(col) ? chip(v, chipKind[v] || "idea") : esc(v));
+    return `<div class="np__fit" role="img" aria-label="A sample content plan: moments across the weekend, each with a creator, focus, concept, deliverable, priority and status.">
+      <div class="np__win" aria-hidden="true">
+        <div class="np__bar"><i></i><i></i><i></i><span class="np__crumbs">${s.path.map(esc).join(' <em>/</em> ')}</span><span class="np__share">Share</span></div>
+        <div class="np__page">
+          <div class="np__icon"><svg viewBox="0 0 40 40"><rect width="40" height="40" rx="8" fill="#4f1a3e"/><path d="M22 8c-1 7-3 11-6 14M21 23c-2 3-6 6-9 9M21 23c1 3 3 6 6 9" fill="none" stroke="#dcc393" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+          <h4 class="np__title">${esc(s.title)}</h4>
+          <dl class="np__props">${s.props.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
+          <div class="np__views">${s.views.map((v, i) => `<span class="${i ? "" : "on"}">${esc(v)}</span>`).join("")}<span class="np__new">New</span></div>
+          <table class="np__table"><thead><tr>${s.columns.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead>
+            <tbody>${s.rows.map((r) => `<tr>${r.map((v, i) => `<td>${i === 0 ? `<b>${esc(v)}</b>` : cell(v, s.columns[i])}</td>`).join("")}</tr>`).join("")}</tbody></table>
+        </div>
+      </div>
+    </div>`;
+  }
+  S.plan = () => {
+    const p = C.plan, shot = M["content-plan"] || {};
+    const visual = shot.src
+      ? `<figure class="np__shot"><img src="${esc(shot.src)}" alt="${esc(shot.alt || "")}" loading="lazy" decoding="async"></figure>`
+      : `${planSample(p)}<p class="np__note">${t(p.sampleNote)}</p>`;
+    return `<div class="slide__body"><div class="wrap plan">
+      <div class="plan__visual" data-a>${visual}</div>
+      <div class="plan__copy">
+        ${eyebrow(p.eyebrow)}<h2 class="display" data-a>${esc(p.title)}</h2>
+        <p class="lead" data-a>${t(p.lead)}</p>
+        <p class="label plan__label" data-a>${esc(p.captureLabel)}</p>
+        <ul class="plan__list" data-a>${p.capture.map((x) => `<li>${t(x)}</li>`).join("")}</ul>
+      </div>
+    </div></div>`;
+  };
+
+  /* ---- Meet Kea: founder page, the heaviest of the two ---- */
+  S.kea = () => {
+    const k = C.kea;
     return `<div class="slide__body"><div class="wrap">
-      <div class="team">
-        <div class="phone-col">${media(k.video, { phone: true })}</div>
-        <div>${eyebrow(C.team.eyebrow)}
+      <div class="team team--lead">
+        <div class="phone-col">${media(k.photo, { phone: true })}</div>
+        <div>${eyebrow(k.eyebrow)}
           <h2 class="team__name" data-a>${esc(k.name)}</h2>
           <p class="label team__role" data-a>${esc(k.role)}</p>
-          ${k.tagline ? `<p class="team__tag" data-a>${esc(k.tagline)}</p>` : ""}
-          <p class="body" data-a>${t(k.bio)}</p>
-          ${statRow(k.stats)}
+          <p class="team__tag" data-a>${esc(k.philosophy)}</p>
+          ${k.bio.map((p) => `<p class="body" data-a>${t(p)}</p>`).join("")}
+          ${statRow(k.stats, "creds--4")}
           <div data-a>${ig(k.instagram, k.instagramUrl)}</div>
-          ${order.includes("stephen") ? `<p class="team__next" data-a><a href="#stephen">${t(C.team.optionTwoNote)}</a></p>` : ""}
+          ${order.includes("stephen") && k.next ? `<p class="team__next" data-a><a href="#stephen">${t(k.next)}</a></p>` : ""}
         </div>
       </div>
     </div></div>`;
   };
 
-  const statRow = (stats = []) => stats.length ? `<ul class="creds" data-a>${stats.map((x) => `<li><b>${esc(x.value)}</b><span class="label">${esc(x.label)}</span></li>`).join("")}</ul>` : "";
-
+  /* ---- Meet Stephen: second creator, sells Option Two ---- */
   S.stephen = () => {
     const p = C.stephen;
     return `<div class="slide__body"><div class="wrap">
@@ -161,7 +201,7 @@
           <div data-a>${ig(p.instagram, p.instagramUrl)}</div>
         </div>
         <div class="second__side">
-          <div class="phone-col">${media(p.video, { phone: true })}</div>
+          <div class="phone-col">${media(p.photo, { phone: true })}</div>
           <div class="two" data-a><p class="label">${esc(p.twoTitle)}</p>
             <ol>${p.two.map((x, i) => `<li><span class="two__n">${i + 1}</span><div><b>${esc(x.title)}</b><p>${t(x.line)}</p></div></li>`).join("")}</ol>
           </div>
@@ -170,113 +210,73 @@
     </div></div>`;
   };
 
-  const rollHTML = (n) => {
-    const s = Number(n).toLocaleString("en-US");
-    return `<span class="cur">$</span>` + [...s].map((ch) => /\d/.test(ch)
-      ? `<span class="roll" data-d="${ch}"><span style="transform:translateY(-${ch}em)">${"0123456789".split("").map((d) => `<span>${d}</span>`).join("")}</span></span>`
-      : `<span>${ch}</span>`).join("");
-  };
-  const toggle = (name) => `<div class="toggle" role="group" aria-label="Coverage option" data-toggle="${name}" data-sel="one" data-a>
-      <span class="toggle__pill" aria-hidden="true"></span>
-      ${C.options.items.map((o, i) => `<button type="button" data-opt="${o.id}" aria-pressed="${i === 0}">${esc(o.tab)}</button>`).join("")}
-    </div>`;
-
+  /* ---- Choose your coverage: Option Two recommended and selected ---- */
   S.options = () => {
-    const o = C.options, k = C.team.kea;
-    const st = { ...C.stephen, role: "Second shooter · Cinematic filmmaker", bio: "12+ years in video production. 40K+ followers built on cinematic content" };
-    const mate = (p, tag, reel) => `<div class="mate">
-        <div class="phone">${media(reel, { mask: false })}</div>
-        <div>${tag ? `<span class="mate__tag">${esc(tag)}</span>` : ""}<p class="mate__name">${esc(p.name)}</p><p>${t(p.role)}${p.bio && tag ? `. ${t(p.bio)}` : ""}</p>${ig(p.instagram, p.instagramUrl)}</div>
-      </div>`;
-    const max = Math.max(...o.hours.map((h) => h.hours));
+    const o = C.options;
     return `<div class="slide__body"><div class="wrap opts">
-      <div>
-        ${eyebrow(o.eyebrow)}<h2 class="display" data-a>${esc(o.title)}</h2>
-        ${toggle("options")}
-        <div class="price" data-a><div class="price__num" aria-live="polite" aria-atomic="true"><span class="sr-only" data-price-sr>${money(o.items[0].price)}</span><span aria-hidden="true" data-price>${rollHTML(o.items[0].price)}</span></div><span class="label">${esc(o.priceLabel)}</span></div>
-        <p class="opts__note" data-a>${esc(o.note)}</p>
+      <div class="opts__head">${eyebrow(o.eyebrow)}<h2 class="display" data-a>${esc(o.title)}</h2></div>
+      <div class="offers" role="radiogroup" aria-label="Coverage options">
+        ${o.items.map((it) => `<article class="offer offer--${it.id}${it.badge ? " offer--rec" : ""}" data-offer="${it.id}" data-a>
+          ${it.badge ? `<p class="offer__badge">${esc(it.badge)}</p>` : ""}
+          <p class="label offer__tab">${esc(it.tab)} · <span>${esc(it.who)}</span></p>
+          <h3 class="offer__title">${esc(it.title)}</h3>
+          <p class="offer__price tabular">${money(it.price)}<span class="label">${esc(o.priceLabel)}</span></p>
+          <p class="offer__line">${t(it.line)}</p>
+          <ul class="offer__points">${it.points.map((x) => `<li>${t(x)}</li>`).join("")}</ul>
+          ${it.closer ? `<p class="offer__closer">${t(it.closer)}</p>` : ""}
+          <button class="offer__pick" type="button" role="radio" aria-checked="false" data-opt="${it.id}"><span class="offer__dot" aria-hidden="true"></span>${esc(it.select)}</button>
+        </article>`).join("")}
       </div>
-      <div>
-        <div class="panels" data-a>
-          ${o.items.map((it, i) => `<div class="panel" data-panel="${it.id}" aria-hidden="${i !== 0}">
-            <p class="label panel__tab">${esc(it.tab)} · <span class="panel__price">${money(it.price)}</span></p>
-            <h3 class="panel__title">${esc(it.title)}</h3><p class="panel__line">${t(it.line)}</p>
-            ${it.id === "two" ? mate(st, "Joins in Option Two", st.video) : mate(k, "", k.video)}
-          </div>`).join("")}
-        </div>
-        <div class="hours" data-a>
-          <h3>${esc(o.hoursTitle)}</h3><span class="label">${esc(o.hoursLabel)}</span>
-          <ul>${o.hours.map((h) => `<li><span class="ev">${esc(h.event)}</span><span class="hr">Up to ${h.hours} hours</span><span class="bar"><i style="--w:${(h.hours / max) * 100}%"></i></span></li>`).join("")}</ul>
-          <div class="scale" aria-hidden="true"><span>0</span><span>${max / 2} hrs</span><span>${max} hrs</span></div>
-        </div>
-      </div>
+      <p class="opts__foot" data-a>${t(o.footnote)}</p>
     </div></div>`;
   };
 
-  const accordion = (items, key) => items.map((it, i) => `<div class="acc" data-a><h3><button type="button" aria-expanded="false" aria-controls="${key}-${i}" id="${key}-b-${i}">${esc(it.title)}<span class="pm" aria-hidden="true"></span></button></h3>
-        <div class="acc__panel" id="${key}-${i}" role="region" aria-labelledby="${key}-b-${i}"><div><p>${t(it.body)}</p></div></div></div>`).join("");
-
-  S.us = () => {
-    const u = C.us;
-    const html = words(u.quote).replace(/class="w">(Sam|JT)</g, 'class="w hl">$1<');
-    return `<div class="slide__body"><div class="wrap us">
-      ${eyebrow(u.eyebrow)}
-      <figure class="quote" style="margin:0"><blockquote><p>${html}</p></blockquote><footer data-a>${esc(u.attribution)}</footer></figure>
-      <ol class="beats">${u.beats.map((b) => `<li data-a><b>${esc(b.big)}</b><span class="label">${esc(b.label)}</span><p>${t(b.line)}</p></li>`).join("")}</ol>
-    </div></div>`;
-  };
-
-  S.days = () => {
-    const d = C.days;
-    return `<div class="slide__body"><div class="wrap days">
-      <div class="days__head">${eyebrow(d.eyebrow)}<h2 class="display" data-a>${esc(d.title)}</h2>
-        <p class="where" data-a>${ICON.pin}<span>${esc(d.location)}</span></p></div>
-      <ol class="days__list">${d.days.map((x) => `<li class="dayc">
-        <div class="dayc__phone">${media(x.video, { phone: true })}</div>
-        <div data-a><p class="label">${esc(x.date)}</p><h3 class="dayc__it">${esc(x.italian)}</h3><p class="dayc__title">${esc(x.title)}</p><p class="dayc__line">${t(x.line)}</p></div>
-      </li>`).join("")}</ol>
-    </div></div>`;
-  };
-
-  S.why = () => {
-    const y = C.why, d = C.why;
-    return `<div class="slide__body"><div class="wrap why">
-      <div>${eyebrow(y.eyebrow)}<h2 class="display" data-a>${esc(y.title)}</h2><p class="lead" data-a>${t(y.body)}</p>
-        <div class="stats">${d.stats.map((x) => `<div class="stat" data-a><div class="stat__v"><b>${esc(x.value)}</b><span>${esc(x.unit)}</span></div><span class="label">${esc(x.label)}</span><p>${t(x.note)}</p></div>`).join("")}</div>
-      </div>
-      <div class="dlist" data-a><h3>${esc(d.listTitle)}</h3><ul>${d.rows.map((r) => `<li><b>${t(r.item)}</b><span>${t(r.detail)}</span></li>`).join("")}</ul></div>
-    </div></div>`;
-  };
-
+  /* ---- Travel and logistics: what sits outside the package ---- */
   S.logistics = () => {
-    const l = C.logistics, icons = [ICON.stay, ICON.car, ICON.meal];
-    return `<div class="slide__body"><div class="wrap logistics">
-      <div class="logistics__head">${eyebrow(l.eyebrow)}<h2 class="display" data-a>${esc(l.title)}</h2></div>
-      <div class="logistics__needs">${l.columns.map((c, i) => `<section class="need" data-a><span class="col__icon">${icons[i] || ""}</span><div><h3>${esc(c.title)}</h3><p class="need__lead">${t(c.lead)}</p>${c.items.length ? `<ul>${c.items.map((x) => `<li>${t(x)}</li>`).join("")}</ul>` : ""}</div></section>`).join("")}</div>
-      <div class="logistics__terms"><p class="label" data-a>${esc(l.termsTitle)}</p>${accordion(l.terms, "terms")}</div>
+    const l = C.logistics;
+    return `<div class="slide__body"><div class="wrap lg">
+      <div class="lg__head">${eyebrow(l.eyebrow)}<h2 class="display" data-a>${esc(l.title)}</h2><p class="lead" data-a>${t(l.intro)}</p></div>
+      <ul class="lg__items">${l.items.map((x) => `<li data-a><span class="col__icon">${ICON[x.icon] || ""}</span><h3>${esc(x.title)}</h3><p>${t(x.line)}</p></li>`).join("")}</ul>
+      <div class="lg__easy" data-a><b>${esc(l.convenience.title)}</b><p>${t(l.convenience.line)}</p></div>
+      <p class="lg__after" data-a>${t(l.after)}</p>
     </div></div>`;
   };
 
-  S.reserve = () => {
-    const r = C.reserve;
-    const sched = (id) => {
-      const s = r.schedules[id], opt = C.options.items.find((o) => o.id === id);
-      const total = s.reduce((a, x) => a + x.amount, 0);
-      return `<div data-sched="${id}" aria-hidden="${id !== "one"}">
-        <p class="label sched__name">${esc(opt ? opt.tab : id)}</p>
-        <ol class="steps"><span class="link" aria-hidden="true"></span>${s.map((x, i) => `<li><span class="dot">${i + 1}</span><span class="label when">${esc(x.when)}</span><span class="amt">${money(x.amount)}</span><span class="what">${t(x.what)}</span></li>`).join("")}</ol>
-        <p class="total"><span class="label">Total travel investment</span><b>${money(total)}</b></p>
-      </div>`;
-    };
-    const has = !!r.ctaUrl;
-    return `<div class="slide__body"><div class="wrap reserve">
-      <div>${eyebrow(r.eyebrow)}<h2 class="display" data-a>${esc(r.title)}</h2>${toggle("reserve")}</div>
-      <div>
-        <div class="sched" data-a>${Object.keys(r.schedules).map(sched).join("")}</div>
-        <p class="reserve__note" data-a>${t(r.note)}</p>
-        <div data-a><a class="cta${has ? "" : " is-placeholder"}" href="${has ? esc(r.ctaUrl) : "#reserve"}"${has ? ' target="_blank" rel="noopener"' : ""}><span>${esc(r.cta)}</span>${ICON.next}</a>
-        ${has ? "" : `<span class="cta__flag">${t("[CONFIRM booking or contact link in content.js]")}</span>`}</div>
-        ${r.signoff ? `<div class="signoff" data-a><span class="signoff__line">${esc(r.signoff)}</span><span class="logo">${logo(false)}</span><a class="ig" href="${esc(C.brand.instagramUrl)}" target="_blank" rel="noopener">${ICON.ig}<span>${esc(C.brand.instagram)}</span></a></div>` : ""}
+  /* ---- Client love: real screenshots only, placeholders until then ---- */
+  const loveCard = (slot, i) => {
+    const m = M[slot] || {};
+    if (m.src) return `<figure class="msg msg--img" data-a><img src="${esc(m.src)}" alt="${esc(m.alt || "A message from a client")}" loading="lazy" decoding="async"></figure>`;
+    const lines = [[72, 48, 86, 64], [84, 90, 40, 70], [60, 88, 76, 50], [88, 70, 58, 82], [52, 80, 36, 90]][i % 5];
+    return `<figure class="msg" data-a role="img" aria-label="Placeholder for client screenshot ${i + 1}">
+      <div class="msg__top" aria-hidden="true"><span class="msg__av"></span><span class="msg__name"></span></div>
+      <div class="msg__body" aria-hidden="true">
+        <span class="msg__b msg__b--time"><i></i></span>
+        ${lines.map((w, k) => `<span class="msg__b${k === lines.length - 1 && i % 2 ? " msg__b--me" : ""}" style="--w:${w}%"><i></i>${w > 60 ? "<i></i>" : ""}</span>`).join("")}
+      </div>
+      <figcaption>${t(`[Client screenshot ${i + 1}]`)}</figcaption>
+    </figure>`;
+  };
+  S.love = () => {
+    const l = C.love;
+    return `<div class="slide__body"><div class="wrap love">
+      <div class="love__head">${eyebrow(l.eyebrow)}<h2 class="display" data-a>${esc(l.title)}</h2><p class="lead" data-a>${t(l.intro)}</p></div>
+      <div class="love__wall">${l.slots.map(loveCard).join("")}</div>
+    </div></div>`;
+  };
+
+  /* ---- Closing: why us, then a soft sign-off ---- */
+  S.closing = () => {
+    const c = C.closing;
+    return `<div class="slide__body"><div class="wrap close">
+      <div class="close__lead">${eyebrow(c.eyebrow)}
+        <h2 class="close__title">${words(c.title)}</h2>
+        <p class="close__lake" data-a>${esc(c.lake)}</p>
+      </div>
+      <div class="close__copy">
+        ${c.paragraphs.map((p) => `<p class="body" data-a>${t(p)}</p>`).join("")}
+        <p class="close__two" data-a>${t(c.two)}</p>
+        <p class="close__last" data-a>${t(c.last)}</p>
+        <div class="close__sign" data-a><span class="close__sig">${esc(c.signature)}</span><span class="logo">${logo(true)}</span></div>
       </div>
     </div></div>`;
   };
@@ -459,11 +459,8 @@
   const blurWords = (els, delay, stagger = .12) => gsap.fromTo(els, { opacity: 0, filter: "blur(14px)", y: 12 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 1.4, ease: "power2.out", stagger, delay, clearProps: "filter,transform" });
 
   hooks.cover = (s, g, d) => { if (g) blurWords($$(".cover__h .w", s), d + .1, .11); };
-  hooks.options = (s, g, d) => { if (g) g.fromTo($$(".hours .bar i", s), { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "expo.inOut", stagger: .12, delay: d + .5, clearProps: "transform" }); };
-  hooks.us = (s, g, d) => { if (g) blurWords($$(".quote .w", s), d + .1, .07); };
-  hooks.days = (s, g, d) => { if (g) g.fromTo($$(".dayc .phone", s), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.3, ease: "expo.out", stagger: .12, delay: d + .2, clearProps: "transform" }); };
-  hooks.reserve = (s, g, d) => { if (g) g.fromTo($$(".steps .link", s), { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "expo.inOut", delay: d + .6, clearProps: "transform" }); };
-  hooks.vendors = (s, g, d) => WorldMap.play(g, d);
+  hooks.closing = (s, g, d) => { if (g) blurWords($$(".close__title .w", s), d + .1, .1); };
+  hooks.plan = (s, g, d) => { fitPlan(); if (g) g.fromTo($$(".np__table tbody tr", s), { opacity: 0, x: -8 }, { opacity: 1, x: 0, duration: .6, ease: "power2.out", stagger: .045, delay: d + .5, clearProps: "transform" }); };
 
   /* ------------------------------------------------------------ video */
   const Media = (() => {
@@ -504,123 +501,26 @@
   })();
 
   /* ------------------------------------------------------------ options */
-  let sel = "one";
+  // Option Two opens selected (content.js options.defaultOption).
   function setOption(id) {
-    sel = id;
-    const it = C.options.items.find((o) => o.id === id);
-    $$("[data-toggle]").forEach((tg) => { tg.dataset.sel = id; $$("button", tg).forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.opt === id))); });
-    $$("[data-panel]").forEach((p) => p.setAttribute("aria-hidden", String(p.dataset.panel !== id)));
-    $$("[data-sched]").forEach((p) => p.setAttribute("aria-hidden", String(p.dataset.sched !== id)));
-    const price = $("[data-price]");
-    if (price && it) {
-      const s = Number(it.price).toLocaleString("en-US");
-      const rolls = $$(".roll", price);
-      if (rolls.length === s.replace(/\D/g, "").length) {
-        [...s.replace(/\D/g, "")].forEach((d, k) => {
-          const strip = rolls[k].firstElementChild;
-          strip.style.transitionDelay = reduced ? "0s" : `${k * .05}s`;
-          strip.style.transform = `translateY(-${d}em)`;
-        });
-      } else price.innerHTML = rollHTML(it.price);
-      $("[data-price-sr]").textContent = money(it.price);
-    }
-    if (cur >= 0) Media.activate(cur);
+    $$("[data-offer]").forEach((c) => c.classList.toggle("is-selected", c.dataset.offer === id));
+    $$("[data-opt]").forEach((b) => b.setAttribute("aria-checked", String(b.dataset.opt === id)));
   }
   document.addEventListener("click", (e) => { const b = e.target.closest("[data-opt]"); if (b) setOption(b.dataset.opt); });
 
-  /* ------------------------------------------------------------ accordions */
-  $$(".acc button").forEach((b) => b.addEventListener("click", () => b.setAttribute("aria-expanded", String(b.getAttribute("aria-expanded") !== "true"))));
-
-  /* ------------------------------------------------------------ vendor map */
-  const WorldMap = (() => {
-    const W = window.WORLD_DOTS, v = C.vendors, host = $(".map__svg");
-    if (!W || !host) return { play() {} };
-    const CELL = 10;
-    const X = (lng) => ((lng - W.lng0) / W.step) * CELL;
-    const Y = (lat) => ((W.lat0 - lat) / W.step) * CELL + CELL / 2;
-    let d = "";
-    W.rows.forEach((hex, r) => {
-      const bits = [...hex].map((h) => parseInt(h, 16).toString(2).padStart(4, "0")).join("");
-      for (let c = 0; c < W.cols; c++) if (bits[c] === "1") d += `M${c * CELL + CELL / 2} ${r * CELL + CELL / 2}h0`;
+  /* ------------------------------------------------------------ sample content plan */
+  // Drawn at a fixed design width, then scaled to fit its column like a screenshot.
+  function fitPlan() {
+    $$(".np__fit").forEach((fit) => {
+      const win = fit.firstElementChild;
+      const k = Math.min(1, fit.clientWidth / win.offsetWidth);
+      win.style.transform = `scale(${k})`;
+      fit.style.height = `${win.offsetHeight * k}px`;
     });
-    const dest = v.destination;
-    const pins = [
-      ...v.route.map((p) => ({ ...p, kind: "route" })),
-      ...v.list.filter((p) => p.lat != null && p.lng != null).map((p) => ({ ...p, kind: "vendor" })),
-    ];
-    const DX = X(dest.lng), DY = Y(dest.lat);
-    const arc = (x1, y1, x2, y2) => {
-      const mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dist = Math.hypot(x2 - x1, y2 - y1);
-      return `M${x1.toFixed(1)} ${y1.toFixed(1)}Q${mx.toFixed(1)} ${(my - dist * .32).toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
-    };
-    // The couple's route runs pin to pin (Minnesota, DC, the lake); vendors fly straight in.
-    const routePts = [...v.route, dest];
-    const routeArcs = routePts.slice(1).map((p, k) => arc(X(routePts[k].lng), Y(routePts[k].lat), X(p.lng), Y(p.lat)));
-    const vendorArcs = pins.filter((p) => p.kind === "vendor").map((p) => arc(X(p.lng), Y(p.lat), DX, DY));
-    const allX = [...pins.map((p) => X(p.lng)), DX], allY = [...pins.map((p) => Y(p.lat)), DY];
-
-    // Label side: set `label: "left" | "right" | "below" | "above"` on a pin in content.js, or leave it to the layout.
-    const pinSVG = (p, cls) => {
-      const x = X(p.lng), y = Y(p.lat);
-      const side = p.label || (cls === "home" ? "right" : x < DX - 40 ? "left" : "right");
-      return `<g class="pin ${cls}" data-side="${side}" transform="translate(${x.toFixed(1)} ${y.toFixed(1)})">
-        <circle class="ring" r="5"/><circle class="dot" r="5"/><text class="pin__t">${esc(p.name)}</text></g>`;
-    };
-    host.innerHTML = `<svg role="img" aria-label="World map. Pins for ${esc(pins.map((p) => p.name).join(", "))}, each connected to Lake Como.">
-      <path class="dots" d="${d}"/>
-      ${routeArcs.map((a) => `<path class="arc route" d="${a}"/>`).join("")}
-      ${vendorArcs.map((a) => `<path class="arc vendor" d="${a}" pathLength="1"/>`).join("")}
-      ${pins.map((p) => pinSVG(p, p.kind)).join("")}
-      ${pinSVG(dest, "home")}
-    </svg>`;
-    const svg = $("svg", host);
-
-    // Frame the pins with room for the continents around them.
-    function frame() {
-      const wide = host.clientWidth >= 560;
-      const px = wide ? 190 : 110, x0 = Math.max(0, Math.min(...allX) - px), x1 = Math.min(W.cols * CELL, Math.max(...allX) + px * (wide ? 1 : 1.9));
-      const w = x1 - x0, h = w * (wide ? .56 : .72), cy = (Math.min(...allY) + Math.max(...allY)) / 2;
-      const vb = [x0, Math.max(0, cy - h * .48), w, h];
-      svg.setAttribute("viewBox", vb.map((n) => n.toFixed(0)).join(" "));
-      const k = vb[2] / Math.max(host.clientWidth, 1); // svg units per css px
-      svg.querySelector(".dots").style.strokeWidth = Math.min(CELL * .5, 3 * k).toFixed(2);
-      $$(".pin", svg).forEach((g) => {
-        const home = g.classList.contains("home"), r = (home ? 5 : 3.6) * k;
-        g.querySelector(".dot").setAttribute("r", r);
-        g.querySelector(".ring").setAttribute("r", r);
-        g.querySelector(".ring").style.strokeWidth = k;
-        const tx = g.querySelector("text"), fs = (home ? 15 : 9) * k, off = (home ? 10 : 8) * k;
-        tx.style.fontSize = fs + "px";
-        const side = g.dataset.side;
-        tx.setAttribute("text-anchor", side === "left" ? "end" : side === "right" ? "start" : "middle");
-        tx.setAttribute("x", side === "left" ? -off : side === "right" ? off : 0);
-        tx.setAttribute("y", side === "below" ? off + fs * .8 : side === "above" ? -off : fs * .34);
-      });
-      $$(".arc", svg).forEach((a) => (a.style.strokeWidth = (a.classList.contains("route") ? 1.3 : 1.1) * k));
-      $$(".arc.route", svg).forEach((a) => (a.style.strokeDasharray = `${2 * k} ${6 * k}`));
-    }
-    frame();
-    addEventListener("resize", frame);
-
-    return {
-      play(g, d) {
-        frame();
-        if (!g) return;
-        const dots = svg.querySelector(".dots");
-        const routeArcs = $$(".arc.route", svg), vArcs = $$(".arc.vendor", svg);
-        const routePins = $$(".pin.route", svg), vPins = $$(".pin.vendor", svg), home = $(".pin.home", svg);
-        const tl = g.timeline({ delay: d });
-        tl.fromTo(dots, { opacity: 0 }, { opacity: 1, duration: 1.4, ease: "power2.out" }, 0)
-          .fromTo(home, { opacity: 0, scale: 0, transformOrigin: "center" }, { opacity: 1, scale: 1, duration: .8, ease: "back.out(2)" }, .5)
-          .fromTo(routePins, { opacity: 0 }, { opacity: 1, duration: .6, stagger: .35 }, .9)
-          .fromTo(routeArcs, { opacity: 0, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: 1.4, stagger: .5, ease: "power2.inOut", clearProps: "clipPath" }, 1.1);
-        vPins.forEach((p, k) => {
-          tl.fromTo(p, { opacity: 0 }, { opacity: 1, duration: .6, ease: "power2.out" }, 2 + k * .55);
-          tl.fromTo(vArcs[k], { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" }, 2.1 + k * .55);
-        });
-      },
-    };
-  })();
+  }
+  addEventListener("resize", fitPlan);
+  addEventListener("beforeprint", fitPlan);
+  document.fonts && document.fonts.ready.then(fitPlan);
 
   /* ------------------------------------------------------------ painted lake (hero fallback) */
   // A slow golden-hour lake: layered ridges, a low sun and glints on the water.
@@ -773,7 +673,8 @@
   }
 
   /* ------------------------------------------------------------ boot */
-  setOption("one");
+  setOption(C.options.defaultOption || "two");
+  fitPlan();
   const startId = (location.hash || "").slice(1);
   const start = Math.max(0, ids.indexOf(startId));
   if (start === 0) {

@@ -31,30 +31,10 @@ html, body { height: auto !important; overflow: visible !important; background: 
 .folio__nav { display: flex; gap: 1.6rem; align-items: center; }
 .folio__nav a { padding: 4px 0; border-bottom: 1px solid currentColor; }
 .cover__begin { text-decoration: none; }
-.s-cover .folio, .s-closing .folio { border-color: transparent; }
+.s-cover .folio { border-color: transparent; }
 
-/* Coverage options side by side, both prices */
-.s-options .toggle, .s-reserve .toggle, .s-options .price { display: none !important; }
-.s-options .panels { grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.6rem; }
-.s-options .panel { grid-area: auto !important; opacity: 1 !important; filter: none !important; transform: none !important; }
-.s-options .panel__price { font: 500 2.6rem/1 var(--serif); color: var(--plum); letter-spacing: -.02em; display: block; margin-top: .6rem; text-transform: none; }
-.s-options .panel__title { margin-top: .8rem !important; font-size: 1.4rem; }
-.s-options .panel__line { font-size: .86rem; }
-.s-options .mate { grid-template-columns: 64px 1fr; padding: .7rem; gap: .9rem; }
-.s-options .mate p { font-size: .76rem; }
-.s-options .display { font-size: 3.2rem; }
+/* Coverage: both offers are already side by side */
+.offer__pick { display: none !important; }
 
-.s-reserve .sched { grid-template-columns: 1fr 1fr; gap: 2.4rem; }
-.s-reserve .sched > div { grid-area: auto !important; opacity: 1 !important; filter: none !important; }
-.s-reserve .steps .amt { font-size: 2.2rem; }
-.sched__name { color: var(--plum) !important; margin-bottom: 1rem; }
-
-.acc__panel { grid-template-rows: 1fr !important; }
-.acc .pm { display: none; }
-.acc button { padding-block: .7rem .2rem; }
-.acc__panel p { padding-bottom: .8rem; font-size: .9rem; }
-
-.map .pin circle.ring { display: none; }
 .stamp svg { animation: none !important; }
 .m__ph::before { display: none; }
-.panel__tab, .sched__name { display: block !important; }

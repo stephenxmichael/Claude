@@ -31,7 +31,7 @@ html[data-type="couture"] .display,
 html[data-type="couture"] .cover__h .roman { letter-spacing: -.005em; line-height: 1.04; }
 html[data-type="couture"] .cover__h .italic,
 html[data-type="couture"] .quote blockquote p,
-html[data-type="couture"] .closing__line { font-weight: 500; }
+html[data-type="couture"] .close__title { font-weight: 500; }
 
 /* ---------- Villa: Roman inscription capitals, Lake Como stone ---------- */
 html[data-type="villa"] {
@@ -50,9 +50,9 @@ html[data-type="villa"] .cover__h .roman { letter-spacing: .02em; }
 /* Cormorant's italic runs small: give the accent lines more size */
 html[data-type="villa"] .cover__h .italic,
 html[data-type="villa"] .quote blockquote p,
-html[data-type="villa"] .closing__line,
+html[data-type="villa"] .close__title,
 html[data-type="villa"] .day__it,
-html[data-type="villa"] .dayc__it,
+html[data-type="villa"] .evt__it,
 html[data-type="villa"] .team__name { font-size-adjust: .5; }
 html[data-type="villa"] body { font-size: .97rem; }
 
@@ -71,8 +71,7 @@ html[data-type="modern"] .dayc__title, html[data-type="modern"] .price__num,
 html[data-type="modern"] .steps .amt, html[data-type="modern"] .beats b, html[data-type="modern"] .stat__v b { font-weight: 700; letter-spacing: -.035em; line-height: 1; }
 html[data-type="modern"] .cover__h .italic,
 html[data-type="modern"] .quote blockquote p,
-html[data-type="modern"] .closing__line,
+html[data-type="modern"] .close__title,
 html[data-type="modern"] .day__it,
-html[data-type="modern"] .dayc__it,
+html[data-type="modern"] .evt__it,
 html[data-type="modern"] .team__name { letter-spacing: -.01em; font-size-adjust: .52; }
-html[data-type="villa"] .vendors .display { font-size: clamp(1.8rem, 3.5vw, 2.9rem); }
