@@ -4,12 +4,11 @@ Everything below lives in `content.js`. Bracketed placeholders show on the slide
 a dashed outline so nothing slips through. Search `content.js` for `[` to find them.
 
 ## Photos and screenshots (see `media/README.md`)
-- [ ] `kea-photo`: portrait of Kea for her page (9:16, shown in the phone frame).
-- [ ] `stephen-photo`: portrait of Stephen for his page (9:16).
+- [x] `kea-photo`: Kea's portrait, shown as a clipped print on her page.
+- [x] `stephen-photo`: Stephen's portrait, shown as a print on his page.
 - [ ] `content-plan`: a screenshot of a real content plan. Until it's added, the plan slide draws a sample Notion-style plan, labelled as a sample.
 - [x] `love-1` to `love-5`: five real client screenshots added. Before sending, check everyone shown is happy to be included (the first shows a commenter's photo and a partial name).
-- [ ] `couple-reel`: Sam & JT's reel for the cover (https://www.instagram.com/reel/DW2RKA8GTNm/). Until it's added, the cover frame links to Instagram.
-- [ ] `hero-reel` (optional): full-bleed cover film. Until it's added, a painted lake plays behind the headline.
+- [x] `couple-portrait`, `couple-proposal`: Sam & JT's two photos, shown as polaroids on the cover. Confirm the couple is happy for these to be used.
 - [ ] **Logo.** `brand.logo` (and `brand.logoLight` for dark slides). Until it's set, a typeset CURATED / BY KEA lockup stands in.
 
 ## Facts to confirm

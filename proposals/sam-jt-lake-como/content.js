@@ -37,14 +37,13 @@ window.CONTENT = {
   // MEDIA · every clip and image in one place. Slides refer to these by name.
   // ---------------------------------------------------------------
   media: {
-    "hero-reel":     { kind: "video", aspect: "16:9", src: "", poster: "", alt: "Golden hour over Lake Como" },
-    // Sam & JT's own reel, in a phone frame on the cover. Until the file is
-    // added, the frame links to the reel on Instagram.
-    "couple-reel":   { kind: "video", aspect: "9:16", src: "", poster: "", alt: "Sam and JT's reel", link: "https://www.instagram.com/reel/DW2RKA8GTNm/", linkLabel: "Watch your reel" },
+    // The couple, shown as two polaroids on the cover.
+    "couple-portrait": { kind: "image", aspect: "1:1", src: "media/couple-portrait.jpg", alt: "Sam and JT smiling together in front of white roses", position: "50% 30%" },
+    "couple-proposal": { kind: "image", aspect: "1:1", src: "media/couple-proposal.jpg", alt: "The proposal: JT on one knee among white roses and candles as Sam covers her face", position: "55% 60%" },
     // Real screenshot of the content plan. Until it's added, a sample plan is drawn in its place.
     "content-plan":  { kind: "image", aspect: "16:10", src: "", alt: "Sam and JT's content plan" },
-    "kea-photo":     { kind: "image", aspect: "9:16", src: "", alt: "Kea, founder of Curated by Kea" },
-    "stephen-photo": { kind: "image", aspect: "9:16", src: "", alt: "Stephen, cinematic filmmaker and content creator" },
+    "kea-photo":     { kind: "image", aspect: "4:5", src: "media/kea.jpg", alt: "Kea, founder of Curated by Kea, smiling in a burgundy suit", position: "50% 18%" },
+    "stephen-photo": { kind: "image", aspect: "4:5", src: "media/stephen.jpg", alt: "Stephen, cinematic filmmaker and content creator", position: "50% 22%" },
     // Real client messages and comments, supplied by Kea. Any shape works.
     "love-1": { kind: "image", src: "media/love-1.jpg", alt: "A comment on a wedding video: whoever was in charge of content for your wedding, they did not come to play. Curated by Kea replies: And did not! Thank you." },
     "love-2": { kind: "image", src: "media/love-2.jpg", alt: "A bride thanks Kea for the clips and remembers Kea holding her hand during the wedding, the sweetest offer of affection on such a crazy day." },
@@ -85,12 +84,11 @@ window.CONTENT = {
     subline: "A content proposal from Curated by Kea · July 9 to 11, 2027",
     begin: "Begin",
     stamp: "Sam & JT · Lago di Como · MMXXVII · ",
-    // Full-bleed background. With no src, a live painted lake at golden hour plays instead.
-    video: "hero-reel",
-    // Optional still for a slow Ken Burns fallback when there is no hero video.
-    fallbackImage: "",
-    // The couple's reel in a phone frame beside the headline.
-    reel: "couple-reel",
+    // Two polaroids on the file-folder cover, staggered over a painted lake.
+    polaroids: [
+      { photo: "couple-portrait", caption: "Sam & JT", style: "script" },
+      { photo: "couple-proposal", caption: "Lago di Como · MMXXVII", style: "caps" },
+    ],
   },
 
   // What you actually get, event by event.

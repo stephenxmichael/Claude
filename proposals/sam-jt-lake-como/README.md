@@ -6,7 +6,7 @@ full-screen slides with cinematic wipes and a coverage chooser.
 
 Nine slides:
 
-Cover (with Sam & JT's reel) · The weekend (what you receive) · Your content plan ·
+Cover (a file folder with two polaroids of Sam & JT) · The weekend (what you receive) · Your content plan ·
 Meet Kea · Meet Stephen · Choose your coverage (Option Two recommended) ·
 Travel and logistics · Client love · Why us.
 

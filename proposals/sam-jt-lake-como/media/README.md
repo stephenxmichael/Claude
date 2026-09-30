@@ -13,26 +13,23 @@ the clip or photo.
 
 ## Videos
 
-| Slot | Where it appears | Aspect | Frame | Target size |
-|---|---|---|---|---|
-| `couple-reel` | Cover, phone frame beside the headline (Sam & JT's reel) | 9:16 | 1080×1920 | under 8 MB |
-| `hero-reel` | Cover, full-bleed background (optional) | 16:9 | 1920×1080 | under 8 MB, 10 to 20 s loop |
-
-Videos play muted and on loop while their slide is on screen, pause when you move on,
-and have a sound button to unmute. Give each one a `poster` JPG (the first frame,
-around 200 KB). It shows while the clip loads and it's what the PDF prints.
+No video slots are in use right now. The media component still supports them
+(`kind: "video"`, `src`, `poster`) if a clip is added later.
 
 ## Images
 
 | Slot | Where it appears | Aspect | Size |
 |---|---|---|---|
-| `kea-photo` | Meet Kea, in the phone frame | 9:16 | 1080×1920 |
-| `stephen-photo` | Meet Stephen, in the phone frame | 9:16 | 1080×1920 |
+| `couple-portrait` | Cover, first polaroid (cropped square) | any, cropped 1:1 | 1000 px wide |
+| `couple-proposal` | Cover, second polaroid (cropped square) | any, cropped 1:1 | 1000 px wide |
+| `kea-photo` | Meet Kea, clipped print | any, cropped 4:5 | 900 px wide |
+| `stephen-photo` | Meet Stephen, print | any, cropped 4:5 | 900 px wide |
 | `content-plan` | Content plan slide, replaces the sample plan | about 16:10 | 1800 px wide |
 | `love-1` to `love-5` | Client love, message screenshots | any, keeps its own shape | 900 px wide |
 
-Export images as JPG (quality around 80) or WebP, under about 400 KB each. Portraits
-are cropped to fill the frame, so keep faces in the middle third.
+Export images as JPG (quality around 80) or WebP, under about 400 KB each. Photos
+are cropped to fill their frame. Use `position` on a slot (for example "50% 20%")
+to keep a face in view.
 
 ## Encoding loops for the web
 

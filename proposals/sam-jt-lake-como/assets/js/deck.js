@@ -34,11 +34,14 @@
     meal: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><path d="M10 4h8l-.6 6a3.4 3.4 0 0 1-6.8 0z"/><path d="M14 13.5V26M10 26h8"/><path d="M22 4v22M22 4c2.5 1.5 3 5 3 8h-3"/></svg>',
   };
 
+  // Paperclip, shared by the cover polaroid and the portrait prints.
+  const CLIP = `<svg class="clip" viewBox="0 0 40 110" aria-hidden="true"><path d="M28 30V88a10 10 0 0 1-20 0V18a14 14 0 0 1 28 0v62" fill="none" stroke="url(#clipg)" stroke-width="3.2" stroke-linecap="round"/><defs><linearGradient id="clipg" x1="0" x2="1"><stop offset="0" stop-color="#8d8a88"/><stop offset=".5" stop-color="#e9e6e2"/><stop offset="1" stop-color="#9a9794"/></linearGradient></defs></svg>`;
+
   /* ------------------------------------------------------------ media slot */
   // One component for every slot: 16:9 or 9:16 (phone frame), video or image,
   // poster, lazy src, muted autoplay while its slide is on screen, tap to unmute.
   // An empty slot renders a styled placeholder with its name and ratio.
-  function media(slot, { phone = false, mask = true } = {}) {
+  function media(slot, { phone = false, mask = true, print = "" } = {}) {
     const m = M[slot] || { kind: "image", aspect: "16:9", src: "", alt: slot };
     const [a, b] = (m.aspect || "16:9").split(":");
     const empty = !m.src;
@@ -48,12 +51,13 @@
       inner += `<video muted loop playsinline preload="none"${m.poster ? ` poster="${esc(m.poster)}"` : ""} data-src="${esc(m.src)}" aria-label="${alt}"></video>`;
       inner += `<button class="m__sound" type="button" aria-pressed="false" aria-label="Unmute: ${alt}">${ICON.muted}</button>`;
     } else if (!empty) {
-      inner += `<img src="${esc(m.src)}" alt="${alt}" loading="lazy" decoding="async">`;
+      inner += `<img src="${esc(m.src)}" alt="${alt}" loading="lazy" decoding="async"${m.position ? ` style="object-position:${esc(m.position)}"` : ""}>`;
     }
     const link = empty && m.link;
     if (link) inner += `<a class="m__link" href="${esc(m.link)}" target="_blank" rel="noopener">${ICON.play}<span>${esc(m.linkLabel || "Watch")}</span><small>on Instagram</small></a>`;
     const role = empty && !link ? ` role="img" aria-label="${alt}. Placeholder for ${esc(slot)}."` : "";
     const el = `<div class="m${empty ? " is-empty" : ""}${link ? " has-link" : ""}" style="--ar:${a} / ${b}" data-slot="${esc(slot)}"${mask ? " data-mask" : ""}${role}>${inner}</div>`;
+    if (print) return `<figure class="print" data-a>${CLIP}${el}<figcaption class="print__cap">${esc(print)}</figcaption></figure>`;
     return phone ? `<div class="phone" data-a>${el}</div>` : el;
   }
 
@@ -73,35 +77,42 @@
   const S = {};
   const chapterOf = C.labels || {};
   const toneOf = {
-    cover: "film", weekend: "ivory", plan: "blush-soft", kea: "ivory", stephen: "plum-deep",
-    options: "ivory-deep", logistics: "ivory", love: "blush-soft", closing: "plum-deep",
+    cover: "plum-deep", weekend: "ivory", plan: "blush-soft", kea: "ivory", stephen: "ivory-deep",
+    options: "ivory-deep", logistics: "ivory", love: "blush-soft", closing: "blush",
   };
 
   S.cover = () => {
-    const c = C.cover, v = M[c.video] || {};
-    const bg = v.src
-      ? `<video class="kb-off" muted loop playsinline autoplay preload="auto"${v.poster ? ` poster="${esc(v.poster)}"` : ""} src="${esc(v.src)}" aria-label="${esc(v.alt)}"></video>`
-      : c.fallbackImage
-        ? `<img class="kb" src="${esc(c.fallbackImage)}" alt="${esc(v.alt || "")}">`
-        : `<canvas class="kb" id="lake" role="img" aria-label="${esc(v.alt || "Lake Como at golden hour")}"></canvas>`;
+    const c = C.cover;
     const lines = c.headline.map((l) => `<span class="line ${l.style}">${words(l.text)}</span>`).join("");
+    const pol = (p, i) => {
+      const m = M[p.photo] || {};
+      const img = m.src
+        ? `<img src="${esc(m.src)}" alt="${esc(m.alt || "")}" decoding="async"${m.position ? ` style="object-position:${esc(m.position)}"` : ""}>`
+        : media(p.photo, { mask: false });
+      return `<figure class="polaroid polaroid--${i + 1}" data-pol>${i === 0 ? CLIP : ""}<div class="polaroid__img">${img}</div><figcaption class="polaroid__cap polaroid__cap--${p.style || "caps"}">${esc(p.caption)}</figcaption></figure>`;
+    };
     return `
-      <div class="cover__bg">${bg}</div>
-      <div class="cover__scrim"></div>
-      <div class="cover__reel${c.reel ? "" : " no-reel"}">
-      ${c.reel ? `<div class="cover__phone">${media(c.reel, { phone: true, mask: false })}</div>` : ""}
-      <div class="stamp" aria-hidden="true">
-        <svg viewBox="0 0 120 120"><defs><path id="stampPath" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs>
-        <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width=".6" opacity=".6"/>
-        <circle cx="60" cy="60" r="36" fill="none" stroke="currentColor" stroke-width=".6" opacity=".6"/>
-        <text><textPath href="#stampPath">${esc(c.stamp.repeat(2))}</textPath></text></svg>
-        <span class="core">VII</span>
-      </div>
-      </div>
-      <div class="slide__body"><div class="wrap cover__content">
-        <h1 class="cover__h">${lines}</h1>
-        <p class="cover__sub" data-a>${t(c.subline)}</p>
-        <a class="cover__begin" href="#${order[1] || "cover"}" data-next data-a>${esc(c.begin)}<span class="line"></span></a>
+      <div class="slide__body"><div class="wrap folder">
+        <div class="folder__back" aria-hidden="true"></div>
+        <div class="folder__tab" aria-hidden="true"><span class="folder__word"><b>Curated</b><small>by Kea</small></span></div>
+        <div class="folder__sheet">
+          <div class="folder__text cover__content">
+            <h1 class="cover__h">${lines}</h1>
+            <p class="cover__sub" data-a>${t(c.subline)}</p>
+            <a class="cover__begin" href="#${order[1] || "cover"}" data-next data-a>${esc(c.begin)}<span class="line"></span></a>
+          </div>
+          <div class="folder__collage">
+            <div class="swatch"><canvas id="lake" role="img" aria-label="Lake Como at golden hour"></canvas></div>
+            ${(c.polaroids || []).map(pol).join("")}
+            <div class="stamp" aria-hidden="true">
+              <svg viewBox="0 0 120 120"><defs><path id="stampPath" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs>
+              <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width=".6" opacity=".6"/>
+              <circle cx="60" cy="60" r="36" fill="none" stroke="currentColor" stroke-width=".6" opacity=".6"/>
+              <text><textPath href="#stampPath">${esc(c.stamp.repeat(2))}</textPath></text></svg>
+              <span class="core">VII</span>
+            </div>
+          </div>
+        </div>
       </div></div>`;
   };
 
@@ -180,7 +191,7 @@
     const k = C.kea;
     return `<div class="slide__body"><div class="wrap">
       <div class="team team--lead">
-        <div class="phone-col">${media(k.photo, { phone: true })}</div>
+        <div class="portrait-col">${media(k.photo, { print: k.name, mask: false })}</div>
         <div>${eyebrow(k.eyebrow)}
           <h2 class="team__name" data-a>${esc(k.name)}</h2>
           <p class="label team__role" data-a>${esc(k.role)}</p>
@@ -210,7 +221,7 @@
           <div data-a>${ig(p.instagram, p.instagramUrl)}</div>
         </div>
         <div class="second__side">
-          <div class="phone-col">${media(p.photo, { phone: true })}</div>
+          <div class="portrait-col">${media(p.photo, { print: p.name, mask: false })}</div>
           <div class="two" data-a><p class="label">${esc(p.twoTitle)}</p>
             <ol>${p.two.map((x, i) => `<li><span class="two__n">${i + 1}</span><div><b>${esc(x.title)}</b><p>${t(x.line)}</p></div></li>`).join("")}</ol>
           </div>
@@ -468,7 +479,13 @@
 
   const blurWords = (els, delay, stagger = .12) => gsap.fromTo(els, { opacity: 0, filter: "blur(14px)", y: 12 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 1.4, ease: "power2.out", stagger, delay, clearProps: "filter,transform" });
 
-  hooks.cover = (s, g, d) => { if (g) blurWords($$(".cover__h .w", s), d + .1, .11); };
+  hooks.cover = (s, g, d) => {
+    if (!g) return;
+    blurWords($$(".cover__h .w", s), d + .1, .11);
+    g.fromTo($(".swatch", s), { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.4, ease: "expo.inOut", delay: d, clearProps: "clipPath" });
+    $$("[data-pol]", s).forEach((p, k) => g.fromTo(p, { opacity: 0, y: -90, rotation: k ? 14 : -12 }, { opacity: 1, y: 0, rotation: k ? 5 : -4, duration: 1.3, ease: "back.out(1.3)", delay: d + .55 + k * .22 }));
+    g.fromTo($(".stamp", s), { opacity: 0, scale: .6 }, { opacity: 1, scale: 1, duration: 1, ease: "back.out(2)", delay: d + 1.1, clearProps: "transform" });
+  };
   hooks.closing = (s, g, d) => { if (g) blurWords($$(".close__title .w", s), d + .1, .1); };
   hooks.plan = (s, g, d) => { fitPlan(); if (g) g.fromTo($$(".np__table tbody tr", s), { opacity: 0, x: -8 }, { opacity: 1, x: 0, duration: .6, ease: "power2.out", stagger: .045, delay: d + .5, clearProps: "transform" }); };
 
@@ -682,6 +699,18 @@
     el.addEventListener("click", (e) => { if (!e.target.closest(".intro__skip")) intro.skip(); });
   }
 
+  /* ------------------------------------------------------------ cover drift */
+  // The polaroids float a few pixels against the pointer, the lake the other way.
+  (() => {
+    const cov = $(".s-cover"), col = cov && $(".folder__collage", cov);
+    if (!col || !gsap || reduced || !matchMedia("(pointer: fine)").matches) return;
+    cov.addEventListener("pointermove", (e) => {
+      const r = col.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      $$("[data-pol]", col).forEach((p, k) => !gsap.isTweening(p) && gsap.to(p, { x: x * (k ? 18 : 12), y: y * (k ? 14 : 10), duration: 1.2, ease: "power3.out", overwrite: "auto" }));
+      gsap.to($(".swatch", col), { x: x * -8, y: y * -6, duration: 1.4, ease: "power3.out", overwrite: "auto" });
+    });
+  })();
+
   /* ------------------------------------------------------------ boot */
   setOption(C.options.defaultOption || "two");
   fitPlan();
@@ -690,7 +719,7 @@
   if (start === 0) {
     // Show the cover underneath the curtain, then let the intro hand off to it.
     cur = 0; slides[0].classList.add("is-active"); chrome(0); Media.activate(0);
-    if (gsap && !reduced) gsap.set($$(".cover__h .w, .s-cover [data-a]"), { opacity: 0 });
+    if (gsap && !reduced) gsap.set($$(".cover__h .w, .s-cover [data-a], .s-cover [data-pol], .s-cover .stamp"), { opacity: 0 });
     runIntro(() => { if (!gsap || reduced) enter(slides[0], 0); });
   } else {
     $("#intro").remove();
