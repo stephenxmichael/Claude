@@ -318,13 +318,14 @@ window.CONTENT = {
   closing: {
     eyebrow: "Perché noi · Why us",
     title: "Why us?",
+    subtitle: "The Blackest Wedding in Lake Como deserves to be Curated by Kea.",
     paragraphs: [
       "You've already put so much intention into bringing the people you love to Lake Como. Our job is to make sure you don't have to choose between living it and remembering it.",
       "Your photographer and videographer will give you the polished heirlooms. We keep the in-between: what it looked like, sounded like and felt like while it was happening. You'll leave Lake Como with edits to share now and a library of your weekend to come back to for years.",
       "We'll come in with a plan, stay close enough to catch the moments that matter, and leave room for the ones nobody could have planned.",
     ],
     two: "And with two of us there, your story doesn't have to happen from one point of view.",
-    last: "If it feels like the right fit, we'd love to be there.",
+    last: "I can't wait to bring this weekend to life with you.",
     signature: "Kea",
     lake: "Ci vediamo al lago.",
   },

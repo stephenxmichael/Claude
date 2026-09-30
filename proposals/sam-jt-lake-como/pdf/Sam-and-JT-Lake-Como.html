@@ -668,6 +668,7 @@ body[data-tone="light"] { --chrome-fg: var(--ink); --chrome-dim: rgba(26, 18, 22
 @media (min-width: 900px) { .close { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 5rem; } }
 .close__title { margin: 0; font: italic 400 clamp(2.8rem, 7vw, 6rem)/1.02 var(--serif); letter-spacing: -.01em; color: var(--ivory); text-wrap: balance; }
 .close__title .w { display: inline-block; }
+.close__sub { margin: 1.6rem 0 0; font: italic 400 clamp(1.3rem, 2.2vw, 1.8rem)/1.3 var(--serif); color: var(--blush); max-width: 20em; text-wrap: balance; }
 .close__lake { margin: 2.2rem 0 0; font: 500 .7rem/1 var(--sans); letter-spacing: .3em; text-transform: uppercase; color: var(--prosecco); }
 .close__copy .body { color: var(--muted); font-size: 1rem; }
 .close__copy .body + .body { margin-top: .9rem; }
@@ -1197,13 +1198,14 @@ window.CONTENT = {
   closing: {
     eyebrow: "Perché noi · Why us",
     title: "Why us?",
+    subtitle: "The Blackest Wedding in Lake Como deserves to be Curated by Kea.",
     paragraphs: [
       "You've already put so much intention into bringing the people you love to Lake Como. Our job is to make sure you don't have to choose between living it and remembering it.",
       "Your photographer and videographer will give you the polished heirlooms. We keep the in-between: what it looked like, sounded like and felt like while it was happening. You'll leave Lake Como with edits to share now and a library of your weekend to come back to for years.",
       "We'll come in with a plan, stay close enough to catch the moments that matter, and leave room for the ones nobody could have planned.",
     ],
     two: "And with two of us there, your story doesn't have to happen from one point of view.",
-    last: "If it feels like the right fit, we'd love to be there.",
+    last: "I can't wait to bring this weekend to life with you.",
     signature: "Kea",
     lake: "Ci vediamo al lago.",
   },
@@ -1506,6 +1508,7 @@ window.CONTENT = {
     return `<div class="slide__body"><div class="wrap close">
       <div class="close__lead">${eyebrow(c.eyebrow)}
         <h2 class="close__title">${words(c.title)}</h2>
+        ${c.subtitle ? `<p class="close__sub" data-a>${t(c.subtitle)}</p>` : ""}
         <p class="close__lake" data-a>${esc(c.lake)}</p>
       </div>
       <div class="close__copy">

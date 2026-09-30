@@ -279,6 +279,7 @@
     return `<div class="slide__body"><div class="wrap close">
       <div class="close__lead">${eyebrow(c.eyebrow)}
         <h2 class="close__title">${words(c.title)}</h2>
+        ${c.subtitle ? `<p class="close__sub" data-a>${t(c.subtitle)}</p>` : ""}
         <p class="close__lake" data-a>${esc(c.lake)}</p>
       </div>
       <div class="close__copy">
