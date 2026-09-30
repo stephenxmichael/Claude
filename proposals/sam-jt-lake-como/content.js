@@ -50,7 +50,7 @@ window.CONTENT = {
     "love-2": { kind: "image", src: "media/love-2.jpg", alt: "A bride thanks Kea for the clips and remembers Kea holding her hand during the wedding, the sweetest offer of affection on such a crazy day." },
     "love-3": { kind: "image", src: "media/love-3.jpg", alt: "A client says her audience has been eating the content up, and that she'll be booking Kea again." },
     "love-4": { kind: "image", src: "media/love-4.jpg", alt: "A bride thanks Kea: it was a crazy day but you were so calm and supportive. I'm so grateful." },
-    "love-5": { kind: "image", src: "media/love-5.jpg", alt: "A client writes: all of the content you created has been fire. Thank you so so much." },
+    "love-5": { kind: "image", src: "media/love-5.jpg", alt: "A client writes: all of the content you created has been fire. Thank you so so much. I wish you could have been at the wedding too." },
   },
 
   // Typeface: "villa" (Cinzel capitals, Cormorant italic, Tenor Sans).
@@ -234,7 +234,7 @@ window.CONTENT = {
     ],
     partnersLabel: "Brand work with",
     partners: ["Adobe", "Toyota", "Samsung", "Home Depot"],
-    also: "Founder of Shooting Stars Content Academy, where he teaches creators to shoot cinematic content.",
+    also: "A professional videographer and photographer who has spent years behind the camera at weddings, live events and shoots for entrepreneurs and major brands. He knows how to read a room and be in position for the moments that only happen once.",
     twoTitle: "What a second creator gets you",
     two: [
       { title: "Both of you, at the same time", line: "Sam getting ready and JT with his crew, covered side by side instead of one after the other." },
@@ -317,7 +317,7 @@ window.CONTENT = {
   // The close. No hard sell.
   closing: {
     eyebrow: "Perché noi · Why us",
-    title: "You live it. We'll keep it.",
+    title: "Why us?",
     paragraphs: [
       "You've already put so much intention into bringing the people you love to Lake Como. Our job is to make sure you don't have to choose between living it and remembering it.",
       "Your photographer and videographer will give you the polished heirlooms. We keep the in-between: what it looked like, sounded like and felt like while it was happening. You'll leave Lake Como with edits to share now and a library of your weekend to come back to for years.",

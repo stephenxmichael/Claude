@@ -657,7 +657,7 @@ body[data-tone="light"] { --chrome-fg: var(--ink); --chrome-dim: rgba(26, 18, 22
 @media (min-width: 900px) { .close { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 5rem; } }
 .close__title { margin: 0; font: italic 400 clamp(2.8rem, 7vw, 6rem)/1.02 var(--serif); letter-spacing: -.01em; color: var(--ivory); text-wrap: balance; }
 .close__title .w { display: inline-block; }
-.close__lake { margin: 1.2rem 0 0; font: 500 .7rem/1 var(--sans); letter-spacing: .3em; text-transform: uppercase; color: var(--prosecco); }
+.close__lake { margin: 2.2rem 0 0; font: 500 .7rem/1 var(--sans); letter-spacing: .3em; text-transform: uppercase; color: var(--prosecco); }
 .close__copy .body { color: var(--muted); font-size: 1rem; }
 .close__copy .body + .body { margin-top: .9rem; }
 .close__two { margin: 1.3rem 0 0; font: italic 400 clamp(1.3rem, 2.1vw, 1.7rem)/1.3 var(--serif); color: var(--blush); max-width: 26em; }
