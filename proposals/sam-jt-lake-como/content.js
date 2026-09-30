@@ -139,8 +139,9 @@ window.CONTENT = {
       line: "You'll also receive all usable raw footage we capture across all three days, not only the clips that make the edits. It's a library of your weekend you can come back to long after Lake Como.",
       uses: ["An anniversary edit", "A moment you never posted", "A reaction you didn't see happen", "Something to share a year from now"],
       stats: [
+        { value: "24 to 48 hrs", label: "Your first edits", note: "Up to 2 edited videos, while it's all still fresh." },
+        { value: "3 to 7", label: "Business days for the rest", note: "The remaining edits, after the final event." },
         { value: "24 hrs", label: "Raw footage", note: "Our goal, depending on Wi-Fi at the villa." },
-        { value: "5 to 7", label: "Business days for edits", note: "After the final event of the weekend." },
       ],
     },
   },
