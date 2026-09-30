@@ -269,7 +269,7 @@
     const l = C.love;
     return `<div class="slide__body"><div class="wrap love">
       <div class="love__head">${eyebrow(l.eyebrow)}<h2 class="display" data-a>${esc(l.title)}</h2><p class="lead" data-a>${t(l.intro)}</p></div>
-      <div class="love__wall">${l.slots.map(loveCard).join("")}</div>
+      <div class="love__wall${l.slots.every((x) => (M[x] || {}).src) ? " love__wall--shots" : ""}">${l.slots.map(loveCard).join("")}</div>
     </div></div>`;
   };
 

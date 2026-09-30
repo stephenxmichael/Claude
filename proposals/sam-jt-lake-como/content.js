@@ -45,12 +45,12 @@ window.CONTENT = {
     "content-plan":  { kind: "image", aspect: "16:10", src: "", alt: "Sam and JT's content plan" },
     "kea-photo":     { kind: "image", aspect: "9:16", src: "", alt: "Kea, founder of Curated by Kea" },
     "stephen-photo": { kind: "image", aspect: "9:16", src: "", alt: "Stephen, cinematic filmmaker and content creator" },
-    // Client text screenshots. Any height works; they keep their own shape.
-    "love-1": { kind: "image", aspect: "3:4", src: "", alt: "A message from a Curated by Kea couple" },
-    "love-2": { kind: "image", aspect: "3:4", src: "", alt: "A message from a Curated by Kea couple" },
-    "love-3": { kind: "image", aspect: "3:4", src: "", alt: "A message from a Curated by Kea couple" },
-    "love-4": { kind: "image", aspect: "3:4", src: "", alt: "A message from a Curated by Kea couple" },
-    "love-5": { kind: "image", aspect: "3:4", src: "", alt: "A message from a Curated by Kea couple" },
+    // Real client messages and comments, supplied by Kea. Any shape works.
+    "love-1": { kind: "image", src: "media/love-1.jpg", alt: "A comment on a wedding video: whoever was in charge of content for your wedding, they did not come to play. Curated by Kea replies: And did not! Thank you." },
+    "love-2": { kind: "image", src: "media/love-2.jpg", alt: "A bride thanks Kea for the clips and remembers Kea holding her hand during the wedding, the sweetest offer of affection on such a crazy day." },
+    "love-3": { kind: "image", src: "media/love-3.jpg", alt: "A client says her audience has been eating the content up, and that she'll be booking Kea again." },
+    "love-4": { kind: "image", src: "media/love-4.jpg", alt: "A bride thanks Kea: it was a crazy day but you were so calm and supportive. I'm so grateful." },
+    "love-5": { kind: "image", src: "media/love-5.jpg", alt: "A client writes: all of the content you created has been fire. Thank you so so much." },
   },
 
   // Typeface: "villa" (Cinzel capitals, Cormorant italic, Tenor Sans).
@@ -310,7 +310,7 @@ window.CONTENT = {
   love: {
     eyebrow: "Dalle mie coppie · Client love",
     title: "From the couples who've trusted me.",
-    intro: "Straight from my messages.",
+    intro: "Straight from my messages and comments.",
     slots: ["love-1", "love-2", "love-3", "love-4", "love-5"],
   },
 

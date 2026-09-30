@@ -643,6 +643,15 @@ body[data-tone="light"] { --chrome-fg: var(--ink); --chrome-dim: rgba(26, 18, 22
 .msg__b--time { justify-self: center; width: 30%; background: none; padding: 2px 0; }
 .msg__b--time i { background: #e4e4e8; height: 4px; }
 
+/* Real screenshots: wide crops, laid out as a loose three-column wall */
+.love__wall--shots { display: block; columns: 1; column-gap: 1.2rem; }
+@media (min-width: 700px) { .love__wall--shots { columns: 2; } }
+@media (min-width: 1000px) { .love__wall--shots { columns: 3; } }
+.love__wall--shots > .msg { break-inside: avoid; margin: 0 0 1.2rem !important; max-width: none !important; }
+.love__wall--shots > .msg:nth-child(odd) { transform: rotate(-.6deg); }
+.love__wall--shots > .msg:nth-child(even) { transform: rotate(.5deg); }
+.msg--img { background: #f4f4f6; border-radius: 16px; }
+
 /* ---------- Closing: why us ---------- */
 .close { display: grid; gap: 2rem; align-items: center; }
 @media (min-width: 900px) { .close { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 5rem; } }
