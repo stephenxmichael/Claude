@@ -520,6 +520,21 @@ body[data-tone="light"] { --chrome-fg: var(--ink); --chrome-dim: rgba(26, 18, 22
 .wk__promises b { font: 500 clamp(1.3rem, 2vw, 1.7rem)/1 var(--serif); color: var(--plum); white-space: nowrap; }
 .wk__promises p { grid-column: 1 / -1; margin: .35rem 0 0; font-size: .8rem; color: var(--muted); line-height: 1.45; }
 
+/* Archive band: the raw footage as their library */
+.archive { margin-top: clamp(1rem, 2.6vh, 1.6rem); display: grid; gap: 1.2rem; padding: clamp(1rem, 2.4vh, 1.4rem) 1.4rem; border-radius: 18px; background: var(--blush-soft); border: 1px solid rgba(79, 26, 62, .12); }
+@media (min-width: 900px) { .archive { grid-template-columns: minmax(0, 1.5fr) minmax(0, .8fr); gap: 2.4rem; align-items: center; } }
+.archive__label { margin: 0; color: var(--plum); }
+.archive__title { margin: .4rem 0 0; font: italic 400 clamp(1.4rem, 2.4vw, 2rem)/1.1 var(--serif); color: var(--plum); }
+.archive__line { margin: .5rem 0 0; font-size: .9rem; line-height: 1.55; color: var(--fg); max-width: 44em; }
+.archive__uses { list-style: none; margin: .7rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem; }
+.archive__uses li { font: 500 .6rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; padding: .5rem .7rem; border-radius: 999px; background: rgba(255, 255, 255, .6); color: var(--plum); }
+.archive__stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.archive__stats li { border-top: 1px solid rgba(79, 26, 62, .2); padding-top: .6rem; min-width: 0; }
+.archive__stats b { display: block; font: 500 clamp(1.3rem, 2vw, 1.7rem)/1 var(--serif); color: var(--plum); }
+.archive__stats .label { display: block; margin-top: .4rem; font-size: .56rem; }
+.archive__stats p { margin: .3rem 0 0; font-size: .74rem; line-height: 1.4; color: var(--muted); }
+.plan__library { margin: .9rem 0 0; font: italic 400 1.1rem/1.4 var(--serif); color: var(--plum); max-width: 30em; }
+
 /* ---------- Content plan: sample Notion-style plan ---------- */
 .plan { display: grid; gap: 2rem; align-items: center; }
 @media (min-width: 1000px) { .plan { grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); gap: 3.5rem; } }
@@ -678,6 +693,18 @@ body[data-tone="light"] { --chrome-fg: var(--ink); --chrome-dim: rgba(26, 18, 22
   .m__ph::before { display: none; }
 }
 @media (max-width: 480px) { .type-btn span { display: none; } .type-btn { padding: .5rem .65rem; } }
+
+/* Fit tuning for the weekend and coverage slides at 16:9 */
+@media (min-width: 900px) {
+  .wk__head { margin-bottom: clamp(.9rem, 2.2vh, 1.6rem); }
+  .wk .display { font-size: clamp(1.9rem, 3.8vw, 3.2rem); }
+  .evt { padding-block: clamp(.9rem, 2vh, 1.3rem); }
+  .evt__hours { margin-top: .7rem; padding-top: .6rem; }
+  .opts__head { margin-bottom: clamp(1rem, 2.4vh, 1.6rem); }
+  .offer__line { font-size: .86rem; }
+  .offer__points { gap: .25rem; }
+  .offer__closer { font-size: 1rem; }
+}
 
 </style>
   <style>
@@ -949,7 +976,6 @@ window.CONTENT = {
         title: "Welcome boat party",
         hours: "Up to 4 hours of coverage",
         items: [
-          "All usable raw vertical content",
           "Up to 2 edited videos",
           "A curated mini story package, ready to post",
         ],
@@ -961,7 +987,6 @@ window.CONTENT = {
         hours: "Up to 10 hours of coverage",
         featured: true,
         items: [
-          "All usable raw vertical content",
           "Up to 5 to 6 edited videos",
           "A curated mini story package, ready to post",
           "Final edit concepts chosen together during your content strategy call",
@@ -973,18 +998,23 @@ window.CONTENT = {
         title: "Farewell brunch or pool party",
         hours: "Up to 3 hours of coverage",
         items: [
-          "All usable raw vertical content",
           "Up to 2 edited videos",
           "A curated mini story package, ready to post",
         ],
       },
     ],
-    // Turnaround, and what makes this different from photo and film.
-    promises: [
-      { value: "24 hrs", label: "Raw content", note: "Our goal, depending on Wi-Fi at the villa." },
-      { value: "5 to 7", label: "Business days for edits", note: "After the final event of the weekend." },
-      { value: "Social first", label: "Made to share", note: "Shot vertical and edited to post, alongside your photo and film teams." },
-    ],
+    // The raw footage, positioned as their archive. Always "all usable raw footage":
+    // never promise a clip count, hours of footage or permanent storage.
+    archive: {
+      label: "Plus · Your full content archive",
+      title: "Your edits are just the beginning.",
+      line: "You'll also receive all usable raw footage we capture across all three days, not only the clips that make the edits. It's a library of your weekend you can come back to long after Lake Como.",
+      uses: ["An anniversary edit", "A moment you never posted", "A reaction you didn't see happen", "Something to share a year from now"],
+      stats: [
+        { value: "24 hrs", label: "Raw footage", note: "Our goal, depending on Wi-Fi at the villa." },
+        { value: "5 to 7", label: "Business days for edits", note: "After the final event of the weekend." },
+      ],
+    },
   },
 
   // The content plan, and what goes in it.
@@ -992,6 +1022,7 @@ window.CONTENT = {
     eyebrow: "Il piano · Your content plan",
     title: "What we'll capture",
     lead: "Before we ever get to Lake Como, we'll build your content plan together. We map the moments you already know you want, the people and vendors who matter to you, and the content we want to make across the weekend. Then we leave room for the moments nobody can plan.",
+    library: "And we're planning more than your edits. We're building a library of your weekend, so the moments that don't make the first cut are still yours later.",
     captureLabel: "On the plan",
     capture: [
       "Sam getting ready",
@@ -1028,7 +1059,7 @@ window.CONTENT = {
         ["Vows and first kiss", "Wedding day", "Both", "Both", "Two angles, wide and close", "Edited video", "High", "Planned"],
         ["Reception entrance", "Wedding day", "Both", "Both", "Entrance energy", "Edited video", "High", "Planned"],
         ["First dance", "Wedding day", "Both", "Both", "Close and wide", "Edited video", "High", "Planned"],
-        ["Speeches", "Wedding day", "Kea", "Both", "Reactions around the room", "Raw", "Medium", "Draft"],
+        ["Speeches", "Wedding day", "Kea", "Both", "Reactions around the room", "Archive", "Medium", "Draft"],
         ["Dance floor", "Wedding day", "Stephen", "Groom", "JT on the dance floor", "Edited video", "High", "Planned"],
         ["Vendor features", "Wedding day", "Stephen", "Vendors", "Vendor spotlights", "Edited video", "Medium", "Idea"],
         ["Vendor interviews", "Lead-up", "Kea", "Vendors", "Short interviews, the build", "Story-ready", "Medium", "Idea"],
@@ -1078,7 +1109,7 @@ window.CONTENT = {
     two: [
       { title: "Both of you, at the same time", line: "Sam getting ready and JT with his crew, covered side by side instead of one after the other." },
       { title: "More than one perspective", line: "The vows, the first kiss, the entrances, the first dance. One of us close, one of us wide." },
-      { title: "More of the room", line: "Guests, reactions, vendors and details, captured while the two of you stay covered." },
+      { title: "More of the room", line: "Guests, reactions, vendors and details, captured while the two of you stay covered. All of it goes into your archive." },
     ],
     instagram: "@stephenxmichael",
     instagramUrl: "https://instagram.com/stephenxmichael",
@@ -1101,6 +1132,7 @@ window.CONTENT = {
         points: [
           "Kea across all three events",
           "One perspective, following the timeline as it unfolds",
+          "All usable raw footage, your archive from one point of view",
         ],
         price: 2750,
         select: "Choose Option One",
@@ -1116,8 +1148,9 @@ window.CONTENT = {
           "Sam and JT covered at the same time on the wedding morning",
           "Complementary angles on the ceremony, first kiss, entrances and first dance",
           "Guests, details, vendors and behind the scenes, while you two stay covered",
+          "A deeper raw archive: the moment and the reaction, both sides of the room, captured at the same time",
         ],
-        closer: "It gives us the freedom to tell a fuller story without pulling either of you away from living it.",
+        closer: "More perspectives now means a richer library later, and a fuller story without pulling either of you away from living it.",
         price: 5250,
         select: "Choose Option Two",
       },
@@ -1157,7 +1190,7 @@ window.CONTENT = {
     title: "You live it. We'll keep it.",
     paragraphs: [
       "You've already put so much intention into bringing the people you love to Lake Como. Our job is to make sure you don't have to choose between living it and remembering it.",
-      "Your photographer and videographer will give you the polished heirlooms. We keep the in-between: what it looked like, sounded like and felt like while it was happening, made to share while it's still fresh.",
+      "Your photographer and videographer will give you the polished heirlooms. We keep the in-between: what it looked like, sounded like and felt like while it was happening. You'll leave Lake Como with edits to share now and a library of your weekend to come back to for years.",
       "We'll come in with a plan, stay close enough to catch the moments that matter, and leave room for the ones nobody could have planned.",
     ],
     two: "And with two of us there, your story doesn't have to happen from one point of view.",
@@ -1307,7 +1340,15 @@ window.CONTENT = {
         <p class="evt__hours">${esc(e.hours)}</p>
         <ul class="evt__list">${e.items.map((x) => `<li>${t(x)}</li>`).join("")}</ul>
       </li>`).join("")}</ol>
-      <ul class="wk__promises">${w.promises.map((p) => `<li data-a><b>${esc(p.value)}</b><span class="label">${esc(p.label)}</span><p>${t(p.note)}</p></li>`).join("")}</ul>
+      <section class="archive" data-a>
+        <div class="archive__main">
+          <p class="label archive__label">${esc(w.archive.label)}</p>
+          <h3 class="archive__title">${esc(w.archive.title)}</h3>
+          <p class="archive__line">${t(w.archive.line)}</p>
+          <ul class="archive__uses">${w.archive.uses.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+        </div>
+        <ul class="archive__stats">${w.archive.stats.map((p) => `<li><b>${esc(p.value)}</b><span class="label">${esc(p.label)}</span><p>${t(p.note)}</p></li>`).join("")}</ul>
+      </section>
     </div></div>`;
   };
 
@@ -1316,7 +1357,7 @@ window.CONTENT = {
   const chipKind = {
     Kea: "kea", Stephen: "stephen", Both: "both",
     High: "high", Medium: "medium", Planned: "planned", Draft: "draft", Idea: "idea",
-    "Edited video": "video", "Story-ready": "story", Raw: "raw",
+    "Edited video": "video", "Story-ready": "story", Archive: "raw",
   };
   function planSample(p) {
     const s = p.sample;
@@ -1345,6 +1386,7 @@ window.CONTENT = {
       <div class="plan__copy">
         ${eyebrow(p.eyebrow)}<h2 class="display" data-a>${esc(p.title)}</h2>
         <p class="lead" data-a>${t(p.lead)}</p>
+        ${p.library ? `<p class="plan__library" data-a>${t(p.library)}</p>` : ""}
         <p class="label plan__label" data-a>${esc(p.captureLabel)}</p>
         <ul class="plan__list" data-a>${p.capture.map((x) => `<li>${t(x)}</li>`).join("")}</ul>
       </div>

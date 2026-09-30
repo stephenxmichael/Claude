@@ -122,7 +122,15 @@
         <p class="evt__hours">${esc(e.hours)}</p>
         <ul class="evt__list">${e.items.map((x) => `<li>${t(x)}</li>`).join("")}</ul>
       </li>`).join("")}</ol>
-      <ul class="wk__promises">${w.promises.map((p) => `<li data-a><b>${esc(p.value)}</b><span class="label">${esc(p.label)}</span><p>${t(p.note)}</p></li>`).join("")}</ul>
+      <section class="archive" data-a>
+        <div class="archive__main">
+          <p class="label archive__label">${esc(w.archive.label)}</p>
+          <h3 class="archive__title">${esc(w.archive.title)}</h3>
+          <p class="archive__line">${t(w.archive.line)}</p>
+          <ul class="archive__uses">${w.archive.uses.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+        </div>
+        <ul class="archive__stats">${w.archive.stats.map((p) => `<li><b>${esc(p.value)}</b><span class="label">${esc(p.label)}</span><p>${t(p.note)}</p></li>`).join("")}</ul>
+      </section>
     </div></div>`;
   };
 
@@ -131,7 +139,7 @@
   const chipKind = {
     Kea: "kea", Stephen: "stephen", Both: "both",
     High: "high", Medium: "medium", Planned: "planned", Draft: "draft", Idea: "idea",
-    "Edited video": "video", "Story-ready": "story", Raw: "raw",
+    "Edited video": "video", "Story-ready": "story", Archive: "raw",
   };
   function planSample(p) {
     const s = p.sample;
@@ -160,6 +168,7 @@
       <div class="plan__copy">
         ${eyebrow(p.eyebrow)}<h2 class="display" data-a>${esc(p.title)}</h2>
         <p class="lead" data-a>${t(p.lead)}</p>
+        ${p.library ? `<p class="plan__library" data-a>${t(p.library)}</p>` : ""}
         <p class="label plan__label" data-a>${esc(p.captureLabel)}</p>
         <ul class="plan__list" data-a>${p.capture.map((x) => `<li>${t(x)}</li>`).join("")}</ul>
       </div>

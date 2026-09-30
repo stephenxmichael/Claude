@@ -106,7 +106,6 @@ window.CONTENT = {
         title: "Welcome boat party",
         hours: "Up to 4 hours of coverage",
         items: [
-          "All usable raw vertical content",
           "Up to 2 edited videos",
           "A curated mini story package, ready to post",
         ],
@@ -118,7 +117,6 @@ window.CONTENT = {
         hours: "Up to 10 hours of coverage",
         featured: true,
         items: [
-          "All usable raw vertical content",
           "Up to 5 to 6 edited videos",
           "A curated mini story package, ready to post",
           "Final edit concepts chosen together during your content strategy call",
@@ -130,18 +128,23 @@ window.CONTENT = {
         title: "Farewell brunch or pool party",
         hours: "Up to 3 hours of coverage",
         items: [
-          "All usable raw vertical content",
           "Up to 2 edited videos",
           "A curated mini story package, ready to post",
         ],
       },
     ],
-    // Turnaround, and what makes this different from photo and film.
-    promises: [
-      { value: "24 hrs", label: "Raw content", note: "Our goal, depending on Wi-Fi at the villa." },
-      { value: "5 to 7", label: "Business days for edits", note: "After the final event of the weekend." },
-      { value: "Social first", label: "Made to share", note: "Shot vertical and edited to post, alongside your photo and film teams." },
-    ],
+    // The raw footage, positioned as their archive. Always "all usable raw footage":
+    // never promise a clip count, hours of footage or permanent storage.
+    archive: {
+      label: "Plus · Your full content archive",
+      title: "Your edits are just the beginning.",
+      line: "You'll also receive all usable raw footage we capture across all three days, not only the clips that make the edits. It's a library of your weekend you can come back to long after Lake Como.",
+      uses: ["An anniversary edit", "A moment you never posted", "A reaction you didn't see happen", "Something to share a year from now"],
+      stats: [
+        { value: "24 hrs", label: "Raw footage", note: "Our goal, depending on Wi-Fi at the villa." },
+        { value: "5 to 7", label: "Business days for edits", note: "After the final event of the weekend." },
+      ],
+    },
   },
 
   // The content plan, and what goes in it.
@@ -149,6 +152,7 @@ window.CONTENT = {
     eyebrow: "Il piano · Your content plan",
     title: "What we'll capture",
     lead: "Before we ever get to Lake Como, we'll build your content plan together. We map the moments you already know you want, the people and vendors who matter to you, and the content we want to make across the weekend. Then we leave room for the moments nobody can plan.",
+    library: "And we're planning more than your edits. We're building a library of your weekend, so the moments that don't make the first cut are still yours later.",
     captureLabel: "On the plan",
     capture: [
       "Sam getting ready",
@@ -185,7 +189,7 @@ window.CONTENT = {
         ["Vows and first kiss", "Wedding day", "Both", "Both", "Two angles, wide and close", "Edited video", "High", "Planned"],
         ["Reception entrance", "Wedding day", "Both", "Both", "Entrance energy", "Edited video", "High", "Planned"],
         ["First dance", "Wedding day", "Both", "Both", "Close and wide", "Edited video", "High", "Planned"],
-        ["Speeches", "Wedding day", "Kea", "Both", "Reactions around the room", "Raw", "Medium", "Draft"],
+        ["Speeches", "Wedding day", "Kea", "Both", "Reactions around the room", "Archive", "Medium", "Draft"],
         ["Dance floor", "Wedding day", "Stephen", "Groom", "JT on the dance floor", "Edited video", "High", "Planned"],
         ["Vendor features", "Wedding day", "Stephen", "Vendors", "Vendor spotlights", "Edited video", "Medium", "Idea"],
         ["Vendor interviews", "Lead-up", "Kea", "Vendors", "Short interviews, the build", "Story-ready", "Medium", "Idea"],
@@ -235,7 +239,7 @@ window.CONTENT = {
     two: [
       { title: "Both of you, at the same time", line: "Sam getting ready and JT with his crew, covered side by side instead of one after the other." },
       { title: "More than one perspective", line: "The vows, the first kiss, the entrances, the first dance. One of us close, one of us wide." },
-      { title: "More of the room", line: "Guests, reactions, vendors and details, captured while the two of you stay covered." },
+      { title: "More of the room", line: "Guests, reactions, vendors and details, captured while the two of you stay covered. All of it goes into your archive." },
     ],
     instagram: "@stephenxmichael",
     instagramUrl: "https://instagram.com/stephenxmichael",
@@ -258,6 +262,7 @@ window.CONTENT = {
         points: [
           "Kea across all three events",
           "One perspective, following the timeline as it unfolds",
+          "All usable raw footage, your archive from one point of view",
         ],
         price: 2750,
         select: "Choose Option One",
@@ -273,8 +278,9 @@ window.CONTENT = {
           "Sam and JT covered at the same time on the wedding morning",
           "Complementary angles on the ceremony, first kiss, entrances and first dance",
           "Guests, details, vendors and behind the scenes, while you two stay covered",
+          "A deeper raw archive: the moment and the reaction, both sides of the room, captured at the same time",
         ],
-        closer: "It gives us the freedom to tell a fuller story without pulling either of you away from living it.",
+        closer: "More perspectives now means a richer library later, and a fuller story without pulling either of you away from living it.",
         price: 5250,
         select: "Choose Option Two",
       },
@@ -314,7 +320,7 @@ window.CONTENT = {
     title: "You live it. We'll keep it.",
     paragraphs: [
       "You've already put so much intention into bringing the people you love to Lake Como. Our job is to make sure you don't have to choose between living it and remembering it.",
-      "Your photographer and videographer will give you the polished heirlooms. We keep the in-between: what it looked like, sounded like and felt like while it was happening, made to share while it's still fresh.",
+      "Your photographer and videographer will give you the polished heirlooms. We keep the in-between: what it looked like, sounded like and felt like while it was happening. You'll leave Lake Como with edits to share now and a library of your weekend to come back to for years.",
       "We'll come in with a plan, stay close enough to catch the moments that matter, and leave room for the ones nobody could have planned.",
     ],
     two: "And with two of us there, your story doesn't have to happen from one point of view.",
