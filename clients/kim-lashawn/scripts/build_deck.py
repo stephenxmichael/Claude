@@ -3,7 +3,7 @@
 
 The four weekly plans and the sixteen Rediscovering Her episodes live once, in
 the script data of web/guide.html (the approved interactive page). This reads
-them from there and writes the episode grid, the month-at-a-glance calendar
+them from there and writes the series tie-ins, the month-at-a-glance calendar
 and the four week pages between the GEN markers in the deck, so the PDF, the
 web page and the calendar cannot disagree. Everything outside the markers is
 edited by hand in the deck itself.
@@ -20,7 +20,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 DECK = ROOT / "kim-lashawn-first-30-days.html"
 WEB = ROOT / "web" / "guide.html"
 
-FIRST_WEEK_PAGE = 15  # folio of the Week 1 page; the calendar is the page before
+FIRST_WEEK_PAGE = 10  # folio of the Week 1 page; the calendar is the page before
 CATS = {
     "becoming": ("Becoming", "var(--p1)"),
     "lifestyle": ("Lifestyle", "var(--p2)"),
@@ -46,39 +46,38 @@ def esc(s):
     return html.escape(s, quote=False)
 
 
-def ep_tag(n, episodes):
-    return f'<span class="ep">Rediscovering Her · Ep. {n} · {esc(episodes[n - 1][0])}</span>'
+# ---------------------------------------------------------------- series
+def planned(weeks):
+    """(week, post) pairs that double as a Rediscovering Her episode, in plan order."""
+    return [(w, p) for w in weeks for p in w["core"] + w["opt"] if p.get("ep")]
 
 
-# ---------------------------------------------------------------- episodes
-def episode_cards(weeks, episodes):
-    planned = {}
-    for w in weeks:
-        for p in w["core"] + w["opt"]:
-            if p.get("ep"):
-                planned[p["ep"]] = f'In your plan · Week {w["n"]} · {p["day"]}'
-    cards = []
-    for i, (title, concept, fmt, hook) in enumerate(episodes, 1):
-        cls = "epc in" if i in planned else "epc"
-        hk = f'<p class="hk">{esc(hook)}</p>' if hook else ""
-        pl = f'<span class="pl">{planned[i]}</span>' if i in planned else ""
-        cards.append(f"""      <div class="{cls}">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px"><span class="n">{i:02d}</span><span class="f">{esc(fmt)}</span></div>
-        <h4>{esc(title)}</h4><p>{esc(concept)}</p>{hk}{pl}
-      </div>""")
-    return "\n".join(cards)
+def series_ties(weeks, episodes):
+    rows = []
+    for w, p in planned(weeks):
+        rows.append(f'      <li><span class="w">Week {w["n"]} · {p["day"][:3]}</span>'
+                    f'<span class="e"><b>Ep. {p["ep"]}</b> · {esc(episodes[p["ep"] - 1][0])}</span></li>')
+    return "\n".join(rows)
+
+
+def series_more(weeks, episodes):
+    used = {p["ep"] for _, p in planned(weeks)}
+    titles = [esc(t) for i, (t, *_) in enumerate(episodes, 1) if i not in used]
+    return ('      <p style="font-size:17.5px;line-height:1.7;color:var(--soft);margin-top:10px">'
+            + " &nbsp;·&nbsp; ".join(titles) + "</p>")
 
 
 # ---------------------------------------------------------------- calendar
 def ev(p, core):
     name, color = CATS[p["cat"]]
-    parts = [f'<span class="kk">{name}</span>', f'<span class="ti">{esc(p["short"])}</span>']
+    tags = []
     if p.get("ep"):
-        parts.append(f'<span class="sr">RH · Ep. {p["ep"]}</span>')
+        tags.append(f'Ep. {p["ep"]}')
     if p.get("style"):
-        parts.append('<span class="sm">+ Style moment</span>')
-    parts.append(f'<span class="ct">{esc(p["fmt"] if core else p["kind"])}</span>')
-    return f'<div><div class="ev {"core" if core else "opt"}" style="--c:{color}">{"".join(parts)}</div></div>'
+        tags.append("+ Style moment")
+    tag = f'<span class="tag">{" · ".join(tags)}</span>' if tags else ""
+    return (f'<div><div class="ev {"core" if core else "opt"}" style="--c:{color}">'
+            f'<span class="kk">{name}</span><span class="ti">{esc(p["short"])}</span>{tag}</div></div>')
 
 
 def calendar(weeks):
@@ -86,55 +85,52 @@ def calendar(weeks):
     for w in weeks:
         by_day = {p["day"]: ev(p, True) for p in w["core"]}
         by_day.update({p["day"]: ev(p, False) for p in w["opt"]})
-        cells = [by_day.get(d, '<div><div class="open"><b>Open</b><span>Film, edit or rest</span></div></div>')
-                 for d in DAYS]
+        cells = [by_day.get(d, '<div><div class="open"><b>Open</b></div></div>') for d in DAYS]
         rows.append(f'      <div class="cal-grid cal-row"><div class="wkl"><b>Week {w["n"]}</b>'
                     f'<span>{esc(w["theme"])}</span><i>{esc(w["em"])}</i></div>{"".join(cells)}</div>')
     return "\n".join(rows)
 
 
 # ---------------------------------------------------------------- week pages
-def core_card(p, episodes):
+def core_post(p, episodes):
     name, color = CATS[p["cat"]]
     items = "".join(f"<li>{esc(i)}</li>" for i in p["items"])
-    ep = ""
-    if p.get("ep"):
-        note = f'<span class="muted" style="font-size:13.5px;line-height:1.35">{esc(p["epNote"])}</span>' if p.get("epNote") else ""
-        ep = f'<div style="display:flex;flex-direction:column;align-items:flex-start;gap:5px;margin-top:10px">{ep_tag(p["ep"], episodes)}{note}</div>'
-    style = f'<p class="stylem"><b>Style moment</b>{esc(p["style"])}</p>' if p.get("style") else ""
-    return f"""      <article class="card core" style="--c:{color}">
-        <div class="top"><span class="day">{p["day"]}</span><span class="fmt">{esc(p["fmt"])}</span><span class="chip"><i class="dot" style="background:{color}"></i>{name}</span><span class="filmed"><i class="box"></i>Filmed</span></div>
-        <h4>{esc(p["title"])}</h4>
-        <div class="row"><div><p class="quote">“{esc(p["open"])}”</p><p class="ask"><b>Ask</b>{esc(p["ask"])}</p>{ep}</div>
-        <div><span class="lk">{esc(p["k"])}</span><ul>{items}</ul></div></div>{style}
-      </article>"""
+    rh = f'<span class="rh">Rediscovering Her · Ep. {p["ep"]}</span>' if p.get("ep") else ""
+    style = (f'<div class="tags"><span><b>Style moment</b>{esc(p["style"])}</span></div>'
+             if p.get("style") else "")
+    return f"""    <article class="post" style="--c:{color}">
+      <div class="top"><span class="day">{p["day"]}</span><span class="meta">{esc(p["fmt"])} · <b>{name}</b></span>{rh}<i class="box"></i></div>
+      <h3>{esc(p["title"])}</h3>
+      <div class="cols"><div><p class="quote">“{esc(p["open"])}”</p><p class="ask"><b>Ask</b>{esc(p["ask"])}</p></div>
+      <ul class="dots">{items}</ul></div>{style}
+    </article>"""
 
 
-def extra(i, p, episodes):
-    ep = f'<div style="margin-top:6px">{ep_tag(p["ep"], episodes)}</div>' if p.get("ep") else ""
-    note = f'<span class="muted" style="display:block;font-size:13.5px;margin-top:3px">{esc(p["note"])}</span>' if p.get("note") else ""
-    return (f'<div class="x"><i class="box"></i><div><small>{p["day"]} · {esc(p["kind"])}</small>'
-            f'<b>{esc(p["title"])}</b>{note}{ep}</div></div>')
+def extra(p):
+    rh = f' <em>· Rediscovering Her, Ep. {p["ep"]}</em>' if p.get("ep") else ""
+    return (f'<div class="x"><i class="box"></i><small>{p["day"]} · {esc(p["kind"])}</small>'
+            f'<span>{esc(p["title"])}{rh}</span></div>')
 
 
 def week_page(w, episodes):
     n = w["n"]
-    cores = "\n".join(core_card(p, episodes) for p in w["core"])
-    extras = "\n      ".join(extra(i, p, episodes) for i, p in enumerate(w["opt"], 4))
+    posts = "\n".join(core_post(p, episodes) for p in w["core"])
+    extras = "\n      ".join(extra(p) for p in w["opt"])
     return f"""<!-- {FIRST_WEEK_PAGE + n - 1} · Week {n} -->
-<section class="page bone">
-  <div class="spine"><span>09 · Your four-week plan</span></div>
-  <div class="hud"><span>Shooting Stars · <b>Content Strategy</b></span><span>Week 0{n} of 04</span></div>
+<section class="page">
+  <div class="spine"></div>
+  <div class="hud"><span>Shooting Stars · <b>Content Strategy</b></span><span>Week {n} of 4</span></div>
   <div class="content">
     <div class="wk-head">
-      <div><div class="k"><b>09</b> Your four-week plan · Week {n}</div><h2 class="disp">{esc(w["theme"])} <span class="scr">{esc(w["em"])}</span></h2></div>
+      <div class="k"><b>07</b>Your four-week plan · Week {n}</div>
+      <h2 class="disp title">{esc(w["theme"])} <span class="scr">{esc(w["em"])}</span></h2>
       <p>{esc(w["intent"])}</p>
     </div>
-    <div class="cores">
-{cores}
+    <div style="margin-top:22px">
+{posts}
     </div>
-    <div class="dash extras">
-      <div><span class="mono" style="color:var(--accent)">Optional extras</span><p class="muted" style="font-size:15px;line-height:1.4">If you have the footage and the energy.</p></div>
+    <div class="extras" style="margin-top:auto">
+      <div class="label">Optional, if you have the footage and the energy</div>
       {extras}
     </div>
   </div>
@@ -155,8 +151,9 @@ assert len(weeks) == 4 and len(episodes) == 16
 assert sum(len(w["core"]) for w in weeks) == 12 and sum(len(w["opt"]) for w in weeks) == 8
 
 doc = DECK.read_text()
-doc = fill(doc, "episodes", episode_cards(weeks, episodes))
+doc = fill(doc, "series", series_ties(weeks, episodes))
+doc = fill(doc, "more", series_more(weeks, episodes))
 doc = fill(doc, "calendar", calendar(weeks))
 doc = fill(doc, "weeks", "\n".join(week_page(w, episodes) for w in weeks))
 DECK.write_text(doc)
-print(f"filled {DECK.name}: 16 episodes, 4 calendar rows, 4 week pages")
+print(f"filled {DECK.name}: series tie-ins, 4 calendar rows, 4 week pages")

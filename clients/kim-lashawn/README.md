@@ -1,6 +1,6 @@
 # Kim LaShawn: Your First 30 Days of Content
 
-Shooting Stars Content Strategy, student edition. A 25-page PDF guide
+Shooting Stars Content Strategy, student edition. A 19-page PDF guide
 (1080x1350 portrait, readable on a phone) plus an interactive web version.
 
     web/guide.html                     the interactive page; also holds the plan data
@@ -15,8 +15,9 @@ Shooting Stars Content Strategy, student edition. A 25-page PDF guide
 
 ## Design system
 
-The Shooting Stars structure (spine, HUD bar, grid, ghost section numbers,
-display folio) on alternating burgundy (#5A1A2B) and bone pages. Archivo
+The Shooting Stars frame (spine, header bar, display folio) on burgundy
+(#5A1A2B) and bone pages. One idea per page, wide margins, nothing under
+15px. Archivo
 Expanded Black for display, Allura for the script accent, Inter for reading,
 JetBrains Mono for labels. Accents are rose on light pages and blush on
 burgundy; no gold. Each pillar has one colour (Becoming, Lifestyle, Style,
@@ -25,8 +26,8 @@ optional posts are dashed.
 
 The four weeks and the sixteen Rediscovering Her episodes live once, in the
 `weeks` and `episodes` arrays in `web/guide.html`. `build_deck.py` reads them
-and writes the episode grid (p.11), the month calendar (p.14) and the four
-week pages (pp.15-18), so the PDF, the calendar and the web page always
+and writes the series tie-ins (p.7), the month calendar (p.9) and the four
+week pages (pp.10-13), so the PDF, the calendar and the web page always
 match. Run it after any change to the plan.
 
 ## Build
