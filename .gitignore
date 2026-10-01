@@ -6,3 +6,5 @@ build/
 # HTML: node scripts/standalone.mjs  (single file, assets inlined as data URIs)
 dist/*.pdf
 dist/Shooting-Stars-Content-Framework.html
+dist/The-iPhone-Creator-Guide.html
+dist/*-preview.html

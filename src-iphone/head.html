@@ -1,0 +1,250 @@
+<!DOCTYPE html><html><head><meta charset='UTF-8'><title>The iPhone Creator Guide — Shooting Stars</title><style>
+/* ══════════════════════════════════════════════════════════════════
+   THE IPHONE CREATOR GUIDE — design system
+   Sister publication to the Shooting Stars Content Framework.
+
+   SHARED with the Framework (this is what makes it Shooting Stars):
+     palette, vendored Anton / Archivo / JetBrains Mono, 800x1120 page,
+     34px cobalt spine with rotated label, HUD bar, grain, glows,
+     hatched media slots, cobalt chips.
+
+   DIVERGENT (this is what makes it a different publication):
+     64px margin instead of 74      wider, airier text block
+     52px HUD instead of 56         with camera telemetry, not a chapter name
+     40px grid instead of 56        finer, technical-drawing feel
+     10-frame counter on the spine  replaces the 5 S.T.A.R.S. ticks
+     viewfinder corner brackets     the guide's signature page device
+     Anton capped at ~72px          the Framework runs to 150px
+     Archivo Black for module heads where the Framework reaches for Anton
+     --paper, whiter than --bone    more light space
+     mono frame-counter folio       replaces the ghost Anton numeral
+
+   Palette values are duplicated from src/head.html by hand. These two
+   products share a brand, not a stylesheet: the guide diverges on grid,
+   scale and furniture, so a common sheet would couple what should differ.
+   If the brand palette moves, move it in both.
+   ══════════════════════════════════════════════════════════════════ */
+@import url('assets/fonts/fonts.css');
+:root{
+  --ink:#08080C; --ink2:#101018;
+  --cobalt:#2B5CE6; --volt:#4D7CFF; --deep:#0B1F5C;
+  --bone:#F2F1ED; --bone2:#E8E6DF;
+  --slate:#5B6270; --line:#D9D6CE;
+  /* guide-only */
+  --paper:#FAF9F6; --hair:#E4E1D9; --cm:rgba(43,92,230,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-items:center;gap:38px;font-family:'Archivo',sans-serif}
+.page{width:800px;height:1120px;position:relative;overflow:hidden;box-shadow:0 26px 80px rgba(0,0,0,.65);flex-shrink:0}
+.tag{color:#7d8496;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:-14px;font-family:'JetBrains Mono'}
+
+/* ── print / PDF ── one .page per PDF page at exactly 800x1120 ── */
+@page{size:800px 1120px;margin:0}
+@media print{
+  body{background:#fff;padding:0;gap:0;display:block}
+  .tag{display:none}
+  .page{box-shadow:none;margin:0;break-after:page;page-break-after:always;
+        break-inside:avoid;page-break-inside:avoid}
+  .page:last-of-type{break-after:auto;page-break-after:auto}
+}
+
+/* ── surfaces ── */
+.dark{background:var(--ink);color:#fff}
+.light{background:var(--paper);color:var(--ink)}
+.blue{background:var(--cobalt);color:#fff}
+.grain::after{content:'';position:absolute;inset:0;opacity:.055;mix-blend-mode:overlay;pointer-events:none;z-index:1;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* 40px technical grid — finer than the Framework's 56px */
+.g40::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+ background-image:linear-gradient(rgba(8,8,12,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(8,8,12,.04) 1px,transparent 1px);
+ background-size:40px 40px}
+.dark.g40::before,.blue.g40::before{background-image:linear-gradient(rgba(255,255,255,.032) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.032) 1px,transparent 1px)}
+.glow{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
+/* full-bleed colour band, for pages that split light over dark */
+.band{position:absolute;left:34px;right:0;pointer-events:none}
+
+/* ── running marks ── */
+.hud{position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;
+ padding:0 34px 0 64px;font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;text-transform:uppercase;z-index:9}
+.dark .hud{color:#5A6072;border-bottom:1px solid rgba(255,255,255,.07)}
+.light .hud{color:#A8A49A;border-bottom:1px solid var(--hair)}
+.blue .hud{color:rgba(255,255,255,.62);border-bottom:1px solid rgba(255,255,255,.22)}
+.hud img{width:16px;opacity:.75}
+.light .hud img{filter:brightness(0);opacity:.28}
+/* right-hand telemetry: the guide's HUD reads like a camera, not a contents page */
+.hud .tel{display:flex;gap:12px;align-items:center}
+.hud .tel b{font-weight:400;color:var(--volt)}
+.light .hud .tel b{color:var(--cobalt)}
+
+/* frame-counter folio — replaces the Framework's ghost Anton numeral */
+.folio{position:absolute;bottom:25px;right:34px;font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;z-index:9}
+.dark .folio{color:rgba(255,255,255,.38)}
+.light .folio{color:#A8A49A}
+.blue .folio{color:rgba(255,255,255,.6)}
+.folio b{font-weight:600}
+.dark .folio b{color:#fff}
+.light .folio b{color:var(--ink)}
+
+/* spine — shared with the Framework */
+.spine{position:absolute;left:0;top:0;bottom:0;width:34px;display:flex;align-items:center;justify-content:center;z-index:8}
+.spine span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'JetBrains Mono';font-size:9px;letter-spacing:.34em;text-transform:uppercase}
+.dark .spine{background:var(--cobalt)}
+.dark .spine span{color:#fff}
+.light .spine{background:var(--ink)}
+.light .spine span{color:var(--paper)}
+.blue .spine{background:var(--ink)}
+.blue .spine span{color:#fff}
+
+/* ── 10-frame counter ──
+   The Framework marks progress with five S.T.A.R.S. ticks. This book has no
+   stages, so it counts frames: ten cells, the current one long and lit. */
+.frames{position:absolute;left:0;width:34px;bottom:25px;display:flex;flex-direction:column;gap:4px;align-items:center;z-index:9}
+.frames i{width:12px;height:3px;display:block;background:rgba(255,255,255,.3)}
+.frames i.on{width:20px;background:#fff}
+.light .frames i{background:rgba(250,249,246,.34)}
+.light .frames i.on{background:var(--volt)}
+.blue .frames i{background:rgba(255,255,255,.34)}
+.blue .frames i.on{background:var(--volt)}
+
+/* ── viewfinder brackets ── the guide's signature device ── */
+.vf{position:absolute;pointer-events:none;z-index:7}
+.vf i{position:absolute;width:15px;height:15px;border:1.5px solid var(--volt);opacity:.7}
+.vf i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0}
+.vf i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0}
+.vf i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}
+.vf i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
+
+/* ── type ──
+   Anton is capped well below the Framework's 150px. Module headings are set
+   in Archivo Black, which reads technical beside Anton's editorial condense. */
+.kick{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.22em;text-transform:uppercase}
+.hd{font-family:'Anton';text-transform:uppercase;line-height:.95;letter-spacing:.005em}
+.sub{font-family:'Archivo';font-weight:800;text-transform:uppercase;letter-spacing:.012em;line-height:1.18}
+.bd{font-size:12.5px;line-height:1.72;color:#3A3D47}
+.bd p{margin-bottom:11px}.bd p:last-child{margin-bottom:0}
+.dark .bd{color:#8C93A5}
+.blue .bd{color:rgba(255,255,255,.88)}
+.lead{font-size:15px;line-height:1.6;color:#2E3039;font-weight:500}
+.dark .lead{color:#A8AEBE}
+.mut{color:var(--slate)}.dark .mut{color:#6E7486}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--cobalt);color:#fff;
+ font-family:'JetBrains Mono';font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px}
+.chip.ghost{background:transparent;border:1px solid var(--cobalt);color:var(--cobalt)}
+.dark .chip.ghost{border-color:var(--volt);color:var(--volt)}
+
+/* technical annotation — a mono label on a leader line */
+.anno{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:8.5px;
+ letter-spacing:.16em;text-transform:uppercase;color:var(--cobalt)}
+.anno::before{content:'';width:16px;height:1px;background:currentColor;flex-shrink:0}
+.dark .anno{color:var(--volt)}
+
+/* ══ MEDIA SLOT ══════════════════════════════════════════════════
+   Every slot is a line item on the shot list. It carries an asset ID that
+   matches MEDIA-CHECKLIST.md, the media type, the subject, and the crop.
+   Designed as a compositional element, not a blank area.
+   ═════════════════════════════════════════════════════════════════ */
+.slot{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;
+ background:repeating-linear-gradient(45deg,rgba(43,92,230,.055) 0 10px,transparent 10px 20px),var(--bone2);
+ border:1px solid rgba(43,92,230,.3)}
+.dark .slot,.blue .slot{--cm:rgba(77,124,255,.6);
+ background:repeating-linear-gradient(45deg,rgba(77,124,255,.115) 0 10px,transparent 10px 20px),var(--ink2);
+ border-color:rgba(77,124,255,.32)}
+/* corner crop marks */
+.slot::before{content:'';position:absolute;inset:6px;pointer-events:none;z-index:1;
+ background:
+  linear-gradient(var(--cm),var(--cm)) 0 0/9px 1px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 0 0/1px 9px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 100% 0/9px 1px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 100% 0/1px 9px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 0 100%/9px 1px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 0 100%/1px 9px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 100% 100%/9px 1px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 100% 100%/1px 9px no-repeat}
+.slot .s-id{position:absolute;top:0;left:0;background:var(--cobalt);color:#fff;font-family:'JetBrains Mono';
+ font-size:8px;letter-spacing:.12em;padding:3px 7px;z-index:3;line-height:1.3}
+.dark .slot .s-id,.blue .slot .s-id{background:var(--volt);color:var(--ink);font-weight:600}
+.slot .s-in{position:relative;z-index:2;text-align:center;padding:16px 14px;max-width:300px}
+.slot .s-type{display:inline-block;font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.2em;
+ text-transform:uppercase;border:1px solid rgba(43,92,230,.5);color:var(--cobalt);padding:3px 8px;margin-bottom:10px}
+.dark .slot .s-type,.blue .slot .s-type{border-color:rgba(77,124,255,.55);color:var(--volt)}
+.slot .s-subj{display:block;font-family:'Archivo';font-weight:800;font-size:12.5px;line-height:1.3;
+ text-transform:uppercase;letter-spacing:.01em;color:var(--ink)}
+.dark .slot .s-subj,.blue .slot .s-subj{color:#fff}
+.slot .s-spec{display:block;font-family:'JetBrains Mono';font-size:8px;letter-spacing:.1em;text-transform:uppercase;
+ color:var(--slate);margin-top:7px;line-height:1.75}
+.dark .slot .s-spec,.blue .slot .s-spec{color:#79808F}
+/* a slot that sits on a .band, where the page class does not match the
+   surface underneath it (the sound half of p07) */
+.slot.on-dark{--cm:rgba(77,124,255,.6);
+ background:repeating-linear-gradient(45deg,rgba(77,124,255,.115) 0 10px,transparent 10px 20px),var(--ink2);
+ border-color:rgba(77,124,255,.32)}
+.slot.on-dark .s-id{background:var(--volt);color:var(--ink);font-weight:600}
+.slot.on-dark .s-type{border-color:rgba(77,124,255,.55);color:var(--volt)}
+.slot.on-dark .s-subj{color:#fff}
+.slot.on-dark .s-spec{color:#79808F}
+/* compact variant for slots under ~170px */
+.slot.sm .s-in{padding:10px 8px}
+.slot.sm .s-type{font-size:7px;padding:2px 6px;margin-bottom:7px;letter-spacing:.16em}
+.slot.sm .s-subj{font-size:10.5px;line-height:1.26}
+.slot.sm .s-spec{font-size:7.5px;margin-top:5px;line-height:1.6}
+
+/* ── QR block ── always paired with a line saying what the scan shows ── */
+.qr{display:flex;gap:12px;align-items:center}
+.qr .q-box{width:58px;height:58px;flex-shrink:0;border:1px dashed rgba(43,92,230,.45);
+ display:flex;align-items:center;justify-content:center;color:var(--cobalt)}
+.dark .qr .q-box,.blue .qr .q-box{border-color:rgba(255,255,255,.34);color:rgba(255,255,255,.55)}
+.qr .q-box svg{width:34px;height:34px}
+.qr .q-k{font-family:'JetBrains Mono';font-size:8px;letter-spacing:.18em;text-transform:uppercase;
+ color:var(--cobalt);display:block;margin-bottom:5px}
+.dark .qr .q-k,.blue .qr .q-k{color:var(--volt)}
+.qr .q-t{font-family:'Archivo';font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.01em;
+ line-height:1.22;color:var(--ink)}
+.dark .qr .q-t,.blue .qr .q-t{color:#fff}
+.qr .q-d{font-size:10.5px;line-height:1.55;color:var(--slate);margin-top:5px}
+.dark .qr .q-d,.blue .qr .q-d{color:#79808F}
+
+/* ── spec panel — iOS-settings-inspired rows ── */
+.spec{border:1px solid var(--hair);background:#fff}
+.dark .spec{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.028)}
+.spec .sp-h{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;
+ color:#fff;background:var(--ink);padding:8px 14px;display:flex;justify-content:space-between;align-items:center}
+.dark .spec .sp-h{background:var(--volt);color:var(--ink);font-weight:600}
+.spec .sp-r{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 14px;border-top:1px solid var(--hair)}
+.dark .spec .sp-r{border-top-color:rgba(255,255,255,.1)}
+.spec .sp-r:first-of-type{border-top:0}
+.spec .sp-l{font-size:11.5px;color:#2E3039;line-height:1.35}
+.dark .spec .sp-l{color:#C3C8D4}
+.spec .sp-v{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.04em;color:var(--cobalt);font-weight:600;white-space:nowrap}
+.dark .spec .sp-v{color:var(--volt)}
+/* toggle glyph */
+.tg{width:26px;height:15px;border-radius:8px;background:var(--cobalt);position:relative;flex-shrink:0}
+.tg::after{content:'';position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:50%;background:#fff}
+.tg.off{background:#CBC8C0}
+.dark .tg.off{background:#31343E}
+.tg.off::after{right:auto;left:2px}
+
+/* ── module card ── */
+.mod{border:1px solid var(--hair);background:#fff;padding:16px 17px 17px;position:relative}
+.dark .mod{border-color:rgba(255,255,255,.13);background:rgba(255,255,255,.025)}
+.mod .m-n{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.18em;color:var(--cobalt);display:block;margin-bottom:9px}
+.dark .mod .m-n{color:var(--volt)}
+.mod .m-t{font-family:'Archivo';font-weight:800;font-size:13.5px;line-height:1.2;text-transform:uppercase;
+ letter-spacing:.012em;color:var(--ink);margin-bottom:7px}
+.dark .mod .m-t{color:#fff}
+.mod .m-b{font-size:11.5px;line-height:1.64;color:var(--slate)}
+.dark .mod .m-b{color:#8C93A5}
+
+/* ── checkbox row ── */
+.ck{display:flex;gap:11px;align-items:flex-start}
+.ck i{width:11px;height:11px;border:1.4px solid var(--cobalt);flex-shrink:0;margin-top:3px;display:block}
+.dark .ck i{border-color:var(--volt)}
+.ck span{font-size:11px;line-height:1.5;color:#3A3D47}
+.dark .ck span{color:#9299A8}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="qrg" viewBox="0 0 42 42">
+<g fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="13" height="13"/><rect x="28" y="1" width="13" height="13"/><rect x="1" y="28" width="13" height="13"/></g>
+<g fill="currentColor"><rect x="5" y="5" width="5" height="5"/><rect x="32" y="5" width="5" height="5"/><rect x="5" y="32" width="5" height="5"/>
+<rect x="20" y="1" width="3" height="3"/><rect x="20" y="8" width="3" height="3"/><rect x="20" y="20" width="3" height="3"/>
+<rect x="27" y="20" width="3" height="3"/><rect x="34" y="27" width="3" height="3"/><rect x="20" y="34" width="3" height="3"/>
+<rect x="27" y="34" width="3" height="3"/><rect x="34" y="20" width="3" height="3"/><rect x="1" y="20" width="3" height="3"/>
+<rect x="8" y="20" width="3" height="3"/></g></symbol></svg>

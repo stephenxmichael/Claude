@@ -1,0 +1,1277 @@
+<!DOCTYPE html><html><head><meta charset='UTF-8'><title>The iPhone Creator Guide — Shooting Stars</title><style>
+/* ══════════════════════════════════════════════════════════════════
+   THE IPHONE CREATOR GUIDE — design system
+   Sister publication to the Shooting Stars Content Framework.
+
+   SHARED with the Framework (this is what makes it Shooting Stars):
+     palette, vendored Anton / Archivo / JetBrains Mono, 800x1120 page,
+     34px cobalt spine with rotated label, HUD bar, grain, glows,
+     hatched media slots, cobalt chips.
+
+   DIVERGENT (this is what makes it a different publication):
+     64px margin instead of 74      wider, airier text block
+     52px HUD instead of 56         with camera telemetry, not a chapter name
+     40px grid instead of 56        finer, technical-drawing feel
+     10-frame counter on the spine  replaces the 5 S.T.A.R.S. ticks
+     viewfinder corner brackets     the guide's signature page device
+     Anton capped at ~72px          the Framework runs to 150px
+     Archivo Black for module heads where the Framework reaches for Anton
+     --paper, whiter than --bone    more light space
+     mono frame-counter folio       replaces the ghost Anton numeral
+
+   Palette values are duplicated from src/head.html by hand. These two
+   products share a brand, not a stylesheet: the guide diverges on grid,
+   scale and furniture, so a common sheet would couple what should differ.
+   If the brand palette moves, move it in both.
+   ══════════════════════════════════════════════════════════════════ */
+@import url('assets/fonts/fonts.css');
+:root{
+  --ink:#08080C; --ink2:#101018;
+  --cobalt:#2B5CE6; --volt:#4D7CFF; --deep:#0B1F5C;
+  --bone:#F2F1ED; --bone2:#E8E6DF;
+  --slate:#5B6270; --line:#D9D6CE;
+  /* guide-only */
+  --paper:#FAF9F6; --hair:#E4E1D9; --cm:rgba(43,92,230,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-items:center;gap:38px;font-family:'Archivo',sans-serif}
+.page{width:800px;height:1120px;position:relative;overflow:hidden;box-shadow:0 26px 80px rgba(0,0,0,.65);flex-shrink:0}
+.tag{color:#7d8496;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:-14px;font-family:'JetBrains Mono'}
+
+/* ── print / PDF ── one .page per PDF page at exactly 800x1120 ── */
+@page{size:800px 1120px;margin:0}
+@media print{
+  body{background:#fff;padding:0;gap:0;display:block}
+  .tag{display:none}
+  .page{box-shadow:none;margin:0;break-after:page;page-break-after:always;
+        break-inside:avoid;page-break-inside:avoid}
+  .page:last-of-type{break-after:auto;page-break-after:auto}
+}
+
+/* ── surfaces ── */
+.dark{background:var(--ink);color:#fff}
+.light{background:var(--paper);color:var(--ink)}
+.blue{background:var(--cobalt);color:#fff}
+.grain::after{content:'';position:absolute;inset:0;opacity:.055;mix-blend-mode:overlay;pointer-events:none;z-index:1;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* 40px technical grid — finer than the Framework's 56px */
+.g40::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+ background-image:linear-gradient(rgba(8,8,12,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(8,8,12,.04) 1px,transparent 1px);
+ background-size:40px 40px}
+.dark.g40::before,.blue.g40::before{background-image:linear-gradient(rgba(255,255,255,.032) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.032) 1px,transparent 1px)}
+.glow{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
+/* full-bleed colour band, for pages that split light over dark */
+.band{position:absolute;left:34px;right:0;pointer-events:none}
+
+/* ── running marks ── */
+.hud{position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;
+ padding:0 34px 0 64px;font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;text-transform:uppercase;z-index:9}
+.dark .hud{color:#5A6072;border-bottom:1px solid rgba(255,255,255,.07)}
+.light .hud{color:#A8A49A;border-bottom:1px solid var(--hair)}
+.blue .hud{color:rgba(255,255,255,.62);border-bottom:1px solid rgba(255,255,255,.22)}
+.hud img{width:16px;opacity:.75}
+.light .hud img{filter:brightness(0);opacity:.28}
+/* right-hand telemetry: the guide's HUD reads like a camera, not a contents page */
+.hud .tel{display:flex;gap:12px;align-items:center}
+.hud .tel b{font-weight:400;color:var(--volt)}
+.light .hud .tel b{color:var(--cobalt)}
+
+/* frame-counter folio — replaces the Framework's ghost Anton numeral */
+.folio{position:absolute;bottom:25px;right:34px;font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;z-index:9}
+.dark .folio{color:rgba(255,255,255,.38)}
+.light .folio{color:#A8A49A}
+.blue .folio{color:rgba(255,255,255,.6)}
+.folio b{font-weight:600}
+.dark .folio b{color:#fff}
+.light .folio b{color:var(--ink)}
+
+/* spine — shared with the Framework */
+.spine{position:absolute;left:0;top:0;bottom:0;width:34px;display:flex;align-items:center;justify-content:center;z-index:8}
+.spine span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'JetBrains Mono';font-size:9px;letter-spacing:.34em;text-transform:uppercase}
+.dark .spine{background:var(--cobalt)}
+.dark .spine span{color:#fff}
+.light .spine{background:var(--ink)}
+.light .spine span{color:var(--paper)}
+.blue .spine{background:var(--ink)}
+.blue .spine span{color:#fff}
+
+/* ── 10-frame counter ──
+   The Framework marks progress with five S.T.A.R.S. ticks. This book has no
+   stages, so it counts frames: ten cells, the current one long and lit. */
+.frames{position:absolute;left:0;width:34px;bottom:25px;display:flex;flex-direction:column;gap:4px;align-items:center;z-index:9}
+.frames i{width:12px;height:3px;display:block;background:rgba(255,255,255,.3)}
+.frames i.on{width:20px;background:#fff}
+.light .frames i{background:rgba(250,249,246,.34)}
+.light .frames i.on{background:var(--volt)}
+.blue .frames i{background:rgba(255,255,255,.34)}
+.blue .frames i.on{background:var(--volt)}
+
+/* ── viewfinder brackets ── the guide's signature device ── */
+.vf{position:absolute;pointer-events:none;z-index:7}
+.vf i{position:absolute;width:15px;height:15px;border:1.5px solid var(--volt);opacity:.7}
+.vf i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0}
+.vf i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0}
+.vf i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}
+.vf i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
+
+/* ── type ──
+   Anton is capped well below the Framework's 150px. Module headings are set
+   in Archivo Black, which reads technical beside Anton's editorial condense. */
+.kick{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.22em;text-transform:uppercase}
+.hd{font-family:'Anton';text-transform:uppercase;line-height:.95;letter-spacing:.005em}
+.sub{font-family:'Archivo';font-weight:800;text-transform:uppercase;letter-spacing:.012em;line-height:1.18}
+.bd{font-size:12.5px;line-height:1.72;color:#3A3D47}
+.bd p{margin-bottom:11px}.bd p:last-child{margin-bottom:0}
+.dark .bd{color:#8C93A5}
+.blue .bd{color:rgba(255,255,255,.88)}
+.lead{font-size:15px;line-height:1.6;color:#2E3039;font-weight:500}
+.dark .lead{color:#A8AEBE}
+.mut{color:var(--slate)}.dark .mut{color:#6E7486}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--cobalt);color:#fff;
+ font-family:'JetBrains Mono';font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px}
+.chip.ghost{background:transparent;border:1px solid var(--cobalt);color:var(--cobalt)}
+.dark .chip.ghost{border-color:var(--volt);color:var(--volt)}
+
+/* technical annotation — a mono label on a leader line */
+.anno{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:8.5px;
+ letter-spacing:.16em;text-transform:uppercase;color:var(--cobalt)}
+.anno::before{content:'';width:16px;height:1px;background:currentColor;flex-shrink:0}
+.dark .anno{color:var(--volt)}
+
+/* ══ MEDIA SLOT ══════════════════════════════════════════════════
+   Every slot is a line item on the shot list. It carries an asset ID that
+   matches MEDIA-CHECKLIST.md, the media type, the subject, and the crop.
+   Designed as a compositional element, not a blank area.
+   ═════════════════════════════════════════════════════════════════ */
+.slot{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;
+ background:repeating-linear-gradient(45deg,rgba(43,92,230,.055) 0 10px,transparent 10px 20px),var(--bone2);
+ border:1px solid rgba(43,92,230,.3)}
+.dark .slot,.blue .slot{--cm:rgba(77,124,255,.6);
+ background:repeating-linear-gradient(45deg,rgba(77,124,255,.115) 0 10px,transparent 10px 20px),var(--ink2);
+ border-color:rgba(77,124,255,.32)}
+/* corner crop marks */
+.slot::before{content:'';position:absolute;inset:6px;pointer-events:none;z-index:1;
+ background:
+  linear-gradient(var(--cm),var(--cm)) 0 0/9px 1px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 0 0/1px 9px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 100% 0/9px 1px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 100% 0/1px 9px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 0 100%/9px 1px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 0 100%/1px 9px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 100% 100%/9px 1px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 100% 100%/1px 9px no-repeat}
+.slot .s-id{position:absolute;top:0;left:0;background:var(--cobalt);color:#fff;font-family:'JetBrains Mono';
+ font-size:8px;letter-spacing:.12em;padding:3px 7px;z-index:3;line-height:1.3}
+.dark .slot .s-id,.blue .slot .s-id{background:var(--volt);color:var(--ink);font-weight:600}
+.slot .s-in{position:relative;z-index:2;text-align:center;padding:16px 14px;max-width:300px}
+.slot .s-type{display:inline-block;font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.2em;
+ text-transform:uppercase;border:1px solid rgba(43,92,230,.5);color:var(--cobalt);padding:3px 8px;margin-bottom:10px}
+.dark .slot .s-type,.blue .slot .s-type{border-color:rgba(77,124,255,.55);color:var(--volt)}
+.slot .s-subj{display:block;font-family:'Archivo';font-weight:800;font-size:12.5px;line-height:1.3;
+ text-transform:uppercase;letter-spacing:.01em;color:var(--ink)}
+.dark .slot .s-subj,.blue .slot .s-subj{color:#fff}
+.slot .s-spec{display:block;font-family:'JetBrains Mono';font-size:8px;letter-spacing:.1em;text-transform:uppercase;
+ color:var(--slate);margin-top:7px;line-height:1.75}
+.dark .slot .s-spec,.blue .slot .s-spec{color:#79808F}
+/* a slot that sits on a .band, where the page class does not match the
+   surface underneath it (the sound half of p07) */
+.slot.on-dark{--cm:rgba(77,124,255,.6);
+ background:repeating-linear-gradient(45deg,rgba(77,124,255,.115) 0 10px,transparent 10px 20px),var(--ink2);
+ border-color:rgba(77,124,255,.32)}
+.slot.on-dark .s-id{background:var(--volt);color:var(--ink);font-weight:600}
+.slot.on-dark .s-type{border-color:rgba(77,124,255,.55);color:var(--volt)}
+.slot.on-dark .s-subj{color:#fff}
+.slot.on-dark .s-spec{color:#79808F}
+/* compact variant for slots under ~170px */
+.slot.sm .s-in{padding:10px 8px}
+.slot.sm .s-type{font-size:7px;padding:2px 6px;margin-bottom:7px;letter-spacing:.16em}
+.slot.sm .s-subj{font-size:10.5px;line-height:1.26}
+.slot.sm .s-spec{font-size:7.5px;margin-top:5px;line-height:1.6}
+
+/* ── QR block ── always paired with a line saying what the scan shows ── */
+.qr{display:flex;gap:12px;align-items:center}
+.qr .q-box{width:58px;height:58px;flex-shrink:0;border:1px dashed rgba(43,92,230,.45);
+ display:flex;align-items:center;justify-content:center;color:var(--cobalt)}
+.dark .qr .q-box,.blue .qr .q-box{border-color:rgba(255,255,255,.34);color:rgba(255,255,255,.55)}
+.qr .q-box svg{width:34px;height:34px}
+.qr .q-k{font-family:'JetBrains Mono';font-size:8px;letter-spacing:.18em;text-transform:uppercase;
+ color:var(--cobalt);display:block;margin-bottom:5px}
+.dark .qr .q-k,.blue .qr .q-k{color:var(--volt)}
+.qr .q-t{font-family:'Archivo';font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.01em;
+ line-height:1.22;color:var(--ink)}
+.dark .qr .q-t,.blue .qr .q-t{color:#fff}
+.qr .q-d{font-size:10.5px;line-height:1.55;color:var(--slate);margin-top:5px}
+.dark .qr .q-d,.blue .qr .q-d{color:#79808F}
+
+/* ── spec panel — iOS-settings-inspired rows ── */
+.spec{border:1px solid var(--hair);background:#fff}
+.dark .spec{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.028)}
+.spec .sp-h{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;
+ color:#fff;background:var(--ink);padding:8px 14px;display:flex;justify-content:space-between;align-items:center}
+.dark .spec .sp-h{background:var(--volt);color:var(--ink);font-weight:600}
+.spec .sp-r{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 14px;border-top:1px solid var(--hair)}
+.dark .spec .sp-r{border-top-color:rgba(255,255,255,.1)}
+.spec .sp-r:first-of-type{border-top:0}
+.spec .sp-l{font-size:11.5px;color:#2E3039;line-height:1.35}
+.dark .spec .sp-l{color:#C3C8D4}
+.spec .sp-v{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.04em;color:var(--cobalt);font-weight:600;white-space:nowrap}
+.dark .spec .sp-v{color:var(--volt)}
+/* toggle glyph */
+.tg{width:26px;height:15px;border-radius:8px;background:var(--cobalt);position:relative;flex-shrink:0}
+.tg::after{content:'';position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:50%;background:#fff}
+.tg.off{background:#CBC8C0}
+.dark .tg.off{background:#31343E}
+.tg.off::after{right:auto;left:2px}
+
+/* ── module card ── */
+.mod{border:1px solid var(--hair);background:#fff;padding:16px 17px 17px;position:relative}
+.dark .mod{border-color:rgba(255,255,255,.13);background:rgba(255,255,255,.025)}
+.mod .m-n{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.18em;color:var(--cobalt);display:block;margin-bottom:9px}
+.dark .mod .m-n{color:var(--volt)}
+.mod .m-t{font-family:'Archivo';font-weight:800;font-size:13.5px;line-height:1.2;text-transform:uppercase;
+ letter-spacing:.012em;color:var(--ink);margin-bottom:7px}
+.dark .mod .m-t{color:#fff}
+.mod .m-b{font-size:11.5px;line-height:1.64;color:var(--slate)}
+.dark .mod .m-b{color:#8C93A5}
+
+/* ── checkbox row ── */
+.ck{display:flex;gap:11px;align-items:flex-start}
+.ck i{width:11px;height:11px;border:1.4px solid var(--cobalt);flex-shrink:0;margin-top:3px;display:block}
+.dark .ck i{border-color:var(--volt)}
+.ck span{font-size:11px;line-height:1.5;color:#3A3D47}
+.dark .ck span{color:#9299A8}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="qrg" viewBox="0 0 42 42">
+<g fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="13" height="13"/><rect x="28" y="1" width="13" height="13"/><rect x="1" y="28" width="13" height="13"/></g>
+<g fill="currentColor"><rect x="5" y="5" width="5" height="5"/><rect x="32" y="5" width="5" height="5"/><rect x="5" y="32" width="5" height="5"/>
+<rect x="20" y="1" width="3" height="3"/><rect x="20" y="8" width="3" height="3"/><rect x="20" y="20" width="3" height="3"/>
+<rect x="27" y="20" width="3" height="3"/><rect x="34" y="27" width="3" height="3"/><rect x="20" y="34" width="3" height="3"/>
+<rect x="27" y="34" width="3" height="3"/><rect x="34" y="20" width="3" height="3"/><rect x="1" y="20" width="3" height="3"/>
+<rect x="8" y="20" width="3" height="3"/></g></symbol></svg>
+<div class="tag">P.01 — COVER</div>
+<div class="page dark grain">
+  <div class="glow" style="width:600px;height:600px;bottom:-240px;right:-190px;background:radial-gradient(circle,var(--volt),transparent 70%);opacity:.34"></div>
+  <div class="glow" style="width:420px;height:420px;bottom:-160px;left:-150px;background:radial-gradient(circle,var(--deep),transparent 70%);opacity:.7"></div>
+  <div class="spine"><span>Shooting Stars &middot; Field Guide 01 &middot; 2026</span></div>
+  <div class="frames"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+  <!-- hero plate, full bleed to the top and right edges -->
+  <div class="slot" style="position:absolute;top:0;left:34px;right:0;height:612px;z-index:2;border-top:0;border-right:0">
+    <span class="s-id">M01.1</span>
+    <div class="s-in" style="max-width:340px">
+      <span class="s-type">Photo &middot; Hero</span>
+      <span class="s-subj">Stephen filming with the iPhone rig</span>
+      <span class="s-spec">Landscape 766 &times; 612 &middot; 1.25:1<br>Subject left of centre &middot; room to breathe right<br>Shot on camera, not on the phone</span>
+    </div>
+  </div>
+  <div class="vf" style="top:24px;left:58px;right:24px;height:564px"></div>
+  <div style="position:absolute;top:26px;left:64px;right:34px;z-index:8;display:flex;justify-content:space-between;align-items:center;
+              font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.62)">
+    <span>Shooting Stars Content Academy</span>
+    <span style="color:var(--volt)">Vol. 02 &nbsp;/&nbsp; Field Guide</span>
+  </div>
+
+  <img src="assets/Shooting_Stars_logo_2_wht.png" style="position:absolute;top:664px;left:64px;width:112px;z-index:6;opacity:.95">
+
+  <div style="position:absolute;top:766px;left:64px;right:64px;z-index:6">
+    <div class="hd" style="font-size:74px">The iPhone</div>
+    <div class="hd" style="font-size:74px;color:var(--volt)">Creator Guide</div>
+  </div>
+
+  <div style="position:absolute;top:930px;left:64px;z-index:6;display:flex;align-items:flex-start;gap:20px">
+    <div style="width:2px;height:52px;background:var(--volt);flex-shrink:0;margin-top:3px"></div>
+    <div style="max-width:490px;font-size:14.5px;line-height:1.6;color:#9BA2B4">
+      The settings, tools, and shooting techniques I use to create professional content with the camera already in my pocket.
+    </div>
+  </div>
+
+  <div style="position:absolute;left:64px;right:64px;bottom:54px;z-index:6;display:flex;justify-content:space-between;align-items:center;
+              border-top:1px solid rgba(255,255,255,.14);padding-top:18px">
+    <div style="display:flex;gap:26px;font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#5A6072">
+      <span>10 Pages</span><span>4K &middot; Apple Log</span><span>Native + Blackmagic</span>
+    </div>
+    <span style="font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#5A6072">@stephenxmichael</span>
+  </div>
+</div>
+<div class="tag">P.02 — YOUR IPHONE IS ALREADY A SERIOUS CAMERA</div>
+<div class="page light g40">
+  <div class="spine"><span>01 &nbsp;&mdash;&nbsp; The Camera You Own</span></div>
+  <div class="frames"><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="hud"><span>The iPhone Creator Guide</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><div class="tel"><span>Shot On</span><b>iPhone</b></div></div>
+
+  <div style="position:absolute;top:96px;left:64px;right:64px;z-index:6">
+    <div class="kick" style="color:var(--cobalt);margin-bottom:13px">01 &nbsp;/&nbsp; Start Here</div>
+    <div class="hd" style="font-size:52px">Your iPhone Is Already<br>A Serious Camera</div>
+  </div>
+
+  <div style="position:absolute;top:262px;left:64px;width:372px;z-index:6">
+    <div class="lead" style="margin-bottom:16px">It shoots 4K. It has three focal lengths, a log profile, and a sensor that holds up anywhere the light is decent.</div>
+    <div class="bd">
+      <p>That is more camera than most of the content you are making actually needs. When footage looks amateur, the body is almost never the reason.</p>
+      <p>It is the light you did not move, the frame you did not think about, the audio you recorded from six feet away, and the settings you never opened.</p>
+      <p style="color:var(--ink);font-weight:700">Fix those four and the same phone produces work people assume was shot on a cinema camera.</p>
+    </div>
+  </div>
+
+  <div class="slot" style="position:absolute;top:262px;left:468px;width:268px;height:346px;z-index:6">
+    <span class="s-id">M02.1</span>
+    <div class="s-in" style="max-width:220px">
+      <span class="s-type">Photo</span>
+      <span class="s-subj">Stephen shooting handheld on iPhone</span>
+      <span class="s-spec">Portrait 268 &times; 346 &middot; 3:4<br>Waist-up &middot; phone visible in frame</span>
+    </div>
+  </div>
+
+  <!-- qualitative ranking, deliberately not plotted as data -->
+  <div style="position:absolute;top:662px;left:64px;right:64px;z-index:6;border-top:2px solid var(--ink);padding-top:16px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:15px">
+      <div class="sub" style="font-size:14px">What Actually Changes How The Shot Reads</div>
+      <div class="kick" style="font-size:8.5px;color:var(--slate)">My ranking &middot; not a measurement</div>
+    </div>
+    <div id="impact">
+      <div style="display:flex;align-items:center;gap:16px;padding:7px 0;border-bottom:1px solid var(--hair)">
+        <span style="width:150px;font-size:12px;font-weight:600;color:var(--ink)">Lighting</span>
+        <span style="display:flex;gap:4px"><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i></span>
+        <span style="flex:1;font-size:11px;color:var(--slate)">Move one lamp, or turn to face the window.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding:7px 0;border-bottom:1px solid var(--hair)">
+        <span style="width:150px;font-size:12px;font-weight:600;color:var(--ink)">Framing &amp; angle</span>
+        <span style="display:flex;gap:4px"><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--bone2);display:block"></i></span>
+        <span style="flex:1;font-size:11px;color:var(--slate)">Lens height, distance, and what sits behind you.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding:7px 0;border-bottom:1px solid var(--hair)">
+        <span style="width:150px;font-size:12px;font-weight:600;color:var(--ink)">Audio</span>
+        <span style="display:flex;gap:4px"><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--bone2);display:block"></i></span>
+        <span style="flex:1;font-size:11px;color:var(--slate)">People forgive a soft image. They leave on bad sound.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding:7px 0;border-bottom:1px solid var(--hair)">
+        <span style="width:150px;font-size:12px;font-weight:600;color:var(--ink)">Settings</span>
+        <span style="display:flex;gap:4px"><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--bone2);display:block"></i><i style="width:26px;height:9px;background:var(--bone2);display:block"></i></span>
+        <span style="flex:1;font-size:11px;color:var(--slate)">Set once, stop thinking about it. Page 03.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding:7px 0;border-bottom:1px solid var(--hair)">
+        <span style="width:150px;font-size:12px;font-weight:600;color:var(--ink)">Movement</span>
+        <span style="display:flex;gap:4px"><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--cobalt);display:block"></i><i style="width:26px;height:9px;background:var(--bone2);display:block"></i><i style="width:26px;height:9px;background:var(--bone2);display:block"></i></span>
+        <span style="flex:1;font-size:11px;color:var(--slate)">Slow and deliberate, or locked off. Nothing in between.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding:7px 0">
+        <span style="width:150px;font-size:12px;font-weight:600;color:var(--slate)">The camera body</span>
+        <span style="display:flex;gap:4px"><i style="width:26px;height:9px;background:var(--volt);display:block"></i><i style="width:26px;height:9px;background:var(--bone2);display:block"></i><i style="width:26px;height:9px;background:var(--bone2);display:block"></i><i style="width:26px;height:9px;background:var(--bone2);display:block"></i><i style="width:26px;height:9px;background:var(--bone2);display:block"></i></span>
+        <span style="flex:1;font-size:11px;color:var(--slate)">Last on the list, and the one everyone tries to buy first.</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:64px;right:64px;bottom:64px;z-index:6;display:flex;gap:16px">
+    <div class="mod" style="flex:1">
+      <span class="m-n">Where The Phone Wins</span>
+      <div class="m-t">iPhone</div>
+      <div class="m-b">Always with you. Sets up in seconds. Shoots, edits and posts on one device. Good enough that the audience never asks what you used.</div>
+    </div>
+    <div class="mod" style="flex:1">
+      <span class="m-n">Where The Body Wins</span>
+      <div class="m-t">Dedicated Camera</div>
+      <div class="m-b">Low light, long lenses, shallow depth, and long-form work. Real advantages. None of them are what is holding your content back today.</div>
+    </div>
+  </div>
+
+  <div class="folio"><b>02</b> / 10</div>
+</div>
+<div class="tag">P.03 — MY GO-TO IPHONE SETTINGS · cheat sheet + UI panel</div>
+<div class="page light g40">
+  <div class="spine"><span>02 &nbsp;&mdash;&nbsp; Settings</span></div>
+  <div class="frames"><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="hud"><span>The iPhone Creator Guide</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><div class="tel"><span>4K</span><b>30 FPS</b><span>H.265</span></div></div>
+
+  <div style="position:absolute;top:96px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between;align-items:flex-end">
+    <div>
+      <div class="kick" style="color:var(--cobalt);margin-bottom:13px">02 &nbsp;/&nbsp; Settings</div>
+      <div class="hd" style="font-size:50px">My Go-To<br>iPhone Settings</div>
+    </div>
+    <div style="max-width:262px;font-size:12px;line-height:1.66;color:var(--slate);padding-bottom:6px">
+      Set these once. The point is not that they are the only correct numbers, it is that you stop deciding every time you pick up the phone.
+    </div>
+  </div>
+
+  <!-- two presets, the only two most creators need -->
+  <div style="position:absolute;top:252px;left:64px;right:64px;z-index:6;display:flex;gap:16px">
+    <div style="flex:1;border:1px solid var(--hair);background:#fff;padding:18px 20px 20px;position:relative">
+      <div class="vf" style="inset:8px"></div>
+      <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:12px">Preset A</div>
+      <div class="sub" style="font-size:15px;margin-bottom:12px">Talking Head</div>
+      <div style="display:flex;align-items:baseline;gap:9px;margin-bottom:12px">
+        <span class="hd" style="font-size:44px;color:var(--ink)">4K</span>
+        <span class="hd" style="font-size:22px;color:var(--slate)">/</span>
+        <span class="hd" style="font-size:44px;color:var(--cobalt)">30</span>
+        <span class="kick" style="font-size:9px;color:var(--slate)">fps</span>
+      </div>
+      <div style="font-size:11.5px;line-height:1.62;color:var(--slate)">Everything you say to camera. Sharp, light files, cuts cleanly against anything else you shoot.</div>
+      <div class="kick" style="font-size:8px;color:var(--slate);margin-top:10px;padding-top:9px;border-top:1px solid var(--hair)">HDR Off &nbsp;&middot;&nbsp; Lock AE/AF Every Take</div>
+    </div>
+    <div style="flex:1;border:1px solid var(--cobalt);background:rgba(43,92,230,.04);padding:18px 20px 20px;position:relative">
+      <div class="vf" style="inset:8px"></div>
+      <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:12px">Preset B</div>
+      <div class="sub" style="font-size:15px;margin-bottom:12px">B-Roll</div>
+      <div style="display:flex;align-items:baseline;gap:9px;margin-bottom:12px">
+        <span class="hd" style="font-size:44px;color:var(--ink)">4K</span>
+        <span class="hd" style="font-size:22px;color:var(--slate)">/</span>
+        <span class="hd" style="font-size:44px;color:var(--cobalt)">60</span>
+        <span class="kick" style="font-size:9px;color:var(--slate)">fps</span>
+      </div>
+      <div style="font-size:11.5px;line-height:1.62;color:var(--slate)">Anything you might slow down. Shoot 60, drop it to half speed in the edit, keep it smooth.</div>
+      <div class="kick" style="font-size:8px;color:var(--slate);margin-top:10px;padding-top:9px;border-top:1px solid var(--hair)">True Slo-Mo &nbsp;&middot;&nbsp; 1080p / 240 fps</div>
+    </div>
+  </div>
+
+  <!-- the actual toggles, drawn as the interface they live in -->
+  <div class="spec" style="position:absolute;top:500px;left:64px;width:440px;z-index:6">
+    <div class="sp-h"><span>Settings &nbsp;&rsaquo;&nbsp; Camera</span><span style="opacity:.6">Set Once</span></div>
+    <div class="sp-r"><span class="sp-l">Record Video</span><span class="sp-v">4K &middot; 30 fps</span></div>
+    <div class="sp-r"><span class="sp-l">Formats</span><span class="sp-v">High Efficiency</span></div>
+    <div class="sp-r"><span class="sp-l">HDR Video<br><span style="font-size:10px;color:var(--slate)">Grades badly, looks wrong off-device</span></span><span class="tg off"></span></div>
+    <div class="sp-r"><span class="sp-l">Enhanced Stabilisation</span><span class="tg off"></span></div>
+    <div class="sp-r"><span class="sp-l">Lock Camera<br><span style="font-size:10px;color:var(--slate)">Stops the lens switching mid-take</span></span><span class="tg"></span></div>
+    <div class="sp-r"><span class="sp-l">Preserve Settings</span><span class="sp-v">Camera Mode</span></div>
+  </div>
+
+  <div class="slot" style="position:absolute;top:500px;left:536px;width:200px;height:290px;z-index:6">
+    <span class="s-id">M03.1</span>
+    <div class="s-in sm" style="max-width:170px">
+      <span class="s-type">Screenshot</span>
+      <span class="s-subj">Settings &rsaquo; Camera &rsaquo; Record Video</span>
+      <span class="s-spec">Portrait crop 200 &times; 296<br>Show 4K/30 selected</span>
+    </div>
+  </div>
+
+  <!-- lens choice -->
+  <div style="position:absolute;top:826px;left:64px;right:64px;z-index:6;border-top:2px solid var(--ink);padding-top:14px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:13px">
+      <div class="sub" style="font-size:14px">Which Lens To Reach For</div>
+      <div class="kick" style="font-size:8.5px;color:var(--slate)">Lock it before you record</div>
+    </div>
+    <div style="display:flex;gap:16px">
+      <div style="flex:1;border-left:2px solid var(--cobalt);padding-left:13px">
+        <div style="display:flex;align-items:baseline;gap:8px"><span class="hd" style="font-size:24px;color:var(--cobalt)">1&times;</span><span class="kick" style="font-size:8px;color:var(--ink)">Main &middot; Default</span></div>
+        <div style="font-size:11px;line-height:1.55;color:var(--slate);margin-top:6px">Best sensor and best low light. Shoot here unless you have a reason not to.</div>
+      </div>
+      <div style="flex:1;border-left:2px solid var(--line);padding-left:13px">
+        <div style="display:flex;align-items:baseline;gap:8px"><span class="hd" style="font-size:24px;color:var(--ink)">0.5&times;</span><span class="kick" style="font-size:8px;color:var(--slate)">Ultra Wide</span></div>
+        <div style="font-size:11px;line-height:1.55;color:var(--slate);margin-top:6px">Tight rooms and establishing shots. Keep faces out of the corners.</div>
+      </div>
+      <div style="flex:1;border-left:2px solid var(--line);padding-left:13px">
+        <div style="display:flex;align-items:baseline;gap:8px"><span class="hd" style="font-size:24px;color:var(--ink)">2&ndash;5&times;</span><span class="kick" style="font-size:8px;color:var(--slate)">Telephoto</span></div>
+        <div style="font-size:11px;line-height:1.55;color:var(--slate);margin-top:6px">Flattering for talking head, and it separates you from the room. Needs light.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:64px;right:64px;bottom:64px;z-index:6;background:var(--ink);padding:20px 24px;display:flex;gap:22px;align-items:flex-start">
+    <span class="chip" style="background:var(--volt);color:var(--ink);flex-shrink:0;font-weight:600">From Stephen</span>
+    <div style="font-size:12px;line-height:1.66;color:#B4BAC8;flex:1">
+      Tap your face to set focus and exposure, then press and hold until it locks. Do this before every take and the footage stops shifting brightness mid-sentence.
+    </div>
+  </div>
+
+  <div class="folio"><b>03</b> / 10</div>
+</div>
+<div class="tag">P.04 — NATIVE CAMERA VS BLACKMAGIC CAMERA · split</div>
+<div class="page dark grain g40">
+  <div class="glow" style="width:540px;height:540px;top:-210px;right:-170px;background:radial-gradient(circle,var(--volt),transparent 70%);opacity:.3"></div>
+  <div class="spine"><span>03 &nbsp;&mdash;&nbsp; Two Apps</span></div>
+  <div class="frames"><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="hud"><span>The iPhone Creator Guide</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><div class="tel"><span>App</span><b>Native / BMD</b></div></div>
+
+  <div style="position:absolute;top:96px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between;align-items:flex-end">
+    <div>
+      <div class="kick" style="color:var(--volt);margin-bottom:13px">03 &nbsp;/&nbsp; Which App</div>
+      <div class="hd" style="font-size:50px">Native Camera<br>Or Blackmagic</div>
+    </div>
+    <div style="max-width:268px;font-size:12px;line-height:1.66;color:#8C93A5;padding-bottom:6px;text-align:right">
+      Both live on the same phone and use the same sensor. The difference is how much the app decides for you.
+    </div>
+  </div>
+
+  <div style="position:absolute;top:252px;left:64px;right:64px;z-index:6;display:flex;gap:16px">
+    <!-- native -->
+    <div style="flex:1;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.025);height:534px;display:flex;flex-direction:column">
+      <div class="slot" style="height:214px;border:0;border-bottom:1px solid rgba(255,255,255,.14);flex-shrink:0">
+        <span class="s-id">M04.1</span>
+        <div class="s-in sm" style="max-width:240px">
+          <span class="s-type">Screenshot</span>
+          <span class="s-subj">Native Camera, video mode</span>
+          <span class="s-spec">9:16 UI, letterboxed into 328 &times; 214<br>Show 4K/30 badge + exposure lock</span>
+        </div>
+      </div>
+      <div style="padding:18px 20px 20px;flex:1">
+        <div class="kick" style="font-size:8.5px;color:#5A6072;margin-bottom:9px">Option 01</div>
+        <div class="sub" style="font-size:17px;color:#fff;margin-bottom:10px">Native Camera</div>
+        <div style="font-size:11.5px;line-height:1.66;color:#8C93A5;margin-bottom:16px">The phone makes the calls. You get a very good image with almost no decisions, and you are recording two seconds after you pick it up.</div>
+        <div style="border-top:1px solid rgba(255,255,255,.12);padding-top:12px">
+          <div class="kick" style="font-size:8px;color:var(--volt);margin-bottom:10px">Reach For It When</div>
+          <div style="font-size:11px;line-height:1.55;color:#9299A8;padding:5px 0">Something is happening now and you have one chance at it</div>
+          <div style="font-size:11px;line-height:1.55;color:#9299A8;padding:5px 0;border-top:1px solid rgba(255,255,255,.07)">You are shooting handheld B-roll on the move</div>
+          <div style="font-size:11px;line-height:1.55;color:#9299A8;padding:5px 0;border-top:1px solid rgba(255,255,255,.07)">The clip is going straight out with light editing</div>
+          <div style="font-size:11px;line-height:1.55;color:#9299A8;padding:5px 0;border-top:1px solid rgba(255,255,255,.07)">You want Cinematic or Action mode</div>
+        </div>
+      </div>
+    </div>
+    <!-- blackmagic -->
+    <div style="flex:1;border:1px solid var(--volt);background:rgba(77,124,255,.06);height:534px;display:flex;flex-direction:column">
+      <div class="slot" style="height:214px;border:0;border-bottom:1px solid var(--volt);flex-shrink:0">
+        <span class="s-id">M04.2</span>
+        <div class="s-in sm" style="max-width:240px">
+          <span class="s-type">Screenshot</span>
+          <span class="s-subj">Blackmagic Camera, recording UI</span>
+          <span class="s-spec">16:9 landscape UI &middot; 328 &times; 214<br>Show ISO, shutter, WB, Apple Log</span>
+        </div>
+      </div>
+      <div style="padding:18px 20px 20px;flex:1">
+        <div class="kick" style="font-size:8.5px;color:var(--volt);margin-bottom:9px">Option 02</div>
+        <div class="sub" style="font-size:17px;color:var(--volt);margin-bottom:10px">Blackmagic Camera</div>
+        <div style="font-size:11.5px;line-height:1.66;color:#8C93A5;margin-bottom:16px">You make the calls. Shutter, ISO, white balance and codec are all yours, and the app stops quietly changing things between takes.</div>
+        <div style="border-top:1px solid rgba(255,255,255,.14);padding-top:12px">
+          <div class="kick" style="font-size:8px;color:var(--volt);margin-bottom:10px">Reach For It When</div>
+          <div style="font-size:11px;line-height:1.55;color:#9299A8;padding:5px 0">You are shooting a talking head you will grade</div>
+          <div style="font-size:11px;line-height:1.55;color:#9299A8;padding:5px 0;border-top:1px solid rgba(255,255,255,.1)">The light is mixed, tricky, or changing</div>
+          <div style="font-size:11px;line-height:1.55;color:#9299A8;padding:5px 0;border-top:1px solid rgba(255,255,255,.1)">You need shots to match across a whole shoot</div>
+          <div style="font-size:11px;line-height:1.55;color:#9299A8;padding:5px 0;border-top:1px solid rgba(255,255,255,.1)">You want Apple Log, or to record to an SSD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:820px;left:64px;right:64px;z-index:6;border:1px solid rgba(255,255,255,.16);padding:18px 22px;display:flex;gap:26px;align-items:center">
+    <div class="anno" style="flex-shrink:0;writing-mode:horizontal-tb">The Honest Answer</div>
+    <div style="flex:1;font-size:12px;line-height:1.68;color:#B4BAC8">
+      I use both, most weeks. Native for anything spontaneous, Blackmagic for anything I have set up for. If you are new to this, shoot native until your lighting and framing are consistent. Manual control on top of bad light just gets you a well-exposed bad shot.
+    </div>
+  </div>
+
+  <div class="qr" style="position:absolute;left:64px;right:64px;bottom:64px;z-index:6">
+    <div class="q-box"><svg><use href="#qrg"/></svg></div>
+    <div>
+      <span class="q-k">M04.3 &middot; QR &middot; Reel</span>
+      <div class="q-t">Blackmagic Camera, set up from scratch</div>
+      <div class="q-d">Two minutes: the four settings I change first, and what each one is protecting you from.</div>
+    </div>
+  </div>
+
+  <div class="folio"><b>04</b> / 10</div>
+</div>
+<div class="tag">P.05 — APPLE LOG + THE CINEMATIC LOOK · three-stage comparison</div>
+<div class="page dark grain g40">
+  <div class="glow" style="width:560px;height:560px;bottom:-230px;left:-180px;background:radial-gradient(circle,var(--deep),transparent 70%);opacity:.66"></div>
+  <div class="spine"><span>04 &nbsp;&mdash;&nbsp; Apple Log</span></div>
+  <div class="frames"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="hud"><span>The iPhone Creator Guide</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><div class="tel"><span>Apple Log</span><b>1/48</b><span>ISO 55</span></div></div>
+
+  <div style="position:absolute;top:96px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between;align-items:flex-end">
+    <div>
+      <div class="kick" style="color:var(--volt);margin-bottom:13px">04 &nbsp;/&nbsp; Log &amp; Colour</div>
+      <div class="hd" style="font-size:50px">Apple Log And<br>The Cinematic Look</div>
+    </div>
+    <div style="max-width:272px;font-size:12px;line-height:1.66;color:#8C93A5;padding-bottom:6px;text-align:right">
+      Log is a flat, low-contrast recording that keeps detail in the brightest and darkest parts of the shot so you can decide how it looks later.
+    </div>
+  </div>
+
+  <!-- the whole argument for Log, in three frames -->
+  <div style="position:absolute;top:252px;left:64px;right:64px;z-index:6;display:flex;align-items:flex-start">
+    <div style="width:202px">
+      <div class="slot" style="height:236px">
+        <span class="s-id">M05.1</span>
+        <div class="s-in sm" style="max-width:170px">
+          <span class="s-type">Video Frame</span>
+          <span class="s-subj">Apple Log, straight off the phone</span>
+          <span class="s-spec">16:9 &middot; 202 &times; 236 crop<br>Flat, grey, low contrast</span>
+        </div>
+      </div>
+      <div style="margin-top:12px">
+        <div class="sub" style="font-size:12px;color:#fff">01 &nbsp; Flat Original</div>
+        <div style="font-size:10.5px;line-height:1.6;color:#79808F;margin-top:6px">Looks broken. It is not. Every highlight and shadow is still there, waiting.</div>
+      </div>
+    </div>
+    <div style="width:33px;height:236px;display:flex;align-items:center;justify-content:center;color:var(--volt);font-size:17px">&rarr;</div>
+    <div style="width:202px">
+      <div class="slot" style="height:236px">
+        <span class="s-id">M05.2</span>
+        <div class="s-in sm" style="max-width:170px">
+          <span class="s-type">Video Frame</span>
+          <span class="s-subj">Same frame, corrected</span>
+          <span class="s-spec">16:9 &middot; 202 &times; 236 crop<br>LUT applied, exposure + WB fixed</span>
+        </div>
+      </div>
+      <div style="margin-top:12px">
+        <div class="sub" style="font-size:12px;color:#fff">02 &nbsp; Corrected</div>
+        <div style="font-size:10.5px;line-height:1.6;color:#79808F;margin-top:6px">Conversion LUT on, exposure and white balance set. Neutral and accurate.</div>
+      </div>
+    </div>
+    <div style="width:33px;height:236px;display:flex;align-items:center;justify-content:center;color:var(--volt);font-size:17px">&rarr;</div>
+    <div style="width:202px">
+      <div class="slot" style="height:236px;border-color:var(--volt)">
+        <span class="s-id">M05.3</span>
+        <div class="s-in sm" style="max-width:170px">
+          <span class="s-type">Video Frame</span>
+          <span class="s-subj">Same frame, final grade</span>
+          <span class="s-spec">16:9 &middot; 202 &times; 236 crop<br>The look that ships</span>
+        </div>
+      </div>
+      <div style="margin-top:12px">
+        <div class="sub" style="font-size:12px;color:var(--volt)">03 &nbsp; Final Grade</div>
+        <div style="font-size:10.5px;line-height:1.6;color:#79808F;margin-top:6px">Now it is a choice. Warmth, contrast and colour pushed on purpose.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:610px;left:64px;right:64px;z-index:6;display:flex;border-top:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16)">
+    <div style="flex:1;padding:14px 16px 15px;border-right:1px solid rgba(255,255,255,.12)">
+      <div class="kick" style="font-size:8px;color:var(--volt);margin-bottom:7px">Step 01</div>
+      <div class="sub" style="font-size:14px;color:#fff">Log</div>
+      <div style="font-size:10.5px;line-height:1.55;color:#79808F;margin-top:5px">Record flat in Blackmagic</div>
+    </div>
+    <div style="flex:1;padding:14px 16px 15px;border-right:1px solid rgba(255,255,255,.12)">
+      <div class="kick" style="font-size:8px;color:var(--volt);margin-bottom:7px">Step 02</div>
+      <div class="sub" style="font-size:14px;color:#fff">Convert</div>
+      <div style="font-size:10.5px;line-height:1.55;color:#79808F;margin-top:5px">Apple Log to Rec.709 LUT</div>
+    </div>
+    <div style="flex:1;padding:14px 16px 15px;border-right:1px solid rgba(255,255,255,.12)">
+      <div class="kick" style="font-size:8px;color:var(--volt);margin-bottom:7px">Step 03</div>
+      <div class="sub" style="font-size:14px;color:#fff">Correct</div>
+      <div style="font-size:10.5px;line-height:1.55;color:#79808F;margin-top:5px">Exposure, white balance, contrast</div>
+    </div>
+    <div style="flex:1;padding:14px 16px 15px">
+      <div class="kick" style="font-size:8px;color:var(--volt);margin-bottom:7px">Step 04</div>
+      <div class="sub" style="font-size:14px;color:var(--volt)">Create</div>
+      <div style="font-size:10.5px;line-height:1.55;color:#79808F;margin-top:5px">Then, and only then, the look</div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:740px;left:64px;width:352px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--volt);margin-bottom:11px">Shutter, Without The Theory</div>
+    <div style="display:flex;align-items:center;gap:14px;padding:9px 0;border-top:1px solid rgba(255,255,255,.14)">
+      <span class="hd" style="font-size:26px;color:#fff;width:74px">24<span style="font-size:12px;color:#79808F">fps</span></span>
+      <span style="color:var(--volt);font-family:'JetBrains Mono';font-size:9px">&times;2</span>
+      <span class="hd" style="font-size:26px;color:var(--volt);width:64px">1/48</span>
+      <span style="flex:1;font-size:10.5px;line-height:1.5;color:#79808F">The film look. My default.</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;padding:9px 0;border-top:1px solid rgba(255,255,255,.14)">
+      <span class="hd" style="font-size:26px;color:#fff;width:74px">30<span style="font-size:12px;color:#79808F">fps</span></span>
+      <span style="color:var(--volt);font-family:'JetBrains Mono';font-size:9px">&times;2</span>
+      <span class="hd" style="font-size:26px;color:var(--volt);width:64px">1/60</span>
+      <span style="flex:1;font-size:10.5px;line-height:1.5;color:#79808F">Standard for social.</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;padding:9px 0;border-top:1px solid rgba(255,255,255,.14);border-bottom:1px solid rgba(255,255,255,.14)">
+      <span class="hd" style="font-size:26px;color:#fff;width:74px">60<span style="font-size:12px;color:#79808F">fps</span></span>
+      <span style="color:var(--volt);font-family:'JetBrains Mono';font-size:9px">&times;2</span>
+      <span class="hd" style="font-size:26px;color:var(--volt);width:64px">1/120</span>
+      <span style="flex:1;font-size:10.5px;line-height:1.5;color:#79808F">Only when you will slow it down.</span>
+    </div>
+    <div style="font-size:10.5px;line-height:1.6;color:#79808F;margin-top:10px">Double the frame rate. That is the whole rule. Faster looks choppy, slower turns to mush.</div>
+  </div>
+
+  <div style="position:absolute;top:740px;left:448px;right:64px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--volt);margin-bottom:11px">Two Things Log Will Not Forgive</div>
+    <div style="border-top:1px solid rgba(255,255,255,.14);padding:11px 0">
+      <div class="sub" style="font-size:12px;color:#fff;margin-bottom:5px">Exposure</div>
+      <div style="font-size:10.5px;line-height:1.6;color:#79808F">Expose slightly brighter than looks right on screen, but never let the highlights clip. Use false colour or zebras. Underexposed Log turns to noise the moment you grade it.</div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.14);padding:11px 0;border-bottom:1px solid rgba(255,255,255,.14)">
+      <div class="sub" style="font-size:12px;color:#fff;margin-bottom:5px">White Balance</div>
+      <div style="font-size:10.5px;line-height:1.6;color:#79808F">Set it by hand and lock it. Auto drifts between takes, and matching shots that each drifted differently is the worst job in the edit.</div>
+    </div>
+    <div style="font-size:10.5px;line-height:1.6;color:#79808F;margin-top:10px">If you are not going to grade it, do not shoot it. Log straight to the feed looks worse than native.</div>
+  </div>
+
+  <div class="qr" style="position:absolute;left:64px;right:64px;bottom:60px;z-index:6">
+    <div class="q-box"><svg><use href="#qrg"/></svg></div>
+    <div>
+      <span class="q-k">M05.4 &middot; QR &middot; Reel</span>
+      <div class="q-t">Apple Log to finished grade, start to end</div>
+      <div class="q-d">The same clip taken through conversion, correction and grade in one pass, with the settings on screen.</div>
+    </div>
+  </div>
+
+  <div class="folio"><b>05</b> / 10</div>
+</div>
+<div class="tag">P.06 — SHOOT WITH INTENTION · contact sheet</div>
+<div class="page light g40">
+  <div class="spine"><span>05 &nbsp;&mdash;&nbsp; Coverage</span></div>
+  <div class="frames"><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="hud"><span>The iPhone Creator Guide</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><div class="tel"><span>Coverage</span><b>6 Shots</b></div></div>
+
+  <div style="position:absolute;top:96px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between;align-items:flex-end">
+    <div>
+      <div class="kick" style="color:var(--cobalt);margin-bottom:13px">05 &nbsp;/&nbsp; Coverage</div>
+      <div class="hd" style="font-size:52px">Shoot With Intention</div>
+    </div>
+    <div style="max-width:280px;font-size:12px;line-height:1.66;color:var(--slate);padding-bottom:4px;text-align:right">
+      Knowing the settings is the easy half. The creators whose work looks finished are thinking in shots, not clips.
+    </div>
+  </div>
+
+  <!-- the sequence, doubling as the section rule -->
+  <div style="position:absolute;top:248px;left:64px;right:64px;z-index:6;border-top:2px solid var(--ink);padding-top:13px;
+              display:flex;align-items:center;gap:9px;flex-wrap:nowrap">
+    <span class="kick" style="font-size:9px;color:var(--ink);font-weight:600">Wide</span>
+    <span style="color:var(--cobalt);font-size:10px">&rarr;</span>
+    <span class="kick" style="font-size:9px;color:var(--ink);font-weight:600">Medium</span>
+    <span style="color:var(--cobalt);font-size:10px">&rarr;</span>
+    <span class="kick" style="font-size:9px;color:var(--ink);font-weight:600">Close</span>
+    <span style="color:var(--cobalt);font-size:10px">&rarr;</span>
+    <span class="kick" style="font-size:9px;color:var(--ink);font-weight:600">Detail</span>
+    <span style="color:var(--cobalt);font-size:10px">&rarr;</span>
+    <span class="kick" style="font-size:9px;color:var(--ink);font-weight:600">Movement</span>
+    <span style="color:var(--cobalt);font-size:10px">&rarr;</span>
+    <span class="kick" style="font-size:9px;color:var(--ink);font-weight:600">Reveal</span>
+    <span style="flex:1"></span>
+    <span class="kick" style="font-size:8.5px;color:var(--slate)">One subject &middot; six ways</span>
+  </div>
+
+  <!-- contact sheet, row 1 -->
+  <div style="position:absolute;top:306px;left:64px;right:64px;z-index:6;display:flex;gap:16px">
+    <div style="flex:1">
+      <div class="slot" style="height:176px">
+        <span class="s-id">M06.1</span>
+        <div class="s-in sm" style="max-width:180px"><span class="s-type">Video Frame</span><span class="s-subj">Wide</span><span class="s-spec">16:9 &middot; 213 &times; 176<br>Full room, subject small</span></div>
+      </div>
+      <div style="margin-top:11px">
+        <div style="display:flex;align-items:baseline;gap:8px"><span class="hd" style="font-size:19px;color:var(--cobalt)">01</span><span class="sub" style="font-size:13px">Wide</span></div>
+        <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:6px">Where are we. Opens the piece and gives everything after it a place to happen.</div>
+      </div>
+    </div>
+    <div style="flex:1">
+      <div class="slot" style="height:176px">
+        <span class="s-id">M06.2</span>
+        <div class="s-in sm" style="max-width:180px"><span class="s-type">Video Frame</span><span class="s-subj">Medium</span><span class="s-spec">16:9 &middot; 213 &times; 176<br>Waist up, eye level</span></div>
+      </div>
+      <div style="margin-top:11px">
+        <div style="display:flex;align-items:baseline;gap:8px"><span class="hd" style="font-size:19px;color:var(--cobalt)">02</span><span class="sub" style="font-size:13px">Medium</span></div>
+        <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:6px">Your default. Most of what you say to camera lives here. Conversational, not formal.</div>
+      </div>
+    </div>
+    <div style="flex:1">
+      <div class="slot" style="height:176px">
+        <span class="s-id">M06.3</span>
+        <div class="s-in sm" style="max-width:180px"><span class="s-type">Video Frame</span><span class="s-subj">Close</span><span class="s-spec">16:9 &middot; 213 &times; 176<br>Chest up, tighter</span></div>
+      </div>
+      <div style="margin-top:11px">
+        <div style="display:flex;align-items:baseline;gap:8px"><span class="hd" style="font-size:19px;color:var(--cobalt)">03</span><span class="sub" style="font-size:13px">Close</span></div>
+        <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:6px">Save it for the line that matters. Used constantly it stops meaning anything.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- contact sheet, row 2 -->
+  <div style="position:absolute;top:590px;left:64px;right:64px;z-index:6;display:flex;gap:16px">
+    <div style="flex:1">
+      <div class="slot" style="height:176px">
+        <span class="s-id">M06.4</span>
+        <div class="s-in sm" style="max-width:180px"><span class="s-type">Video Frame</span><span class="s-subj">Detail</span><span class="s-spec">16:9 &middot; 213 &times; 176<br>Hands, product, screen</span></div>
+      </div>
+      <div style="margin-top:11px">
+        <div style="display:flex;align-items:baseline;gap:8px"><span class="hd" style="font-size:19px;color:var(--cobalt)">04</span><span class="sub" style="font-size:13px">Detail</span></div>
+        <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:6px">The shot that saves edits. Cuts over any mistake and proves you were actually there.</div>
+      </div>
+    </div>
+    <div style="flex:1">
+      <div class="slot" style="height:176px">
+        <span class="s-id">M06.5</span>
+        <div class="s-in sm" style="max-width:180px"><span class="s-type">Video Frame</span><span class="s-subj">Movement</span><span class="s-spec">16:9 &middot; 213 &times; 176<br>Mid push-in or pan</span></div>
+      </div>
+      <div style="margin-top:11px">
+        <div style="display:flex;align-items:baseline;gap:8px"><span class="hd" style="font-size:19px;color:var(--cobalt)">05</span><span class="sub" style="font-size:13px">Movement</span></div>
+        <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:6px">Slow push, slow pan, or walk with the subject. Start moving before you record.</div>
+      </div>
+    </div>
+    <div style="flex:1">
+      <div class="slot" style="height:176px">
+        <span class="s-id">M06.6</span>
+        <div class="s-in sm" style="max-width:180px"><span class="s-type">Video Frame</span><span class="s-subj">Reveal</span><span class="s-spec">16:9 &middot; 213 &times; 176<br>End of the move</span></div>
+      </div>
+      <div style="margin-top:11px">
+        <div style="display:flex;align-items:baseline;gap:8px"><span class="hd" style="font-size:19px;color:var(--cobalt)">06</span><span class="sub" style="font-size:13px">Reveal</span></div>
+        <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:6px">Start hidden, end on the thing. Behind a door, past a shoulder, up from a table.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:876px;left:64px;right:64px;z-index:6;display:flex;gap:16px;border-top:1px solid var(--hair);padding-top:16px">
+    <div style="flex:1"><div class="anno" style="margin-bottom:8px">Shoot All Six</div><div style="font-size:11px;line-height:1.6;color:var(--slate)">Of the same subject, in the same light, before you move on. It takes four extra minutes.</div></div>
+    <div style="flex:1"><div class="anno" style="margin-bottom:8px">Hold Longer</div><div style="font-size:11px;line-height:1.6;color:var(--slate)">Ten seconds per shot, minimum. Short clips are the reason edits feel rushed.</div></div>
+    <div style="flex:1"><div class="anno" style="margin-bottom:8px">Vary The Height</div><div style="font-size:11px;line-height:1.6;color:var(--slate)">Six shots from one tripod height is still one angle. Move the camera, not just the zoom.</div></div>
+  </div>
+
+  <div class="qr" style="position:absolute;left:64px;right:64px;bottom:56px;z-index:6">
+    <div class="q-box"><svg><use href="#qrg"/></svg></div>
+    <div>
+      <span class="q-k">M06.7 &middot; QR &middot; Reel</span>
+      <div class="q-t">How I film myself, all six angles, one setup</div>
+      <div class="q-d">Shot for shot through a real piece, with the frame and the reason for each one on screen.</div>
+    </div>
+  </div>
+
+  <div class="folio"><b>06</b> / 10</div>
+</div>
+<div class="tag">P.07 — LIGHTING + AUDIO · horizontal split</div>
+<div class="page light g40">
+  <div class="spine"><span>06 &nbsp;&mdash;&nbsp; Light + Sound</span></div>
+  <div class="frames"><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div class="hud"><span>The iPhone Creator Guide</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><div class="tel"><span>Light</span><b>+ Sound</b></div></div>
+
+  <!-- the page splits: light on light, sound on dark -->
+  <div class="band grain" style="top:530px;bottom:0;background:var(--ink);z-index:2"></div>
+
+  <div style="position:absolute;top:96px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between;align-items:flex-end">
+    <div>
+      <div class="kick" style="color:var(--cobalt);margin-bottom:13px">06 &nbsp;/&nbsp; The Two Fixes</div>
+      <div class="hd" style="font-size:52px">Lighting And Audio</div>
+    </div>
+    <div style="max-width:272px;font-size:12px;line-height:1.66;color:var(--slate);padding-bottom:4px;text-align:right">
+      Nothing else on this list changes an iPhone image as fast, and both are mostly free.
+    </div>
+  </div>
+
+  <div style="position:absolute;top:202px;left:64px;right:64px;z-index:6;border-top:2px solid var(--ink);padding-top:12px;display:flex;justify-content:space-between;align-items:baseline">
+    <div class="sub" style="font-size:15px">Light</div>
+    <div class="kick" style="font-size:8.5px;color:var(--slate)">Direction beats brightness</div>
+  </div>
+
+  <div style="position:absolute;top:252px;left:64px;right:64px;z-index:6;display:flex;gap:16px">
+    <div style="flex:1">
+      <div class="slot" style="height:152px;border-color:var(--cobalt)">
+        <span class="s-id">M07.1</span>
+        <div class="s-in sm" style="max-width:180px"><span class="s-type">Photo</span><span class="s-subj">Window light, 45&deg;</span><span class="s-spec">16:9 &middot; 213 &times; 152<br>Same subject as M07.2</span></div>
+      </div>
+      <div style="margin-top:11px">
+        <div class="sub" style="font-size:12.5px;color:var(--cobalt)">Good</div>
+        <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:6px">Face the window, then turn about 45 degrees off it. Soft, directional, shows shape.</div>
+      </div>
+    </div>
+    <div style="flex:1">
+      <div class="slot" style="height:152px">
+        <span class="s-id">M07.2</span>
+        <div class="s-in sm" style="max-width:180px"><span class="s-type">Photo</span><span class="s-subj">Overhead ceiling light</span><span class="s-spec">16:9 &middot; 213 &times; 152<br>Same subject as M07.1</span></div>
+      </div>
+      <div style="margin-top:11px">
+        <div class="sub" style="font-size:12.5px;color:var(--slate)">Bad</div>
+        <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:6px">A ceiling light directly above you digs shadows into your eyes. Turn it off.</div>
+      </div>
+    </div>
+    <div style="flex:1">
+      <div style="height:152px;border:1px solid var(--hair);background:#fff;display:flex;align-items:center;justify-content:center">
+        <svg viewBox="0 0 200 142" width="200" height="142" role="img" aria-label="Plan view: camera below subject, key light 45 degrees off axis, overhead light marked as the one to avoid">
+          <circle cx="100" cy="72" r="15" fill="none" stroke="#08080C" stroke-width="1.4"/>
+          <text x="100" y="95" text-anchor="middle" font-family="JetBrains Mono" font-size="6.5" letter-spacing="1" fill="#5B6270">YOU</text>
+          <rect x="91" y="112" width="18" height="12" fill="none" stroke="#08080C" stroke-width="1.2"/>
+          <polygon points="109,115 118,111 118,125 109,121" fill="none" stroke="#08080C" stroke-width="1.2"/>
+          <text x="82" y="122" text-anchor="end" font-family="JetBrains Mono" font-size="6.5" letter-spacing="1" fill="#5B6270">CAM</text>
+          <line x1="100" y1="110" x2="100" y2="90" stroke="#08080C" stroke-width=".8" stroke-dasharray="3 3"/>
+          <rect x="18" y="20" width="26" height="20" fill="#2B5CE6" opacity=".18" stroke="#2B5CE6" stroke-width="1.4"/>
+          <line x1="46" y1="42" x2="84" y2="60" stroke="#2B5CE6" stroke-width="1.4"/>
+          <polygon points="84,60 76,58 79,65" fill="#2B5CE6"/>
+          <text x="18" y="52" font-family="JetBrains Mono" font-size="6.5" letter-spacing="1" fill="#2B5CE6">KEY 45&#176;</text>
+          <rect x="150" y="14" width="24" height="9" fill="none" stroke="#C0BCB2" stroke-width="1.2"/>
+          <line x1="162" y1="25" x2="162" y2="44" stroke="#C0BCB2" stroke-width="1.2" stroke-dasharray="3 3"/>
+          <line x1="156" y1="32" x2="168" y2="44" stroke="#C0BCB2" stroke-width="1.4"/>
+          <line x1="168" y1="32" x2="156" y2="44" stroke="#C0BCB2" stroke-width="1.4"/>
+          <text x="174" y="58" text-anchor="end" font-family="JetBrains Mono" font-size="6.5" letter-spacing="1" fill="#9A968C">OVERHEAD</text>
+        </svg>
+      </div>
+      <div style="margin-top:11px">
+        <div class="sub" style="font-size:12.5px">Where To Put It</div>
+        <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-top:6px">One source, off to one side, higher than your eyeline. That is the whole setup.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- sound, on the dark half -->
+  <div style="position:absolute;top:570px;left:64px;right:64px;z-index:6;border-top:2px solid rgba(255,255,255,.3);padding-top:12px;display:flex;justify-content:space-between;align-items:baseline">
+    <div class="sub" style="font-size:15px;color:#fff">Sound</div>
+    <div class="kick" style="font-size:8.5px;color:#79808F">Distance beats every microphone</div>
+  </div>
+
+  <div style="position:absolute;top:620px;left:64px;width:328px;z-index:6">
+    <div class="slot on-dark" style="height:236px">
+      <span class="s-id">M07.3</span>
+      <div class="s-in sm" style="max-width:250px"><span class="s-type">Photo</span><span class="s-subj">Wireless lav clipped for a talking head</span><span class="s-spec">16:9 &middot; 328 &times; 236 &middot; close crop<br>Show mic placement on the shirt</span></div>
+    </div>
+    <div style="margin-top:12px;font-size:11px;line-height:1.66;color:#8C93A5">
+      A cheap microphone six inches from your mouth beats an expensive one across the room. Clip it a hand's width below your chin, slightly off centre so your collar does not brush it.
+    </div>
+  </div>
+
+  <div style="position:absolute;top:620px;left:424px;right:64px;z-index:6">
+    <div style="border-top:1px solid rgba(255,255,255,.16);padding:15px 0">
+      <div class="sub" style="font-size:12px;color:#fff;margin-bottom:5px">Kill The Room First</div>
+      <div style="font-size:10.5px;line-height:1.62;color:#79808F">Close the windows, turn off the fan and the fridge, and get off the hard floor. Echo cannot be removed later, only hidden.</div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.16);padding:15px 0">
+      <div class="sub" style="font-size:12px;color:#fff;margin-bottom:5px">Record A Safety</div>
+      <div style="font-size:10.5px;line-height:1.62;color:#79808F">Let the phone mic run alongside the lav. It has saved more of my shoots than any other habit.</div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16);padding:15px 0">
+      <div class="sub" style="font-size:12px;color:#fff;margin-bottom:5px">Listen Back Before You Move</div>
+      <div style="font-size:10.5px;line-height:1.62;color:#79808F">Ten seconds on headphones. Cheaper than reshooting the whole thing tomorrow.</div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:64px;right:64px;bottom:64px;z-index:6;border:1px solid rgba(255,255,255,.2);padding:17px 20px;display:flex;gap:24px;align-items:flex-start">
+    <div class="anno" style="flex-shrink:0;color:var(--volt)">Phone Mic Is Fine</div>
+    <div style="flex:1;font-size:11.5px;line-height:1.66;color:#B4BAC8">
+      Outdoors with no wind, in a quiet room, within about two feet of your face, or on B-roll where the audio gets replaced anyway. Anywhere else, clip something on.
+    </div>
+  </div>
+
+  <div class="folio" style="color:rgba(255,255,255,.4)"><b style="color:#fff">07</b> / 10</div>
+</div>
+<div class="tag">P.08 — BUILD YOUR IPHONE CREATOR RIG · tiered</div>
+<div class="page light g40">
+  <div class="spine"><span>07 &nbsp;&mdash;&nbsp; The Rig</span></div>
+  <div class="frames"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i></div>
+  <div class="hud"><span>The iPhone Creator Guide</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><div class="tel"><span>Kit</span><b>3 Tiers</b></div></div>
+
+  <div style="position:absolute;top:96px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between;align-items:flex-end">
+    <div>
+      <div class="kick" style="color:var(--cobalt);margin-bottom:13px">07 &nbsp;/&nbsp; Kit</div>
+      <div class="hd" style="font-size:50px">Build Your<br>iPhone Creator Rig</div>
+    </div>
+    <div style="max-width:268px;font-size:12px;line-height:1.66;color:var(--slate);padding-bottom:6px;text-align:right">
+      In the order that actually helps. Most people buy tier three first and still have the problems tier one solves.
+    </div>
+  </div>
+
+  <div class="slot" style="position:absolute;top:252px;left:64px;right:64px;height:214px;z-index:6">
+    <span class="s-id">M08.1</span>
+    <div class="s-in" style="max-width:340px">
+      <span class="s-type">Photo &middot; Flat Lay</span>
+      <span class="s-subj">The full iPhone creator rig, laid out</span>
+      <span class="s-spec">Landscape 672 &times; 214 &middot; 3.1:1 &middot; overhead<br>Everything on this page, evenly spaced, single surface<br>Neutral background &middot; soft even light &middot; no props</span>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:502px;left:64px;right:64px;z-index:6;display:flex;gap:16px">
+    <!-- tier 1 -->
+    <div style="flex:1">
+      <div style="display:flex;gap:4px;margin-bottom:13px">
+        <i style="flex:1;height:4px;background:var(--cobalt);display:block"></i>
+        <i style="flex:1;height:4px;background:var(--bone2);display:block"></i>
+        <i style="flex:1;height:4px;background:var(--bone2);display:block"></i>
+      </div>
+      <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:7px">Tier 01</div>
+      <div class="sub" style="font-size:15px;margin-bottom:7px">Start Here</div>
+      <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-bottom:15px">Fixes the two problems every beginner actually has: shake and sound.</div>
+      <div style="border-top:1px solid var(--hair);padding:9px 0">
+        <div class="kick" style="font-size:7.5px;color:var(--cobalt)">Support</div>
+        <div class="sub" style="font-size:11.5px;margin:4px 0 4px">Tripod + phone clamp</div>
+        <div style="font-size:10px;line-height:1.55;color:var(--slate);min-height:31px">Anything that holds still beats holding your arm out.</div>
+      </div>
+      <div style="border-top:1px solid var(--hair);padding:9px 0">
+        <div class="kick" style="font-size:7.5px;color:var(--cobalt)">Audio</div>
+        <div class="sub" style="font-size:11.5px;margin:4px 0 4px">Wired lav mic</div>
+        <div style="font-size:10px;line-height:1.55;color:var(--slate);min-height:31px">Plugs into USB-C. Cheapest real upgrade on this page.</div>
+      </div>
+      <div style="border-top:1px solid var(--hair);padding:9px 0">
+        <div class="kick" style="font-size:7.5px;color:var(--cobalt)">Light</div>
+        <div class="sub" style="font-size:11.5px;margin:4px 0 4px">A window</div>
+        <div style="font-size:10px;line-height:1.55;color:var(--slate);min-height:31px">Free, and better than most panels people buy first.</div>
+      </div>
+      <div style="border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:9px 0">
+        <div class="kick" style="font-size:7.5px;color:var(--cobalt)">Storage</div>
+        <div class="sub" style="font-size:11.5px;margin:4px 0 4px">Space on the phone</div>
+        <div style="font-size:10px;line-height:1.55;color:var(--slate);min-height:31px">4K/60 fills a phone fast. Clear it before, not during.</div>
+      </div>
+    </div>
+    <!-- tier 2 -->
+    <div style="flex:1">
+      <div style="display:flex;gap:4px;margin-bottom:13px">
+        <i style="flex:1;height:4px;background:var(--cobalt);display:block"></i>
+        <i style="flex:1;height:4px;background:var(--cobalt);display:block"></i>
+        <i style="flex:1;height:4px;background:var(--bone2);display:block"></i>
+      </div>
+      <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:7px">Tier 02</div>
+      <div class="sub" style="font-size:15px;margin-bottom:7px">Level Up</div>
+      <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-bottom:15px">Where the work starts looking deliberate instead of merely tidy.</div>
+      <div style="border-top:1px solid var(--hair);padding:9px 0">
+        <div class="kick" style="font-size:7.5px;color:var(--cobalt)">Audio</div>
+        <div class="sub" style="font-size:11.5px;margin:4px 0 4px">Wireless lav kit</div>
+        <div style="font-size:10px;line-height:1.55;color:var(--slate);min-height:31px">Two transmitters, one receiver. You stop being tethered.</div>
+      </div>
+      <div style="border-top:1px solid var(--hair);padding:9px 0">
+        <div class="kick" style="font-size:7.5px;color:var(--cobalt)">Light</div>
+        <div class="sub" style="font-size:11.5px;margin:4px 0 4px">One LED panel + diffusion</div>
+        <div style="font-size:10px;line-height:1.55;color:var(--slate);min-height:31px">Bi-colour, battery powered, softbox on the front.</div>
+      </div>
+      <div style="border-top:1px solid var(--hair);padding:9px 0">
+        <div class="kick" style="font-size:7.5px;color:var(--cobalt)">Optics</div>
+        <div class="sub" style="font-size:11.5px;margin:4px 0 4px">Variable ND filter</div>
+        <div style="font-size:10px;line-height:1.55;color:var(--slate);min-height:31px">Holds your shutter outdoors instead of forcing it faster.</div>
+      </div>
+      <div style="border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:9px 0">
+        <div class="kick" style="font-size:7.5px;color:var(--cobalt)">Support</div>
+        <div class="sub" style="font-size:11.5px;margin:4px 0 4px">Mini tripod / desk stand</div>
+        <div style="font-size:10px;line-height:1.55;color:var(--slate);min-height:31px">Overheads, product shots, anything at arm's length.</div>
+      </div>
+    </div>
+    <!-- tier 3 -->
+    <div style="flex:1">
+      <div style="display:flex;gap:4px;margin-bottom:13px">
+        <i style="flex:1;height:4px;background:var(--cobalt);display:block"></i>
+        <i style="flex:1;height:4px;background:var(--cobalt);display:block"></i>
+        <i style="flex:1;height:4px;background:var(--cobalt);display:block"></i>
+      </div>
+      <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:7px">Tier 03</div>
+      <div class="sub" style="font-size:15px;margin-bottom:7px">Full Creator Rig</div>
+      <div style="font-size:10.5px;line-height:1.6;color:var(--slate);margin-bottom:15px">Built to shoot all day without thinking about the gear once.</div>
+      <div style="border-top:1px solid var(--hair);padding:9px 0">
+        <div class="kick" style="font-size:7.5px;color:var(--cobalt)">Body</div>
+        <div class="sub" style="font-size:11.5px;margin:4px 0 4px">Cage + side handle</div>
+        <div style="font-size:10px;line-height:1.55;color:var(--slate);min-height:31px">Mounting points for mic, light and monitor. Runs cooler.</div>
+      </div>
+      <div style="border-top:1px solid var(--hair);padding:9px 0">
+        <div class="kick" style="font-size:7.5px;color:var(--cobalt)">Motion</div>
+        <div class="sub" style="font-size:11.5px;margin:4px 0 4px">Gimbal</div>
+        <div style="font-size:10px;line-height:1.55;color:var(--slate);min-height:31px">Movement that holds. Slower and smoother than your hands.</div>
+      </div>
+      <div style="border-top:1px solid var(--hair);padding:9px 0">
+        <div class="kick" style="font-size:7.5px;color:var(--cobalt)">Storage</div>
+        <div class="sub" style="font-size:11.5px;margin:4px 0 4px">External SSD</div>
+        <div style="font-size:10px;line-height:1.55;color:var(--slate);min-height:31px">Record straight out of Blackmagic. No transfer afterwards.</div>
+      </div>
+      <div style="border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:9px 0">
+        <div class="kick" style="font-size:7.5px;color:var(--cobalt)">Light</div>
+        <div class="sub" style="font-size:11.5px;margin:4px 0 4px">Second light or bounce</div>
+        <div style="font-size:10px;line-height:1.55;color:var(--slate);min-height:31px">Separates you from the background, or fills the shadow side.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:64px;right:64px;bottom:60px;z-index:6;background:var(--ink);padding:18px 22px;display:flex;gap:22px;align-items:flex-start">
+    <span class="chip" style="background:var(--volt);color:var(--ink);flex-shrink:0;font-weight:600">Buy In Order</span>
+    <div style="font-size:11.5px;line-height:1.66;color:#B4BAC8;flex:1">
+      Finish a tier before you start the next one. A gimbal will not fix bad audio, and a cage will not fix a shot lit from the ceiling. Every tier here costs less than the camera body people think they need.
+    </div>
+  </div>
+
+  <div class="folio"><b>08</b> / 10</div>
+</div>
+<div class="tag">P.09 — MY IPHONE CONTENT WORKFLOW · infographic</div>
+<div class="page dark grain g40">
+  <div class="glow" style="width:520px;height:520px;top:-200px;left:-170px;background:radial-gradient(circle,var(--volt),transparent 70%);opacity:.28"></div>
+  <div class="spine"><span>08 &nbsp;&mdash;&nbsp; Workflow</span></div>
+  <div class="frames"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i></div>
+  <div class="hud"><span>The iPhone Creator Guide</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><div class="tel"><span>Pipeline</span><b>10 Steps</b></div></div>
+
+  <div style="position:absolute;top:96px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between;align-items:flex-end">
+    <div>
+      <div class="kick" style="color:var(--volt);margin-bottom:13px">08 &nbsp;/&nbsp; Workflow</div>
+      <div class="hd" style="font-size:50px">From Idea<br>To Published</div>
+    </div>
+    <div style="max-width:268px;font-size:12px;line-height:1.66;color:#8C93A5;padding-bottom:6px;text-align:right">
+      The same ten steps every time. The order is what keeps a shoot from turning into a salvage job in the edit.
+    </div>
+  </div>
+
+  <div style="position:absolute;top:262px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0">
+    <div class="sub" style="font-size:13px;color:#fff">Capture &nbsp;&middot;&nbsp; On The Day</div>
+    <div class="kick" style="font-size:8px;color:#5A6072">Steps 01&ndash;05</div>
+  </div>
+  <div style="position:absolute;top:294px;left:64px;right:64px;z-index:6;display:flex;gap:13px">
+    <div style="flex:1;border-top:2px solid var(--volt);padding-top:11px">
+      <div class="hd" style="font-size:21px;color:var(--volt)">01</div>
+      <div class="sub" style="font-size:11.5px;color:#fff;margin:7px 0 6px">Idea</div>
+      <div style="font-size:9.5px;line-height:1.6;color:#79808F">One sentence. What is this video actually for.</div>
+    </div>
+    <div style="flex:1;border-top:2px solid var(--volt);padding-top:11px">
+      <div class="hd" style="font-size:21px;color:var(--volt)">02</div>
+      <div class="sub" style="font-size:11.5px;color:#fff;margin:7px 0 6px">Settings</div>
+      <div style="font-size:9.5px;line-height:1.6;color:#79808F">Preset from page 03. Lock focus, exposure, white balance.</div>
+    </div>
+    <div style="flex:1;border-top:2px solid var(--volt);padding-top:11px">
+      <div class="hd" style="font-size:21px;color:var(--volt)">03</div>
+      <div class="sub" style="font-size:11.5px;color:#fff;margin:7px 0 6px">A-Roll</div>
+      <div style="font-size:9.5px;line-height:1.6;color:#79808F">Everything you say. Medium first, close on the lines that matter.</div>
+    </div>
+    <div style="flex:1;border-top:2px solid var(--volt);padding-top:11px">
+      <div class="hd" style="font-size:21px;color:var(--volt)">04</div>
+      <div class="sub" style="font-size:11.5px;color:#fff;margin:7px 0 6px">B-Roll</div>
+      <div style="font-size:9.5px;line-height:1.6;color:#79808F">All six shots, before you break the setup down.</div>
+    </div>
+    <div style="flex:1;border-top:2px solid var(--volt);padding-top:11px">
+      <div class="hd" style="font-size:21px;color:var(--volt)">05</div>
+      <div class="sub" style="font-size:11.5px;color:#fff;margin:7px 0 6px">Transfer</div>
+      <div style="font-size:9.5px;line-height:1.6;color:#79808F">Off the phone the same day. Dated folder, named properly.</div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:462px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between;align-items:baseline">
+    <div class="sub" style="font-size:13px;color:#fff">Finish &nbsp;&middot;&nbsp; At The Desk</div>
+    <div class="kick" style="font-size:8px;color:#5A6072">Steps 06&ndash;10</div>
+  </div>
+  <div style="position:absolute;top:494px;left:64px;right:64px;z-index:6;display:flex;gap:13px">
+    <div style="flex:1;border-top:2px solid rgba(255,255,255,.3);padding-top:11px">
+      <div class="hd" style="font-size:21px;color:#fff">06</div>
+      <div class="sub" style="font-size:11.5px;color:#fff;margin:7px 0 6px">Edit</div>
+      <div style="font-size:9.5px;line-height:1.6;color:#79808F">Cut the A-roll first. Nothing else until the words work.</div>
+    </div>
+    <div style="flex:1;border-top:2px solid rgba(255,255,255,.3);padding-top:11px">
+      <div class="hd" style="font-size:21px;color:#fff">07</div>
+      <div class="sub" style="font-size:11.5px;color:#fff;margin:7px 0 6px">Colour</div>
+      <div style="font-size:9.5px;line-height:1.6;color:#79808F">Convert Log, correct, then grade. In that order.</div>
+    </div>
+    <div style="flex:1;border-top:2px solid rgba(255,255,255,.3);padding-top:11px">
+      <div class="hd" style="font-size:21px;color:#fff">08</div>
+      <div class="sub" style="font-size:11.5px;color:#fff;margin:7px 0 6px">Audio</div>
+      <div style="font-size:9.5px;line-height:1.6;color:#79808F">Levels matched, room noise down, music under the voice.</div>
+    </div>
+    <div style="flex:1;border-top:2px solid rgba(255,255,255,.3);padding-top:11px">
+      <div class="hd" style="font-size:21px;color:#fff">09</div>
+      <div class="sub" style="font-size:11.5px;color:#fff;margin:7px 0 6px">Export</div>
+      <div style="font-size:9.5px;line-height:1.6;color:#79808F">H.264, at the frame rate you shot. Do not re-time it.</div>
+    </div>
+    <div style="flex:1;border-top:2px solid rgba(255,255,255,.3);padding-top:11px">
+      <div class="hd" style="font-size:21px;color:#fff">10</div>
+      <div class="sub" style="font-size:11.5px;color:#fff;margin:7px 0 6px">Publish</div>
+      <div style="font-size:9.5px;line-height:1.6;color:#79808F">Caption, cover frame, out. Keep the project file.</div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:680px;left:64px;right:64px;z-index:6;display:flex;gap:16px">
+    <div class="slot" style="flex:1;height:186px">
+      <span class="s-id">M09.1</span>
+      <div class="s-in sm" style="max-width:180px"><span class="s-type">Screenshot</span><span class="s-subj">Blackmagic recording to SSD</span><span class="s-spec">16:9 &middot; 213 &times; 186<br>Show storage target + clip list</span></div>
+    </div>
+    <div class="slot" style="flex:1;height:186px">
+      <span class="s-id">M09.2</span>
+      <div class="s-in sm" style="max-width:180px"><span class="s-type">Screenshot</span><span class="s-subj">Edit timeline, A-roll and B-roll</span><span class="s-spec">16:9 &middot; 213 &times; 186<br>Two tracks clearly visible</span></div>
+    </div>
+    <div class="slot" style="flex:1;height:186px">
+      <span class="s-id">M09.3</span>
+      <div class="s-in sm" style="max-width:180px"><span class="s-type">Screenshot</span><span class="s-subj">Colour page, Log conversion on</span><span class="s-spec">16:9 &middot; 213 &times; 186<br>Node tree or LUT visible</span></div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:906px;left:64px;right:64px;z-index:6;display:flex;gap:16px;border-top:1px solid rgba(255,255,255,.14);padding-top:16px">
+    <div style="flex:1"><div class="anno" style="margin-bottom:8px">Same Day</div><div style="font-size:10.5px;line-height:1.6;color:#79808F">Transfer before you sleep. Footage left on a phone is footage you will not use.</div></div>
+    <div style="flex:1"><div class="anno" style="margin-bottom:8px">Words First</div><div style="font-size:10.5px;line-height:1.6;color:#79808F">No B-roll, music or colour until the A-roll cut holds on its own.</div></div>
+    <div style="flex:1"><div class="anno" style="margin-bottom:8px">One Folder</div><div style="font-size:10.5px;line-height:1.6;color:#79808F">Project, footage, exports, together. Future you will need the file again.</div></div>
+  </div>
+
+  <div class="folio"><b>09</b> / 10</div>
+</div>
+<div class="tag">P.10 — THE CREATOR CHEAT SHEET · reference + CTA</div>
+<div class="page light g40">
+  <div class="spine"><span>09 &nbsp;&mdash;&nbsp; Cheat Sheet</span></div>
+  <div class="frames"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i></div>
+  <div class="hud"><span>The iPhone Creator Guide</span><img src="assets/Shooting_Stars_S_Icon_wht_sm.png"><div class="tel"><span>Save</span><b>This Page</b></div></div>
+
+  <div style="position:absolute;top:96px;left:64px;right:64px;z-index:6;display:flex;justify-content:space-between;align-items:flex-end">
+    <div>
+      <div class="kick" style="color:var(--cobalt);margin-bottom:13px">09 &nbsp;/&nbsp; Reference</div>
+      <div class="hd" style="font-size:52px">The Creator<br>Cheat Sheet</div>
+    </div>
+    <div style="max-width:200px;font-size:12px;line-height:1.66;color:var(--slate);padding-bottom:4px;text-align:right">
+      The whole guide, on one screen.
+    </div>
+  </div>
+
+  <div style="position:absolute;top:252px;left:64px;right:64px;z-index:6;display:flex;gap:14px">
+    <div style="flex:1;border:1px solid var(--hair);background:#fff;padding:12px 15px 13px">
+      <div class="kick" style="font-size:8px;color:var(--cobalt);margin-bottom:8px">Talking Head</div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Resolution</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">4K</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Frame rate</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">30 fps</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Lens</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">1&times; or 2&times;</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Before take</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--cobalt);font-weight:600">Lock AE/AF</span></div>
+    </div>
+    <div style="flex:1;border:1px solid var(--hair);background:#fff;padding:12px 15px 13px">
+      <div class="kick" style="font-size:8px;color:var(--cobalt);margin-bottom:8px">B-Roll</div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Resolution</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">4K</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Frame rate</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">60 fps</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Hold each shot</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">10 sec</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Coverage</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--cobalt);font-weight:600">6 angles</span></div>
+    </div>
+    <div style="flex:1;border:1px solid var(--hair);background:#fff;padding:12px 15px 13px">
+      <div class="kick" style="font-size:8px;color:var(--cobalt);margin-bottom:8px">Slow Motion</div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Smooth half speed</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">4K / 60</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Extreme slow</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">1080 / 240</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Shutter at 60</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">1/120</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Needs</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--cobalt);font-weight:600">More light</span></div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:380px;left:64px;right:64px;z-index:6;display:flex;gap:14px">
+    <div style="flex:1;border:1px solid var(--hair);background:#fff;padding:12px 15px 13px">
+      <div class="kick" style="font-size:8px;color:var(--cobalt);margin-bottom:8px">Apple Log</div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">App</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">Blackmagic</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Shutter at 24</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">1/48</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">White balance</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">Manual</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Expose</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--cobalt);font-weight:600">Slightly up</span></div>
+    </div>
+    <div style="flex:1;border:1px solid var(--hair);background:#fff;padding:12px 15px 13px">
+      <div class="kick" style="font-size:8px;color:var(--cobalt);margin-bottom:8px">Lighting</div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Sources</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">One</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Angle</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">45&deg; off</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Height</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">Above eyes</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Always</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--cobalt);font-weight:600">Overheads off</span></div>
+    </div>
+    <div style="flex:1;border:1px solid var(--hair);background:#fff;padding:12px 15px 13px">
+      <div class="kick" style="font-size:8px;color:var(--cobalt);margin-bottom:8px">Audio</div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Mic distance</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">6 in</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Placement</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">Below chin</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Room</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--ink);font-weight:600">Fans off</span></div>
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:2px 0"><span style="font-size:10.5px;color:var(--slate)">Backup</span><span style="font-family:'JetBrains Mono';font-size:9px;color:var(--cobalt);font-weight:600">Phone mic on</span></div>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:520px;left:64px;width:328px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid var(--ink)">Before You Record</div>
+    <div class="ck" style="margin-bottom:9px"><i></i><span>Lens locked so it cannot switch mid-take</span></div>
+    <div class="ck" style="margin-bottom:9px"><i></i><span>Focus and exposure tapped, held, and nudged down</span></div>
+    <div class="ck" style="margin-bottom:9px"><i></i><span>White balance set by hand, not auto</span></div>
+    <div class="ck" style="margin-bottom:9px"><i></i><span>Mic clipped on and checked through headphones</span></div>
+    <div class="ck" style="margin-bottom:9px"><i></i><span>Overhead lights off, one source to the side</span></div>
+    <div class="ck"><i></i><span>Enough storage for the whole session</span></div>
+  </div>
+
+  <div style="position:absolute;top:520px;left:408px;right:64px;z-index:6">
+    <div class="kick" style="font-size:8.5px;color:var(--cobalt);margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid var(--ink)">Before You Export</div>
+    <div class="ck" style="margin-bottom:9px"><i></i><span>A-roll cut holds on its own, with nothing over it</span></div>
+    <div class="ck" style="margin-bottom:9px"><i></i><span>Log converted, then corrected, then graded</span></div>
+    <div class="ck" style="margin-bottom:9px"><i></i><span>Shots match each other across the whole piece</span></div>
+    <div class="ck" style="margin-bottom:9px"><i></i><span>Levels even, music sitting under the voice</span></div>
+    <div class="ck" style="margin-bottom:9px"><i></i><span>Exported at the frame rate you shot</span></div>
+    <div class="ck"><i></i><span>Watched once on a phone before it goes out</span></div>
+  </div>
+
+  <!-- closing band -->
+  <div class="band grain" style="top:752px;bottom:0;background:var(--cobalt);z-index:3"></div>
+  <div class="glow" style="width:420px;height:420px;bottom:-200px;right:-130px;background:radial-gradient(circle,#7FA0FF,transparent 70%);opacity:.5;z-index:4"></div>
+
+  <img src="assets/Shooting_Stars_logo_2_wht.png" style="position:absolute;top:792px;left:64px;width:98px;z-index:7;opacity:.95">
+
+  <div style="position:absolute;top:874px;left:64px;width:392px;z-index:7">
+    <div class="hd" style="font-size:34px;color:#fff">Now Point It At<br>Something Worth Filming</div>
+    <div style="font-size:11.5px;line-height:1.68;color:rgba(255,255,255,.88);margin-top:14px">
+      This guide covers execution. What it deliberately leaves out is what to make, who it is for, and how it adds up over a year. That is what the Shooting Stars Content Framework is for.
+    </div>
+  </div>
+
+  <div class="qr" style="position:absolute;top:874px;left:496px;right:64px;z-index:7;display:block">
+    <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
+      <div class="q-box" style="border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.72)"><svg><use href="#qrg"/></svg></div>
+      <div>
+        <span class="q-k" style="color:#fff">M10.1 &middot; QR</span>
+        <div class="q-t" style="color:#fff">The Content Framework</div>
+      </div>
+    </div>
+    <div style="font-size:10.5px;line-height:1.6;color:rgba(255,255,255,.82)">Courses, resources, and the full system behind the work.</div>
+  </div>
+
+  <div style="position:absolute;left:64px;right:64px;bottom:44px;z-index:7;display:flex;justify-content:space-between;align-items:center;
+              border-top:1px solid rgba(255,255,255,.28);padding-top:15px">
+    <span class="kick" style="font-size:9px;color:rgba(255,255,255,.85)">Creating a Brighter Tomorrow.</span>
+    <span class="kick" style="font-size:9px;color:rgba(255,255,255,.6)">@stephenxmichael</span>
+  </div>
+
+  <div class="folio" style="color:rgba(255,255,255,.55);z-index:8"><b style="color:#fff">10</b> / 10</div>
+</div>
+</body></html>

@@ -11,7 +11,10 @@ cd "$(dirname "$0")/.."
 OUT=assets/fonts
 mkdir -p "$OUT"
 UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-CSS_URL='https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=JetBrains+Mono:wght@400;600&display=swap'
+# Caveat joins the kit for the Field Guides: the handwritten editorial voice.
+# Chosen over Bad Script, Kalam and Nothing You Could Do because it has to sit
+# beside Stephen's real handwritten note without reading as lettering.
+CSS_URL='https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Caveat:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap'
 
 curl -sS -H "User-Agent: $UA" "$CSS_URL" -o "$OUT/.remote.css"
 

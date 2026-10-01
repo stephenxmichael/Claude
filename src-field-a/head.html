@@ -1,0 +1,206 @@
+<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Field Guide 001 System</title><style>
+/* ══════════════════════════════════════════════════════════════════
+   SHOOTING STARS FIELD GUIDES — sub-family design system
+   Pass 02.5. Direction A, evolved into the locked Field Guide language for
+   "Your iPhone Is A Cinema Camera".
+
+   One new ingredient: Caveat, the handwritten editorial voice. Chosen over
+   Bad Script, Kalam, Nothing You Could Do, Just Another Hand, Neucha,
+   Shadows Into Light Two and Architects Daughter by rendering all eight in
+   situ on cobalt against Anton. The deciding constraint was not elegance but
+   compatibility: Stephen's real handwritten "iPhone Over Camera" note may
+   appear in this guide, and the face has to sit beside it without reading as
+   lettering. Bad Script is the prettier face and loses on exactly that.
+
+   Two voices, applied selectively rather than as a formula:
+     SCRIPT (.script)  Stephen's thought, annotation, the human aside
+     BLOCK  (.hd)      the lesson, the definitive headline
+
+   The script is an accent. Short phrases only, roughly 2-7 words. Never body
+   copy, captions, specs, metadata, folios or QR descriptions.
+
+   The colour hierarchy is the point of this pass. Where the Content
+   Framework is black/white dominant with a cobalt accent, Field Guides
+   invert it:
+
+     COBALT  primary / hero          the publication's colour
+     BLACK   secondary technical     modules, spines, data blocks
+     WHITE   information + air       editorial breathing space
+
+   Same palette values, same three typefaces, same 800x1120 page as every
+   other Shooting Stars publication. Nothing new has been introduced:
+   the differentiation is in how the existing system is used.
+   ══════════════════════════════════════════════════════════════════ */
+@import url('assets/fonts/fonts.css');
+:root{
+  --ink:#08080C; --ink2:#101018;
+  --cobalt:#2B5CE6; --volt:#4D7CFF; --deep:#0B1F5C;
+  --bone:#F2F1ED; --bone2:#E8E6DF;
+  --slate:#5B6270; --line:#D9D6CE;
+  --paper:#FAF9F6; --hair:#E4E1D9;
+  --zc:rgba(43,92,230,.62);      /* shoot-zone marking colour, per surface */
+  --cm:rgba(43,92,230,.55);      /* crop marks */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d0d0d;padding:44px 0;display:flex;flex-direction:column;align-items:center;gap:38px;font-family:'Archivo',sans-serif}
+.page{width:800px;height:1120px;position:relative;overflow:hidden;box-shadow:0 26px 80px rgba(0,0,0,.65);flex-shrink:0}
+.tag{color:#7d8496;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:-14px;font-family:'JetBrains Mono'}
+
+@page{size:800px 1120px;margin:0}
+@media print{
+  body{background:#fff;padding:0;gap:0;display:block}
+  .tag{display:none}
+  .page{box-shadow:none;margin:0;break-after:page;page-break-after:always;break-inside:avoid;page-break-inside:avoid}
+  .page:last-of-type{break-after:auto;page-break-after:auto}
+}
+
+/* ── surfaces ── cobalt is a page ground here, not an accent ── */
+.cobalt{background:var(--cobalt);color:#fff}
+.dark{background:var(--ink);color:#fff}
+.light{background:var(--paper);color:var(--ink)}
+.grain::after{content:'';position:absolute;inset:0;opacity:.055;mix-blend-mode:overlay;pointer-events:none;z-index:1;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.g40::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+ background-image:linear-gradient(rgba(43,92,230,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(43,92,230,.07) 1px,transparent 1px);
+ background-size:40px 40px}
+.dark.g40::before,.cobalt.g40::before{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px)}
+.glow{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0}
+.band{position:absolute;pointer-events:none}   /* structural full-bleed block: surface, not content */
+.band.live{pointer-events:auto}                /* …when it carries its own content */
+
+/* ── running marks ── */
+.hud{position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;
+ padding:0 34px 0 64px;font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;text-transform:uppercase;z-index:9}
+.light .hud{color:#A8A49A;border-bottom:1px solid var(--hair)}
+.dark .hud{color:#5A6072;border-bottom:1px solid rgba(255,255,255,.08)}
+.cobalt .hud{color:rgba(255,255,255,.62);border-bottom:1px solid rgba(255,255,255,.24)}
+.hud img{width:16px;opacity:.75}
+.light .hud img{filter:brightness(0);opacity:.28}
+.hud b{font-weight:400;color:var(--cobalt)}
+.dark .hud b,.cobalt .hud b{color:#fff}
+
+.spine{position:absolute;left:0;top:0;bottom:0;width:34px;display:flex;align-items:center;justify-content:center;z-index:8}
+.spine span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'JetBrains Mono';font-size:9px;letter-spacing:.34em;text-transform:uppercase}
+/* cobalt page -> black spine; everywhere else -> cobalt spine. The Framework
+   runs the opposite way, and it is the single fastest tell between the two. */
+.cobalt .spine{background:var(--ink)}.cobalt .spine span{color:#fff}
+.light .spine{background:var(--cobalt)}.light .spine span{color:#fff}
+.dark .spine{background:var(--cobalt)}.dark .spine span{color:#fff}
+
+.folio{position:absolute;bottom:25px;right:34px;font-family:'JetBrains Mono';font-size:9px;letter-spacing:.2em;z-index:9}
+.light .folio{color:#A8A49A}.dark .folio{color:rgba(255,255,255,.4)}.cobalt .folio{color:rgba(255,255,255,.62)}
+.folio b{font-weight:600}
+.light .folio b{color:var(--cobalt)}.dark .folio b,.cobalt .folio b{color:#fff}
+
+/* ── type ── */
+/* PARKED. The handwritten voice is not in use: the elegant-script direction was
+   tested and rejected, and the pages are all-bold for now. Caveat stays vendored
+   and this rule stays defined so the layer can be switched back on in one place
+   once the handwriting is resolved elsewhere. Nothing currently references it. */
+.script{font-family:'Caveat','Segoe Script','Bradley Hand',cursive;font-weight:600;line-height:1.12;letter-spacing:.004em}
+.script.lt{font-weight:500}
+.kick{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.22em;text-transform:uppercase}
+.hd{font-family:'Anton';text-transform:uppercase;line-height:.88;letter-spacing:.004em}
+.sub{font-family:'Archivo';font-weight:800;text-transform:uppercase;letter-spacing:.012em;line-height:1.18}
+.bd{font-size:12.5px;line-height:1.72;color:#3A3D47}
+.dark .bd,.cobalt .bd{color:rgba(255,255,255,.82)}
+.lead{font-size:15px;line-height:1.6;color:#2E3039;font-weight:500}
+.dark .lead,.cobalt .lead{color:rgba(255,255,255,.9)}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--cobalt);color:#fff;
+ font-family:'JetBrains Mono';font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px}
+.chip.blk{background:var(--ink)}
+.chip.wht{background:#fff;color:var(--cobalt);font-weight:600}
+.anno{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:8.5px;
+ letter-spacing:.16em;text-transform:uppercase;color:var(--cobalt)}
+.anno::before{content:'';width:16px;height:1px;background:currentColor;flex-shrink:0}
+.dark .anno,.cobalt .anno{color:#fff}
+
+/* ══ PLATE ═══════════════════════════════════════════════════════
+   The media placeholder, evolved from Pass 01. It still carries an
+   asset ID, type, subject and crop. What is new is that a cover plate
+   can also carry SHOOT ZONES: marked regions showing where the subject
+   stands, where the phone sits, and which area must stay empty for the
+   title. The prototype is meant to brief the photograph, not just
+   reserve room for it.
+   ═════════════════════════════════════════════════════════════════ */
+.plate{position:relative;overflow:hidden;
+ background:repeating-linear-gradient(45deg,rgba(43,92,230,.06) 0 11px,transparent 11px 22px),var(--bone2);
+ border:1px solid rgba(43,92,230,.3)}
+.plate.on-dark{--zc:rgba(77,124,255,.66);--cm:rgba(77,124,255,.6);
+ background:repeating-linear-gradient(45deg,rgba(77,124,255,.1) 0 11px,transparent 11px 22px),var(--ink2);
+ border-color:rgba(77,124,255,.34)}
+.plate.on-cobalt{--zc:rgba(255,255,255,.6);--cm:rgba(255,255,255,.7);
+ background:repeating-linear-gradient(45deg,rgba(255,255,255,.075) 0 11px,transparent 11px 22px),rgba(6,20,64,.5);
+ border-color:rgba(255,255,255,.42)}
+/* corner crop marks */
+.plate::before{content:'';position:absolute;inset:7px;pointer-events:none;z-index:1;
+ background:
+  linear-gradient(var(--cm),var(--cm)) 0 0/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 0 0/1px 10px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 100% 0/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 100% 0/1px 10px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 0 100%/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 0 100%/1px 10px no-repeat,
+  linear-gradient(var(--cm),var(--cm)) 100% 100%/10px 1px no-repeat,linear-gradient(var(--cm),var(--cm)) 100% 100%/1px 10px no-repeat}
+.plate .p-id{position:absolute;top:0;left:0;background:var(--cobalt);color:#fff;font-family:'JetBrains Mono';
+ font-size:8px;letter-spacing:.12em;padding:3px 7px;z-index:5;line-height:1.3}
+.plate.on-cobalt .p-id{background:#fff;color:var(--cobalt);font-weight:600}
+.plate.on-dark .p-id{background:var(--volt);color:var(--ink);font-weight:600}
+
+/* centred caption, for plates that carry no zones */
+.plate .p-in{position:relative;z-index:3;text-align:center;padding:15px 13px;max-width:300px;margin:auto}
+.p-type{display:inline-block;font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;
+ border:1px solid rgba(43,92,230,.5);color:var(--cobalt);padding:3px 8px;margin-bottom:9px}
+.p-subj{display:block;font-family:'Archivo';font-weight:800;font-size:12px;line-height:1.3;text-transform:uppercase;
+ letter-spacing:.01em;color:var(--ink)}
+.p-spec{display:block;font-family:'JetBrains Mono';font-size:8px;letter-spacing:.1em;text-transform:uppercase;
+ color:var(--slate);margin-top:7px;line-height:1.75}
+.plate.on-dark .p-type{border-color:rgba(77,124,255,.55);color:var(--volt)}
+.plate.on-dark .p-subj{color:#fff}.plate.on-dark .p-spec{color:#79808F}
+.plate.on-cobalt .p-type{border-color:rgba(255,255,255,.55);color:#fff}
+.plate.on-cobalt .p-subj{color:#fff}.plate.on-cobalt .p-spec{color:rgba(255,255,255,.66)}
+.plate.sm .p-in{padding:9px 7px}
+.plate.sm .p-type{font-size:7px;padding:2px 6px;margin-bottom:6px;letter-spacing:.16em}
+.plate.sm .p-subj{font-size:10.5px;line-height:1.26}
+.plate.sm .p-spec{font-size:7.5px;margin-top:5px;line-height:1.6}
+
+/* shoot zones */
+.zone{position:absolute;border:1px dashed var(--zc);z-index:3}
+.zone i{position:absolute;left:6px;top:5px;font-style:normal;font-family:'JetBrains Mono';font-size:7.5px;
+ letter-spacing:.14em;text-transform:uppercase;color:var(--zc);white-space:nowrap;line-height:1.5}
+.zone.keep{border-style:dotted}
+.zone.mark{width:26px;height:26px;border-radius:50%;border-style:solid}
+.zone.mark::before{content:'';position:absolute;left:50%;top:-8px;bottom:-8px;width:1px;background:var(--zc)}
+.zone.mark::after{content:'';position:absolute;top:50%;left:-8px;right:-8px;height:1px;background:var(--zc)}
+.zone.mark i{left:36px;top:7px}
+
+/* black technical caption module, pinned inside a plate */
+.p-meta{position:absolute;z-index:4;background:var(--ink);color:#fff;padding:12px 14px;max-width:310px}
+.p-meta .pm-k{display:block;font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--volt);margin-bottom:7px}
+.p-meta .pm-t{display:block;font-family:'Archivo';font-weight:800;font-size:11.5px;line-height:1.26;text-transform:uppercase;letter-spacing:.01em}
+.p-meta .pm-s{display:block;font-family:'JetBrains Mono';font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:#8C93A5;margin-top:7px;line-height:1.7}
+
+/* ── QR ── */
+.qr{display:flex;gap:12px;align-items:center}
+.qr .q-box{width:58px;height:58px;flex-shrink:0;border:1px dashed rgba(43,92,230,.45);display:flex;align-items:center;justify-content:center;color:var(--cobalt)}
+.dark .qr .q-box,.cobalt .qr .q-box,.p-meta .q-box{border-color:rgba(255,255,255,.36);color:rgba(255,255,255,.6)}
+.qr .q-box svg{width:34px;height:34px}
+.qr .q-k{display:block;font-family:'JetBrains Mono';font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--cobalt);margin-bottom:5px}
+.dark .qr .q-k,.cobalt .qr .q-k{color:#fff}
+.qr .q-t{font-family:'Archivo';font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.01em;line-height:1.22;color:var(--ink)}
+.dark .qr .q-t,.cobalt .qr .q-t{color:#fff}
+.qr .q-d{font-size:10.5px;line-height:1.55;color:var(--slate);margin-top:5px}
+.dark .qr .q-d,.cobalt .qr .q-d{color:rgba(255,255,255,.72)}
+
+/* ── data rows, for the technical direction ── */
+.dl{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-top:1px solid var(--hair)}
+.dl dt{font-family:'JetBrains Mono';font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.dl dd{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.06em;color:var(--cobalt);font-weight:600;text-align:right}
+.cobalt .dl{border-top-color:rgba(255,255,255,.22)}
+.cobalt .dl dt{color:rgba(255,255,255,.6)}.cobalt .dl dd{color:#fff}
+
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="qrg" viewBox="0 0 42 42">
+<g fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="13" height="13"/><rect x="28" y="1" width="13" height="13"/><rect x="1" y="28" width="13" height="13"/></g>
+<g fill="currentColor"><rect x="5" y="5" width="5" height="5"/><rect x="32" y="5" width="5" height="5"/><rect x="5" y="32" width="5" height="5"/>
+<rect x="20" y="1" width="3" height="3"/><rect x="20" y="8" width="3" height="3"/><rect x="20" y="20" width="3" height="3"/>
+<rect x="27" y="20" width="3" height="3"/><rect x="34" y="27" width="3" height="3"/><rect x="20" y="34" width="3" height="3"/>
+<rect x="27" y="34" width="3" height="3"/><rect x="34" y="20" width="3" height="3"/><rect x="1" y="20" width="3" height="3"/>
+<rect x="8" y="20" width="3" height="3"/></g></symbol></svg>
