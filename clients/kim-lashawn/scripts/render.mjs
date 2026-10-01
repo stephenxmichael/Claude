@@ -26,7 +26,7 @@ const fontsOk = await page.evaluate(() => {
     s.textContent = "Becoming at 50+"; document.body.appendChild(s);
     const w = s.offsetWidth; s.remove(); return w; };
   const serif = m("serif"), sans = m("sans-serif");
-  return m("'Cormorant Garamond'") !== serif && m("Jost") !== sans;
+  return ["Archivo", "Allura", "Inter", "'JetBrains Mono'"].every((f) => m(f) !== serif && m(f) !== sans);
 });
 if (!fontsOk) { await browser.close(); throw new Error("fonts fell back; refusing to render"); }
 
