@@ -16,6 +16,7 @@ const jobs = [
   [D("kim-tiktok.jpg"), "tile-style.jpg", 301, 1431, 298, 396],
   [D("kim-portrait.jpg"), "kim-close.jpg", 330, 90, 660, 660],
   [D("kim-portrait.jpg"), "kim-cover.jpg", 305, 0, 707, 1414],
+  [D("kim-portrait.jpg"), "kim-cover-wide.jpg", 0, 0, 1320, 1290],
   [D("kim-instagram.jpg"), "ig-glasses-orange.jpg", 322, 1488, 218, 290],
   [D("kim-camera.jpg"), "kim-letter.jpg", 0, 0, 1100, 1453],
   [D("kim-tiktok.jpg"), "kim-tiktok.jpg", 0, 0, 900, 1827],

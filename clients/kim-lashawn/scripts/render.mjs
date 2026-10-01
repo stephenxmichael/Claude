@@ -26,7 +26,7 @@ const fontsOk = await page.evaluate(() => {
     s.textContent = "Becoming at 50+"; document.body.appendChild(s);
     const w = s.offsetWidth; s.remove(); return w; };
   const serif = m("serif"), sans = m("sans-serif");
-  return ["'Instrument Serif'", "Inter"].every((f) => m(f) !== serif && m(f) !== sans);
+  return ["Archivo", "Allura", "Inter", "'JetBrains Mono'"].every((f) => m(f) !== serif && m(f) !== sans);
 });
 if (!fontsOk) { await browser.close(); throw new Error("fonts fell back; refusing to render"); }
 
@@ -41,6 +41,10 @@ const problems = await page.evaluate(() => {
       c.querySelectorAll("*").forEach((el) => {
         const r = el.getBoundingClientRect();
         if (r.height && r.bottom > cb + 1) out.push(`p${i + 1}: ${el.className || el.tagName} overflows content by ${Math.round(r.bottom - cb)}px`);
+      });
+      // Long display words can run past the right edge without wrapping.
+      c.querySelectorAll("h1,h2,h3,h4").forEach((el) => {
+        if (el.scrollWidth > el.clientWidth + 1) out.push(`p${i + 1}: "${el.textContent.trim().slice(0, 30)}" runs ${el.scrollWidth - el.clientWidth}px wide`);
       });
     }
     pg.querySelectorAll("*").forEach((el) => {

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Vendors the deck's two faces (Instrument Serif, Inter) into fonts/ and writes fonts/fonts.css.
+# Vendors the deck's faces (Archivo, Allura, Inter, JetBrains Mono) into fonts/ and writes fonts/fonts.css.
 # Headless Chromium here cannot reach fonts.googleapis.com, so fonts are
 # self-hosted rather than imported at render time.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-CSS_URL='https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap'
+CSS_URL='https://fonts.googleapis.com/css2?family=Allura&family=Archivo:wdth,wght@62..125,100..900&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;600&display=swap'
 curl -sS -H "User-Agent: $UA" "$CSS_URL" -o fonts/.remote.css
 python3 - <<'PY'
 import re, pathlib, subprocess, sys
