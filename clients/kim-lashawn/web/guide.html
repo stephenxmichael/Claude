@@ -1,0 +1,915 @@
+<title>Becoming at 50+ · Kim LaShawn</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Allura&amp;family=Archivo:wdth,wght@62..125,100..900&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+<style>
+/* Shooting Stars Content Strategy · student edition, Kim LaShawn.
+   Layout: the Shooting Stars system (HUD, spine, grid, ghost numbers, mono labels)
+   alternating burgundy and bone sections. One look, set explicitly. */
+:root{
+  --wine:#5A1A2B; --wine2:#481422; --blush:#F2C1B6; --rose:#8E2A3F;
+  --bone:#F4EFE9; --bone2:#ECE3DA; --paper:#FBF9F6;
+  --text:#1F1619; --slate:#5E555A; --mist:#E5CBD0; --line:#DDD2C7; --line-d:rgba(255,255,255,.16);
+  --c-becoming:#5A1A2B; --c-lifestyle:#9B4F44; --c-style:#7A5A3A; --c-safety:#3F5A6B;
+  --disp:'Archivo',Arial,sans-serif; --script:'Allura','Brush Script MT',cursive; --body:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  color-scheme:light;
+}
+html,body{background:var(--bone);margin:0}
+.ss{font-family:var(--body);color:var(--text);background:var(--bone);-webkit-font-smoothing:antialiased;font-size:17px;line-height:1.6}
+.ss *{box-sizing:border-box}
+.ss h1,.ss h2,.ss h3,.ss h4,.ss p,.ss ul,.ss ol,.ss figure{margin:0;padding:0}
+.ss ul,.ss ol{list-style:none}
+.ss img{display:block;max-width:100%}
+.ss a{color:inherit}
+.ss :focus-visible{outline:2px solid var(--blush);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,64px);container-type:inline-size}
+.sec{position:relative;overflow:hidden;padding-block:clamp(72px,9vw,124px);scroll-margin-top:56px}
+.wine{background:var(--wine);color:#F8EEEA}
+.wine2{background:var(--wine2);color:#F8EEEA}
+.bone{background:var(--bone)} .bone2{background:var(--bone2)} .paper{background:var(--paper)}
+.grid-lines::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px}
+.grid-light::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(90,26,43,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(90,26,43,.04) 1px,transparent 1px);background-size:56px 56px}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;line-height:1.5}
+.disp{font-family:var(--disp);font-stretch:125%;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.9}
+.d1{font-size:min(150px,12.8cqw)}
+.d2{font-size:clamp(36px,5.6vw,76px);text-wrap:balance}
+.h3{font-family:var(--disp);font-stretch:112%;font-weight:800;font-size:clamp(19px,1.9vw,24px);line-height:1.18;letter-spacing:-.005em}
+.scr{font-family:var(--script);font-weight:400;text-transform:none;letter-spacing:0;font-stretch:100%;font-size:1.32em;line-height:.5;display:inline-block;color:var(--rose);transform:translateY(.1em) rotate(-4deg);padding-inline:.06em}
+.wine .scr,.wine2 .scr{color:var(--blush)}
+.lead{font-size:clamp(18px,1.6vw,21px);line-height:1.6;max-width:62ch}
+.muted{color:var(--slate)}
+.wine .muted,.wine2 .muted{color:var(--mist)}
+.k{display:flex;align-items:center;gap:14px;color:var(--rose)}
+.wine .k,.wine2 .k{color:var(--blush)}
+.k b{font-weight:600}
+.k::after{content:"";height:1px;width:64px;background:currentColor;opacity:.5}
+.ghost{position:absolute;right:clamp(12px,4vw,56px);top:clamp(28px,4vw,56px);font-family:var(--disp);font-stretch:125%;font-weight:900;font-size:clamp(90px,15vw,210px);line-height:.8;color:rgba(90,26,43,.06);pointer-events:none}
+.wine .ghost,.wine2 .ghost{color:rgba(255,255,255,.06)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:4px}
+.wine .card,.wine2 .card{background:rgba(255,255,255,.05);border-color:var(--line-d)}
+.chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line);border-radius:2px;padding:6px 10px;line-height:1.25;background:var(--paper);color:var(--text)}
+.wine .chip,.wine2 .chip{background:transparent;border-color:var(--line-d);color:#F8EEEA}
+.dot{width:8px;height:8px;border-radius:50%;flex:none;display:inline-block}
+.auto{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--min,280px)),1fr));gap:var(--gap,24px)}
+.rule-row{border-top:1px solid var(--line);padding-top:18px}
+.wine .rule-row,.wine2 .rule-row{border-color:var(--line-d)}
+.quote{font-style:italic;font-size:18px;line-height:1.45;padding-left:18px;border-left:2px solid var(--rose)}
+.wine .quote,.wine2 .quote{border-color:var(--blush)}
+.dash{border:1.5px dashed var(--rose);border-radius:4px}
+.wine .dash{border-color:rgba(242,193,182,.6)}
+.toc-a{display:grid;grid-template-columns:72px 1fr;gap:16px;padding:18px 0;border-top:1px solid var(--line);text-decoration:none}
+.toc-a:hover .toc-t{color:var(--rose)}
+.toc-a:hover .toc-n{transform:translateX(4px)}
+.toc-n{transition:transform .2s}
+.btn-check{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:8px 16px 8px 10px;border:1.5px solid;border-radius:2px;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .15s,color .15s}
+.box{width:24px;height:24px;border:1.5px solid currentColor;border-radius:2px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.tab{appearance:none;text-align:left;cursor:pointer;border:0;border-right:1px solid var(--line);padding:18px 18px 16px;font:inherit;min-height:44px;transition:background .15s}
+.tab:last-child{border-right:0}
+.series-tag{display:inline-flex;align-items:center;gap:6px;font:600 11px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--rose);background:#F6E1DC;border-radius:2px;padding:6px 9px}
+/* calendar */
+.cal-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px}
+.cal{min-width:920px;background:var(--paper);border:1px solid var(--line);border-radius:6px;box-shadow:0 22px 50px rgba(90,26,43,.12),0 2px 8px rgba(90,26,43,.06);overflow:hidden}
+.cal-grid{display:grid;grid-template-columns:120px minmax(0,1.25fr) minmax(0,.66fr) minmax(0,1.25fr) minmax(0,1.15fr) minmax(0,1.25fr) minmax(0,1.15fr) minmax(0,.66fr)}
+.cal-grid>div{border-left:1px solid var(--line);padding:10px 8px}
+.cal-grid>div:first-child{border-left:0}
+.cal-row{border-top:1px solid var(--line)}
+.cal-row>div{min-height:186px}
+.ev{border-radius:4px;padding:10px 11px;height:100%;display:flex;flex-direction:column;gap:6px}
+.ev .kk{font:600 10px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.ev .ti{font:700 15px/1.25 var(--body)}
+.ev .sr{font:500 11.5px/1.3 var(--body);opacity:.9}
+.ev .ct{font:600 10.5px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-top:auto}
+.open{height:100%;display:flex;flex-direction:column;gap:6px;align-items:center;justify-content:center;text-align:center;border-radius:4px;background:repeating-linear-gradient(135deg,#FBF8F5 0 8px,#F4EEE8 8px 16px)}
+.hud-mid{display:flex}
+.spine{display:flex}
+@media (max-width:820px){.hud-mid{display:none}.spine{display:none}.tab{padding:14px 10px}.tab-name{display:none}}
+@media (prefers-reduced-motion:reduce){.ss *{transition:none!important}}
+</style>
+
+<div class="ss">
+
+<!-- ======= HUD ======= -->
+<header style="position: sticky; top: 0; z-index: 50; background: rgba(72,20,34,.96); color: #E5CBD0; border-bottom: 1px solid rgba(255,255,255,.1); backdrop-filter: blur(8px)">
+<div class="wrap" style="height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<a href="#top" style="display: flex; align-items: center; text-decoration: none"><img src="logo-white.png" alt="Shooting Stars Content Academy" style="height: 30px; width: auto"></a>
+<div class="mono hud-mid" style="gap: 18px; font-size: 10.5px"><span>Content Strategy</span><span style="opacity: .5">/</span><span style="color: #F8EEEA">Kim LaShawn</span><span style="opacity: .5">/</span><span>Month One</span></div>
+<div style="display: flex; align-items: center; gap: 18px">
+<span class="mono" style="font-size: 10.5px; color: #F8EEEA">Filmed <b style="color: var(--blush)" data-done>0</b>/12</span>
+<a href="#contents" class="mono" style="font-size: 10.5px; text-decoration: none; color: #F8EEEA; border: 1px solid rgba(255,255,255,.25); padding: 9px 12px; border-radius: 2px">Contents</a>
+</div>
+</div>
+</header>
+
+<!-- ======= HERO ======= -->
+<section id="top" class="wine grid-lines" style="position: relative; overflow: hidden; padding-block: clamp(56px,7vw,96px) clamp(64px,8vw,104px)">
+<div class="spine" style="position: absolute; left: 0; top: 0; bottom: 0; width: 34px; background: var(--blush); align-items: center; justify-content: center">
+<span class="mono" style="writing-mode: vertical-rl; transform: rotate(180deg); font-size: 10px; letter-spacing: .32em; color: var(--wine); font-weight: 600">Shooting Stars · Content Strategy · Student Edition</span>
+</div>
+<div style="position: absolute; right: -10%; top: 6%; width: 62%; height: 86%; border-radius: 50%; background: radial-gradient(circle, rgba(242,193,182,.22), rgba(242,193,182,0) 65%); pointer-events: none"></div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: clamp(36px,5vw,64px)">
+<div style="display: flex; flex-direction: column; gap: 22px">
+<div class="mono" style="color: var(--blush)">Shooting Stars Content Strategy · Month One</div>
+<div>
+<div style="font-family: var(--script); font-size: clamp(56px,7vw,100px); line-height: 1; color: var(--blush); transform: rotate(-3deg); transform-origin: left; margin-bottom: 10px">Kim LaShawn</div>
+<h1 class="disp d1" style="color: #F8EEEA">Becoming</h1>
+<div class="disp d1" style="color: transparent; -webkit-text-stroke: 2px var(--blush)">At 50+</div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: clamp(44px,5vw,72px); align-items: center">
+<figure style="position: relative; justify-self: center; width: 100%; max-width: 480px; margin-bottom: 22px">
+<div style="position: absolute; inset: 22px -18px -22px 18px; border: 1px solid var(--blush); border-radius: 2px"></div>
+<img src="design/kim-portrait.jpg" alt="Kim LaShawn smiling in a strapless print dress with a gold chain necklace" style="position: relative; width: 100%; aspect-ratio: 1320 / 1414; height: auto; object-fit: cover; border-radius: 2px">
+<figcaption style="position: absolute; left: -14px; bottom: 28px; background: var(--blush); color: var(--wine); padding: 12px 16px 10px; display: flex; flex-direction: column; gap: 2px; box-shadow: 0 12px 30px rgba(0,0,0,.3)">
+<span class="mono" style="font-size: 10px; font-weight: 600">From your bio</span>
+<span style="font-family: var(--script); font-size: 34px; line-height: 1.05">Rewriting your story</span>
+</figcaption>
+<div class="mono" style="position: absolute; right: -18px; top: -4px; background: #F8EEEA; color: var(--wine); font-size: 10.5px; font-weight: 600; padding: 7px 10px">@kim.lashawn_</div>
+</figure>
+<div style="display: flex; flex-direction: column; gap: 30px; min-width: 0">
+<p style="font-family: var(--disp); font-stretch: 112%; font-weight: 800; font-size: clamp(24px,2.6vw,32px); line-height: 1.15; color: #F8EEEA">Your first 30 days of content.</p>
+<p class="lead" style="color: #F1DDE1; margin-top: -14px">A plan for building a life you love, with confidence, joy, and intention, and sharing it as you go.</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid rgba(255,255,255,.18)">
+<div style="padding: 16px 12px 16px 0; border-bottom: 1px solid rgba(255,255,255,.18)"><div class="disp" style="font-size: clamp(32px,3.6vw,46px); color: #F8EEEA">3</div><div class="mono" style="font-size: 10px; color: var(--mist); margin-top: 8px">Core posts a week</div></div>
+<div style="padding: 16px 0 16px 16px; border-left: 1px solid rgba(255,255,255,.18); border-bottom: 1px solid rgba(255,255,255,.18)"><div class="disp" style="font-size: clamp(32px,3.6vw,46px); color: #F8EEEA">4</div><div class="mono" style="font-size: 10px; color: var(--mist); margin-top: 8px">Content pillars</div></div>
+<div style="padding: 16px 12px 0 0"><div class="disp" style="font-size: clamp(32px,3.6vw,46px); color: #F8EEEA">12</div><div class="mono" style="font-size: 10px; color: var(--mist); margin-top: 8px">Core videos this month</div></div>
+<div style="padding: 16px 0 0 16px; border-left: 1px solid rgba(255,255,255,.18)"><div class="disp" style="font-size: clamp(32px,3.6vw,46px); color: var(--blush)">16</div><div class="mono" style="font-size: 10px; color: var(--mist); margin-top: 8px">Series episodes</div></div>
+</div>
+<div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap">
+<span class="mono" style="font-size: 10.5px; color: var(--mist)">Prepared by</span>
+<span style="font-family: var(--script); font-size: 36px; line-height: 1; color: #F8EEEA">Stephen Michael</span>
+<span class="mono" style="font-size: 10.5px; color: var(--mist)">Shooting Stars Content Academy</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ======= LETTER ======= -->
+<section id="letter" class="sec bone">
+<div class="wrap" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: clamp(40px,6vw,88px); align-items: start">
+<figure style="display: flex; flex-direction: column; gap: 14px; max-width: 460px">
+<img src="design/kim-camera.jpg" alt="Kim talking to the camera, smiling, in a red tank top" style="width: 100%; aspect-ratio: 4 / 5; height: auto; object-fit: cover; object-position: center 20%; border-radius: 2px">
+<figcaption class="mono muted" style="font-size: 10.5px">You on camera, already doing what this plan is built around.</figcaption>
+</figure>
+<div style="display: flex; flex-direction: column; gap: 24px; min-width: 0">
+<div class="mono k"><b>A note from your coach</b></div>
+<h2 class="disp d2">Proud of <span class="scr">you</span></h2>
+<div style="display: flex; flex-direction: column; gap: 18px; font-size: 18px; line-height: 1.7; max-width: 60ch">
+<p>Kim,</p>
+<p>I’m proud of you for taking this first step. Choosing to show up on camera, consistently, in a new city, while working full-time, takes real courage. And you’ve already started.</p>
+<p>This guide gives your first month some structure. More than that, it’s a repeatable system: four pillars you can come back to, each with subtopics underneath, a weekly rhythm that tells you what to film next, and a series that ties it all together. Whenever you’re not sure what to post, open this up and start from here.</p>
+<p>Thank you for trusting me as your content coach. I’m grateful to be part of this chapter with you, and I can’t wait to see what you create.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px; padding-top: 8px">
+<span style="font-family: var(--script); font-size: 52px; line-height: 1; color: var(--rose)">Stephen Michael</span>
+<span class="mono muted" style="font-size: 10.5px">Content coach · Shooting Stars Content Academy</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ======= CONTENTS ======= -->
+<section id="contents" class="sec bone2 grid-light">
+<div class="wrap" style="position: relative">
+<div style="display: flex; flex-direction: column; gap: 18px; margin-bottom: 40px">
+<div class="mono k"><b>What’s inside</b></div>
+<h2 class="disp d2">Your <span class="scr">guide</span></h2>
+<p class="lead muted">Tap any section to jump straight to it.</p>
+</div>
+<nav id="toc" aria-label="Contents" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); column-gap: 56px"></nav>
+</div>
+</section>
+
+<!-- ======= 01 BRAND ======= -->
+<section id="s01" class="sec wine grid-lines">
+<div class="ghost">01</div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 28px">
+<div class="mono k"><b>01</b> Your brand direction</div>
+<h2 class="disp d2" style="font-size: clamp(44px,8vw,112px)">Becoming <span style="color: var(--blush)">at 50+</span></h2>
+<p style="font-family: var(--disp); font-stretch: 100%; font-weight: 500; font-size: clamp(24px,3vw,38px); line-height: 1.25; max-width: 24ch; text-wrap: balance">Building a life you love, with confidence, <span class="scr" style="font-size: 1.5em">joy,</span> and intention.</p>
+<p class="muted" style="font-size: 17px">This is the idea every video comes back to.</p>
+<div class="auto" style="--min: 250px; --gap: 0px; margin-top: 24px; border-top: 1px solid rgba(255,255,255,.16)">
+<div style="padding: 28px 28px 8px 0; display: flex; flex-direction: column; gap: 10px"><span class="mono" style="color: var(--blush)">Foundation</span><h3 class="h3">Lifestyle is the foundation.</h3><p class="muted" style="font-size: 16px">Your everyday life in Houston, from Pilates and outings to family time and moments with your husband, is what people come to see.</p></div>
+<div style="padding: 28px 28px 8px 0; display: flex; flex-direction: column; gap: 10px"><span class="mono" style="color: var(--blush)">Meaning</span><h3 class="h3">Your conversations give it meaning.</h3><p class="muted" style="font-size: 16px">Your motivational talks turn ordinary moments into something women can carry into their own lives.</p></div>
+<div style="padding: 28px 28px 8px 0; display: flex; flex-direction: column; gap: 10px"><span class="mono" style="color: var(--blush)">Expression</span><h3 class="h3">Your style shows who you are.</h3><p class="muted" style="font-size: 16px">Your clothes, accessories, and hair express your personality, and show people your taste.</p></div>
+<div style="padding: 28px 0 8px 0; display: flex; flex-direction: column; gap: 10px"><span class="mono" style="color: var(--blush)">Depth</span><h3 class="h3">Your safety expertise adds depth.</h3><p class="muted" style="font-size: 16px">Women’s safety education brings real professional knowledge, and another kind of confidence.</p></div>
+</div>
+</div>
+</section>
+
+<!-- ======= 02 STARTING ======= -->
+<section id="s02" class="sec bone">
+<div class="ghost">02</div>
+<div class="wrap" style="position: relative">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(40px,6vw,80px); align-items: center">
+<div style="display: flex; flex-direction: column; gap: 24px; min-width: 0">
+<div class="mono k"><b>02</b> Where you’re starting</div>
+<h2 class="disp d2">Your story already <span class="scr">started</span></h2>
+<p class="lead">Your profiles already say what this plan is about. Now we give it a rhythm.</p>
+<ol>
+<li class="rule-row" style="display: grid; grid-template-columns: 44px 1fr; gap: 12px; padding-bottom: 18px"><span class="disp" style="font-size: 22px; color: var(--rose)">01</span><span><b style="font-weight: 600">Your bios speak to your audience.</b> “Women 50+” and “Rewriting your story” on both platforms. Becoming at 50+ builds right on that.</span></li>
+<li class="rule-row" style="display: grid; grid-template-columns: 44px 1fr; gap: 12px; padding-bottom: 18px"><span class="disp" style="font-size: 22px; color: var(--rose)">02</span><span><b style="font-weight: 600">You’re already making Monday videos.</b> “It’s not too late. You can start over at 50+” and “choose yourself” are exactly what Mondays are for.</span></li>
+<li class="rule-row" style="display: grid; grid-template-columns: 44px 1fr; gap: 12px; padding-bottom: 18px"><span class="disp" style="font-size: 22px; color: var(--rose)">03</span><span><b style="font-weight: 600">Your life and style are already on screen.</b> Fragrance shopping, dinners out, outfits, and travel become your Wednesdays, Fridays, and style posts.</span></li>
+<li class="rule-row" style="display: grid; grid-template-columns: 44px 1fr; gap: 12px"><span class="disp" style="font-size: 22px; color: var(--rose)">04</span><span><b style="font-weight: 600">What changes now:</b> a steady weekly rhythm and a series, so your audience knows what to expect from you.</span></li>
+</ol>
+</div>
+<div style="display: flex; gap: clamp(14px,2.5vw,28px); justify-content: center; align-items: flex-start">
+<figure style="display: flex; flex-direction: column; gap: 12px; align-items: center; width: 48%; max-width: 270px">
+<div style="width: 100%; padding: 8px; background: var(--wine2); border-radius: 34px; box-shadow: 0 24px 50px rgba(90,26,43,.25)"><img src="design/kim-tiktok.jpg" alt="Kim’s TikTok profile: Fashion and Lifestyle Creator, Women 50+, rewriting your story" style="width: 100%; aspect-ratio: 900 / 1827; height: auto; border-radius: 27px"></div>
+<figcaption class="mono muted" style="font-size: 10.5px">TikTok · @kim.lashawn_</figcaption>
+</figure>
+<figure style="display: flex; flex-direction: column; gap: 12px; align-items: center; width: 48%; max-width: 270px; margin-top: 48px">
+<div style="width: 100%; padding: 8px; background: var(--wine2); border-radius: 34px; box-shadow: 0 24px 50px rgba(90,26,43,.25)"><img src="design/kim-instagram.jpg" alt="Kim’s Instagram profile: Beauty plus Brains plus Boundaries, 50+, Rewriting your story" style="width: 100%; aspect-ratio: 900 / 1827; height: auto; border-radius: 27px"></div>
+<figcaption class="mono muted" style="font-size: 10.5px">Instagram · @kim.lashawn_</figcaption>
+</figure>
+</div>
+</div>
+<div class="wine" style="margin-top: clamp(40px,5vw,64px); border-radius: 4px; padding: clamp(26px,4vw,40px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), auto)); gap: 24px 44px; align-items: center">
+<div><div class="mono" style="color: var(--blush)">Your first milestone</div><div class="disp" style="font-size: clamp(54px,6vw,76px); margin-top: 10px">1,000</div><div class="mono" style="color: var(--mist); margin-top: 8px">TikTok followers</div></div>
+<p style="font-size: 17px; line-height: 1.65; color: #F1DDE1; max-width: 62ch">Reaching 1,000 followers is your short-term growth goal, with the plan to apply for TikTok Shop creator access once your account is eligible. It’s a milestone to work toward, not a guarantee of approval, income, or a particular timeline. Consistency, your series, and your style posts are how you get there.</p>
+</div>
+</div>
+</section>
+
+<!-- ======= 03 AUDIENCE ======= -->
+<section id="s03" class="sec paper">
+<div class="ghost">03</div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 32px">
+<div class="mono k"><b>03</b> Who you’re talking to</div>
+<h2 class="disp d2" style="max-width: 16ch">Women ready for their <span class="scr">next chapter</span></h2>
+<p class="lead">Black women 50+ who are navigating new chapters and discovering new ways to enjoy life, express themselves, stay active, build confidence, and care for themselves.</p>
+<div class="wine" style="border-radius: 4px; padding: clamp(32px,5vw,56px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 24px 48px; align-items: center">
+<p style="font-family: var(--script); font-size: clamp(44px,5vw,64px); line-height: 1.05; color: var(--blush)">You don’t need to have it all figured out.</p>
+<p style="font-size: 18px; line-height: 1.65; color: #F1DDE1">You’re sharing what you’re learning while you live it. That’s what makes you relatable: women can watch you try things, reflect, and grow, and see room for themselves in the story.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px">
+<div class="mono" style="color: var(--rose)">Why they’ll come back</div>
+<div class="auto" style="--min: 230px; --gap: 28px">
+<div class="rule-row" style="display: flex; flex-direction: column; gap: 6px"><h3 class="h3">They see real life.</h3><p class="muted" style="font-size: 16px">Your routines, outings, and style choices feel reachable, not staged.</p></div>
+<div class="rule-row" style="display: flex; flex-direction: column; gap: 6px"><h3 class="h3">They leave encouraged.</h3><p class="muted" style="font-size: 16px">Your talks offer a perspective they can use the same day.</p></div>
+<div class="rule-row" style="display: flex; flex-direction: column; gap: 6px"><h3 class="h3">They feel invited in.</h3><p class="muted" style="font-size: 16px">You ask questions and answer comments, so it feels like a conversation.</p></div>
+<div class="rule-row" style="display: flex; flex-direction: column; gap: 6px"><h3 class="h3">They know what to expect.</h3><p class="muted" style="font-size: 16px">A steady weekly rhythm makes you easy to come back to.</p></div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), auto)); gap: 12px 32px; padding: 22px 26px; background: var(--bone); border-radius: 4px; align-items: baseline">
+<span class="mono" style="color: var(--rose)">Your story, your pace</span>
+<p style="font-size: 16px; max-width: 70ch">Your divorce and remarriage are part of your story, and they’re yours to share when they serve a message. The series in section 06 gives that story a home, without making every post about it.</p>
+</div>
+</div>
+</section>
+
+<!-- ======= 04 PILLARS ======= -->
+<section id="s04" class="sec bone2 grid-light">
+<div class="ghost">04</div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 32px">
+<div class="mono k"><b>04</b> Your content pillars</div>
+<h2 class="disp d2">Four pillars, <span class="scr">one story</span></h2>
+<p class="lead">Each pillar is a different way into the same message. The subtopics are your idea bank: when you don’t know what to film, pick a pillar, then a subtopic.</p>
+<div class="auto" style="--min: 440px; --gap: 22px">
+<article class="card" style="padding: clamp(22px,3vw,32px); display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; gap: 20px; align-items: flex-start">
+<figure style="flex: none; display: flex; flex-direction: column; gap: 6px"><img src="photos/tile-becoming.jpg" alt="Kim’s TikTok: It’s not too late. You can start over at 50+" style="width: 112px; height: auto; aspect-ratio: 298 / 396; border-radius: 2px"><figcaption class="mono muted" style="font-size: 9.5px; letter-spacing: .12em">Your TikTok</figcaption></figure>
+<div style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span class="disp" style="font-size: 44px; color: var(--c-becoming)">01</span><h3 class="disp" style="font-size: clamp(16px,2.2vw,26px); line-height: 1.02; color: var(--c-becoming)">Becoming &amp; Confidence</h3><p class="muted" style="font-size: 16px; line-height: 1.5">Give everyday experiences meaning through honest, encouraging conversation.</p></div>
+</div>
+<ul style="display: flex; flex-wrap: wrap; gap: 8px"><li class="chip"><span class="dot" style="background: var(--c-becoming)"></span>Lessons from this chapter</li><li class="chip"><span class="dot" style="background: var(--c-becoming)"></span>Choosing yourself</li><li class="chip"><span class="dot" style="background: var(--c-becoming)"></span>Permission and new beginnings</li><li class="chip"><span class="dot" style="background: var(--c-becoming)"></span>Confidence you can practice</li></ul>
+</article>
+<article class="card" style="padding: clamp(22px,3vw,32px); display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; gap: 20px; align-items: flex-start">
+<figure style="flex: none; display: flex; flex-direction: column; gap: 6px"><img src="photos/tile-lifestyle.jpg" alt="Kim’s TikTok: fall fragrance shopping" style="width: 112px; height: auto; aspect-ratio: 298 / 396; border-radius: 2px"><figcaption class="mono muted" style="font-size: 9.5px; letter-spacing: .12em">Your TikTok</figcaption></figure>
+<div style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span class="disp" style="font-size: 44px; color: var(--c-lifestyle)">02</span><h3 class="disp" style="font-size: clamp(16px,2.2vw,26px); line-height: 1.02; color: var(--c-lifestyle)">Lifestyle, Movement &amp; Joy</h3><p class="muted" style="font-size: 16px; line-height: 1.5">Invite women into the life you’re building in Houston.</p></div>
+</div>
+<ul style="display: flex; flex-wrap: wrap; gap: 8px"><li class="chip"><span class="dot" style="background: var(--c-lifestyle)"></span>Your Pilates routine and how it feels</li><li class="chip"><span class="dot" style="background: var(--c-lifestyle)"></span>Outings, solo dates, and new places</li><li class="chip"><span class="dot" style="background: var(--c-lifestyle)"></span>Family time and time with your husband</li><li class="chip"><span class="dot" style="background: var(--c-lifestyle)"></span>Real routines and evening resets</li></ul>
+<p style="font-size: 14.5px; line-height: 1.5; color: var(--slate); background: var(--bone); padding: 10px 14px; border-radius: 2px">Keep it personal: share your own routines and experiences rather than medical or fitness advice.</p>
+</article>
+<article class="card" style="padding: clamp(22px,3vw,32px); display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; gap: 20px; align-items: flex-start">
+<figure style="flex: none; display: flex; flex-direction: column; gap: 6px"><img src="photos/tile-style.jpg" alt="Kim’s TikTok: an outfit in front of a floral display" style="width: 112px; height: auto; aspect-ratio: 298 / 396; border-radius: 2px"><figcaption class="mono muted" style="font-size: 9.5px; letter-spacing: .12em">Your TikTok</figcaption></figure>
+<div style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span class="disp" style="font-size: 44px; color: var(--c-style)">03</span><h3 class="disp" style="font-size: clamp(16px,2.2vw,26px); line-height: 1.02; color: var(--c-style)">Personal Style</h3><p class="muted" style="font-size: 16px; line-height: 1.5">Let your clothes, accessories, and hair express who you’re becoming.</p></div>
+</div>
+<ul style="display: flex; flex-wrap: wrap; gap: 8px"><li class="chip"><span class="dot" style="background: var(--c-style)"></span>Getting dressed for real life</li><li class="chip"><span class="dot" style="background: var(--c-style)"></span>Date night and occasion looks</li><li class="chip"><span class="dot" style="background: var(--c-style)"></span>One piece, styled more than one way</li><li class="chip"><span class="dot" style="background: var(--c-style)"></span>Accessories and genuine finds</li></ul>
+</article>
+<article class="card" style="padding: clamp(22px,3vw,32px); display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; gap: 20px; align-items: flex-start">
+<figure style="flex: none; display: flex; flex-direction: column; gap: 6px"><div style="width: 112px; height: 149px; border-radius: 2px; background: var(--wine); color: #F8EEEA; padding: 12px; display: flex; flex-direction: column; justify-content: space-between"><span class="mono" style="font-size: 9.5px; letter-spacing: .12em; color: var(--blush)">Week 2 · Fri</span><span style="font: 800 15px/1.15 var(--disp); font-stretch: 112%">Your first safety video</span></div><figcaption class="mono muted" style="font-size: 9.5px; letter-spacing: .12em">Coming up</figcaption></figure>
+<div style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span class="disp" style="font-size: 44px; color: var(--c-safety)">04</span><h3 class="disp" style="font-size: clamp(16px,2.2vw,26px); line-height: 1.02; color: var(--c-safety)">Women’s Safety &amp; Preparedness</h3><p class="muted" style="font-size: 16px; line-height: 1.5">Introduce your expertise and make safety education feel approachable.</p></div>
+</div>
+<ul style="display: flex; flex-wrap: wrap; gap: 8px"><li class="chip"><span class="dot" style="background: var(--c-safety)"></span>Your instructor story</li><li class="chip"><span class="dot" style="background: var(--c-safety)"></span>Beginner questions and concerns</li><li class="chip"><span class="dot" style="background: var(--c-safety)"></span>Common misconceptions</li><li class="chip"><span class="dot" style="background: var(--c-safety)"></span>Responsible learning, at a high level</li></ul>
+</article>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)">
+<div class="mono" style="padding: 18px 18px 18px 0; color: var(--rose)">Where each pillar lives</div>
+<div style="padding: 16px 18px; border-left: 1px solid var(--line)"><span style="font-family: var(--script); font-size: 32px; line-height: 1; color: var(--rose)">Monday</span><p style="font-size: 15px">Becoming &amp; Confidence</p></div>
+<div style="padding: 16px 18px; border-left: 1px solid var(--line)"><span style="font-family: var(--script); font-size: 32px; line-height: 1; color: var(--rose)">Wednesday</span><p style="font-size: 15px">Lifestyle, with style moments</p></div>
+<div style="padding: 16px 18px; border-left: 1px solid var(--line)"><span style="font-family: var(--script); font-size: 32px; line-height: 1; color: var(--rose)">Friday</span><p style="font-size: 15px">Style and Safety, alternating</p></div>
+</div>
+</div>
+</section>
+
+<!-- ======= 05 STYLE ======= -->
+<section id="s05" class="sec bone">
+<div class="ghost">05</div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 28px">
+<div class="mono k"><b>05</b> Your style, every week</div>
+<h2 class="disp d2">Show your taste, <span class="scr">every week</span></h2>
+<p class="lead">Your outfits, accessories, and genuine finds show people your taste. Over time, they teach your audience what they can trust you to recommend.</p>
+<div style="display: grid; grid-template-columns: 1.15fr .85fr .85fr; gap: clamp(8px,1.6vw,16px); align-items: end">
+<figure style="position: relative"><img src="photos/kim-cover.jpg" alt="Kim in a print dress with a gold chain and crossbody bag" style="width: 100%; aspect-ratio: 3 / 4; height: auto; object-fit: cover; object-position: center 30%; border-radius: 2px"><figcaption class="mono" style="position: absolute; left: 10px; bottom: 10px; background: var(--wine); color: #F8EEEA; padding: 6px 8px; font-size: 9.5px">Gold chain · Statement bag</figcaption></figure>
+<figure style="position: relative"><img src="photos/ig-glasses-orange.jpg" alt="Kim in amber sunglasses and hoop earrings" style="width: 100%; aspect-ratio: 3 / 4; height: auto; object-fit: cover; border-radius: 2px"><figcaption class="mono" style="position: absolute; left: 10px; bottom: 10px; background: var(--wine); color: #F8EEEA; padding: 6px 8px; font-size: 9.5px">Sunglasses · Hoops</figcaption></figure>
+<figure style="position: relative"><img src="photos/tile-style.jpg" alt="Kim in a grey jumpsuit in front of a floral display" style="width: 100%; aspect-ratio: 3 / 4; height: auto; object-fit: cover; border-radius: 2px"><figcaption class="mono" style="position: absolute; left: 10px; bottom: 10px; background: var(--wine); color: #F8EEEA; padding: 6px 8px; font-size: 9.5px">The full look</figcaption></figure>
+</div>
+<div class="auto" style="--min: 320px; --gap: 20px">
+<div class="card" style="padding: 26px 28px">
+<div class="mono" style="color: var(--rose)">How style shows up</div>
+<ol style="margin-top: 10px">
+<li class="rule-row" style="display: grid; grid-template-columns: 116px 1fr; gap: 12px; padding-bottom: 14px; margin-top: 10px"><span class="mono" style="font-size: 10.5px; color: var(--c-style); font-weight: 600">Weeks 1 &amp; 3</span><span style="font-size: 16px">A dedicated Friday style video.</span></li>
+<li class="rule-row" style="display: grid; grid-template-columns: 116px 1fr; gap: 12px; padding-bottom: 14px"><span class="mono" style="font-size: 10.5px; color: var(--c-lifestyle); font-weight: 600">Weeks 2 &amp; 4</span><span style="font-size: 16px">A short style moment inside Wednesday’s lifestyle vlog.</span></li>
+<li class="rule-row" style="display: grid; grid-template-columns: 116px 1fr; gap: 12px"><span class="mono" style="font-size: 10.5px; color: var(--rose); font-weight: 600">Every week</span><span style="font-size: 16px">An optional Thursday post for an outfit, accessory, or genuine find.</span></li>
+</ol>
+</div>
+<div class="wine" style="border-radius: 4px; padding: 26px 28px; display: flex; flex-direction: column; gap: 12px">
+<div class="mono" style="color: var(--blush)">Capture it where you already are</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="chip">Before work</span><span class="chip">Before Pilates</span><span class="chip">Before dinner</span><span class="chip">Before an outing</span></div>
+<p style="font-size: 16px; color: #F1DDE1">A style moment takes a minute by the mirror or the door. It fits into your day; it doesn’t need its own production day.</p>
+<p style="font-size: 16px; color: #F1DDE1"><b style="font-weight: 600; color: #fff">Short on time?</b> A photo carousel of the outfit or the find works for your optional Thursday post.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ======= 06 SERIES ======= -->
+<section id="s06" class="sec wine grid-lines">
+<div class="ghost">06</div>
+<div style="position: absolute; left: -10%; top: 2%; width: 55%; height: 40%; border-radius: 50%; background: radial-gradient(circle, rgba(242,193,182,.16), rgba(242,193,182,0) 65%); pointer-events: none"></div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 30px">
+<div class="mono k"><b>06</b> Your signature series</div>
+<h2 class="disp" style="font-size: min(112px, 8.4cqw)">Rediscovering <span class="scr">her</span></h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 28px 56px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p class="lead" style="color: #F1DDE1">This series isn’t “watch me recover from divorce.” It’s <b style="font-weight: 600; color: #fff">“I’m rediscovering myself in a new chapter, and maybe you are too.”</b></p>
+<p class="muted" style="font-size: 16.5px">That gives you room for reflection, fun, Houston, work-from-home days, beauty and style, and everyday life, without the series ever feeling heavy. Your first video on this is the pilot; everything else builds out from it.</p>
+</div>
+<div style="background: var(--blush); color: var(--wine); border-radius: 4px; padding: 28px 30px; display: flex; flex-direction: column; gap: 14px">
+<div class="mono" style="font-weight: 600">Episode 1 · The opener</div>
+<p style="font: 800 clamp(20px,2vw,24px)/1.25 var(--disp); font-stretch: 105%">“I knew who I was as a wife, but after my divorce, I realized I had to rediscover who I was as a woman.”</p>
+<p style="font-size: 15.5px; line-height: 1.6">Then expand: “I don’t think you have to go through a divorce to understand that. Sometimes life changes and you realize you’ve spent so much time being somebody’s wife, mom, employee, caretaker, that you haven’t stopped to ask, ‘Who am I now? What do I actually like?’ So that’s what this season is for me. Rediscovering her.”</p>
+<p style="font-family: var(--script); font-size: 36px; line-height: 1.05">Maybe you’re rediscovering her too.</p>
+</div>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 12px">
+<div class="mono" style="color: var(--blush)">The episodes</div>
+<div class="mono" style="font-size: 10.5px; color: var(--mist)"><span style="display: inline-block; width: 10px; height: 10px; background: var(--blush); margin-right: 8px; vertical-align: -1px"></span>Already in your Month 1 plan</div>
+</div>
+<div id="episodes" class="auto" style="--min: 250px; --gap: 12px"></div>
+
+<div style="border: 1px solid var(--line-d); border-radius: 4px; padding: clamp(24px,4vw,40px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 20px 48px; align-items: center; background: rgba(255,255,255,.04)">
+<div><div class="mono" style="color: var(--blush)">Episode 16 · The heart of the series</div><h3 class="h3" style="margin-top: 10px; font-size: clamp(22px,2.4vw,30px)">I don’t want to become the old me again</h3><p class="muted" style="font-size: 15.5px; margin-top: 8px">You’re not trying to find the woman you were at 25. You’re meeting the woman you are now.</p></div>
+<p class="quote" style="font-size: 18px; line-height: 1.6; color: #F8EEEA">“People always say they want to get back to who they were before the marriage, before the kids, before life happened. But I don’t think I want to go backwards. That woman hadn’t lived what I’ve lived yet. I’m not trying to find the old me. I’m getting to know the woman I’ve become.”</p>
+</div>
+
+<div class="auto" style="--min: 340px; --gap: 20px">
+<div class="card" style="padding: 26px 28px; display: flex; flex-direction: column; gap: 14px">
+<div class="mono" style="color: var(--blush)">Keep it fun</div>
+<p style="font: 800 20px/1.25 var(--disp); font-stretch: 105%">“I’m rediscovering what I like, so today we’re trying…”</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="chip">A new Houston restaurant</span><span class="chip">A dance class</span><span class="chip">Pilates</span><span class="chip">A new hairstyle</span><span class="chip">A makeup look</span><span class="chip">A cooking class</span><span class="chip">A farmers market</span><span class="chip">A new recipe</span><span class="chip">A concert</span><span class="chip">A museum</span><span class="chip">A new neighborhood</span><span class="chip">A perfume</span><span class="chip">A trend you thought wasn’t for you</span><span class="chip">Hosting girlfriends</span><span class="chip">Decorating your place</span><span class="chip">A solo lunch</span></div>
+<p class="muted" style="font-size: 15px">20 to 45 seconds with a little voiceover. This is what makes the series bingeable: people aren’t just hearing about rediscovery, they’re watching you do it.</p>
+</div>
+<div class="card" style="padding: 26px 28px; display: flex; flex-direction: column; gap: 12px">
+<div class="mono" style="color: var(--blush)">Hooks to rotate</div>
+<p class="muted" style="font-size: 15px">No need to say “Episode 17” every time. Rotate these instead:</p>
+<ul style="display: flex; flex-direction: column; gap: 9px; font-size: 16px">
+<li class="quote" style="font-size: 16px">“In today’s episode of rediscovering myself…”</li>
+<li class="quote" style="font-size: 16px">“Apparently I’m learning new things about myself at this big age.”</li>
+<li class="quote" style="font-size: 16px">“Something I’ve been realizing in this season…”</li>
+<li class="quote" style="font-size: 16px">“I haven’t done this in years, so we’re doing it today.”</li>
+<li class="quote" style="font-size: 16px">“I’m new to Houston, and part of making this place home is finding my places.”</li>
+<li class="quote" style="font-size: 16px">“Question for the women who are also in a new chapter…”</li>
+<li class="quote" style="font-size: 16px">“Maybe I’m not the only woman who needed to hear this…”</li>
+</ul>
+<p class="muted" style="font-size: 14.5px">The last two matter most: you’re speaking with women, not at them.</p>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div class="mono" style="color: var(--blush)">How it fits your week</div>
+<div class="auto" style="--min: 240px; --gap: 0px; border-top: 1px solid var(--line-d); border-bottom: 1px solid var(--line-d)">
+<div style="padding: 22px 22px 22px 0"><span style="font-family: var(--script); font-size: 34px; line-height: 1; color: var(--blush)">Monday</span><h4 class="h3" style="font-size: 18px; margin-top: 6px">One conversation</h4><p class="muted" style="font-size: 15px; margin-top: 4px">A Rediscovering Her thought or reflection.</p></div>
+<div style="padding: 22px 22px 22px 0"><span style="font-family: var(--script); font-size: 34px; line-height: 1; color: var(--blush)">Wednesday</span><h4 class="h3" style="font-size: 18px; margin-top: 6px">One experience</h4><p class="muted" style="font-size: 15px; margin-top: 4px">Houston, trying something new, a solo date, an outing.</p></div>
+<div style="padding: 22px 0"><span style="font-family: var(--script); font-size: 34px; line-height: 1; color: var(--blush)">Any day</span><h4 class="h3" style="font-size: 18px; margin-top: 6px">One everyday moment</h4><p class="muted" style="font-size: 15px; margin-top: 4px">A WFH day, GRWM, weekend vlog, cooking, errands, or a reset.</p></div>
+</div>
+<p style="font-size: 16px; color: #F1DDE1; max-width: 72ch">Not every post needs the series label. When someone finds you through a funny work-from-home video and visits your profile, they discover the bigger story: a grown woman building and enjoying her next chapter.</p>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), auto)); gap: 10px 32px; padding: 22px 26px; border: 1.5px dashed rgba(242,193,182,.55); border-radius: 4px; align-items: baseline">
+<span class="mono" style="color: var(--blush)">Later · A second act</span>
+<p style="font-size: 16px; color: #F1DDE1; max-width: 70ch">When you’re ready to share more about your marriage, the series grows naturally: “How do I stay connected to her while being a wife again?” Your brand evolves instead of having to pivot.</p>
+</div>
+</div>
+</section>
+
+<!-- ======= 07 RHYTHM ======= -->
+<section id="s07" class="sec bone2 grid-light">
+<div class="ghost">07</div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 32px">
+<div class="mono k"><b>07</b> Your repeatable weekly rhythm</div>
+<h2 class="disp d2">Three posts. <span class="scr">Every week.</span></h2>
+<p class="lead">Three posts a week is your baseline. A fourth and fifth are welcome when you have the material and the energy, and never required.</p>
+<div class="auto" style="--min: 260px; --gap: 20px">
+<div class="card" style="padding: 30px 28px; display: flex; flex-direction: column; gap: 12px; border-top: 4px solid var(--c-becoming)">
+<span style="font-family: var(--script); font-size: 58px; line-height: 1; color: var(--rose)">Monday</span>
+<span class="mono muted">Camera conversation</span>
+<h3 class="disp" style="font-size: 26px; line-height: 1">Becoming at 50+</h3>
+<p class="muted" style="font-size: 16px">A motivational talk straight to camera, built around one idea from this chapter. Often a Rediscovering Her reflection.</p>
+<div style="margin-top: auto; padding-top: 10px"><span class="chip"><span class="dot" style="background: var(--c-becoming)"></span>Becoming</span></div>
+</div>
+<div class="card" style="padding: 30px 28px; display: flex; flex-direction: column; gap: 12px; border-top: 4px solid var(--c-lifestyle)">
+<span style="font-family: var(--script); font-size: 58px; line-height: 1; color: var(--rose)">Wednesday</span>
+<span class="mono muted">Mini vlog</span>
+<h3 class="disp" style="font-size: 26px; line-height: 1">Living This New Chapter</h3>
+<p class="muted" style="font-size: 16px">A short look at something you’re already doing, with a reflection at the end. Weeks 2 and 4 include a quick style moment.</p>
+<div style="margin-top: auto; padding-top: 10px"><span class="chip"><span class="dot" style="background: var(--c-lifestyle)"></span>Lifestyle</span></div>
+</div>
+<div class="card" style="padding: 30px 28px; display: flex; flex-direction: column; gap: 12px; border-top: 4px solid var(--c-style)">
+<span style="font-family: var(--script); font-size: 58px; line-height: 1; color: var(--rose)">Friday</span>
+<span class="mono muted">Alternating</span>
+<h3 class="disp" style="font-size: 26px; line-height: 1">Confidence in Practice</h3>
+<p class="muted" style="font-size: 16px">Personal style in weeks 1 and 3. Women’s safety education in weeks 2 and 4.</p>
+<div style="margin-top: auto; padding-top: 10px; display: flex; gap: 8px; flex-wrap: wrap"><span class="chip"><span class="dot" style="background: var(--c-style)"></span>Style</span><span class="chip"><span class="dot" style="background: var(--c-safety)"></span>Safety</span></div>
+</div>
+</div>
+<div class="dash" style="padding: 24px 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 18px 32px; background: rgba(255,255,255,.5)">
+<div><span class="mono" style="color: var(--rose)">Optional</span><p style="font-family: var(--script); font-size: 32px; line-height: 1.1; color: var(--wine)">when you have it</p></div>
+<div><h3 class="h3" style="font-size: 19px">Thursday · A style post</h3><p class="muted" style="font-size: 16px">An outfit, an accessory, or a genuine find. A photo carousel works too.</p></div>
+<div><h3 class="h3" style="font-size: 19px">Saturday · A reply or extra</h3><p class="muted" style="font-size: 16px">Answer a comment from your audience, or share one more relevant idea.</p></div>
+</div>
+<p class="muted" style="font-size: 15px; max-width: 72ch">Tuesday and Sunday are open for filming, editing, or rest. The days organize your workflow; they aren’t a claim about the best times to post. We’ll learn when your audience is most active as the month goes on.</p>
+</div>
+</section>
+
+<!-- ======= 08 CALENDAR ======= -->
+<section id="s08" class="sec bone">
+<div class="ghost">08</div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 24px">
+<div class="mono k"><b>08</b> Your month at a glance</div>
+<h2 class="disp d2">Your month <span class="scr">at a glance</span></h2>
+<p class="lead" style="font-weight: 600">Start with three posts each week. Add a fourth or fifth when your schedule allows.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; font: 500 14px/1 var(--body)">
+<span style="display: inline-flex; align-items: center; gap: 8px"><span style="width: 14px; height: 14px; border-radius: 2px; background: var(--c-becoming)"></span>Becoming</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span style="width: 14px; height: 14px; border-radius: 2px; background: var(--c-lifestyle)"></span>Lifestyle</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span style="width: 14px; height: 14px; border-radius: 2px; background: var(--c-style)"></span>Style</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span style="width: 14px; height: 14px; border-radius: 2px; background: var(--c-safety)"></span>Safety</span>
+<span style="width: 1px; height: 18px; background: var(--line)"></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span style="width: 30px; height: 16px; border-radius: 3px; background: var(--wine)"></span>Core</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span style="width: 30px; height: 16px; border-radius: 3px; border: 1.5px dashed var(--wine); background: #fff"></span>Optional</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="series-tag" style="padding: 3px 6px">RH</span>Rediscovering Her episode</span>
+</div>
+<div class="cal-scroll">
+<div class="cal">
+<div class="cal-grid" style="background: #FCFAF8; font: 600 10.5px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--slate)">
+<div style="padding: 15px 12px"></div><div style="padding: 15px 10px">Mon</div><div style="padding: 15px 10px">Tue</div><div style="padding: 15px 10px">Wed</div><div style="padding: 15px 10px">Thu</div><div style="padding: 15px 10px">Fri</div><div style="padding: 15px 10px">Sat</div><div style="padding: 15px 10px">Sun</div>
+</div>
+<div id="cal-rows"></div>
+</div>
+</div>
+<p class="muted" style="font-size: 15px">On a phone, swipe the calendar sideways to see the whole week. Every post is detailed in section 09.</p>
+</div>
+</section>
+
+<!-- ======= 09 PLAN ======= -->
+<section id="s09" class="sec paper">
+<div class="ghost">09</div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 28px">
+<div class="mono k"><b>09</b> Your four-week plan</div>
+<h2 class="disp d2">Your first <span class="scr">month</span></h2>
+<p class="lead">Open a week, film the three core videos, and tick each one off as you go. Your checkmarks stay on this device.</p>
+<div id="plan" style="display: contents"></div>
+</div>
+</section>
+
+<!-- ======= 10 SAFETY ======= -->
+<section id="s10" class="sec wine grid-lines">
+<div class="ghost">10</div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 32px">
+<div class="mono k"><b>10</b> Introducing women’s safety education</div>
+<h2 class="disp d2" style="font-size: min(76px, 8cqw)">Approachable. <span class="scr">Responsible.</span> Yours.</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 32px 56px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p class="lead" style="color: #F1DDE1">Your firearm instructor background is an important part of your expertise. Your Houston business is still being established, so this month is about introduction, not promotion.</p>
+<p class="muted" style="font-size: 17px">The goal: help women get to know your perspective and your teaching approach, address beginner concerns, and make the subject feel approachable.</p>
+</div>
+<div style="background: var(--blush); color: var(--wine); border-radius: 4px; padding: 30px 30px 28px; display: flex; flex-direction: column; gap: 10px">
+<span class="mono" style="font-weight: 600">This month</span>
+<h3 class="disp" style="font-size: 30px; line-height: 1">Talk to the camera</h3>
+<p style="font-size: 16px; line-height: 1.6">Your story, your perspective, and the questions beginners have are enough. Class footage can become content once your Houston business is operating.</p>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span class="mono" style="color: var(--blush)">Topics to grow into</span>
+<ol style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); column-gap: 48px">
+<li class="rule-row" style="display: grid; grid-template-columns: 48px 1fr; gap: 10px; padding-bottom: 16px"><span class="disp" style="font-size: 20px; color: var(--blush)">01</span><span>Your instructor story and your qualifications, stated accurately</span></li>
+<li class="rule-row" style="display: grid; grid-template-columns: 48px 1fr; gap: 10px; padding-bottom: 16px"><span class="disp" style="font-size: 20px; color: var(--blush)">02</span><span>Common concerns beginners have</span></li>
+<li class="rule-row" style="display: grid; grid-template-columns: 48px 1fr; gap: 10px; padding-bottom: 16px"><span class="disp" style="font-size: 20px; color: var(--blush)">03</span><span>Misconceptions about women and firearm education</span></li>
+<li class="rule-row" style="display: grid; grid-template-columns: 48px 1fr; gap: 10px; padding-bottom: 16px"><span class="disp" style="font-size: 20px; color: var(--blush)">04</span><span>What responsible ownership involves, at a high level</span></li>
+<li class="rule-row" style="display: grid; grid-template-columns: 48px 1fr; gap: 10px; padding-bottom: 16px"><span class="disp" style="font-size: 20px; color: var(--blush)">05</span><span>Why safe storage and ongoing education matter</span></li>
+<li class="rule-row" style="display: grid; grid-template-columns: 48px 1fr; gap: 10px; padding-bottom: 16px"><span class="disp" style="font-size: 20px; color: var(--blush)">06</span><span>An introduction to firearm care, from you as a qualified instructor</span></li>
+</ol>
+</div>
+<div class="auto" style="--min: 340px; --gap: 20px">
+<div class="card" style="padding: 26px 28px; display: flex; flex-direction: column; gap: 12px">
+<span class="mono" style="color: var(--blush)">Invitations that fit right now</span>
+<p class="quote">“What would you want to learn first?”</p>
+<p class="quote">“Would you like updates when I start offering classes in Houston?”</p>
+<p class="muted" style="font-size: 15px">Invite interest in what’s coming, without suggesting classes are open for booking yet.</p>
+</div>
+<div class="card" style="padding: 26px 28px; display: flex; flex-direction: column; gap: 12px">
+<span class="mono" style="color: var(--blush)">Keep it educational</span>
+<ul style="display: flex; flex-direction: column; gap: 10px; font-size: 16px; line-height: 1.5">
+<li>These are content topics, not technical or weapon-handling instruction.</li>
+<li>Plan and verify any future care demonstration yourself, using the manufacturer’s guidance.</li>
+<li>Check each platform’s current rules on firearm-related content before posting.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ======= 11 FILMING ======= -->
+<section id="s11" class="sec bone">
+<div class="ghost">11</div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 32px">
+<div class="mono k"><b>11</b> Filming and editing made simple</div>
+<h2 class="disp d2">Keep it focused. <span class="scr">Keep it you.</span></h2>
+<div class="auto" style="--min: 340px; --gap: 20px">
+<div class="card" style="padding: 30px 30px 18px">
+<span class="mono" style="color: var(--rose)">Mondays &amp; safety Fridays</span>
+<h3 class="disp" style="font-size: 30px; margin: 10px 0 14px">Camera talks</h3>
+<div class="rule-row" style="padding-bottom: 14px"><h4 class="h3" style="font-size: 18px">Begin with your main point.</h4><p class="muted" style="font-size: 15.5px">Skip the long introduction. Your first sentence is the reason to keep watching.</p></div>
+<div class="rule-row" style="padding-bottom: 14px"><h4 class="h3" style="font-size: 18px">One idea per video.</h4><p class="muted" style="font-size: 15.5px">If you have a second idea, save it for another week.</p></div>
+<div class="rule-row" style="padding-bottom: 14px"><h4 class="h3" style="font-size: 18px">Sound like yourself.</h4><p class="muted" style="font-size: 15.5px">You’re already comfortable on camera. Editing should tighten you, not change you.</p></div>
+<div class="rule-row" style="padding-bottom: 14px"><h4 class="h3" style="font-size: 18px">Test 30–60 seconds.</h4><p class="muted" style="font-size: 15.5px">Go longer when the story genuinely needs it.</p></div>
+</div>
+<div class="card" style="padding: 30px 30px 18px">
+<span class="mono" style="color: var(--rose)">Wednesdays &amp; series experiences</span>
+<h3 class="disp" style="font-size: 30px; margin: 10px 0 14px">Mini vlogs</h3>
+<div class="rule-row" style="padding-bottom: 14px"><h4 class="h3" style="font-size: 18px">A beginning.</h4><p class="muted" style="font-size: 15.5px">Set up the moment in a sentence: where you are, or what you almost didn’t do.</p></div>
+<div class="rule-row" style="padding-bottom: 14px"><h4 class="h3" style="font-size: 18px">An experience.</h4><p class="muted" style="font-size: 15.5px">Short clips of the activity itself. Let it carry the video.</p></div>
+<div class="rule-row" style="padding-bottom: 14px"><h4 class="h3" style="font-size: 18px">A reflection.</h4><p class="muted" style="font-size: 15.5px">One honest thought at the end that ties it back to this chapter.</p></div>
+<div class="rule-row" style="padding-bottom: 14px"><h4 class="h3" style="font-size: 18px">Three kinds of shots.</h4><p class="muted" style="font-size: 15.5px">A wider view, a detail, and you taking part.</p></div>
+</div>
+</div>
+<div class="auto" style="--min: 220px; --gap: 0px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)">
+<div style="padding: 22px 22px 22px 0"><h4 class="h3" style="font-size: 18px">Trim the extras</h4><p class="muted" style="font-size: 15.5px">Cut repetition, long pauses, and unnecessary setup.</p></div>
+<div style="padding: 22px 22px 22px 0"><h4 class="h3" style="font-size: 18px">Caption clearly</h4><p class="muted" style="font-size: 15.5px">Readable captions, placed where they don’t cover your face.</p></div>
+<div style="padding: 22px 0"><h4 class="h3" style="font-size: 18px">Keep music low</h4><p class="muted" style="font-size: 15.5px">Your voice should always be easy to hear.</p></div>
+</div>
+<div class="wine" style="border-radius: 4px; padding: 24px 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 18px 28px">
+<div><span class="mono" style="color: var(--blush)">Record vertically</span><p style="font-size: 15.5px; color: #F1DDE1; margin-top: 6px">Hold your phone upright for every clip.</p></div>
+<div><span class="mono" style="color: var(--blush)">Wipe your lens</span><p style="font-size: 15.5px; color: #F1DDE1; margin-top: 6px">A quick clean before you film makes a visible difference.</p></div>
+<div><span class="mono" style="color: var(--blush)">Face your light</span><p style="font-size: 15.5px; color: #F1DDE1; margin-top: 6px">Use window light or your own light, in front of you.</p></div>
+</div>
+</div>
+</section>
+
+<!-- ======= 12 VLOG ======= -->
+<section id="s12" class="sec paper">
+<div class="ghost">12</div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 32px">
+<div class="mono k"><b>12</b> One vlog, start to finish</div>
+<h2 class="disp d2">The Pilates you <span class="scr">almost skipped</span></h2>
+<p class="lead">Here’s how a single after-work Pilates class becomes a complete mini vlog, in three short beats.</p>
+<div class="auto" style="--min: 280px; --gap: 0px; border: 1px solid var(--line); border-radius: 4px; overflow: hidden">
+<div style="padding: 30px 28px; display: flex; flex-direction: column; gap: 12px; background: var(--paper)"><div style="display: flex; align-items: baseline; gap: 14px"><span class="disp" style="font-size: 64px; color: var(--rose)">1</span><span class="mono muted">Beginning</span></div><h3 class="h3">Almost skipping</h3><p class="quote">“I almost talked myself out of Pilates today.”</p><p class="muted" style="font-size: 15.5px">One quick clip after work. Be honest about the tired part.</p></div>
+<div style="padding: 30px 28px; display: flex; flex-direction: column; gap: 12px; background: var(--bone); border-left: 1px solid var(--line)"><div style="display: flex; align-items: baseline; gap: 14px"><span class="disp" style="font-size: 64px; color: var(--rose)">2</span><span class="mono muted">Experience</span></div><h3 class="h3">Choosing to go</h3><p class="quote">“But I went anyway.”</p><p class="muted" style="font-size: 15.5px">Your outfit on the way in, a detail or two, and a few seconds of you in class, filmed with the studio’s permission.</p></div>
+<div class="wine" style="padding: 30px 28px; display: flex; flex-direction: column; gap: 12px"><div style="display: flex; align-items: baseline; gap: 14px"><span class="disp" style="font-size: 64px; color: var(--blush)">3</span><span class="mono" style="color: var(--mist)">Reflection</span></div><h3 class="h3">How it felt after</h3><p class="quote" style="color: #F8EEEA">“Here’s why I’m glad I came.”</p><p style="font-size: 15.5px; color: var(--mist)">One short clip afterward, in your own words. That’s your ending.</p></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)">
+<div class="mono" style="padding: 20px 20px 20px 0; color: var(--rose)">Your shot recipe</div>
+<div style="padding: 18px 20px; border-left: 1px solid var(--line)"><h4 class="h3" style="font-size: 19px">Wide</h4><p class="muted" style="font-size: 15px">The studio, the street, or the room you’re in.</p></div>
+<div style="padding: 18px 20px; border-left: 1px solid var(--line)"><h4 class="h3" style="font-size: 19px">Detail</h4><p class="muted" style="font-size: 15px">Your mat, your shoes, your outfit.</p></div>
+<div style="padding: 18px 20px; border-left: 1px solid var(--line)"><h4 class="h3" style="font-size: 19px">You</h4><p class="muted" style="font-size: 15px">Taking part, not just narrating.</p></div>
+</div>
+<div class="auto" style="--min: 320px; --gap: 18px">
+<div class="card" style="padding: 24px 26px"><span class="mono" style="color: var(--rose)">Your setup today</span><p style="font-size: 16.5px; margin-top: 8px">Your phone and the light you already own are enough to start. Film near a window when you can.</p></div>
+<div class="card" style="padding: 24px 26px"><span class="mono" style="color: var(--rose)">A microphone</span><p style="font-size: 16.5px; margin-top: 8px">I’m considering the DJI Mic Mini for you. Before buying, we’ll confirm the right connection for your phone.</p></div>
+</div>
+</div>
+</section>
+
+<!-- ======= 13 WORKFLOW ======= -->
+<section id="s13" class="sec bone2 grid-light">
+<div class="ghost">13</div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 32px">
+<div class="mono k"><b>13</b> A realistic weekly workflow</div>
+<h2 class="disp d2">Made to fit <span class="scr">a full-time life</span></h2>
+<div>
+<div class="rule-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 8px 32px; padding-bottom: 20px"><div><span style="font-family: var(--script); font-size: 38px; line-height: 1; color: var(--rose)">The weekend</span><p class="mono muted" style="font-size: 10.5px">About 45–60 min</p></div><div style="grid-column: span 2"><h3 class="h3">One filming session</h3><p style="font-size: 16.5px; margin-top: 4px">Record Monday’s camera talk and Friday’s video back to back, while your setup is already in place.</p></div></div>
+<div class="rule-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 8px 32px; padding-bottom: 20px"><div><span style="font-family: var(--script); font-size: 38px; line-height: 1; color: var(--rose)">During the week</span><p class="mono muted" style="font-size: 10.5px">A few minutes at a time</p></div><div style="grid-column: span 2"><h3 class="h3">Capture as you live</h3><p style="font-size: 16.5px; margin-top: 4px">Film short clips during something you already planned: Pilates, an outing, an evening at home, a work-from-home day. Grab your style moment on the way out the door.</p></div></div>
+<div class="rule-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 8px 32px; padding-bottom: 20px"><div><span style="font-family: var(--script); font-size: 38px; line-height: 1; color: var(--rose)">One evening</span><p class="mono muted" style="font-size: 10.5px">A short session</p></div><div style="grid-column: span 2"><h3 class="h3">Edit your vlog</h3><p style="font-size: 16.5px; margin-top: 4px">Assemble Wednesday’s clips, trim them, and add captions, separate from your filming day.</p></div></div>
+<div class="rule-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 8px 32px; padding-bottom: 20px; border-bottom: 1px solid var(--line)"><div><span style="font-family: var(--script); font-size: 38px; line-height: 1; color: var(--rose)">Always</span><p class="mono muted" style="font-size: 10.5px">Your backup plan</p></div><div style="grid-column: span 2"><h3 class="h3">Save your extras</h3><p style="font-size: 16.5px; margin-top: 4px">Keep leftover clips and outfit photos in an album for optional posts, or for a busy week when filming isn’t possible.</p></div></div>
+</div>
+<div class="wine grid-lines" style="position: relative; overflow: hidden; border-radius: 4px; padding: clamp(28px,4vw,44px)">
+<div style="position: relative; display: flex; flex-direction: column; gap: 22px">
+<span class="mono" style="color: var(--blush)">Work smarter</span>
+<h3 class="disp" style="font-size: clamp(30px,4vw,48px)">One outing, <span class="scr">three posts</span></h3>
+<div class="auto" style="--min: 220px; --gap: 16px">
+<div style="border: 1px solid rgba(255,255,255,.18); border-radius: 2px; padding: 22px"><span style="font-family: var(--script); font-size: 30px; line-height: 1; color: var(--blush)">Before you leave</span><h4 class="h3" style="font-size: 19px; margin-top: 8px">An outfit post</h4><p style="font-size: 15px; color: var(--mist); margin-top: 4px">Show the look you chose and why.</p></div>
+<div style="border: 1px solid rgba(255,255,255,.18); border-radius: 2px; padding: 22px"><span style="font-family: var(--script); font-size: 30px; line-height: 1; color: var(--blush)">While you’re out</span><h4 class="h3" style="font-size: 19px; margin-top: 8px">A lifestyle vlog</h4><p style="font-size: 15px; color: var(--mist); margin-top: 4px">Wide, detail, and you, enjoying it.</p></div>
+<div style="border: 1px solid rgba(255,255,255,.18); border-radius: 2px; padding: 22px"><span style="font-family: var(--script); font-size: 30px; line-height: 1; color: var(--blush)">Afterward</span><h4 class="h3" style="font-size: 19px; margin-top: 8px">A reflection</h4><p style="font-size: 15px; color: var(--mist); margin-top: 4px">One thought the day gave you, maybe a Rediscovering Her moment.</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ======= 14 TRUST ======= -->
+<section id="s14" class="sec bone">
+<div class="ghost">14</div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 32px">
+<div class="mono k"><b>14</b> Build trust before monetization</div>
+<h2 class="disp d2" style="font-size: min(76px, 6.6cqw)">Recommendations start <span class="scr">with trust</span></h2>
+<p class="lead">People buy what you recommend when they already believe you. That belief comes from watching you genuinely use and enjoy what you share, which is why style shows up every week.</p>
+<ol style="display: flex; flex-direction: column; gap: 10px">
+<li class="card" style="display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 4px 18px; padding: 20px 24px; align-items: baseline"><span class="disp" style="font-size: 34px; color: var(--rose)">1</span><div><h3 class="h3" style="font-size: 20px">Show what you use</h3><p class="muted" style="font-size: 15.5px">Clothing, accessories, and everyday products that are really part of your life.</p></div></li>
+<li class="card" style="display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 4px 18px; padding: 20px 24px; align-items: baseline; margin-left: clamp(0px,3vw,40px)"><span class="disp" style="font-size: 34px; color: var(--rose)">2</span><div><h3 class="h3" style="font-size: 20px">Let it appear naturally</h3><p class="muted" style="font-size: 15.5px">In your outfits, routines, and vlogs, without a sales pitch.</p></div></li>
+<li class="card" style="display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 4px 18px; padding: 20px 24px; align-items: baseline; margin-left: clamp(0px,6vw,80px)"><span class="disp" style="font-size: 34px; color: var(--rose)">3</span><div><h3 class="h3" style="font-size: 20px">Notice the questions</h3><p class="muted" style="font-size: 15.5px">“Where’s that from?” is a signal. Keep a running list of what people ask about.</p></div></li>
+<li class="wine" style="display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 4px 18px; padding: 20px 24px; align-items: baseline; margin-left: clamp(0px,9vw,120px); border-radius: 4px"><span class="disp" style="font-size: 34px; color: var(--blush)">4</span><div><h3 class="h3" style="font-size: 20px">Recommend, when it fits</h3><p style="font-size: 15.5px; color: var(--mist)">Later, through TikTok Shop or other ways, for items your audience already trusts you on.</p></div></li>
+</ol>
+<div style="border: 1.5px solid var(--rose); border-radius: 4px; padding: 26px 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), auto)); gap: 18px 32px; align-items: center; background: var(--paper)">
+<div><span class="mono" style="color: var(--rose)">Your milestone</span><div class="disp" style="font-size: 54px; color: var(--wine); margin-top: 8px">1,000</div><span class="mono muted" style="font-size: 10.5px">TikTok followers</span></div>
+<p style="font-size: 16px; line-height: 1.6; max-width: 62ch">Your short-term goal is 1,000 TikTok followers, then applying for TikTok Shop creator access once your account is eligible. TikTok sets and changes the requirements, so we’ll confirm what’s current before you apply. Reaching the milestone doesn’t guarantee approval, income, or a timeline.</p>
+</div>
+<div class="auto" style="--min: 320px; --gap: 18px">
+<div class="card" style="padding: 24px 26px"><span class="mono" style="color: var(--rose)">About TikTok Shop</span><p style="font-size: 16px; margin-top: 8px">It’s a future opportunity, not a guaranteed income. Until then, every genuine recommendation builds the trust it depends on.</p></div>
+<div class="card" style="padding: 24px 26px"><span class="mono" style="color: var(--rose)">About replacing your income</span><p style="font-size: 16px; margin-top: 8px">That’s a longer-term business goal. It comes from consistent revenue over time, not from reaching a particular follower count.</p></div>
+</div>
+</div>
+</section>
+
+<!-- ======= 15 REVIEW ======= -->
+<section id="s15" class="sec wine grid-lines">
+<div class="ghost">15</div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 30px">
+<div class="mono k"><b>15</b> Your first-month review</div>
+<h2 class="disp d2">Look back <span class="scr">before you plan ahead</span></h2>
+<p class="lead" style="color: #F1DDE1">At the end of the month, sit down with your TikTok analytics and these questions. Your answers stay on this device.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 18px 28px; padding: 24px 28px; border: 1px solid var(--line-d); border-radius: 4px; background: rgba(255,255,255,.05)">
+<div><label class="mono" for="followers-start" style="color: var(--blush)">Starting TikTok followers</label><input id="followers-start" type="text" inputmode="numeric" autocomplete="off" style="display: block; width: 100%; margin-top: 8px; font: 900 28px/1.2 var(--disp); font-stretch: 112%; color: #F8EEEA; background: rgba(0,0,0,.18); border: 1px solid var(--line-d); border-radius: 2px; padding: 8px 12px; min-height: 48px"></div>
+<div><label class="mono" for="followers-end" style="color: var(--blush)">Ending TikTok followers</label><input id="followers-end" type="text" inputmode="numeric" autocomplete="off" style="display: block; width: 100%; margin-top: 8px; font: 900 28px/1.2 var(--disp); font-stretch: 112%; color: #F8EEEA; background: rgba(0,0,0,.18); border: 1px solid var(--line-d); border-radius: 2px; padding: 8px 12px; min-height: 48px"></div>
+</div>
+<ul id="review"></ul>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); border-radius: 4px; overflow: hidden">
+<div style="background: var(--blush); color: var(--wine); padding: 28px 30px"><p class="disp" style="font-size: clamp(26px,3vw,36px); line-height: 1">Then, <span style="font-family: var(--script); text-transform: none; font-weight: 400; font-size: 1.4em; letter-spacing: 0">repeat what worked.</span></p></div>
+<div style="background: rgba(255,255,255,.06); padding: 28px 30px; font-size: 16.5px; color: #F1DDE1">Your answers shape Months 2 and 3, including which Rediscovering Her episodes come next. We’ll keep and improve your strongest formats and plan the next two months together once this review is done.</div>
+</div>
+</div>
+</section>
+
+<!-- ======= 16 CLOSE ======= -->
+<section id="s16" class="sec wine2" style="padding-bottom: 56px">
+<div style="position: absolute; left: 50%; top: -20%; width: 90%; height: 70%; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(circle, rgba(242,193,182,.18), rgba(242,193,182,0) 65%); pointer-events: none"></div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 40px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 32px 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 22px">
+<div class="mono k"><b>16</b> Your first three steps</div>
+<h2 class="disp" style="font-size: clamp(48px,8vw,104px)">Kim, <span class="scr">just begin.</span></h2>
+<p class="lead" style="color: #F1DDE1">You bring warmth, style, and real conversation to the camera, and you’re living a chapter many women are curious about. This month isn’t about getting everything right. It’s about showing up three times a week and learning what feels most like you.</p>
+</div>
+<img src="photos/kim-close.jpg" alt="Kim LaShawn smiling" style="justify-self: center; width: 100%; max-width: 320px; aspect-ratio: 1; height: auto; border-radius: 50%; border: 1px solid var(--blush); padding: 10px">
+</div>
+<div id="steps" class="auto" style="--min: 260px; --gap: 16px"></div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 28px; border-top: 1px solid var(--line-d); padding-top: 32px; margin-top: 16px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: var(--script); font-size: 48px; line-height: 1; color: #F8EEEA">Stephen Michael</span>
+<span class="mono" style="font-size: 10.5px; color: var(--mist)">Content coach · Shooting Stars Content Academy</span>
+</div>
+<img src="logo-white.png" alt="Shooting Stars Content Academy" style="height: 64px; width: auto">
+</div>
+<div class="mono" style="font-size: 10px; color: rgba(229,203,208,.7); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between">
+<span>Shooting Stars Content Strategy · Student Edition</span><span>Kim LaShawn · Month One</span>
+</div>
+</div>
+</section>
+
+</div>
+
+<script>
+(function () {
+  var KEY = 'ss-kim-30-days';
+  var C = { becoming: '#5A1A2B', lifestyle: '#9B4F44', style: '#7A5A3A', safety: '#3F5A6B' };
+  var N = { becoming: 'Becoming', lifestyle: 'Lifestyle', style: 'Style', safety: 'Safety' };
+  var CHECK = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>';
+
+  // ep: Rediscovering Her episode this post doubles as.
+  var weeks = [
+    { n: 1, theme: 'Introduce', em: 'your chapter', intent: 'Let people meet you: who you are, where you are, and what you’re building.',
+      core: [
+        { id: 'w1-mon', day: 'Monday', cat: 'becoming', fmt: 'Camera conversation', title: 'What becoming at 50 means to me', short: 'What becoming at 50 means to me', open: 'Let me tell you what ‘becoming’ means to me at this stage of my life.', k: 'Cover', items: ['What this chapter looks like for you right now', 'One thing you’re learning about yourself', 'Why you’re choosing to share it here'], ask: 'If you’re in a new chapter too, what are you becoming?', ep: 1, epNote: 'Make this your series opener. The hook is in section 06.' },
+        { id: 'w1-wed', day: 'Wednesday', cat: 'lifestyle', fmt: 'Mini vlog', title: 'A day building my new life in Houston', short: 'A day building my Houston life', open: 'Come spend a day with me while I build a new life in Houston.', k: 'Capture', items: ['Getting ready at home, with your view', 'One place you’re getting to know', 'A closing thought on what feels like home so far'], ask: 'Houston ladies, where should I go next?', ep: 3 },
+        { id: 'w1-fri', day: 'Friday', cat: 'style', fmt: 'Get-dressed video', title: 'Getting dressed for this version of me', short: 'Getting dressed for this version of me', open: 'This is how I’m getting dressed for this version of me.', k: 'Capture', items: ['The full look, in good light', 'One or two pieces, and why they feel like you', 'Your hair as part of the look'], ask: 'What’s one piece that makes you feel most like yourself?', ep: 7 }
+      ],
+      opt: [
+        { id: 'w1-x4', day: 'Thursday', cat: 'style', kind: 'Style post', title: 'A favorite accessory and how I wear it', short: 'Favorite accessory, how I wear it', note: 'A photo carousel works too.' },
+        { id: 'w1-x5', day: 'Saturday', cat: 'becoming', kind: 'Audience reply', title: 'Reply to a comment about starting over', short: 'Reply: starting over', note: '' }
+      ] },
+    { n: 2, theme: 'Choose', em: 'yourself', intent: 'Show what it looks like to make room for yourself in a full, real life.',
+      core: [
+        { id: 'w2-mon', day: 'Monday', cat: 'becoming', fmt: 'Camera conversation', title: 'Making room for myself while working full-time', short: 'Making room for myself', open: 'I work full-time, so making room for myself has to be on purpose.', k: 'Cover', items: ['One habit or block of time you protect', 'What changes when you keep it, or skip it', 'Encouragement for women with full schedules'], ask: 'When do you make time for yourself in a busy week?' },
+        { id: 'w2-wed', day: 'Wednesday', cat: 'lifestyle', fmt: 'Mini vlog', title: 'Pilates after a workday', short: 'Pilates after work', open: 'It’s been a full workday, and I’m heading to Pilates anyway.', k: 'Capture', items: ['Heading out after work', 'Arriving, plus a detail: your mat, shoes, or bag', 'You after class, sharing how you feel'], ask: 'What kind of movement makes you feel good these days?', style: 'Show your Pilates look in the mirror before you head out.' },
+        { id: 'w2-fri', day: 'Friday', cat: 'safety', fmt: 'Camera conversation', title: 'Why I became a firearm instructor', short: 'Why I became an instructor', open: 'Some of you don’t know this about me yet: I’m a firearm instructor. Here’s why.', k: 'Cover', items: ['Why you became an instructor, in your words', 'What you want women to feel when they learn', 'Why learning from qualified instruction matters'], ask: 'What would you want to learn first?' }
+      ],
+      opt: [
+        { id: 'w2-x4', day: 'Thursday', cat: 'style', kind: 'Style post', title: 'What I wore for a weekend with my husband', short: 'Weekend outfit with my husband', note: 'A photo carousel works too.' },
+        { id: 'w2-x5', day: 'Saturday', cat: 'safety', kind: 'Extra', title: 'A misconception about women who pursue firearm training', short: 'Myths about women and training', note: '' }
+      ] },
+    { n: 3, theme: 'Enjoy', em: 'your life', intent: 'Lean into the joy: what you love, where you go, and how you show up.',
+      core: [
+        { id: 'w3-mon', day: 'Monday', cat: 'becoming', fmt: 'Camera conversation', title: 'Learning what I enjoy in this chapter', short: 'Learning what I enjoy', open: 'One of the best parts of this chapter has been finding out what I actually enjoy.', k: 'Cover', items: ['Something you put off or never made time for', 'Something you’ve found you love', 'Permission for viewers to explore, too'], ask: 'What’s something you’ve discovered you love lately?', ep: 2 },
+        { id: 'w3-wed', day: 'Wednesday', cat: 'lifestyle', fmt: 'Mini vlog', title: 'A solo outing in Houston', short: 'A solo Houston outing', open: 'Today I’m taking myself out.', k: 'Capture', items: ['A wide shot of where you are', 'Details: the menu, the art, the view', 'You enjoying it, then a short reflection'], ask: 'Where would you take yourself on a solo date?', ep: 4 },
+        { id: 'w3-fri', day: 'Friday', cat: 'style', fmt: 'Get ready with me', title: 'Get ready with me for date night', short: 'Get ready with me: date night', open: 'Get ready with me. It’s date night with my husband.', k: 'Capture', items: ['Hair and finishing touches', 'The outfit, start to finish', 'What you enjoy about getting ready'], ask: 'What’s your go-to date night look?' }
+      ],
+      opt: [
+        { id: 'w3-x4', day: 'Thursday', cat: 'style', kind: 'Style post', title: 'One favorite piece, styled two ways', short: 'One piece, styled two ways', note: 'A photo carousel works too.' },
+        { id: 'w3-x5', day: 'Saturday', cat: 'becoming', kind: 'Audience reply', title: 'Reply to a question about enjoying your own company', short: 'Reply: enjoying my own company', note: '', ep: 11 }
+      ] },
+    { n: 4, theme: 'Grow', em: 'in confidence', intent: 'Close the month with permission, real routines, and your expertise.',
+      core: [
+        { id: 'w4-mon', day: 'Monday', cat: 'becoming', fmt: 'Camera conversation', title: 'Something I’m giving myself permission to do after 50', short: 'Permission I’m giving myself', open: 'Here’s something I’m finally giving myself permission to do.', k: 'Cover', items: ['The permission, and why it matters to you', 'What used to hold you back', 'A gentle nudge for the woman watching'], ask: 'What are you giving yourself permission to do this year?' },
+        { id: 'w4-wed', day: 'Wednesday', cat: 'lifestyle', fmt: 'Mini vlog', title: 'A realistic evening reset after work', short: 'My evening reset', open: 'This is what a real evening reset looks like after a full workday.', k: 'Capture', items: ['Coming home and setting things down', 'Two or three small moments that reset you', 'You settling in, with a closing thought'], ask: 'What’s one thing that helps you reset after work?', style: 'Show the comfortable piece you change into, or an item you reach for every evening.', ep: 15 },
+        { id: 'w4-fri', day: 'Friday', cat: 'safety', fmt: 'Camera conversation', title: 'What I want beginner women to know', short: 'What beginner women should know', open: 'If you’ve been curious about firearm education but don’t know where to start, this is for you.', k: 'Cover', items: ['It’s okay to start as a complete beginner', 'Look for qualified instruction, and ask questions', 'Responsible ownership means ongoing learning'], ask: 'Would you like updates when I start offering classes in Houston?' }
+      ],
+      opt: [
+        { id: 'w4-x4', day: 'Thursday', cat: 'style', kind: 'Style post', title: 'A genuine find from my everyday routine', short: 'A genuine everyday find', note: 'A photo carousel works too.' },
+        { id: 'w4-x5', day: 'Saturday', cat: 'safety', kind: 'Audience reply', title: 'Answer a question about my background or how I teach', short: 'Reply: how I teach', note: '' }
+      ] }
+  ];
+
+  var episodes = [
+    ['Rediscovering Her', 'Establish the whole series.', 'Talking head', '“I knew who I was as a wife…”'],
+    ['What Do I Even Like?', 'Realizing some preferences were built around other people.', 'GRWM + voiceover', '“Have you ever stopped and wondered… do I actually like this?”'],
+    ['Starting Over Somewhere New', 'Your move to Houston.', 'Houston vlog', '“Apparently part of rediscovering yourself is figuring out where you belong in a brand-new city.”'],
+    ['Take Yourself Anyway', 'Doing something you’d normally wait for company to do.', 'Solo outing', '“One thing I’m not doing in this chapter? Waiting for somebody to come with me.”'],
+    ['Who Was I Before All the Roles?', 'Revisit younger Kim.', 'Old photos or video + voiceover', '“Before I was anybody’s wife, I was her.”'],
+    ['Making Houston Feel Like Home', 'Build routines and favorite places.', 'Weekend vlog', 'Coffee, groceries, a restaurant, errands, home.'],
+    ['Getting Dressed for Me Again', 'Style rediscovery.', 'Closet or GRWM', '“I don’t think I’ve figured out my style in this version of me yet.”'],
+    ['The WFH Rut', 'Lighter, relatable everyday life.', 'Day in the life', '“Working from home will have you looking up at 4 PM wondering if you’ve been outside.”'],
+    ['Things I Don’t Do Anymore', 'Boundaries and growth.', 'Talking head', '“There are things the old version of me tolerated that this version doesn’t.”'],
+    ['Trying Something I’ve Never Done', 'A new hobby or activity.', 'Lifestyle vlog', 'Let the activity carry the episode.'],
+    ['Learning to Enjoy My Own Company', 'Being alone isn’t the same as loneliness.', 'Solo morning or date + voiceover', ''],
+    ['Making Friends as a Grown Woman', 'Building community after moving.', 'Talking head or vlog', '“Nobody tells you how weird making friends as an adult can be.”'],
+    ['Creating New Traditions', 'Holidays, weekends, Sundays.', 'Lifestyle + voiceover', '“I’m realizing new chapters need new traditions.”'],
+    ['What Divorce Taught Me About Me', 'Personal reflection, not relationship advice.', 'Talking head', '“The biggest thing divorce taught me wasn’t actually about marriage…”'],
+    ['Things I’m Bringing Into My Next Chapter', 'Values, habits, boundaries, joy.', 'Voiceover over reset or home footage', ''],
+    ['I Don’t Want to Become the Old Me Again', 'Growth isn’t “getting back” to who you were.', 'Talking head', '“Everybody talks about getting back to yourself. I don’t think I want to.”']
+  ];
+  var epTitle = function (n) { return n === 1 ? 'The opener' : episodes[n - 1][0]; };
+
+  var state = { week: 0, done: {}, fStart: '', fEnd: '' };
+  try { var raw = localStorage.getItem(KEY); if (raw) { var s = JSON.parse(raw); state.done = s.done || {}; state.week = s.week || 0; state.fStart = s.fStart || ''; state.fEnd = s.fEnd || ''; } } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function $(id) { return document.getElementById(id); }
+
+  // where each episode lands this month
+  var epPlan = {};
+  weeks.forEach(function (w) { w.core.concat(w.opt).forEach(function (p) { if (p.ep) epPlan[p.ep] = 'Week ' + w.n + ' · ' + p.day; }); });
+
+  // ---------- static renders ----------
+  var toc = [
+    ['01', 'Your brand direction', 'The story every video comes back to.'],
+    ['02', 'Where you’re starting', 'Your profiles and your first milestone.'],
+    ['03', 'Who you’re talking to', 'Your audience, and why they’ll come back.'],
+    ['04', 'Your content pillars', 'Four topics and the subtopics under each.'],
+    ['05', 'Your style, every week', 'Why style shows up in every week.'],
+    ['06', 'Rediscovering Her', 'Your signature series, episode by episode.'],
+    ['07', 'Your weekly rhythm', 'Three core posts, two optional.'],
+    ['08', 'Your month at a glance', 'The whole month on one calendar.'],
+    ['09', 'Your four-week plan', 'Every post, with progress tracking.'],
+    ['10', 'Women’s safety education', 'Introducing your expertise this month.'],
+    ['11', 'Filming and editing', 'Simple rules for camera talks and vlogs.'],
+    ['12', 'One vlog, start to finish', 'The Pilates example, beat by beat.'],
+    ['13', 'Your weekly workflow', 'How it fits around a full-time job.'],
+    ['14', 'Trust before monetization', 'Your milestone and TikTok Shop.'],
+    ['15', 'Your first-month review', 'What to look at before Month 2.'],
+    ['16', 'Your first three steps', 'What to do this week.']
+  ];
+  $('toc').innerHTML = toc.map(function (t) {
+    return '<a class="toc-a" href="#s' + t[0] + '"><span class="disp toc-n" style="font-size: 34px; color: var(--rose)">' + t[0] + '</span><span style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><span class="h3 toc-t" style="font-size: 20px">' + esc(t[1]) + '</span><span class="muted" style="font-size: 15px; line-height: 1.5">' + esc(t[2]) + '</span></span></a>';
+  }).join('');
+
+  $('episodes').innerHTML = episodes.map(function (e, i) {
+    var n = i + 1, inPlan = epPlan[n], lead = n === 16;
+    var bg = inPlan ? 'background: var(--blush); color: var(--wine); border-color: var(--blush)' : (lead ? 'background: rgba(242,193,182,.12); border-color: rgba(242,193,182,.5)' : '');
+    var sub = inPlan ? 'color: #6E3A46' : 'color: var(--mist)';
+    var tag = inPlan ? '<span class="mono" style="font-size: 9.5px; font-weight: 600; letter-spacing: .12em; margin-top: auto; padding-top: 6px">In your plan · ' + inPlan + '</span>' : '';
+    var hook = e[3] ? '<p style="font-style: italic; font-size: 14px; line-height: 1.45; ' + sub + '">' + esc(e[3]) + '</p>' : '';
+    return '<article class="card" style="padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 8px; ' + bg + '">' +
+      '<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px"><span class="disp" style="font-size: 30px; ' + (inPlan ? 'color: var(--wine)' : 'color: var(--blush)') + '">' + (n < 10 ? '0' + n : n) + '</span><span class="mono" style="font-size: 9.5px; letter-spacing: .1em; text-align: right; ' + sub + '">' + esc(e[2]) + '</span></div>' +
+      '<h3 class="h3" style="font-size: 17px">' + esc(e[0]) + '</h3><p style="font-size: 14.5px; line-height: 1.45; ' + sub + '">' + esc(e[1]) + '</p>' + hook + tag + '</article>';
+  }).join('');
+
+  function ev(p, core) {
+    var c = C[p.cat];
+    var series = p.ep ? '<span class="sr">RH · Ep. ' + p.ep + '</span>' : '';
+    if (core) {
+      var sm = p.style ? '<span style="font: 600 11px/1.25 var(--body); background: rgba(255,255,255,.18); border-radius: 2px; padding: 4px 6px; align-self: flex-start">+ Style moment</span>' : '';
+      return '<div><div class="ev" style="background: ' + c + '; color: #fff"><span class="kk" style="opacity: .85">Core</span><span class="ti">' + esc(p.short) + '</span>' + sm + series + '<span class="ct" style="opacity: .85">' + N[p.cat] + '</span></div></div>';
+    }
+    var kind = p.cat === 'style' ? 'Style' : (p.kind === 'Audience reply' ? 'Reply' : 'Extra');
+    return '<div><div class="ev" style="background: #fff; color: var(--text); border: 1.5px dashed ' + c + '"><span class="kk" style="color: ' + c + '">Optional</span><span class="ti">' + esc(p.short) + '</span>' + (p.ep ? '<span class="sr" style="color: ' + c + '">RH · Ep. ' + p.ep + '</span>' : '') + '<span class="ct" style="color: ' + c + '">' + kind + '</span></div></div>';
+  }
+  var open = '<div><div class="open"><b style="font: 600 10.5px/1.2 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--slate)">Open</b><span style="font: 500 12px/1.3 var(--body); color: #8F8286">Film, edit, or rest</span></div></div>';
+  $('cal-rows').outerHTML = weeks.map(function (w) {
+    var c = {}, o = {};
+    w.core.forEach(function (p) { c[p.day] = p; });
+    w.opt.forEach(function (p) { o[p.day] = p; });
+    return '<div class="cal-grid cal-row"><div style="background: #FCFAF8; padding: 16px 12px"><b class="mono" style="display: block; font-size: 10.5px; font-weight: 600; color: var(--slate)">Week ' + w.n + '</b><span style="display: block; font: 800 16px/1.15 var(--disp); font-stretch: 112%; color: var(--wine); margin-top: 8px">' + w.theme + ' <span style="font-family: var(--script); font-weight: 400; font-size: 1.35em; color: var(--rose)">' + w.em + '</span></span></div>' +
+      ev(c.Monday, true) + open + ev(c.Wednesday, true) + ev(o.Thursday, false) + ev(c.Friday, true) + ev(o.Saturday, false) + open + '</div>';
+  }).join('');
+
+  var fs = $('followers-start'), fe = $('followers-end');
+  fs.value = state.fStart; fe.value = state.fEnd;
+  fs.addEventListener('input', function () { state.fStart = fs.value; save(); });
+  fe.addEventListener('input', function () { state.fEnd = fe.value; save(); });
+
+  // ---------- live renders ----------
+  var review = [
+    ['r1', 'Which posts generated new followers?', ''],
+    ['r2', 'Which prompted meaningful comments or shares?', ''],
+    ['r3', 'Which generated outfit, accessory, or product questions?', 'These point toward your future recommendations.'],
+    ['r4', 'Which generated interest in safety education?', ''],
+    ['r5', 'Which Rediscovering Her episodes landed best?', 'Make more of what women responded to.'],
+    ['r6', 'Did three posts a week feel sustainable?', 'What you can keep doing matters as much as what performs.']
+  ];
+  var steps = [
+    ['s1', '1', 'Choose your filming window', 'Pick one 45–60 minute block this weekend and put it on your calendar.'],
+    ['s2', '2', 'Record your series opener', '“I knew who I was as a wife…” It doubles as your first Monday video. One take is a fine place to start.'],
+    ['s3', '3', 'Choose one ordinary activity', 'Something already on your schedule becomes your first vlog. Grab an outfit moment on the way out.']
+  ];
+
+  function doneCore() { var n = 0; weeks.forEach(function (w) { w.core.forEach(function (p) { if (state.done[p.id]) n++; }); }); return n; }
+
+  function renderLive() {
+    var dc = doneCore();
+    document.querySelectorAll('[data-done]').forEach(function (el) { el.textContent = dc; });
+    var wi = Math.min(Math.max(state.week, 0), 3), w = weeks[wi];
+
+    var tabs = weeks.map(function (t, i) {
+      var sel = i === wi, cnt = t.core.filter(function (p) { return state.done[p.id]; }).length;
+      var st = sel ? 'background: var(--wine); color: #F8EEEA; box-shadow: inset 0 4px 0 var(--blush)' : 'background: transparent; color: var(--text)';
+      return '<button class="tab" role="tab" aria-selected="' + sel + '" data-act="tab" data-i="' + i + '" style="' + st + '"><span class="mono" style="display: block; font-size: 10.5px; opacity: .8">Week 0' + t.n + '</span><span class="tab-name" style="display: block; font: 800 17px/1.2 var(--disp); font-stretch: 112%; margin-top: 6px">' + t.theme + ' ' + t.em + '</span><span class="mono" style="display: block; font-size: 10px; margin-top: 8px; opacity: .75">' + cnt + '/3 filmed</span></button>';
+    }).join('');
+
+    var cores = w.core.map(function (p, i) {
+      var c = C[p.cat], d = !!state.done[p.id];
+      var items = p.items.map(function (li) { return '<li style="font-size: 15.5px; line-height: 1.45; padding: 8px 0 8px 18px; border-bottom: 1px solid var(--line); position: relative"><span style="position: absolute; left: 0; top: 18px; width: 8px; height: 1.5px; background: ' + c + '"></span>' + esc(li) + '</li>'; }).join('');
+      var sm = p.style ? '<p style="background: var(--bone); border-radius: 2px; padding: 10px 12px; font-size: 15px; line-height: 1.45"><b class="mono" style="display: block; font-size: 10px; color: var(--c-style); margin-bottom: 2px">Style moment</b>' + esc(p.style) + '</p>' : '';
+      var ep = p.ep ? '<p style="display: flex; flex-direction: column; gap: 4px"><span class="series-tag" style="align-self: flex-start">Rediscovering Her · Ep. ' + p.ep + ' · ' + esc(epTitle(p.ep)) + '</span>' + (p.epNote ? '<span class="muted" style="font-size: 14px">' + esc(p.epNote) + '</span>' : '') + '</p>' : '';
+      var btn = d ? 'background: var(--wine); border-color: var(--wine); color: #fff' : 'background: transparent; border-color: #CFC4B6; color: var(--text)';
+      return '<article class="card" style="padding: 26px 24px 22px; display: flex; flex-direction: column; gap: 14px; border-top: 4px solid ' + c + '">' +
+        '<div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap"><span style="font-family: var(--script); font-size: 42px; line-height: 1; color: ' + c + '">' + p.day + '</span><span class="chip" style="font-size: 10px"><span class="dot" style="background: ' + c + '"></span>Core · ' + N[p.cat] + '</span></div>' +
+        '<span class="mono muted" style="font-size: 10.5px">' + esc(p.fmt) + '</span><h4 class="h3" style="font-size: 21px">' + esc(p.title) + '</h4>' + ep +
+        '<p class="quote">“' + esc(p.open) + '”</p>' +
+        '<div style="display: flex; flex-direction: column; gap: 4px"><span class="mono" style="font-size: 10.5px; color: ' + c + '">' + p.k + '</span><ul>' + items + '</ul></div>' + sm +
+        '<p style="font-size: 15px; line-height: 1.5"><span class="mono" style="font-size: 10.5px; color: var(--rose); margin-right: 8px">Ask</span>' + esc(p.ask) + '</p>' +
+        '<div style="margin-top: auto; padding-top: 6px"><button class="btn-check" aria-pressed="' + d + '" data-act="toggle" data-id="' + p.id + '" style="' + btn + '"><span class="box">' + (d ? CHECK : '') + '</span><span>' + (d ? 'Filmed' : 'Mark as filmed') + '</span></button></div></article>';
+    }).join('');
+
+    var opts = w.opt.map(function (p) {
+      var c = C[p.cat], d = !!state.done[p.id];
+      var bs = 'width: 32px; height: 32px; cursor: pointer; padding: 0; appearance: none; flex: none; ' + (d ? 'background: var(--wine); border-color: var(--wine); color: #fff' : 'background: transparent; border-color: var(--rose); color: var(--rose)');
+      var ep = p.ep ? '<span class="series-tag" style="margin-top: 4px">Rediscovering Her · Ep. ' + p.ep + '</span>' : '';
+      return '<div style="display: flex; gap: 14px; align-items: center"><button class="box" aria-pressed="' + d + '" aria-label="Mark optional ' + p.day + ' post as posted: ' + esc(p.title) + '" data-act="toggle" data-id="' + p.id + '" style="' + bs + '">' + (d ? CHECK : '') + '</button><div style="min-width: 0; display: flex; flex-direction: column"><span class="mono muted" style="font-size: 10px">' + p.day + ' · ' + p.kind + '</span><span style="font: 700 17px/1.3 var(--disp); font-stretch: 105%">' + esc(p.title) + '</span>' + (p.note ? '<span class="muted" style="font-size: 13.5px">' + esc(p.note) + '</span>' : '') + ep + '</div></div>';
+    }).join('');
+
+    $('plan').innerHTML =
+      '<div style="display: flex; flex-direction: column; gap: 10px; max-width: 560px"><div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px"><span class="mono" style="color: var(--rose)">Month progress</span><span class="mono muted">' + dc + ' of 12 core videos filmed</span></div><div style="height: 6px; background: var(--bone2); border-radius: 3px; overflow: hidden"><div style="height: 100%; background: var(--rose); width: ' + Math.round(dc / 12 * 100) + '%; transition: width .3s"></div></div></div>' +
+      '<div role="tablist" aria-label="Weeks" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 2px; background: var(--bone)">' + tabs + '</div>' +
+      '<div role="tabpanel" style="display: flex; flex-direction: column; gap: 24px">' +
+        '<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 40px; padding-top: 8px"><h3 class="disp" style="font-size: clamp(32px,4.6vw,60px)">' + w.theme + ' <span class="scr">' + w.em + '</span></h3><p class="muted" style="font-size: 17px; max-width: 40ch">' + esc(w.intent) + '</p></div>' +
+        '<div class="auto" style="--min: 300px; --gap: 18px">' + cores + '</div>' +
+        '<div class="dash" style="padding: 20px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px 28px; align-items: center"><div><span class="mono" style="color: var(--rose)">Optional extras</span><p class="muted" style="font-size: 15px">If you have the footage and the energy.</p></div>' + opts + '</div>' +
+      '</div>';
+
+    $('review').innerHTML = review.map(function (r) {
+      var d = !!state.done[r[0]];
+      var bs = 'width: 30px; height: 30px; margin-top: 2px; ' + (d ? 'background: var(--blush); border-color: var(--blush); color: var(--wine)' : 'border-color: var(--blush); color: var(--blush)');
+      return '<li style="border-top: 1px solid rgba(255,255,255,.16)"><button aria-pressed="' + d + '" data-act="toggle" data-id="' + r[0] + '" style="appearance: none; background: none; border: 0; color: inherit; font: inherit; text-align: left; cursor: pointer; width: 100%; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 18px; padding: 20px 0; align-items: start; min-height: 44px"><span class="box" style="' + bs + '">' + (d ? CHECK : '') + '</span><span style="display: flex; flex-direction: column; gap: 4px"><span class="h3" style="font-size: clamp(19px,2vw,24px)">' + esc(r[1]) + '</span>' + (r[2] ? '<span style="font-size: 15px; color: var(--mist)">' + esc(r[2]) + '</span>' : '') + '</span></button></li>';
+    }).join('');
+
+    $('steps').innerHTML = steps.map(function (s) {
+      var d = !!state.done[s[0]];
+      var cs = 'appearance: none; font: inherit; text-align: left; cursor: pointer; color: #F8EEEA; border-radius: 4px; padding: 24px 24px 26px; border: 1px solid ' + (d ? 'var(--blush)' : 'rgba(255,255,255,.16)') + '; background: ' + (d ? 'rgba(242,193,182,.14)' : 'rgba(255,255,255,.04)');
+      var bs = 'width: 30px; height: 30px; ' + (d ? 'background: var(--blush); border-color: var(--blush); color: var(--wine)' : 'border-color: var(--blush); color: var(--blush)');
+      return '<button aria-pressed="' + d + '" data-act="toggle" data-id="' + s[0] + '" style="' + cs + '"><span style="display: flex; justify-content: space-between; align-items: center"><span class="disp" style="font-size: 44px; color: var(--blush)">' + s[1] + '</span><span class="box" style="' + bs + '">' + (d ? CHECK : '') + '</span></span><span class="h3" style="display: block; font-size: 21px; margin-top: 14px">' + esc(s[2]) + '</span><span style="display: block; font-size: 15.5px; line-height: 1.5; color: var(--mist); margin-top: 8px">' + esc(s[3]) + '</span></button>';
+    }).join('');
+  }
+
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-act]');
+    if (!b) return;
+    if (b.getAttribute('data-act') === 'tab') state.week = +b.getAttribute('data-i');
+    else { var id = b.getAttribute('data-id'); state.done[id] = !state.done[id]; }
+    save(); renderLive();
+  });
+
+  renderLive();
+})();
+</script>
