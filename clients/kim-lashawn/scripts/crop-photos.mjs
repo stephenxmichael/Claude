@@ -15,7 +15,8 @@ const jobs = [
   [D("kim-tiktok.jpg"), "tile-lifestyle.jpg", 602, 635, 298, 396],
   [D("kim-tiktok.jpg"), "tile-style.jpg", 301, 1431, 298, 396],
   [D("kim-portrait.jpg"), "kim-close.jpg", 330, 90, 660, 660],
-  [D("kim-portrait.jpg"), "kim-cover.jpg", 0, 0, 1320, 1290],
+  [D("kim-portrait.jpg"), "kim-cover.jpg", 305, 0, 707, 1414],
+  [D("kim-instagram.jpg"), "ig-glasses-orange.jpg", 322, 1488, 218, 290],
   [D("kim-camera.jpg"), "kim-letter.jpg", 0, 0, 1100, 1453],
   [D("kim-tiktok.jpg"), "kim-tiktok.jpg", 0, 0, 900, 1827],
   [D("kim-instagram.jpg"), "kim-instagram.jpg", 0, 0, 900, 1827],
@@ -32,5 +33,16 @@ for (const [src, out, sx, sy, sw, sh] of jobs) {
   }, [data, sx, sy, sw, sh]);
   writeFileSync(resolve(root, "photos", out), Buffer.from(url.split(",")[1], "base64"));
 }
+// The Shooting Stars wordmark, tinted to the deck's deep text colour.
+const logo = "data:image/png;base64," + readFileSync(resolve(root, "../../assets/Shooting_Stars_logo_1_blk.png")).toString("base64");
+const tinted = await p.evaluate(async (src) => {
+  const img = new Image(); img.src = src; await img.decode();
+  const w = 800, h = Math.round(img.height * w / img.width);
+  const c = document.createElement("canvas"); c.width = w; c.height = h;
+  const x = c.getContext("2d"); x.drawImage(img, 0, 0, w, h);
+  x.globalCompositeOperation = "source-in"; x.fillStyle = "#4A2C37"; x.fillRect(0, 0, w, h);
+  return c.toDataURL("image/png");
+}, logo);
+writeFileSync(resolve(root, "logo-deep.png"), Buffer.from(tinted.split(",")[1], "base64"));
 await b.close();
-console.log("cropped", jobs.length);
+console.log("cropped", jobs.length, "+ logo");
