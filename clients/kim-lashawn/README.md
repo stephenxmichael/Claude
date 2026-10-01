@@ -35,7 +35,7 @@ From the repo root after `npm install`:
     node clients/kim-lashawn/scripts/sheet.mjs 1 12     # contact sheet of pages 1-12
     node clients/kim-lashawn/scripts/crop-photos.mjs    # re-crop photos/ from design/
     clients/kim-lashawn/scripts/vendor-fonts.sh         # refresh fonts
-    python3 clients/kim-lashawn/scripts/web.py          # build/artifact.html, single-file web copy
+    python3 clients/kim-lashawn/scripts/web_guide.py    # build/guide.html: the interactive page as one ordinary web page
 
 Photos are pre-cropped to the exact frame sizes so the PDF draws them 1:1;
 cropping with object-fit leaves edge strips that iOS paints over the image.
