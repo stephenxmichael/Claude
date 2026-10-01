@@ -13,3 +13,4 @@ Rebuild from the repo root after `npm install`:
     node clients/kim-lashawn/scripts/render.mjs --pdf   # also writes the PDF
     clients/kim-lashawn/scripts/vendor-fonts.sh         # refresh fonts
     node clients/kim-lashawn/scripts/tint-logo.mjs      # regenerate logo-plum.png
+    python3 clients/kim-lashawn/scripts/web.py          # build/artifact.html, the shareable web version
