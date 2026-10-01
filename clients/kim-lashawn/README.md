@@ -3,9 +3,9 @@
 Shooting Stars Content Strategy, student edition. A 19-page PDF guide
 (1080x1350 portrait, readable on a phone) plus an interactive web version.
 
-    web/guide.html                     the interactive page; also holds the plan data
+    web/guide.html                     the interactive page (longer, earlier version of the plan)
     kim-lashawn-first-30-days.html     the deck; edit by hand outside the GEN markers
-    scripts/build_deck.py              fills the deck's GEN regions from web/guide.html
+    scripts/build_deck.py              the month's posts; fills the deck's calendar and week pages
     Kim-LaShawn-First-30-Days-of-Content.pdf
     design/Main.dc.html                earlier Design canvas source of the page
     design/*.jpg                       Kim's photos and profile screenshots, as supplied
@@ -24,11 +24,12 @@ burgundy; no gold. Each pillar has one colour (Becoming, Lifestyle, Style,
 Safety), used for calendar events and post cards. Core posts are solid;
 optional posts are dashed.
 
-The four weeks and the sixteen Rediscovering Her episodes live once, in the
-`weeks` and `episodes` arrays in `web/guide.html`. `build_deck.py` reads them
-and writes the series tie-ins (p.7), the month calendar (p.9) and the four
-week pages (pp.10-13), so the PDF, the calendar and the web page always
-match. Run it after any change to the plan.
+The month's posts live once, in `WEEKS` in `scripts/build_deck.py`: a day,
+title, format and one or two sentences of filming direction per core post,
+and a title per optional post. It writes the calendar (p.9, what to post) and
+the four week pages (pp.10-13, how to film it), so their titles always
+match. Run it after any change to the plan. The web page predates this
+simplification and has not been updated to match.
 
 ## Build
 
