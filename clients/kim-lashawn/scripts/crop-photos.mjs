@@ -34,6 +34,30 @@ for (const [src, out, sx, sy, sw, sh] of jobs) {
   }, [data, sx, sy, sw, sh]);
   writeFileSync(resolve(root, "photos", out), Buffer.from(url.split(",")[1], "base64"));
 }
+// Kim's profile screenshots in a burgundy phone frame with its drop shadow
+// baked in, at 2x. A CSS box-shadow with blur doesn't survive the trip to PDF
+// in every viewer; a transparent PNG does. Drawn in the deck at 332x564.5.
+for (const name of ["tiktok", "instagram"]) {
+  const data = "data:image/jpeg;base64," + readFileSync(resolve(root, "photos", `kim-${name}.jpg`)).toString("base64");
+  const url = await p.evaluate(async (data) => {
+    const img = new Image(); img.src = data; await img.decode();
+    const S = 2, padX = 50 * S, padTop = 30 * S, padBottom = 80 * S;
+    const fw = 232 * S, fh = 454.5 * S, sw = 216 * S, sh = 438.5 * S, inset = 8 * S;
+    const c = document.createElement("canvas"); c.width = fw + 2 * padX; c.height = fh + padTop + padBottom;
+    const x = c.getContext("2d");
+    const rr = (l, t, w, h, r) => { x.beginPath(); x.roundRect(l, t, w, h, r); };
+    x.save();
+    x.shadowColor = "rgba(90,26,43,.24)"; x.shadowBlur = 44 * S; x.shadowOffsetY = 20 * S;
+    rr(padX, padTop, fw, fh, 32 * S); x.fillStyle = "#5A1A2B"; x.fill();
+    x.restore();
+    rr(padX + inset, padTop + inset, sw, sh, 25 * S); x.save(); x.clip();
+    x.drawImage(img, padX + inset, padTop + inset, sw, sh);
+    x.restore();
+    return c.toDataURL("image/png");
+  }, data);
+  writeFileSync(resolve(root, "photos", `phone-${name}.png`), Buffer.from(url.split(",")[1], "base64"));
+}
+
 // The Shooting Stars wordmark, tinted to the deck's deep text colour.
 const logo = "data:image/png;base64," + readFileSync(resolve(root, "../../assets/Shooting_Stars_logo_1_blk.png")).toString("base64");
 const tinted = await p.evaluate(async (src) => {
@@ -46,4 +70,4 @@ const tinted = await p.evaluate(async (src) => {
 }, logo);
 writeFileSync(resolve(root, "logo-deep.png"), Buffer.from(tinted.split(",")[1], "base64"));
 await b.close();
-console.log("cropped", jobs.length, "+ logo");
+console.log("cropped", jobs.length, "+ 2 phone mockups + logo");
